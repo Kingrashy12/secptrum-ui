@@ -85,6 +85,7 @@ For a full list of components and their usage, please refer to the [documentatio
 SecptrumUI leverages Tailwind CSS for customization. You can adjust the appearance of components by modifying the Tailwind configuration or applying utility classes directly:
 
 `1`. `Override Tailwind Config`: Edit your `tailwind.config.js` file to customize theme colors, spacing, typography, and more.
+
 `2`. Extend Classes: Use Tailwind utility classes directly on components to achieve your desired look.
 
 ```bash
