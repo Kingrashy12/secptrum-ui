@@ -1,9 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
-import path from "path";
-// import tsconfigPaths from "vite-tsconfig-paths";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"], // stories file pattern
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-onboarding",
@@ -17,19 +15,25 @@ const config: StorybookConfig = {
     options: {},
   },
   webpackFinal: async (config) => {
-    // Add your custom webpack modifications here
+    // Ensure TypeScript files are handled properly
     config?.module?.rules?.push({
       test: /\.(ts|tsx)$/,
       use: [
         {
           loader: require.resolve("ts-loader"),
           options: {
-            transpileOnly: true,
+            transpileOnly: false, // Enable faster builds by transpiling only
           },
         },
       ],
     });
-    config?.resolve?.extensions?.push(".ts", ".tsx");
+
+    // Ensure all relevant extensions are resolved
+    config.resolve = {
+      ...config.resolve,
+      extensions: [...(config.resolve?.extensions || []), ".ts", ".tsx"],
+    };
+
     return config;
   },
 };

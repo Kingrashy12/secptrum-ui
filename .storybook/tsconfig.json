@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true, // Add this if missing
+    "declarationMap": true, // Make sure declaration is enabled
+    "composite": true
+  }
+}

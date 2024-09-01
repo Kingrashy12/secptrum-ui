@@ -15,9 +15,10 @@
     "paths": {
       "@/*": ["src/*"] // Path alias for easier imports
     },
+    "rootDir": ".",
     "resolveJsonModule": true, // Allows importing .json files
     "forceConsistentCasingInFileNames": true // Disallow inconsistently-cased references to the same file
   },
-  "include": ["src/**/*"], // Include all files in the src directory
+  "include": ["src/**/*", ".storybook/**/*"], // Include all files in the src directory
   "exclude": ["node_modules", "dist"] // Exclude unnecessary directories from compilation
 }

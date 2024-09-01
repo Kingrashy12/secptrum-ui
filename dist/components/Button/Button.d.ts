@@ -57,6 +57,71 @@ interface ButtonProps extends ButtonTypes {
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button for more information on standard HTML button attributes.
  */
-declare const Button: ({ children, radius, variant, size, ...props }: ButtonProps) => JSX.Element;
+declare const Button: {
+    ({ children, radius, variant, size, ...props }: ButtonProps): JSX.Element;
+    __docgenInfo: {
+        description: string;
+        methods: never[];
+        displayName: string;
+        props: {
+            children: {
+                required: boolean;
+                tsType: {
+                    name: string;
+                };
+                description: string;
+            };
+            variant: {
+                required: boolean;
+                tsType: {
+                    name: string;
+                    raw: string;
+                    elements: {
+                        name: string;
+                        value: string;
+                    }[];
+                };
+                description: string;
+                defaultValue: {
+                    value: string;
+                    computed: boolean;
+                };
+            };
+            radius: {
+                required: boolean;
+                tsType: {
+                    name: string;
+                    raw: string;
+                    elements: {
+                        name: string;
+                        value: string;
+                    }[];
+                };
+                description: string;
+                defaultValue: {
+                    value: string;
+                    computed: boolean;
+                };
+            };
+            size: {
+                required: boolean;
+                tsType: {
+                    name: string;
+                    raw: string;
+                    elements: {
+                        name: string;
+                        value: string;
+                    }[];
+                };
+                description: string;
+                defaultValue: {
+                    value: string;
+                    computed: boolean;
+                };
+            };
+        };
+        composes: string[];
+    };
+};
 export default Button;
 //# sourceMappingURL=Button.d.ts.map

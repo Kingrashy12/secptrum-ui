@@ -1,3 +1,5 @@
-declare const Input: () => import("react/jsx-runtime").JSX.Element;
+import { InputType } from "@/types";
+import React from "react";
+declare const Input: React.FC<InputType>;
 export default Input;
 //# sourceMappingURL=Input.d.ts.map

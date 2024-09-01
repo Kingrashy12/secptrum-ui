@@ -1,8 +1,10 @@
 import { colors } from "../../styles/colors";
 import React from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { ComponentPropsWithRef } from "react";
 import styled from "styled-components";
+import Icon from "../Icon/Icon";
 
 type ButtonTypes = ComponentPropsWithRef<"button">;
 
@@ -33,6 +35,15 @@ interface ButtonProps extends ButtonTypes {
    * @property {string} xl - A extra large button size with larger padding and text.
    */
   size?: "md" | "lg" | "xl";
+  /**
+   * @param icon Accepts a JSX element representing an icon, such as `icon={FaUser}` from react-icons.
+   * Avoid wrapping the icon in a fragment (`<>...</>` or `<FaUser/>`) or other component, as this may cause the component to break.
+   */
+  icon?: any;
+  /**
+   * @param isLoading A loading indicator used to signal a pending state action `e.g` Login
+   */
+  isLoading?: boolean;
 }
 
 const getBorderRadius = (radius: ButtonProps["radius"]) => {
@@ -101,29 +112,9 @@ const getButtonStyles = (variant: ButtonProps["variant"]) => {
  * A React component that extends the HTML `<button>` element to provide additional styling and functionality.
  *
  * The `Button` component can be customized using standard HTML button attributes and additional props like `size`.
- * It supports the `children` prop to display content inside the button and can accept other props such as
  * `onClick`, `disabled`, `className`, and more.
  *
  * @component
- * @param {Object} props - The props for the Button component.
- * @param {string} props.radius - The radius style of the button default `xl`.
- * @param {('md' | 'lg' | 'xl')} [props.size='medium'] - The size of the button default `md`.
- * @param {string} [props.variant] - The variant style of the button default `solid`.
- * @param {string} [props.className] - Additional class names to apply to the button for styling.
- * @param {function} [props.onClick] - The function to call when the button is clicked.
- * @returns {JSX.Element} A customizable button component that supports standard button props.
- *
- * @example
- * // Usage in a React component
- * import {Button} from 'secptrum-ui';
- *
- * function App() {
- *   return (
- *     <Button size="lg" variant='outlined' >
- *       Click Me!
- *     </Button>
- *   );
- * }
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button for more information on standard HTML button attributes.
  */
@@ -133,6 +124,8 @@ const Button = ({
   radius = "xl",
   variant = "solid",
   size = "md",
+  icon,
+  isLoading,
   ...props
 }: ButtonProps): JSX.Element => {
   const StyledButton = styled.button`
@@ -144,6 +137,7 @@ const Button = ({
     height: auto;
     align-items: center;
     justify-content: center;
+    gap: 5px;
     padding: ${getSizeVariant(size)};
     border-radius: ${getBorderRadius(radius)};
     &:focus {
@@ -155,9 +149,33 @@ const Button = ({
     &:hover {
       ${getHoverStyle(variant)}
     }
-    ${getButtonStyles(variant)}
+    ${getButtonStyles(variant)};
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+    .loader {
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(-360deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   `;
-  return <StyledButton {...props}>{children}</StyledButton>;
+  return (
+    <StyledButton {...props}>
+      {isLoading ? (
+        <AiOutlineLoading3Quarters className="loader" />
+      ) : (
+        icon && <Icon icon={icon} />
+      )}{" "}
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;
