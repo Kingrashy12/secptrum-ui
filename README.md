@@ -25,10 +25,9 @@ To install SecptrumUI, you can use npm or yarn:
 
 ```bash
 # Using npm
-npm install secptrum-ui styled-components
-
+npm install secptrum-ui 
 # Using yarn
-yarn add secptrum-ui styled-components
+yarn add secptrum-ui 
 ```
 
 ## Usage
