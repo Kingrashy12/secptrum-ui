@@ -1,6 +1,6 @@
 # SecptrumUI
 
-**SecptrumUI** is a customizable and modern UI component library built with Tailwind CSS. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.
+**SecptrumUI** is a customizable and modern UI component library built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@
 
 ## Features
 
-- 🎨 **Customizable**: Easily customize components with Tailwind CSS classes.
+- 🎨 **Customizable**: Easily customize components using `styled-components` for advanced styling.
 - 🧩 **Modular**: Import only the components you need, reducing bundle size.
 - 💻 **Responsive**: All components are designed to be fully responsive.
 - ⚡ **Fast Development**: Speed up your development process with pre-built, easy-to-integrate components.
@@ -25,22 +25,22 @@ To install SecptrumUI, you can use npm or yarn:
 
 ```bash
 # Using npm
-npm install secptrum-ui
+npm install secptrum-ui styled-components
 
 # Using yarn
-yarn add secptrum-ui
+yarn add secptrum-ui styled-components
 ```
 
 ## Usage
 
-To use SecptrumUI components in your project, first ensure that Tailwind CSS is properly configured. Then, import the components you need
+To use SecptrumUI components in your project, import the components you need
 
 ```bash
 import { Button, Input, Stack, Box } from 'secptrum-ui';
 
 function App() {
   return (
-    <Stack spacing="md">
+     <Stack spacing="md">
       <Box padding="md" border="1px solid #ddd">
         <Input placeholder="Enter your text here" />
       </Box>
@@ -82,14 +82,34 @@ For a full list of components and their usage, please refer to the [documentatio
 
 ## Coutomization
 
-SecptrumUI leverages Tailwind CSS for customization. You can adjust the appearance of components by modifying the Tailwind configuration or applying utility classes directly:
+SecptrumUI leverages `styled-components` for customization. You can adjust the appearance of components by using the `styled-components` API to create your own styles.
 
-`1`. `Override Tailwind Config`: Edit your `tailwind.config.js` file to customize theme colors, spacing, typography, and more.
-
-`2`. Extend Classes: Use Tailwind utility classes directly on components to achieve your desired look.
+### Example
 
 ```bash
-<Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
- Customized Button
-</Button>
+import styled from "styled-components";
+import { Button } from 'secptrum-ui';
+
+const CustomButton = styled(Button)`
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+function App() {
+  return (
+    <CustomButton>
+      Customized Button
+    </CustomButton>
+  );
+}
+
+export default App;
 ```
