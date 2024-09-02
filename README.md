@@ -65,6 +65,7 @@ SecptrumUI includes a variety of components to help you build your application
 - [Dropdown](#Dropdown): A dropdown menu for navigation or selection options.
 - [Stack](#Stack): A layout component for arranging child elements with spacing.
 - [Box](#Box): A versatile container component for layout and styling purposes.
+- [ImagePicker](#ImagePicker): A picker components that allows users to select and upload an image.
 
 ## Input
 

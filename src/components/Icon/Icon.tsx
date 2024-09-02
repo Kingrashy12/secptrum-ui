@@ -6,13 +6,52 @@ type IconBaseType = {
    * Avoid wrapping the icon in a fragment (`<>...</>` or `<FaUser/>`) or other component, as this may cause the component to break.
    */
   icon: any;
+  /**
+   * Size of the icon, this accepts only `number`
+   * @type {number}
+   */
   size?: number;
+
+  /**
+   * Custom class name for the icon
+   * @type {string}
+   */
   className?: string;
+
+  /**
+   * Click event handler
+   * @type {function}
+   */
   onClick?: () => void;
+
+  /**
+   * Mouse enter event handler
+   * @type {function}
+   */
   onMouseEnter?: () => void;
+
+  /**
+   * Mouse leave event handler
+   * @type {function}
+   */
   onMouseLeave?: () => void;
+
+  /**
+   * Custom styles for the icon
+   * @type {React.CSSProperties}
+   */
   styles?: React.CSSProperties;
+
+  /**
+   * Color of the icon
+   * @type {string}
+   */
   color?: string;
+
+  /**
+   * Title of the icon if any
+   * @type {string}
+   */
   title?: string;
 };
 

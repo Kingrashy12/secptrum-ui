@@ -3,7 +3,7 @@ import Button from "./Button";
 import { LuLogIn } from "react-icons/lu";
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: "Button",
   component: Button,
   parameters: {
     layout: "centered",
@@ -20,6 +20,11 @@ const meta: Meta<typeof Button> = {
     icon: {
       description:
         "Incase you want to add an icon to the `Button` Components `icon` props accepts jsx icons without the fragment e.g `icon={FaEmail}`",
+    },
+    size: {
+      description:
+        "Specifies the size variant for the `Button`. Defaults to `md` if not provided.",
+      type: "string",
     },
   },
   tags: ["autodocs"],

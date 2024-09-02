@@ -1,0 +1,1 @@
+import { BoxType } from "@/types";

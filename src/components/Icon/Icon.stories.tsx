@@ -4,7 +4,7 @@ import { colors } from "../../styles/colors";
 import { AiFillHome } from "react-icons/ai";
 
 const meta: Meta<typeof Icon> = {
-  title: "Components/Icon",
+  title: "Icon",
   component: Icon,
   parameters: {
     layout: "centered",
@@ -22,7 +22,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Docs: Story = {
   args: {
     icon: AiFillHome,
     size: 30,
