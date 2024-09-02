@@ -1,8 +1,8 @@
 import React from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Icon from "../Icon/Icon";
-import { ButtonProps } from "@/types";
 import { StyledButton } from "../../styles/styled";
+import { ButtonProps } from "../../types";
 
 /**
  * A customizable button component designed to handle various actions and events in your application.

@@ -1,7 +1,7 @@
 import { colors } from "../../styles/colors";
 import React, { useEffect, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { InputType } from "@/types";
+import { InputType } from "../../types";
 import Icon from "../Icon/Icon";
 import { StyledInput } from "../../styles/styled";
 

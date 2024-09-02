@@ -1,5 +1,5 @@
 import { colors } from "../../styles/colors";
-import { ButtonProps } from "@/types";
+import { ButtonProps } from "../../types";
 
 const getBorderRadius = (radius: ButtonProps["radius"]) => {
   switch (radius) {

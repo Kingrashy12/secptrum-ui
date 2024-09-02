@@ -1,3 +1,4 @@
+// export * from "./fun";
 import React, { ComponentPropsWithRef } from "react";
 
 type InputProps = ComponentPropsWithRef<"input">;

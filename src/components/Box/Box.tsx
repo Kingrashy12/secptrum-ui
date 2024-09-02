@@ -1,5 +1,5 @@
 import { StyledBox } from "../../styles/styled";
-import { BoxType } from "@/types";
+import { BoxType } from "../../types";
 import React from "react";
 
 /**

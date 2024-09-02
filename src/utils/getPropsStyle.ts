@@ -1,5 +1,5 @@
 import { colors } from "../styles/colors";
-import { InputType } from "@/types";
+import { InputType } from "../types";
 
 export const getInputVariantStyles = (variant: InputType["variant"]) => {
   switch (variant) {

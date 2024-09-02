@@ -6,9 +6,10 @@ import {
   getHoverStyle,
   getSizeVariant,
 } from "../utils/func/button";
-import { BoxType, ButtonProps, InputType } from "@/types";
+import { BoxType, ButtonProps, InputType } from "../types";
 import { getInputRadius, getInputVariantStyles } from "../utils/getPropsStyle";
 import { spacingValues } from "../utils/spacing";
+import { nunitoSans } from "./font";
 
 export const StyledBox = styled.div<{
   padding?: BoxType["padding"];
@@ -54,18 +55,7 @@ export const FilePicker = styled(StyledBox)`
   p {
     font-weight: 500;
     font-size: 15px;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Open Sans",
-      "Helvetica Neue",
-      sans-serif;
+    font-family: ${nunitoSans};
     color: ${colors.neutral500};
   }
 `;
@@ -101,18 +91,7 @@ export const StyledButton = styled.button<{
   gap: 5px;
   padding: ${(props) => getSizeVariant(props.size)};
   border-radius: ${(props) => getBorderRadius(props.radius)};
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: ${nunitoSans};
   &:focus {
     outline: none;
   }
@@ -167,18 +146,7 @@ export const StyledInput = styled.div<{
     background: transparent;
     caret-color: ${colors.blue500};
     color: black;
-    font-family:
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      Oxygen,
-      Ubuntu,
-      Cantarell,
-      "Open Sans",
-      "Helvetica Neue",
-      sans-serif;
+    font-family: ${nunitoSans};
   }
   input :focus {
     outline: none;
