@@ -5,7 +5,6 @@ import babel from "@rollup/plugin-babel";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
-import alias from "@rollup/plugin-alias";
 import del from "rollup-plugin-delete";
 
 export default {
@@ -37,9 +36,6 @@ export default {
   plugins: [
     del({ targets: "dist/*" }),
     peerDepsExternal(), // Automatically mark peer dependencies as external
-    // alias({
-    //   entries: [{ find: "@", replacement: "./src" }],
-    // }),
     resolve(), // Helps Rollup find external modules
     commonjs(), // Converts CommonJS modules to ES6
     typescript({

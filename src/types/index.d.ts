@@ -62,7 +62,7 @@ declare interface InputType extends InputProps {
    * @param Type Specifies the type of input to render. Determines the kind of data that the input will handle.
    * Possible values: "password" (for password input), "text" (for generic text), "email" (for email addresses), or "file" (for file uploads).
    */
-  Type: "password" | "text" | "email" | "file";
+  Type: "password" | "text" | "email";
 }
 
 declare interface BoxType extends BoxProps {

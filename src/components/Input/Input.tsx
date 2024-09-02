@@ -48,33 +48,22 @@ const Input = ({
   Type,
   ...props
 }: InputType): JSX.Element => {
-  const [type, setType] = useState(props.type ? props.type : "text");
-  const password = type === "password";
-  const typePass = Type === "password";
+  const [type, setType] = useState(props.type || "text");
+  const isPassword = type === "password";
 
-  useEffect(() => {
-    if (Type === "password") {
-      setType("password");
-    }
-  }, [Type]);
-
-  function seePass() {
-    if (type === "password") {
-      setType("text");
-    } else if (type === "text") {
-      setType("password");
-    }
+  function togglePasswordVisibility() {
+    setType((prevType) => (prevType === "password" ? "text" : "password"));
   }
 
   return (
     <StyledInput variant={variant} radius={radius}>
       {icon && <Icon size={22} icon={icon} color={colors.neutral500} />}
       <input type={type} {...props} />
-      {typePass && (
+      {Type === "password" && (
         <Icon
-          onClick={seePass}
+          onClick={togglePasswordVisibility}
           size={22}
-          icon={password ? IoMdEye : IoMdEyeOff}
+          icon={isPassword ? IoMdEye : IoMdEyeOff}
           color={colors.neutral600}
           className="eye_pass"
         />
