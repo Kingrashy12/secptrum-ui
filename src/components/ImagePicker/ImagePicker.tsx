@@ -74,6 +74,46 @@ interface ImagePickerProps {
   removeIconSize?: number;
 }
 
+/**
+ * A versatile component that allows users to select and preview one or multiple images from their device.
+ * The ImagePicker supports various image formats, such as PNG and JPEG, and provides a consistent way to handle image uploads.
+ *
+ * Props:
+ * - `onImageSelect`: A callback function that is triggered when a single image is selected.
+ *   Receives the selected image data as a parameter, which can be a `string`, `ArrayBuffer`, or `null`.
+ * - `onMultipleImageSelect` (optional): A callback function that is triggered when multiple images are selected.
+ *   Receives an array of selected image data, where each item is a `string`, `ArrayBuffer`, or `null`.
+ * - `multiple` (optional): A boolean prop that, when set to `true`, enables the selection of multiple images.
+ *   If `true`, the `onMultipleImageSelect` callback should be used. Defaults to `false`.
+ *
+ * Features:
+ * - Supports common image formats such as PNG and JPEG.
+ * - Allows single or multiple image selection based on the `multiple` prop.
+ * - Displays a preview of the selected images.
+ * - Triggers the appropriate callback function (`onImageSelect` or `onMultipleImageSelect`) with the selected image data,
+ *   making it easy to handle in the parent component.
+ *
+ * Usage:
+ * Use the ImagePicker component to enable users to upload images in various scenarios such as forms,
+ * user profiles, or galleries. It is flexible enough to handle both single and multiple image uploads.
+ *
+ * Example:
+ * ```
+ * // For single image selection:
+ * <ImagePicker
+ *   onImageSelect={(image) => console.log("Selected Image:", image)}
+ * />
+ *```
+ *
+ * ```
+ * // For multiple image selection:
+ * <ImagePicker
+ *   multiple={true}
+ *   onMultipleImageSelect={(images) => console.log("Selected Images:", images)}
+ * />
+ * ```
+ */
+
 const ImagePicker = ({
   onImageSelect,
   multiple,

@@ -40,20 +40,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "Enter name",
+    placeholder: "Enter your name",
   },
 };
 
 export const Outline: Story = {
   args: {
-    placeholder: "Enter name",
+    placeholder: "Enter your name",
     variant: "outline",
   },
 };
 
 export const Ghost: Story = {
   args: {
-    placeholder: "Enter name",
+    placeholder: "Enter your name",
     variant: "ghost",
   },
 };

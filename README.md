@@ -67,17 +67,21 @@ SecptrumUI includes a variety of components to help you build your application
 - [Box](#Box): A versatile container component for layout and styling purposes.
 - [ImagePicker](#ImagePicker): A picker components that allows users to select and upload an image.
 
+## Button
+
+- `Button`: A customizable button component designed to handle various actions and events in your application. The Button component supports multiple variants, sizes, and states, making it versatile and adaptable to different design and functionality needs.
+
 ## Input
 
-- `Input`: A customizable input field component for user text input. Supports various types, sizes, and validation.
+- `Input`: A versatile input field component that supports different types, styles, and additional features like icons. The Input component is designed to be highly customizable, making it suitable for various use cases such as forms, search bars, and user data entry.
 
 ## Stack
 
-- `Stack`: A layout component that arranges its children in a vertical or horizontal stack with adjustable spacing.
+- `Stack`: A layout component that arranges its children in a vertical or horizontal stack with configurable spacing. The Stack component simplifies the management of child components' spacing, alignment,
 
 ## Box
 
-- `Box`: A flexible container component that can be used for layout, styling, and spacing. Supports padding, margins, borders, and other styling options.
+- `Box`: A flexible container component that serves as a building block for layout and styling. The Box component allows you to easily control spacing (padding and margin), alignment, borders, and other CSS properties through props.
 
 For a full list of components and their usage, please refer to the [documentation](https://secptrumui.vercel.app).
 
