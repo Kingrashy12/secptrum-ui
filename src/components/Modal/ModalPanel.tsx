@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
-import { useModal } from "../../context/useModal";
+import React, { ComponentPropsWithRef } from "react";
 import { StyledPanel } from "../../styles/styled";
 
-type PanelType = {
-  children: React.ReactNode;
-};
-const ModalPanel = ({ children }: PanelType) => {
-  const { onOpen, onClose: close } = useModal();
+type PanelProps = ComponentPropsWithRef<"div">;
 
+interface PanelType extends PanelProps {
+  children: React.ReactNode;
+  align?: "vertical" | "horizontal";
+}
+const ModalPanel = ({ children, align, ...props }: PanelType) => {
   return (
-    <StyledPanel onClick={(e) => e.stopPropagation()}>{children}</StyledPanel>
+    <StyledPanel align={align} {...props} onClick={(e) => e.stopPropagation()}>
+      {children}
+    </StyledPanel>
   );
 };
 

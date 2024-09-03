@@ -168,7 +168,6 @@ const ImagePicker = ({
     <>
       {image || images.length >= 1 ? (
         <SelectedImageContainer
-          padding="8px"
           style={containerStyles}
           className={containerClassName}
         >

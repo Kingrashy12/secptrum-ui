@@ -10,7 +10,6 @@ import { BoxType, ButtonProps, InputType } from "../types";
 import { getInputRadius, getInputVariantStyles } from "../utils/getPropsStyle";
 import { spacingValues } from "../utils/spacing";
 import { nunitoSans } from "./font";
-import Box from "../components/Box/Box";
 
 export const StyledBox = styled.div<{
   padding?: BoxType["padding"];
@@ -54,12 +53,17 @@ export const FilePicker = styled(StyledBox)`
   width: 100%;
   align-items: center;
   justify-content: center;
+  width: 400px;
 
   p {
     font-weight: 500;
     font-size: 15px;
     font-family: ${nunitoSans};
     color: ${colors.neutral500};
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -180,9 +184,10 @@ export const SelectedImageContainer = styled(StyledBox)`
   width: 400px;
   height: auto;
   border-radius: 8px;
+  padding: 12px 8px;
 
   @media screen and (max-width: 768px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 
@@ -220,7 +225,7 @@ export const ImageRemover = styled.div`
   }
 `;
 
-export const CardWrap = styled(Box)`
+export const CardWrap = styled(StyledBox)`
   flex-direction: column;
   background: white;
   border: 1px solid ${colors.neutral300};
@@ -236,7 +241,7 @@ export const ModalContainer = styled.div<{ open: boolean }>`
   width: 100%;
   height: 100%;
   position: fixed;
-  background: rgb(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
   z-index: 500;
@@ -245,15 +250,34 @@ export const ModalContainer = styled.div<{ open: boolean }>`
   left: 0;
   bottom: 0;
   right: 0;
+  transition: all;
+  transition-duration: 1s;
+  transition-delay: 1s;
 `;
 
-export const StyledPanel = styled(Box)`
+export const StyledPanel = styled(StyledBox)<{
+  align?: "vertical" | "horizontal";
+}>`
   background: white;
-  width: 50%;
-  border-radius: 9px;
-  min-height: 50%;
+  width: 400px; /* Added unit for width */
+  border-radius: 0.375rem;
+  min-height: auto;
   max-height: 80%;
-  box-shadow: 1px 1px 1px black;
   padding: 16px;
   font-family: ${nunitoSans};
+  position: relative;
+  display: flex;
+  flex-direction: ${(props) =>
+    props.align === "horizontal" ? "row" : "column"};
+  transition: all;
+  transition-duration: 1s;
+  transition-delay: 1s;
+
+  @media screen and (max-width: 768px) {
+    /* Corrected typo in media query */
+    width: 50%;
+  }
+  @media screen and (max-width: 550px) {
+    width: 80%;
+  }
 `;

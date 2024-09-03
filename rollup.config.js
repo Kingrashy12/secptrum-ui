@@ -46,6 +46,7 @@ export default {
         "**/*.test.ts",
         ".storybook/**",
         "src/**/*.stories.tsx",
+        "src/example/**",
       ],
     }), // Transpile TypeScript files
     babel({
