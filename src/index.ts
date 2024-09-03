@@ -4,3 +4,6 @@ export { default as Icon } from "./components/Icon/Icon";
 export { default as ImagePicker } from "./components/ImagePicker/ImagePicker";
 export { default as Input } from "./components/Input/Input";
 export { default as Stack } from "./components/Stack/Stack";
+export { default as Modal } from "./components/Modal/Modal";
+export { default as ModalPanel } from "./components/Modal/ModalPanel";
+export { default as Card } from "./components/Card/Card";
