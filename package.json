@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
   "main": "dist/secptrum-ui.cjs.js",
   "module": "dist/secptrum-ui.es.js",

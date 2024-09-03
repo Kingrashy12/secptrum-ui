@@ -1,7 +1,9 @@
 import React from "react";
+import { CardType } from "../../types";
+import { CardWrap } from "../../styles/styled";
 
-const Card = () => {
-  return <div>Card</div>;
+const Card = ({ children, ...props }: CardType) => {
+  return <CardWrap {...props}>{children}</CardWrap>;
 };
 
 export default Card;

@@ -12,7 +12,14 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/react-webpack5",
-    options: {},
+    options: {
+      builder: {
+        options: {
+          fsCache: true,
+          lazyCompilation: true,
+        },
+      },
+    },
   },
   webpackFinal: async (config) => {
     // Ensure TypeScript files are handled properly

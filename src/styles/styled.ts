@@ -10,6 +10,7 @@ import { BoxType, ButtonProps, InputType } from "../types";
 import { getInputRadius, getInputVariantStyles } from "../utils/getPropsStyle";
 import { spacingValues } from "../utils/spacing";
 import { nunitoSans } from "./font";
+import Box from "../components/Box/Box";
 
 export const StyledBox = styled.div<{
   padding?: BoxType["padding"];
@@ -24,12 +25,14 @@ export const StyledBox = styled.div<{
   marginBottom?: BoxType["marginBottom"];
   marginLeft?: BoxType["marginLeft"];
   marginRight?: BoxType["marginRight"];
+  direction?: BoxType["direction"];
 }>`
   position: relative;
   display: flex;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
   border: ${(props) => props.border};
+  flex-direction: ${(props) => props.direction || "row"};
   padding-left: ${(props) => spacingValues(props.paddingLeft)};
   padding-right: ${(props) => spacingValues(props.paddingRight)};
   padding-top: ${(props) => spacingValues(props.paddingRight)};
@@ -134,8 +137,9 @@ export const StyledInput = styled.div<{
   ${(props) => getInputVariantStyles(props.variant)};
 
   &:focus-within {
-    outline-color: ${colors.blue500};
-    border: 1.8px solid ${colors.blue500};
+    outline: auto ${colors.blue500};
+    transition: all;
+    transition-duration: 500ms;
   }
 
   input {
@@ -214,4 +218,42 @@ export const ImageRemover = styled.div`
   &:hover {
     opacity: 0.75;
   }
+`;
+
+export const CardWrap = styled(Box)`
+  flex-direction: column;
+  background: white;
+  border: 1px solid ${colors.neutral300};
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 1px 1px 1px ${colors.slate200};
+  width: 100%;
+  justify-content: center;
+`;
+
+export const ModalContainer = styled.div<{ open: boolean }>`
+  display: ${(props) => (props.open ? "flex" : "none")};
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgb(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+  inset: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+`;
+
+export const StyledPanel = styled(Box)`
+  background: white;
+  width: 50%;
+  border-radius: 9px;
+  min-height: 50%;
+  max-height: 80%;
+  box-shadow: 1px 1px 1px black;
+  padding: 16px;
+  font-family: ${nunitoSans};
 `;

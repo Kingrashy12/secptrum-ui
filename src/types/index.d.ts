@@ -79,4 +79,9 @@ declare interface BoxType extends BoxProps {
   marginLeft?: SizeVariantType;
   marginRight?: SizeVariantType;
   centered?: boolean;
+  direction?: "row" | "column";
+}
+
+declare interface CardType extends BoxProps {
+  children: React.ReactNode;
 }
