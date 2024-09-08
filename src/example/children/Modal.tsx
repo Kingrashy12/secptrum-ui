@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import styled from "styled-components";
 import ModalPanel from "../../components/Modal/ModalPanel";
-import { useModal } from "../../context/useModal";
 import Button from "../../components/Button/Button";
 import Stack from "../../components/Stack/Stack";
 import Box from "../../components/Box/Box";
@@ -61,9 +60,9 @@ const Trashed = styled(Box)`
 `;
 
 const ModalDocs = () => {
-  const { isOpen, onClose, onOpen } = useModal();
   const [deleting, setDeleting] = useState(false);
   const [delected, setDelected] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (deleting) {
@@ -81,6 +80,10 @@ const ModalDocs = () => {
       }, 2000);
     }
   }, [delected]);
+
+  function onClose() {
+    setIsOpen(false);
+  }
 
   return (
     <>
@@ -133,7 +136,7 @@ const ModalDocs = () => {
           </ModalPanel>
         </Modal>
       ) : (
-        <Button onClick={onOpen} radius="lg">
+        <Button onClick={() => setIsOpen(true)} radius="lg">
           Open Modal
         </Button>
       )}

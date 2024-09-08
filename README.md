@@ -60,7 +60,7 @@ SecptrumUI includes a variety of components to help you build your application
 - [Button](#Button): A versatile button component with multiple styles and sizes.
 - [Card](#Card): A flexible card component for displaying content.
 - [Modal](#Modal): A modal dialog for alerts, confirmations, or custom content.
-- [Alert](#Alert): Notifications and messages to provide feedback to users.
+- [Toast](#Toast): Notifications and messages to provide feedback to users.
 - [Input](#Input): Customizable input fields with validation support.
 - [Dropdown](#Dropdown): A dropdown menu for navigation or selection options.
 - [Stack](#Stack): A layout component for arranging child elements with spacing.
@@ -83,7 +83,7 @@ SecptrumUI includes a variety of components to help you build your application
 
 - `Box`: A flexible container component that serves as a building block for layout and styling. The Box component allows you to easily control spacing (padding and margin), alignment, borders, and other CSS properties through props.
 
-For a full list of components and their usage, please refer to the [documentation](https://secptrumui.vercel.app).
+For a full list of components and their usage, please refer to the [documentation](https://66d26c2ee57a3f7e4450a14c-zcpfadsqei.chromatic.com/).
 
 ## Coutomization
 

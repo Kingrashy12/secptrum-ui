@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ModalProvider, { useModal } from "../../context/useModal";
 import { ModalContainer } from "../../styles/styled";
+import { ModalProvider } from "../../context/useModalContext";
 
 type ModalType = {
   /**
@@ -64,20 +64,22 @@ const Modal = ({
   isStory,
 }: ModalType) => {
   return (
-    <ModalProvider>
+    <>
       {isStory ? (
         <>{children}</>
       ) : (
-        <ModalContainer
-          style={styles}
-          className={className}
-          onClick={onClose}
-          open={open}
-        >
-          {children}
-        </ModalContainer>
+        <ModalProvider>
+          <ModalContainer
+            style={styles}
+            className={className}
+            onClick={onClose}
+            open={open}
+          >
+            {children}
+          </ModalContainer>
+        </ModalProvider>
       )}
-    </ModalProvider>
+    </>
   );
 };
 

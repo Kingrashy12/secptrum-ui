@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
   "main": "dist/secptrum-ui.cjs.js",
   "module": "dist/secptrum-ui.es.js",
@@ -22,7 +22,7 @@
     "postbuild": "copyfiles -u 1 src/types/**/* dist/",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic"
+    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "keywords": [],
   "author": {
