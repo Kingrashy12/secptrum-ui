@@ -5,7 +5,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import Input from "./Input";
 
 const meta: Meta<typeof Input> = {
-  title: "Input",
+  title: "UI/Form/Input",
   component: Input,
   parameters: {
     layout: "centered",

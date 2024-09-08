@@ -4,7 +4,7 @@ import StackChild from "../../example/children/Stack";
 import { colors } from "../../styles/colors";
 
 const meta: Meta<typeof Stack> = {
-  title: "Stack",
+  title: "UI/Layout/Stack",
   component: Stack,
   parameters: {
     layout: "centered",

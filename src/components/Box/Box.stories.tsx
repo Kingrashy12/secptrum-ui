@@ -3,7 +3,7 @@ import Box from "./Box";
 import BoxChild from "../../example/children/Box";
 
 const meta: Meta<typeof Box> = {
-  title: "Box",
+  title: "UI/Layout/Box",
   component: Box,
   parameters: {
     layout: "centered",

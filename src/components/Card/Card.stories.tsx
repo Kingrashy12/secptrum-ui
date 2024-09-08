@@ -3,7 +3,7 @@ import Card from "./Card";
 import { nunitoSans } from "../../styles/font";
 
 const meta: Meta<typeof Card> = {
-  title: "Card",
+  title: "UI/Layout/Card",
   component: Card,
   parameters: {
     layout: "centered",

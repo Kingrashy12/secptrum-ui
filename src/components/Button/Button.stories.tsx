@@ -3,7 +3,7 @@ import Button from "./Button";
 import { LuLogIn } from "react-icons/lu";
 
 const meta: Meta<typeof Button> = {
-  title: "Button",
+  title: "UI/Button",
   component: Button,
   parameters: {
     layout: "centered",

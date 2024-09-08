@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Toast from "./Toast";
+import BounceLoader from "./BounceLoader";
 
-const meta: Meta<typeof Toast> = {
-  title: "UI/Toast",
-  component: Toast,
+const meta: Meta<typeof BounceLoader> = {
+  title: "Loader/BounceLoader",
+  component: BounceLoader,
   parameters: {
     layout: "centered",
   },
@@ -14,6 +14,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Docs: Story = {
   args: {},
 };

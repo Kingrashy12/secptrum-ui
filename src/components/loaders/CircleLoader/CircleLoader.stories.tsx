@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Toast from "./Toast";
+import CircleLoader from "./CircleLoader";
 
-const meta: Meta<typeof Toast> = {
-  title: "UI/Toast",
-  component: Toast,
+const meta: Meta<typeof CircleLoader> = {
+  title: "Loader/CircleLoader",
+  component: CircleLoader,
   parameters: {
     layout: "centered",
   },
@@ -14,6 +14,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Docs: Story = {
   args: {},
 };
