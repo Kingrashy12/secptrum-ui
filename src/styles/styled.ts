@@ -10,6 +10,7 @@ import { BoxType, ButtonProps, InputType } from "../types";
 import { getInputRadius, getInputVariantStyles } from "../utils/getPropsStyle";
 import { spacingValues } from "../utils/spacing";
 import { nunitoSans } from "./font";
+import { getToastPosition } from "../utils/func/toast";
 
 export const StyledBox = styled.div<{
   padding?: BoxType["padding"];
@@ -274,10 +275,95 @@ export const StyledPanel = styled(StyledBox)<{
   transition-delay: 1s;
 
   @media screen and (max-width: 768px) {
-    /* Corrected typo in media query */
     width: 50%;
   }
   @media screen and (max-width: 550px) {
     width: 80%;
+  }
+`;
+
+export const StyledToast = styled(StyledBox)<{
+  position: ToastPositionType;
+  showToast: boolean;
+}>`
+  background: white;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  font-family: ${nunitoSans};
+  border: 1px solid ${colors.neutral200};
+  filter: drop-shadow(1px 1px 1px ${colors.slate200});
+  gap: 5px;
+  position: fixed;
+  max-width: 400px;
+  ${(props) => getToastPosition(props.position)}
+  display: ${(props) => (props.showToast ? "flex" : "none")};
+  animation: slideInFromRight 0.5s ease-out;
+  z-index: 1000;
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .header {
+    font-weight: 600;
+    color: black;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  span {
+    font-weight: 500;
+    color: ${colors.neutral600};
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 550px) {
+    max-width: 90%;
+  }
+`;
+
+export const ContentWrap = styled(StyledBox)`
+  padding: 12px;
+  gap: 8px;
+  width: fit-content;
+`;
+
+export const ToastContent = styled(StyledBox)`
+  gap: 2px;
+  width: 90%;
+`;
+
+export const CloseIcon = styled(StyledBox)<{ type: ToastVariant }>`
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid ${colors.neutral200};
+  padding: 12px;
+  height: auto;
+  transition: all;
+  transition-duration: 100ms;
+  transition-delay: 100ms;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  &:hover {
+    background: ${colors.slate100};
+    transition: all;
+    transition-duration: 100ms;
+    transition-delay: 100ms;
+  }
+
+  svg {
+    padding: 4px;
   }
 `;

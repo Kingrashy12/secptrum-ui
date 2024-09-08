@@ -8,7 +8,11 @@ const meta: Meta<typeof Modal> = {
   parameters: {
     layout: "centered",
   },
-
+  argTypes: {
+    children: {
+      control: { disable: true },
+    },
+  },
   tags: ["autodocs"],
 };
 

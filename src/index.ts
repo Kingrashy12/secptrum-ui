@@ -7,6 +7,8 @@ export { default as Stack } from "./components/Stack/Stack";
 export { default as Modal } from "./components/Modal/Modal";
 export { default as ModalPanel } from "./components/Modal/ModalPanel";
 export { default as Card } from "./components/Card/Card";
+export { default as Toaster } from "./components/Toast/Toaster";
+
 // Loaders
 export { default as BounceLoader } from "./components/loaders/BounceLoader/BounceLoader";
 export { default as CircleLoader } from "./components/loaders/CircleLoader/CircleLoader";

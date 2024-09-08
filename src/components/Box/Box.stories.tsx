@@ -69,6 +69,9 @@ const meta: Meta<typeof Box> = {
       description:
         "Specifies the top margin of the component. Accepts any valid CSS margin value.",
     },
+    children: {
+      control: { disable: true },
+    },
   },
 
   tags: ["autodocs"],

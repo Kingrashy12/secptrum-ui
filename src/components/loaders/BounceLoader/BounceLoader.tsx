@@ -15,8 +15,6 @@ type LoaderProps = {
 };
 
 /**
- * A bounce loader component that animates three circles one after another.
- *
  * Props:
  *  - `size`:  The size of each circle in the loader. Defaults to `15`.
  *  - `color`: The color of each circle the loader in the loader. Defaults to `blue`.
@@ -27,14 +25,14 @@ type LoaderProps = {
  * ```
  */
 
-const BounceLoader = ({ size, color }: LoaderProps) => {
+const BounceLoader = ({ size = 15, color = "blue" }: LoaderProps) => {
   const Loader = styled(Stack)``;
 
   const Square = styled.div`
     padding: 5px;
-    background-color: ${color ? color : "blue"};
-    width: ${size ? `${size}px` : `15px`};
-    height: ${size ? `${size}px` : `15px`};
+    background-color: ${color};
+    width: ${size}px;
+    height: ${size}px;
     border-radius: 9999px;
     /* box-shadow: 2px 2px 2px black; */
     filter: drop-shadow(2px 2px 2px black);

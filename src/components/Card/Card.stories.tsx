@@ -8,6 +8,14 @@ const meta: Meta<typeof Card> = {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    children: {
+      control: { disable: true },
+    },
+    style: {
+      control: { disable: true },
+    },
+  },
   tags: ["autodocs"],
 };
 

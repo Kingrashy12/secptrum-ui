@@ -9,6 +9,14 @@ const meta: Meta<typeof Stack> = {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    children: {
+      control: { disable: true },
+    },
+    style: {
+      control: { disable: true },
+    },
+  },
   tags: ["autodocs"],
 };
 

@@ -6,3 +6,13 @@ export const hexToRgbArray = (hex: any) => {
   const b = (bigint & 255) / 255;
   return [r, g, b, 1]; // RGB array with alpha 1
 };
+
+export function generateId() {
+  const numbers = "0123456789";
+  let result = "";
+  for (let i = 0; i < 11; i++) {
+    result =
+      result + numbers.charAt(Math.floor(Math.random() * numbers.length));
+  }
+  return result;
+}
