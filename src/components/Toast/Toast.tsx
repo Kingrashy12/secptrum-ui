@@ -11,6 +11,7 @@ import { IoIosCheckmarkCircle, IoIosInformationCircle } from "react-icons/io";
 import { colors } from "../../styles/colors";
 import { BiSolidError } from "react-icons/bi";
 import { generateId } from "../../lib/helper";
+// import "../../types/fun";
 
 let toast: ToastType;
 

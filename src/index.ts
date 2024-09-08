@@ -8,6 +8,7 @@ export { default as Modal } from "./components/Modal/Modal";
 export { default as ModalPanel } from "./components/Modal/ModalPanel";
 export { default as Card } from "./components/Card/Card";
 export { default as Toaster } from "./components/Toast/Toaster";
+export { toast } from "./components/Toast/Toast";
 
 // Loaders
 export { default as BounceLoader } from "./components/loaders/BounceLoader/BounceLoader";
