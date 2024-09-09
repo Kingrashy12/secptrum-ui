@@ -4,7 +4,7 @@ import { colors } from "../../styles/colors";
 import { AiFillHome } from "react-icons/ai";
 
 const meta: Meta<typeof Icon> = {
-  title: "UI/Icon",
+  title: "UI/Display/Icon",
   component: Icon,
   parameters: {
     layout: "centered",

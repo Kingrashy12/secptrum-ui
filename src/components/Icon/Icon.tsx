@@ -64,6 +64,7 @@ const Icon = ({
   onMouseLeave,
   color,
   title,
+  styles,
 }: IconBaseType) => {
   const BaseIcon: IconBaseType["icon"] = icon;
   return (
@@ -75,6 +76,7 @@ const Icon = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      style={styles}
     />
   );
 };

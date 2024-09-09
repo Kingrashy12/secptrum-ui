@@ -1,3 +1,5 @@
+export { toast } from "./components/Toast/Toast";
+export { colors } from "./styles/colors";
 export { default as Button } from "./components/Button/Button";
 export { default as Box } from "./components/Box/Box";
 export { default as Icon } from "./components/Icon/Icon";
@@ -8,7 +10,10 @@ export { default as Modal } from "./components/Modal/Modal";
 export { default as ModalPanel } from "./components/Modal/ModalPanel";
 export { default as Card } from "./components/Card/Card";
 export { default as Toaster } from "./components/Toast/Toaster";
-export { toast } from "./components/Toast/Toast";
+export { default as Checkbox } from "./components/Checkbox/Checkbox";
+export { default as Switch } from "./components/Switch/Switch";
+export { default as FloatingButton } from "./components/FloatingButton/FloatingButton";
+export { default as Tooltip } from "./components/Tooltip/Tooltip";
 
 // Loaders
 export { default as BounceLoader } from "./components/loaders/BounceLoader/BounceLoader";

@@ -1,15 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Modal from "./Modal";
-import ModalWrap from "../../example/children/modal/ModalWrap";
+import Checkbox from "./Checkbox";
+import CheckBox from "../../example/children/Checkbox";
 
-const meta: Meta<typeof Modal> = {
-  title: "UI/Feedback/Modal",
-  component: Modal,
+const meta: Meta<typeof Checkbox> = {
+  title: "UI/Input/Checkbox",
+  component: Checkbox,
   parameters: {
     layout: "centered",
   },
   argTypes: {
     children: {
+      control: { disable: true },
+    },
+    isStory: {
       control: { disable: true },
     },
   },
@@ -21,12 +24,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Docs: Story = {
-  args: {},
-};
-
-export const Confirmation: Story = {
   args: {
-    children: <ModalWrap />,
+    rounded: true,
     isStory: true,
+    children: <CheckBox />,
   },
 };

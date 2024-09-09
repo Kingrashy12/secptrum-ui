@@ -7,7 +7,7 @@ import {
 } from "../../example/children/Toast";
 
 const meta: Meta<typeof Toaster> = {
-  title: "UI/Toast",
+  title: "UI/Feedback/Toast",
   component: Toaster,
   parameters: {
     layout: "centered",

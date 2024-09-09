@@ -226,15 +226,21 @@ export const ImageRemover = styled.div`
   }
 `;
 
-export const CardWrap = styled(StyledBox)`
+export const CardWrap = styled(StyledBox)<{ centerContent?: boolean }>`
   flex-direction: column;
   background: white;
   border: 1px solid ${colors.neutral300};
   border-radius: 8px;
-  padding: 20px;
+  padding: 16px;
   box-shadow: 1px 1px 1px ${colors.slate200};
   width: 100%;
   justify-content: center;
+  align-items: ${(props) => props.centerContent && "center"};
+  height: auto;
+
+  @media screen and (max-width: 700px) {
+    padding: 10px;
+  }
 `;
 
 export const ModalContainer = styled.div<{ open: boolean }>`

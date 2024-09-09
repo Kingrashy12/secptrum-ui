@@ -84,4 +84,8 @@ declare interface BoxType extends BoxProps {
 
 declare interface CardType extends BoxProps {
   children: React.ReactNode;
+  /**
+   * An indication to center card content
+   */
+  centerContent?: boolean;
 }
