@@ -21,6 +21,7 @@ const FloatingButton = ({
   position = "bottom-right",
   children,
   backgroundColor,
+  ...props
 }: FloatProps) => {
   const Float = styled.div`
     position: fixed;
@@ -42,7 +43,7 @@ const FloatingButton = ({
       opacity: 0.9;
     }
   `;
-  return <Float>{children}</Float>;
+  return <Float {...props}>{children}</Float>;
 };
 
 export default FloatingButton;

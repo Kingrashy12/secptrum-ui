@@ -30,6 +30,7 @@ type ModalType = {
 
   /**
    * Optional flag to indicate if the component is used in a story or not.
+   * - `Note` This should not be used outside of a Storybook environment.
    */
   isStory?: boolean;
 };

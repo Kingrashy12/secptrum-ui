@@ -15,6 +15,7 @@ type StoryTestType = {
   children?: React.ReactNode;
   /**
    * @param isStory Flag to indicate if the component is a story, This should not be used in real components.
+   * - `Note` This should not be used outside of a Storybook environment.
    */
   isStory?: boolean;
 };

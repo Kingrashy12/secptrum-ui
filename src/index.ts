@@ -14,6 +14,7 @@ export { default as Checkbox } from "./components/Checkbox/Checkbox";
 export { default as Switch } from "./components/Switch/Switch";
 export { default as FloatingButton } from "./components/FloatingButton/FloatingButton";
 export { default as Tooltip } from "./components/Tooltip/Tooltip";
+export { default as Backdrop } from "./components/Backdrop/Backdrop";
 
 // Loaders
 export { default as BounceLoader } from "./components/loaders/BounceLoader/BounceLoader";
