@@ -6,6 +6,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 import del from "rollup-plugin-delete";
+import replace from "@rollup/plugin-replace";
 
 export default {
   input: "src/index.ts", // Entry point for your library
@@ -36,7 +37,14 @@ export default {
   plugins: [
     del({ targets: "dist/*" }),
     peerDepsExternal(), // Automatically mark peer dependencies as external
-    resolve(), // Helps Rollup find external modules
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("production"),
+      preventAssignment: true,
+    }),
+    resolve({
+      browser: true, // Resolve modules for the browser
+      preferBuiltins: false,
+    }), // Helps Rollup find external modules
     commonjs(), // Converts CommonJS modules to ES6
     typescript({
       tsconfig: "./tsconfig.json",
