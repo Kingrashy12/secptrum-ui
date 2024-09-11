@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
   "homepage": "https://66d26c2ee57a3f7e4450a14c-noisslolsk.chromatic.com",
   "repository": {
@@ -11,7 +11,6 @@
     "url": "https://github.com/Kingrashy12/secptrum-ui/issues"
   },
   "main": "dist/secptrum-ui.cjs.js",
-  "browser": "dist/secptrum-ui.umd.js",
   "module": "dist/secptrum-ui.es.js",
   "unpkg": "dist/secptrum-ui.umd.js",
   "types": "dist/types/index.d.ts",
@@ -29,7 +28,7 @@
   "scripts": {
     "build:browser": "rollup -c rollup.config.browser.js",
     "build:node": "rollup -c rollup.config.node.js",
-    "build": "npm run build:browser && npm run build:node",
+    "build": "rollup -c",
     "postbuild": "copyfiles -u 1 src/types/**/* dist/",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -51,7 +50,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@rollup/plugin-alias": "^5.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
@@ -59,6 +57,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.8.0",
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
