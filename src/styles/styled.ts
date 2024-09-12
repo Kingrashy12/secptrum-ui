@@ -291,7 +291,7 @@ export const StyledPanel = styled(StyledBox)<{
 
 export const StyledToast = styled(StyledBox)<{
   position: ToastPositionType;
-  showToast: boolean;
+  showtoast: boolean;
 }>`
   background: white;
   width: auto;
@@ -304,7 +304,7 @@ export const StyledToast = styled(StyledBox)<{
   position: fixed;
   max-width: 400px;
   ${(props) => getToastPosition(props.position)}
-  display: ${(props) => (props.showToast ? "flex" : "none")};
+  display: ${(props) => (props.showtoast ? "flex" : "none")};
   animation: slideInFromRight 0.5s ease-out;
   z-index: 1000;
 

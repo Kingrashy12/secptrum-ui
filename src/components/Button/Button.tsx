@@ -66,6 +66,7 @@ const Button = ({
       variant={variant}
       size={size}
       radius={radius}
+      className={props.className}
     >
       {isLoading ? (
         <AiOutlineLoading3Quarters className="loader" />

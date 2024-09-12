@@ -131,7 +131,7 @@ const Toast = () => {
           key={toast.id}
           position={toast.position || "top-right"}
           className={toast.className}
-          showToast={true}
+          showtoast={true}
         >
           <ContentWrap>
             <Icon

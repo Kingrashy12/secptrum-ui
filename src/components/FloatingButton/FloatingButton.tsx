@@ -43,7 +43,11 @@ const FloatingButton = ({
       opacity: 0.9;
     }
   `;
-  return <Float {...props}>{children}</Float>;
+  return (
+    <Float {...props} className={props.className}>
+      {children}
+    </Float>
+  );
 };
 
 export default FloatingButton;

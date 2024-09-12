@@ -58,7 +58,7 @@ const Input = ({
   };
 
   return (
-    <StyledInput variant={variant} radius={radius}>
+    <StyledInput variant={variant} radius={radius} className={props.className}>
       {icon && <Icon size={iconSize} icon={icon} color={colors.neutral500} />}
       <input
         {...props}

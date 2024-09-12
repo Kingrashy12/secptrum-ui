@@ -47,6 +47,7 @@ type CheckBoxType = {
    */
   children?: React.ReactNode;
   disabled?: boolean;
+  className?: string;
 };
 
 const Checkbox = ({
@@ -58,6 +59,7 @@ const Checkbox = ({
   isStory,
   children,
   disabled,
+  className,
 }: CheckBoxType) => {
   const roundedIcon = checked
     ? IoIosCheckmarkCircle
@@ -80,6 +82,7 @@ const Checkbox = ({
             opacity: disabled ? 0.5 : 1,
           }}
           color={color}
+          className={className}
         />
       )}
     </>

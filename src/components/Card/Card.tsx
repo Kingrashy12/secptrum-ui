@@ -4,7 +4,11 @@ import { CardWrap } from "../../styles/styled";
 
 const Card = ({ children, centerContent, ...props }: CardType) => {
   return (
-    <CardWrap {...props} centerContent={centerContent}>
+    <CardWrap
+      {...props}
+      className={props.className}
+      centerContent={centerContent}
+    >
       {children}
     </CardWrap>
   );

@@ -28,7 +28,11 @@ import React from "react";
  */
 
 const Box = ({ children, ...props }: BoxType) => {
-  return <StyledBox {...props}>{children}</StyledBox>;
+  return (
+    <StyledBox {...props} className={props.className}>
+      {children}
+    </StyledBox>
+  );
 };
 
 export default Box;

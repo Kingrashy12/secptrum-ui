@@ -13,7 +13,12 @@ const ModalPanel = ({ children, align, ...props }: PanelType) => {
   useModalContext();
 
   return (
-    <StyledPanel align={align} {...props} onClick={(e) => e.stopPropagation()}>
+    <StyledPanel
+      align={align}
+      {...props}
+      onClick={(e) => e.stopPropagation()}
+      className={props.className}
+    >
       {children}
     </StyledPanel>
   );

@@ -32,6 +32,7 @@ type SwitchType = {
    * @default false
    */
   checked?: boolean;
+  className?: string;
 };
 
 const getSize = (variant: SwitchType["variant"]) => {
@@ -60,6 +61,7 @@ const Switch = ({
   checkedColor = "blue",
   variant = "md",
   onSwitch,
+  className,
   checked = false,
 }: SwitchType) => {
   const { width, height } = getSize(variant);
@@ -91,7 +93,7 @@ const Switch = ({
   `;
 
   return (
-    <SwitchContainer onClick={onSwitch}>
+    <SwitchContainer onClick={onSwitch} className={className}>
       <SwitchHandle />
     </SwitchContainer>
   );

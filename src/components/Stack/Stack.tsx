@@ -89,6 +89,7 @@ const Stack = ({
       padding={padding}
       spacing={spacing}
       margin={margin}
+      className={props.className}
     >
       {children}
     </StyledStack>
