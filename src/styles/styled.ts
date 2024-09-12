@@ -233,7 +233,8 @@ export const CardWrap = styled(StyledBox)<{ centerContent?: boolean }>`
   border-radius: 8px;
   padding: 16px;
   box-shadow: 1px 1px 1px ${colors.slate200};
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   justify-content: center;
   align-items: ${(props) => props.centerContent && "center"};
   height: auto;

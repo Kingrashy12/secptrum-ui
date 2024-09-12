@@ -63,6 +63,7 @@ declare interface InputType extends InputProps {
    * Possible values: "password" (for password input), "text" (for generic text), "email" (for email addresses), or "file" (for file uploads).
    */
   Type: "password" | "text" | "email";
+  iconSize?: number;
 }
 
 declare interface BoxType extends BoxProps {

@@ -73,6 +73,6 @@ export const Password: Story = {
   args: {
     placeholder: "Enter your password",
     Type: "password",
-    // type: "password",
+    type: "password",
   },
 };

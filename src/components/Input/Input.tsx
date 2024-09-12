@@ -46,19 +46,25 @@ const Input = ({
   variant = "solid",
   radius = "sm",
   Type,
+  iconSize = 19,
   ...props
 }: InputType): JSX.Element => {
-  const [type, setType] = useState(props.type || "text");
-  const isPassword = type === "password";
+  const [inputType, setInputType] = useState(props.type);
 
-  function togglePasswordVisibility() {
-    setType((prevType) => (prevType === "password" ? "text" : "password"));
-  }
+  const isPassword = inputType === "password";
+
+  const togglePasswordVisibility = () => {
+    setInputType((prevType) => (prevType === "password" ? "text" : "password"));
+  };
 
   return (
     <StyledInput variant={variant} radius={radius}>
-      {icon && <Icon size={22} icon={icon} color={colors.neutral500} />}
-      <input type={type} {...props} />
+      {icon && <Icon size={iconSize} icon={icon} color={colors.neutral500} />}
+      <input
+        {...props}
+        type={inputType}
+        placeholder={props.placeholder || "Type here..."}
+      />
       {Type === "password" && (
         <Icon
           onClick={togglePasswordVisibility}
