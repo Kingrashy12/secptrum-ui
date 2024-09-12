@@ -124,11 +124,14 @@ export default App;
 
 SecptrumUI includes a CLI tool to help set up your Next.js project for use with `styled-components`. This tool automatically configures your project with the necessary files and settings.
 
+- **_Note:_**
+  This setup is specific to Next.js and provides detailed instructions for configuration.
+
 ### Setup the CLI Tool Locally
 
 1. **Install Dependencies**
 
-   First, ensure you have the SecptrumUI and styled-components package installed:
+   First, ensure you have the `secptrum-ui` and `styled-components` packages installed:
 
    ```bash
    npm install secptrum-ui styled-components
@@ -136,10 +139,66 @@ SecptrumUI includes a CLI tool to help set up your Next.js project for use with 
 
 2. **Run the Setup Command**
 
-   Navigate to your project directory and run the setup script:
+Navigate to your project directory and run the setup script:
 
-   ```bash
-    npx secptrum-setup setup
-   ```
+```bash
+ npx secptrum-setup setup
+```
 
-   This command will create or update the `_document.js` (or `.tsx` for TypeScript) in `src/pages` and `babel.config.js` files in your project.
+This command will perform the following actions:
+
+- If the `src` Directory Exists: Creates a `lib/registry.ts` (or `lib/registry.js` for JavaScript) inside the `src` directory if it doesn't already exist.
+
+- If the `src` Directory Does Not Exist: Creates `lib/registry.ts` (or `lib/registry.js`) in the root directory.
+
+3. **Enable styled-components in next.config.js.**
+
+```bash
+
+module.exports = {
+  compiler: {
+    styledComponents: true,
+  },
+}
+
+```
+
+4. **Wrap the children of the root layout with the style registry component:**
+
+- **Typescript:**
+
+```bash
+import StyledComponentsRegistry from './lib/registry'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html>
+      <body>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
+    </html>
+  )
+}
+```
+
+- **Javascript:**
+
+```bash
+import StyledComponentsRegistry from './lib/registry'
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
+    </html>
+  )
+}
+```
+
+These steps ensure that your project is properly configured for styled-components with Next.js, following the latest guidelines.

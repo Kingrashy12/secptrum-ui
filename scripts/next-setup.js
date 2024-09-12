@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const { Command } = require("commander");
-const fs = require("fs-extra");
-const path = require("path");
+const { existsSync, mkdirSync, writeFileSync } = require("fs-extra");
+const { join } = require("path");
 
 const program = new Command();
 
@@ -11,130 +11,92 @@ program.version("1.0.0").description("Setup SecptrumUI for Next.js");
 program
   .command("setup")
   .description("Setup Next.js configuration for SecptrumUI")
-  .option("--overwrite", "Overwrite existing _document.tsx if it exists")
   .action(() => {
-    const isTypeScript = fs.existsSync(
-      path.join(process.cwd(), "tsconfig.json")
+    const isTypeScript = existsSync(join(process.cwd(), "tsconfig.json"));
+
+    const registryContentJs = `'use client';
+
+import React, { useState } from 'react';
+import { useServerInsertedHTML } from 'next/navigation';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+
+export default function StyledComponentsRegistry({ children }) {
+  const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
+
+  useServerInsertedHTML(() => {
+    const styles = styledComponentsStyleSheet.getStyleElement();
+    styledComponentsStyleSheet.instance.clearTag();
+    return <>{styles}</>;
+  });
+
+  if (typeof window !== 'undefined') return <>{children}</>;
+
+  return (
+    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      {children}
+    </StyleSheetManager>
+  );
+}
+`;
+
+    const registryContentTs = `'use client';
+
+import React, { useState } from 'react';
+import { useServerInsertedHTML } from 'next/navigation';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+
+export default function StyledComponentsRegistry({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
+
+  useServerInsertedHTML(() => {
+    const styles = styledComponentsStyleSheet.getStyleElement();
+    styledComponentsStyleSheet.instance.clearTag();
+    return <>{styles}</>;
+  });
+
+  if (typeof window !== 'undefined') return <>{children}</>;
+
+  return (
+    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      {children}
+    </StyleSheetManager>
+  );
+}
+`;
+
+    // Determine paths
+    const srcPath = join(process.cwd(), "src");
+    const libPath = existsSync(srcPath)
+      ? join(srcPath, "lib")
+      : join(process.cwd(), "lib");
+    const registryPath = join(
+      libPath,
+      isTypeScript ? "registry.ts" : "registry.js"
     );
 
-    const documentContentJs = `
-import Document from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
-import React from 'react';
-
-export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
-        });
-
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-}
-    `;
-
-    const documentContentTs = `
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
-import React from 'react';
-
-export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
-        });
-
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
-  }
-}
-    `;
-
-    const babelConfigContent = `
-{
-  "presets": ["next/babel"],
-  "plugins": [["styled-components", { "ssr": true }]]
-}
-    `;
-
-    const srcPagesPath = join(process.cwd(), "src/pages");
-    const documentPath = join(
-      srcPagesPath,
-      isTypeScript ? "_document.tsx" : "_document.js"
-    );
-    const babelConfigPath = join(process.cwd(), "babel.config.js");
-
-    // Ensure the src/pages directory exists
-    if (!existsSync(srcPagesPath)) {
-      mkdirSync(srcPagesPath, { recursive: true });
+    // Ensure the lib directory exists
+    if (!existsSync(libPath)) {
+      mkdirSync(libPath, { recursive: true });
+      console.log(`Created ${libPath} directory.`);
     }
 
-    // Handle existing _document.tsx or _document.js
-    if (existsSync(documentPath)) {
-      if (options.overwrite) {
-        writeFileSync(
-          documentPath,
-          isTypeScript ? documentContentTs.trim() : documentContentJs.trim()
-        );
-        console.log(
-          `Overwritten ${isTypeScript ? "src/pages/_document.tsx" : "src/pages/_document.js"} for Next.js.`
-        );
-      } else {
-        console.log(
-          `src/pages/${isTypeScript ? "_document.tsx" : "_document.js"} already exists. Use --overwrite to replace it.`
-        );
-      }
-    } else {
+    // Write the registry file based on TypeScript usage
+    if (!existsSync(registryPath)) {
       writeFileSync(
-        documentPath,
-        isTypeScript ? documentContentTs.trim() : documentContentJs.trim()
+        registryPath,
+        isTypeScript ? registryContentTs.trim() : registryContentJs.trim()
       );
       console.log(
-        `Created ${isTypeScript ? "src/pages/_document.tsx" : "src/pages/_document.js"} for Next.js.`
+        `Created ${isTypeScript ? "registry.ts" : "registry.js"} in ${libPath}.`
       );
-    }
-
-    // Write babel.config.js if it doesn't exist
-    if (!existsSync(babelConfigPath)) {
-      writeFileSync(babelConfigPath, babelConfigContent.trim());
-      console.log("Created babel.config.js for styled-components.");
     } else {
-      console.log("babel.config.js already exists, skipping.");
+      console.log(
+        `${isTypeScript ? "registry.ts" : "registry.js"} already exists in ${libPath}, skipping.`
+      );
     }
   });
 
