@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
   "homepage": "https://66d26c2ee57a3f7e4450a14c-noisslolsk.chromatic.com",
   "repository": {
@@ -23,7 +23,8 @@
   },
   "files": [
     "dist",
-    "dist/types"
+    "dist/types",
+    "scripts"
   ],
   "scripts": {
     "build:browser": "rollup -c rollup.config.browser.js",
@@ -32,7 +33,11 @@
     "postbuild": "copyfiles -u 1 src/types/**/* dist/",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
+    "setup-next": "node ./scripts/next-setup.js"
+  },
+  "bin": {
+    "secptrum-setup": "./scripts/next-setup.js"
   },
   "keywords": [
     "react",
@@ -76,13 +81,16 @@
     "@types/storybook__react": "^5.2.1",
     "@types/styled-components": "^5.1.34",
     "chromatic": "^11.7.1",
+    "commander": "^12.1.0",
     "copyfiles": "^2.4.1",
+    "fs-extra": "^11.2.0",
     "rollup": "^2.79.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^8.2.9",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "next-setup": "file:./scripts/next-setup.js"
   }
 }

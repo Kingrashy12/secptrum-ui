@@ -9,6 +9,7 @@
 - [Usage](#usage)
 - [Components](#components)
 - [Customization](#customization)
+- [CLI Tool](#cli)
 - [Contributing](#contributing)
 
 ## Features
@@ -118,3 +119,27 @@ function App() {
 
 export default App;
 ```
+
+## CLI Tool
+
+SecptrumUI includes a CLI tool to help set up your Next.js project for use with `styled-components`. This tool automatically configures your project with the necessary files and settings.
+
+### Setup the CLI Tool Locally
+
+1. **Install Dependencies**
+
+   First, ensure you have the SecptrumUI and styled-components package installed:
+
+   ```bash
+   npm install secptrum-ui styled-components
+   ```
+
+2. **Run the Setup Command**
+
+   Navigate to your project directory and run the setup script:
+
+   ```bash
+    npm run setup-next
+   ```
+
+   This command will create or update the `pages/_document.js` (or `.tsx` for TypeScript) and `babel.config.js` files in your project.
