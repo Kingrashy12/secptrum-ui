@@ -75,7 +75,7 @@ export default function StyledComponentsRegistry({
       : join(process.cwd(), "lib");
     const registryPath = join(
       libPath,
-      isTypeScript ? "registry.ts" : "registry.js"
+      isTypeScript ? "registry.tsx" : "registry.js"
     );
 
     // Ensure the lib directory exists
@@ -91,11 +91,11 @@ export default function StyledComponentsRegistry({
         isTypeScript ? registryContentTs.trim() : registryContentJs.trim()
       );
       console.log(
-        `Created ${isTypeScript ? "registry.ts" : "registry.js"} in ${libPath}.`
+        `Created ${isTypeScript ? "registry.tsx" : "registry.js"} in ${libPath}.`
       );
     } else {
       console.log(
-        `${isTypeScript ? "registry.ts" : "registry.js"} already exists in ${libPath}, skipping.`
+        `${isTypeScript ? "registry.tsx" : "registry.js"} already exists in ${libPath}, skipping.`
       );
     }
   });

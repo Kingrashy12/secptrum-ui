@@ -147,9 +147,9 @@ Navigate to your project directory and run the setup script:
 
 This command will perform the following actions:
 
-- If the `src` Directory Exists: Creates a `lib/registry.ts` (or `lib/registry.js` for JavaScript) inside the `src` directory if it doesn't already exist.
+- If the `src` Directory Exists: Creates a `lib/registry.tsx` (or `lib/registry.js` for JavaScript) inside the `src` directory if it doesn't already exist.
 
-- If the `src` Directory Does Not Exist: Creates `lib/registry.ts` (or `lib/registry.js`) in the root directory.
+- If the `src` Directory Does Not Exist: Creates `lib/registry.tsx` (or `lib/registry.js`) in the root directory.
 
 3. **Enable styled-components in next.config.js.**
 
