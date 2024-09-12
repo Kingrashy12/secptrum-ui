@@ -139,7 +139,7 @@ SecptrumUI includes a CLI tool to help set up your Next.js project for use with 
    Navigate to your project directory and run the setup script:
 
    ```bash
-    npm run setup-next
+    npx secptrum-setup setup
    ```
 
-   This command will create or update the `pages/_document.js` (or `.tsx` for TypeScript) and `babel.config.js` files in your project.
+   This command will create or update the `_document.js` (or `.tsx` for TypeScript) in `src/pages` and `babel.config.js` files in your project.

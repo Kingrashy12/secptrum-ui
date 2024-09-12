@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { Command } from "commander";
-import { existsSync, mkdirSync, writeFileSync } from "fs-extra";
-import { join } from "path";
+const { Command } = require("commander");
+const fs = require("fs-extra");
+const path = require("path");
 
 const program = new Command();
 
@@ -11,8 +11,11 @@ program.version("1.0.0").description("Setup SecptrumUI for Next.js");
 program
   .command("setup")
   .description("Setup Next.js configuration for SecptrumUI")
+  .option("--overwrite", "Overwrite existing _document.tsx if it exists")
   .action(() => {
-    const isTypeScript = existsSync(join(process.cwd(), "tsconfig.json"));
+    const isTypeScript = fs.existsSync(
+      path.join(process.cwd(), "tsconfig.json")
+    );
 
     const documentContentJs = `
 import Document from 'next/document';
@@ -89,30 +92,40 @@ export default class MyDocument extends Document {
 }
     `;
 
-    const pagesPath = join(process.cwd(), "pages");
+    const srcPagesPath = join(process.cwd(), "src/pages");
     const documentPath = join(
-      pagesPath,
+      srcPagesPath,
       isTypeScript ? "_document.tsx" : "_document.js"
     );
     const babelConfigPath = join(process.cwd(), "babel.config.js");
 
-    // Ensure the pages directory exists
-    if (!existsSync(pagesPath)) {
-      mkdirSync(pagesPath);
+    // Ensure the src/pages directory exists
+    if (!existsSync(srcPagesPath)) {
+      mkdirSync(srcPagesPath, { recursive: true });
     }
 
-    // Write _document file based on TypeScript usage
-    if (!existsSync(documentPath)) {
+    // Handle existing _document.tsx or _document.js
+    if (existsSync(documentPath)) {
+      if (options.overwrite) {
+        writeFileSync(
+          documentPath,
+          isTypeScript ? documentContentTs.trim() : documentContentJs.trim()
+        );
+        console.log(
+          `Overwritten ${isTypeScript ? "src/pages/_document.tsx" : "src/pages/_document.js"} for Next.js.`
+        );
+      } else {
+        console.log(
+          `src/pages/${isTypeScript ? "_document.tsx" : "_document.js"} already exists. Use --overwrite to replace it.`
+        );
+      }
+    } else {
       writeFileSync(
         documentPath,
         isTypeScript ? documentContentTs.trim() : documentContentJs.trim()
       );
       console.log(
-        `Created ${isTypeScript ? "pages/_document.tsx" : "pages/_document.js"} for Next.js.`
-      );
-    } else {
-      console.log(
-        `pages/${isTypeScript ? "_document.tsx" : "_document.js"} already exists, skipping.`
+        `Created ${isTypeScript ? "src/pages/_document.tsx" : "src/pages/_document.js"} for Next.js.`
       );
     }
 
