@@ -9,7 +9,7 @@
 - [Usage](#usage)
 - [Components](#components)
 - [Customization](#customization)
-- [CLI Tool](#cli)
+- [CLI Tool](#cli-tool)
 - [Contributing](#contributing)
 
 ## Features
