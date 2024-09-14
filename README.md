@@ -1,4 +1,9 @@
-# SecptrumUI
+<div align="center">
+  <img src="https://res.cloudinary.com/dv4mozbaz/image/upload/v1726231417/secptrum-logo_1_olpgr4.png" />
+  <b><p>SecptrumUI</p></b>
+</div>
+
+#
 
 **SecptrumUI** is a customizable and modern UI component library for react, built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.
 
