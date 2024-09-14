@@ -56,6 +56,7 @@ const Button = ({
   size = "md",
   icon,
   isLoading,
+  iconPosition = "left",
   ...props
 }: ButtonProps): JSX.Element => {
   const disabled = props.disabled;
@@ -71,9 +72,16 @@ const Button = ({
       {isLoading ? (
         <AiOutlineLoading3Quarters className="loader" />
       ) : (
-        icon && <Icon icon={icon} />
+        <>
+          {icon && iconPosition === "left"
+            ? icon && <Icon icon={icon} />
+            : null}
+        </>
       )}{" "}
       {children}
+      {!isLoading && icon && iconPosition === "right"
+        ? icon && <Icon icon={icon} />
+        : null}
     </StyledButton>
   );
 };

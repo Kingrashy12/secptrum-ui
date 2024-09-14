@@ -23,3 +23,5 @@ export { default as CircleRollerLoader } from "./components/loaders/CircleRoller
 export { default as FadeLoader } from "./components/loaders/FadeLoader/FadeLoader";
 export { default as PulseLoader } from "./components/loaders/PulseLoader/PulseLoader";
 export { default as ScaleLoader } from "./components/loaders/ScaleLoader/ScaleLoader";
+// Utils
+export { default as shouldForwardProps } from "./utils/is-prop-valid";

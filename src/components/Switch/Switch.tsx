@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Box from "../Box/Box";
 import { colors } from "../../styles/colors";
+import shouldForwardProp from "../../utils/is-prop-valid";
 
 type SwitchType = {
   /**
@@ -67,36 +68,59 @@ const Switch = ({
   const { width, height } = getSize(variant);
   const { width: switchWidth } = getSwitchSize(variant);
 
-  const SwitchContainer = styled(Box)`
-    width: ${width};
-    height: ${height};
-    border-radius: 9999px;
-    padding: 2px;
-    border: 1px solid ${colors.neutral200};
-    background-color: ${checked ? checkedColor : color};
-    cursor: pointer;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-  `;
-
-  const SwitchHandle = styled.div`
-    width: ${switchWidth};
-    height: ${height};
-    background: white;
-    border-radius: 9999px;
-    position: absolute;
-    right: ${checked && `2px`};
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-  `;
-
   return (
-    <SwitchContainer onClick={onSwitch} className={className}>
-      <SwitchHandle />
+    <SwitchContainer
+      width={width}
+      height={height}
+      checked={checked}
+      checkedColor={checkedColor}
+      color={color}
+      onClick={onSwitch}
+      className={className}
+    >
+      <SwitchHandle
+        height={height}
+        switchWidth={switchWidth}
+        checked={checked}
+      />
     </SwitchContainer>
   );
 };
 
 export default Switch;
+
+const SwitchContainer = styled(Box).withConfig({ shouldForwardProp })<{
+  width: string;
+  height: string;
+  checked: boolean;
+  checkedColor: string;
+  color: string;
+}>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  border-radius: 9999px;
+  padding: 2px;
+  border: 1px solid ${colors.neutral200};
+  background-color: ${(props) =>
+    props.checked ? props.checkedColor : props.color};
+  cursor: pointer;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+`;
+
+const SwitchHandle = styled.div.withConfig({ shouldForwardProp })<{
+  height: string;
+  checked: boolean;
+  switchWidth: string;
+}>`
+  width: ${(props) => props.switchWidth};
+  height: ${(props) => props.height};
+  background: white;
+  border-radius: 9999px;
+  position: absolute;
+  right: ${(props) => props.checked && `2px`};
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+`;

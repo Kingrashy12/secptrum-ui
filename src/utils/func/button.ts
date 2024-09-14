@@ -56,8 +56,8 @@ const getButtonStyles = (variant: ButtonProps["variant"]) => {
         `;
     case "outline":
       return `
-          background:transparent;
-          border: 2px solid ${colors.blue500};
+          background: ${colors.blue100};
+          border: 1px solid ${colors.blue500};
           color: ${colors.blue500};
         `;
   }

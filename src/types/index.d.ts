@@ -41,6 +41,7 @@ declare interface ButtonProps extends ButtonTypes {
    * @param isLoading A loading indicator used to signal a pending state action `e.g` Login
    */
   isLoading?: boolean;
+  iconPosition?: "left" | "right";
 }
 
 declare interface InputType extends InputProps {

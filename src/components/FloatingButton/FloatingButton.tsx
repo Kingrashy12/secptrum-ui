@@ -35,7 +35,8 @@ const FloatingButton = ({
     align-items: center;
     cursor: pointer;
     ${getFloatPosition(position)}
-    filter: drop-shadow(2px 2px 2px ${colors.slate400});
+    filter: drop-shadow(1px 0 1px 2px rgb(0 0 0 / 0.1))
+    drop-shadow(1px 0 1px 1px rgb(0 0 0 / 0.06));
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 

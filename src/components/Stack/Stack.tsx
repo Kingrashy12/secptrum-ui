@@ -2,6 +2,7 @@ import React, { ComponentPropsWithRef } from "react";
 import Box from "../Box/Box";
 import styled from "styled-components";
 import { spacingValues } from "../../utils/spacing";
+import isPropValid from "@emotion/is-prop-valid";
 
 type StackProps = ComponentPropsWithRef<"div">;
 
@@ -33,7 +34,9 @@ interface StackType extends StackProps {
   spacing?: SizeVariantType;
 }
 
-const StyledStack = styled(Box)<{
+const StyledStack = styled(Box).withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop),
+})<{
   spacing?: StackType["spacing"];
   align?: StackType["align"];
 }>`

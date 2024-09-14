@@ -1,6 +1,7 @@
 import React from "react";
 import { FixedBox } from "../../styles/styled";
 import styled from "styled-components";
+import shouldForwardProp from "../../utils/is-prop-valid";
 
 interface DropType {
   /**
@@ -50,18 +51,18 @@ const Backdrop = ({
   centerContent = true,
   isStory,
 }: DropType) => {
-  const Drop = styled(FixedBox)`
-    background: rgb(0, 0, 0, 0.6);
-    display: ${open ? "flex" : "none"};
-    justify-content: ${centerContent && "center"};
-    align-items: ${centerContent && "center"};
-  `;
   return (
     <>
       {isStory ? (
         <>{children}</>
       ) : (
-        <Drop className={className} style={style} onClick={onClose}>
+        <Drop
+          open={open}
+          centerContent={centerContent}
+          className={className}
+          style={style}
+          onClick={onClose}
+        >
           {children}
         </Drop>
       )}
@@ -70,3 +71,14 @@ const Backdrop = ({
 };
 
 export default Backdrop;
+
+const Drop = styled(FixedBox).withConfig({ shouldForwardProp })<{
+  open: boolean;
+  centerContent: boolean;
+}>`
+  background: rgb(0, 0, 0, 0.6);
+  display: ${(props) => (props.open ? "flex" : "none")};
+  justify-content: ${(props) => props.centerContent && "center"};
+  align-items: ${(props) => props.centerContent && "center"};
+  backdrop-filter: blur(6px);
+`;

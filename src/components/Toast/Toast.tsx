@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CloseIcon,
   ContentWrap,
@@ -31,13 +31,28 @@ const Toast = () => {
   const [showToast, setShowToast] = useState(false);
   const [toasts, setToasts] = useState<ToastNotification[]>([]);
 
+  const toastTimeouts = useRef<{ [key: string]: NodeJS.Timeout }>({}); // Ref to store timeouts
+
   const show = (newToast: ToastNotification) => {
     setToasts((prevToasts) => [...prevToasts, newToast]);
 
-    setTimeout(() => {
+    // Set a timeout to remove the toast after 4 seconds
+    const timeoutId = setTimeout(() => {
       setToasts((prevToasts) => prevToasts.filter((t) => t.id !== newToast.id));
+      delete toastTimeouts.current[newToast.id]; // Clean up the timeout ref
     }, 4000);
+
+    // Store the timeout ID in the ref
+    toastTimeouts.current[newToast.id] = timeoutId;
   };
+
+  // Cleanup when component unmounts
+  useEffect(() => {
+    return () => {
+      // Clear all timeouts
+      Object.values(toastTimeouts.current).forEach(clearTimeout);
+    };
+  }, []);
 
   function removeToast(toast: ToastNotification) {
     setToasts((prev) => {

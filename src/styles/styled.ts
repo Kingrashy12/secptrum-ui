@@ -11,8 +11,11 @@ import { getInputRadius, getInputVariantStyles } from "../utils/getPropsStyle";
 import { spacingValues } from "../utils/spacing";
 import { nunitoSans } from "./font";
 import { getToastPosition } from "../utils/func/toast";
+import shouldForwardProp from "../utils/is-prop-valid";
 
-export const StyledBox = styled.div<{
+export const StyledBox = styled.div.withConfig({
+  shouldForwardProp,
+})<{
   padding?: BoxType["padding"];
   margin?: BoxType["margin"];
   centered?: BoxType["centered"];
@@ -83,7 +86,9 @@ export const UploadIcon = styled(StyledBox)`
   }
 `;
 // Button styling
-export const StyledButton = styled.button<{
+export const StyledButton = styled.button.withConfig({
+  shouldForwardProp,
+})<{
   variant: ButtonProps["variant"];
   radius: ButtonProps["radius"];
   size: ButtonProps["size"];
@@ -128,7 +133,9 @@ export const StyledButton = styled.button<{
   }
 `;
 
-export const StyledInput = styled.div<{
+export const StyledInput = styled.div.withConfig({
+  shouldForwardProp,
+})<{
   variant: InputType["variant"];
   radius: InputType["radius"];
 }>`
@@ -226,25 +233,30 @@ export const ImageRemover = styled.div`
   }
 `;
 
-export const CardWrap = styled(StyledBox)<{ centerContent?: boolean }>`
+export const CardWrap = styled(StyledBox).withConfig({
+  shouldForwardProp,
+})<{ centerContent?: boolean }>`
   flex-direction: column;
   background: white;
   border: 1px solid ${colors.neutral300};
-  border-radius: 8px;
+  border-radius: 11px;
   padding: 16px;
-  box-shadow: 1px 1px 1px ${colors.slate200};
   width: auto;
   max-width: 100%;
   justify-content: center;
   align-items: ${(props) => props.centerContent && "center"};
   height: auto;
+  filter: drop-shadow(1px 0 1px 2px rgb(0 0 0 / 0.1))
+    drop-shadow(1px 0 1px 1px rgb(0 0 0 / 0.06));
 
   @media screen and (max-width: 700px) {
     padding: 10px;
   }
 `;
 
-export const ModalContainer = styled.div<{ open: boolean }>`
+export const ModalContainer = styled.div.withConfig({
+  shouldForwardProp,
+})<{ open: boolean }>`
   display: ${(props) => (props.open ? "flex" : "none")};
   width: 100%;
   height: 100%;
@@ -261,9 +273,12 @@ export const ModalContainer = styled.div<{ open: boolean }>`
   transition: all;
   transition-duration: 1s;
   transition-delay: 1s;
+  backdrop-filter: blur(6px);
 `;
 
-export const StyledPanel = styled(StyledBox)<{
+export const StyledPanel = styled(StyledBox).withConfig({
+  shouldForwardProp,
+})<{
   align?: "vertical" | "horizontal";
 }>`
   background: white;
@@ -289,7 +304,9 @@ export const StyledPanel = styled(StyledBox)<{
   }
 `;
 
-export const StyledToast = styled(StyledBox)<{
+export const StyledToast = styled(StyledBox).withConfig({
+  shouldForwardProp,
+})<{
   position: ToastPositionType;
   showtoast: boolean;
 }>`
@@ -350,7 +367,9 @@ export const ToastContent = styled(StyledBox)`
   width: 90%;
 `;
 
-export const CloseIcon = styled(StyledBox)<{ type: ToastVariant }>`
+export const CloseIcon = styled(StyledBox).withConfig({
+  shouldForwardProp,
+})<{ type: ToastVariant }>`
   cursor: pointer;
   justify-content: center;
   align-items: center;
