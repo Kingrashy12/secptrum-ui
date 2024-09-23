@@ -41,13 +41,7 @@ export default {
     typescript({
       tsconfig: "./tsconfig.json",
       outputToFilesystem: true,
-      exclude: [
-        "**/*.stories.tsx",
-        "**/*.test.ts",
-        ".storybook/**",
-        "src/**/*.stories.tsx",
-        "src/example/**/*.tsx",
-      ],
+      exclude: ["src/example/**/*.tsx"],
     }), // Transpile TypeScript files
     babel({
       exclude: "node_modules/**", // Only transpile our source code
