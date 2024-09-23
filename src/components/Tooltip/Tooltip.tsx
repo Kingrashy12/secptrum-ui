@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Box from "../Box/Box";
-import { nunitoSans } from "../../styles/font";
+import { ToastPositionType } from "../Toast/Toast";
 
 type TooltipProps = {
   /**
@@ -86,44 +86,7 @@ const Tooltip = ({
   function hideTip() {
     setShowTip(false);
   }
-  const Container = styled(Box)`
-    position: relative;
-    height: auto;
-    width: "100%";
-    flex-direction: column;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
 
-    .tip {
-      /* opacity: 0; */
-    }
-    /* &:hover {
-      .tip {
-        opacity: 1;
-      }
-    } */
-  `;
-  const Tip = styled.div`
-    position: absolute;
-    background: rgb(0, 0, 0, 0.8);
-    color: white;
-    width: ${width};
-    padding: 5px;
-    border-radius: 5px;
-    display: ${showTip ? "flex" : "none"};
-    justify-content: center;
-    align-items: center;
-    ${getPosition(position)}
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-
-    span {
-      font-family: ${nunitoSans};
-      font-size: 13px;
-    }
-  `;
   return (
     <Container
       className={containerClass}
@@ -131,7 +94,13 @@ const Tooltip = ({
       onMouseEnter={show}
       onMouseLeave={hideTip}
     >
-      <Tip className={`tip ${className}`} style={style}>
+      <Tip
+        className={`tip ${className}`}
+        width={width}
+        position={position}
+        show-tip={showTip}
+        style={style}
+      >
         <span>{title}</span>
       </Tip>
       {children}
@@ -140,3 +109,37 @@ const Tooltip = ({
 };
 
 export default Tooltip;
+
+const Container = styled(Box)`
+  position: relative;
+  height: auto;
+  width: "100%";
+  flex-direction: column;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+`;
+const Tip = styled.div<{
+  width: string;
+  "show-tip": boolean;
+  position: TooltipProps["position"];
+}>`
+  position: absolute;
+  background: rgb(0, 0, 0, 0.8);
+  color: white;
+  width: ${(props) => props.width};
+  padding: 5px;
+  border-radius: 5px;
+  display: ${(props) => (props["show-tip"] ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+  ${(props) => getPosition(props.position)}
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+
+  span {
+    font-family: inherit;
+    font-size: 13px;
+  }
+`;

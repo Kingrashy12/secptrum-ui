@@ -2,15 +2,18 @@ import {
   ExtraImagePicker,
   FilePicker,
   ImageRemover,
+  ImagesContainer,
+  Picker_ImageContainer,
   SelectedImage,
   SelectedImageContainer,
-  Styled_Container,
   UploadIcon,
-} from "../../styles/styled";
-import React, { useRef, useState } from "react";
+} from "../../styles/utility/styled";
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosCloudUpload } from "react-icons/io";
-import Icon from "../Icon/Icon";
 import { IoAddSharp, IoClose } from "react-icons/io5";
+import Backdrop from "../Backdrop/Backdrop";
+import Button from "../Button/Button";
+import Icon from "../Icon/Icon";
 import { colors } from "../../styles/colors";
 
 interface ImagePickerProps {
@@ -18,12 +21,12 @@ interface ImagePickerProps {
    * A callback function that is triggered when an image is selected.
    * @param image - The selected image data, which can be a base64 string, an ArrayBuffer, or null if no image is selected.
    */
-  onImageSelect?: (image: string | ArrayBuffer | null) => void;
+  onImageSelect?: (image: string | any) => void;
   /**
    * Callback function invoked when multiple images are selected
    * Returns an array of image URLs or null if no images are selected
    */
-  onMultipleImageSelect?: (image: string[] | null) => void;
+  onMultipleImageSelect?: (image: string[] | any) => void;
   /**
    * Enable or disable multiple image selection
    */
@@ -72,6 +75,26 @@ interface ImagePickerProps {
    * Size of the remove icon
    */
   removeIconSize?: number;
+  /**
+   *@boolean `isPickerOpen` - Determines if the image picker modal is open.
+   */
+  isPickerOpen: boolean;
+
+  /**
+   *@function `closePicker` - Function to close the image picker modal.
+   */
+  closePicker: () => void;
+
+  /**
+   *@param mode - Optional. Specifies the theme mode of the app, either `light` or `dark`.
+   */
+  mode?: "light" | "dark";
+
+  /**
+   *@param autoSelectImage - Optional. If true, images will be added immediately after selection.
+   * If false or not provided, images will be added only when the picker is closed.
+   */
+  autoSelectImage?: boolean;
 }
 
 /**
@@ -126,32 +149,48 @@ const ImagePicker = ({
   imageClassName,
   imageRemoverClass,
   imageRemoverStyles,
-  removeIconSize,
+  removeIconSize = 25,
+  isPickerOpen,
+  closePicker,
+  mode,
+  autoSelectImage,
 }: ImagePickerProps) => {
   const [images, setImages] = useState<string[] | any[]>([]);
   const [image, setImage] = useState<string | ArrayBuffer | any>("");
+
+  useEffect(() => {
+    if (autoSelectImage && images.length > 0) {
+      addImage(); // Automatically add images once selected if autoSelectImage is true
+    }
+  }, [images, autoSelectImage]);
+
+  function addImage() {
+    // If autoSelectImage is enabled or the picker is closed, proceed with adding image
+    if (multiple && onMultipleImageSelect) {
+      onMultipleImageSelect(images);
+    } else if (onImageSelect) {
+      onImageSelect(image);
+    }
+  }
+
   function handlePicker(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files;
-    let res = null;
     if (file && file[0]) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const image = reader.result;
         setImage(image);
-        if (onImageSelect) {
-          onImageSelect(image);
-        } else if (multiple) {
+        if (multiple) {
           const newImage = reader.result;
           setImages((prevImage: any) => [...prevImage, newImage]);
-          if (onMultipleImageSelect) {
-            onMultipleImageSelect(images);
-          }
         }
-        res = image;
+        // If autoSelectImage is true, add the image immediately
+        if (autoSelectImage) {
+          addImage();
+        }
       };
       reader.readAsDataURL(file[0]);
     }
-    return res;
   }
 
   function onRemove(index: number) {
@@ -164,58 +203,77 @@ const ImagePicker = ({
   }
 
   const pickerRef = useRef<HTMLInputElement>(null);
+
+  function close() {
+    if (!autoSelectImage) {
+      // Add the images when the modal is closed
+      addImage();
+    }
+
+    // Reset images and close the picker modal
+    setImage("");
+    setImages([]);
+    closePicker();
+  }
+
   return (
-    <>
+    <Backdrop open={isPickerOpen} onClose={close} mode={mode}>
       {image || images.length >= 1 ? (
         <SelectedImageContainer
           style={containerStyles}
           className={containerClassName}
         >
-          {images.length >= 1 ? (
-            images.map((img, index) => (
-              <Styled_Container>
-                <ImageRemover onClick={() => onRemove(index)}>
-                  <Icon
-                    icon={IoClose}
-                    color="white"
-                    size={removeIconSize}
-                    styles={imageRemoverStyles}
-                    className={imageRemoverClass}
+          <ImagesContainer>
+            {images.length >= 1 ? (
+              images.map((img, index) => (
+                <Picker_ImageContainer key={index}>
+                  <ImageRemover onClick={() => onRemove(index)}>
+                    <Icon
+                      icon={IoClose}
+                      color="white"
+                      size={removeIconSize}
+                      styles={imageRemoverStyles}
+                      className={imageRemoverClass}
+                    />
+                  </ImageRemover>
+                  <SelectedImage
+                    style={imageStyles}
+                    src={img}
+                    key={index}
+                    className={imageClassName}
+                    alt="Selected image"
                   />
-                </ImageRemover>
-                <SelectedImage
-                  style={imageStyles}
-                  src={img}
-                  key={index}
-                  className={imageClassName}
-                  alt="Selected image"
+                </Picker_ImageContainer>
+              ))
+            ) : (
+              <SelectedImage
+                src={image}
+                alt="Selected image"
+                style={imageStyles}
+                className={imageClassName}
+                onClick={() => pickerRef.current?.click()}
+              />
+            )}
+            {multiple && (
+              <ExtraImagePicker onClick={() => pickerRef.current?.click()}>
+                <Icon
+                  icon={IoAddSharp}
+                  color={colors.neutral[300]}
+                  size={removeIconSize}
                 />
-              </Styled_Container>
-            ))
-          ) : (
-            <SelectedImage
-              src={image}
-              alt="Selected image"
-              style={imageStyles}
-              className={imageClassName}
-              onClick={() => pickerRef.current?.click()}
+              </ExtraImagePicker>
+            )}
+            <input
+              type="file"
+              ref={pickerRef}
+              accept="image/png, image/jpeg"
+              hidden
+              onChange={handlePicker}
             />
-          )}
-          {multiple && (
-            <ExtraImagePicker
-              padding="15px"
-              onClick={() => pickerRef.current?.click()}
-            >
-              <Icon icon={IoAddSharp} color={colors.neutral300} />
-            </ExtraImagePicker>
-          )}
-          <input
-            type="file"
-            ref={pickerRef}
-            accept="image/png, image/jpeg"
-            hidden
-            onChange={handlePicker}
-          />
+          </ImagesContainer>
+          <Button width="50%" onClick={close}>
+            Done
+          </Button>
         </SelectedImageContainer>
       ) : (
         <FilePicker
@@ -236,7 +294,7 @@ const ImagePicker = ({
           />
         </FilePicker>
       )}
-    </>
+    </Backdrop>
   );
 };
 

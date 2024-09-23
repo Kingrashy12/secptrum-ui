@@ -1,111 +1,82 @@
 import React, { useEffect, useRef, useState } from "react";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { RiErrorWarningFill, RiInformationFill } from "react-icons/ri";
+import { FaCircleCheck } from "react-icons/fa6";
+import { TiWarning } from "react-icons/ti";
 import {
   CloseIcon,
   ContentWrap,
   StyledToast,
   ToastContent,
-} from "../../styles/styled";
-import Icon from "../Icon/Icon";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import { IoIosCheckmarkCircle, IoIosInformationCircle } from "react-icons/io";
+} from "../../styles/feedback/styled";
 import { colors } from "../../styles/colors";
-import { BiSolidError } from "react-icons/bi";
 import { generateId } from "../../lib/helper";
-// import "../../types/fun";
+import Icon from "../Icon/Icon";
+import { ToastType } from "../../types/fun";
 
-let toast: ToastType;
+// Toast types
+export type ToastVariant = "info" | "success" | "error" | "warning";
 
+// Toast positions
+export type ToastPositionType =
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right";
+
+// Toast options
+type ToastOptionsType = {
+  position?: ToastPositionType;
+  className?: string;
+  transition?: "dropIn" | "slideIn" | "popIn" | "walkIn";
+};
+
+// Toast notification
 type ToastNotification = {
   id: string;
   message: string;
   position?: ToastPositionType;
   className?: string;
+  transition?: ToastOptionsType["transition"];
   type: ToastVariant;
 };
 
+let toast: ToastType;
+
 const Toast = () => {
-  const [message, setMessage] = useState("");
-  const [position, setPosition] = useState<ToastPositionType>("top-right");
-  const [className, setClassName] = useState("");
-  const [toastType, setToastType] = useState<ToastVariant>();
-  const [showToast, setShowToast] = useState(false);
   const [toasts, setToasts] = useState<ToastNotification[]>([]);
+  const toastTimeouts = useRef<{ [key: string]: NodeJS.Timeout }>({});
 
-  const toastTimeouts = useRef<{ [key: string]: NodeJS.Timeout }>({}); // Ref to store timeouts
-
-  const show = (newToast: ToastNotification) => {
+  // Show toast
+  const show = (newToast: ToastNotification, duration: number = 4000) => {
     setToasts((prevToasts) => [...prevToasts, newToast]);
 
-    // Set a timeout to remove the toast after 4 seconds
+    // Set timeout to remove toast
     const timeoutId = setTimeout(() => {
       setToasts((prevToasts) => prevToasts.filter((t) => t.id !== newToast.id));
-      delete toastTimeouts.current[newToast.id]; // Clean up the timeout ref
-    }, 4000);
+      delete toastTimeouts.current[newToast.id];
+    }, duration);
 
-    // Store the timeout ID in the ref
+    // Store timeout ID
     toastTimeouts.current[newToast.id] = timeoutId;
   };
 
-  // Cleanup when component unmounts
+  // Remove toast
+  const removeToast = (toast: ToastNotification) => {
+    setToasts((prev) => {
+      const updatedToasts = prev.filter((t) => t.id !== toast.id);
+      return updatedToasts;
+    });
+  };
+
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
-      // Clear all timeouts
       Object.values(toastTimeouts.current).forEach(clearTimeout);
     };
   }, []);
 
-  function removeToast(toast: ToastNotification) {
-    setToasts((prev) => {
-      const updatedToast = prev.filter((t) => t.id !== toast.id);
-      return updatedToast;
-    });
-  }
-
-  toast = {
-    info: (msg: string, options?: ToastOptionsType) => {
-      setMessage(msg);
-      setPosition(options?.position || "top-right");
-      setClassName(options?.className || "");
-      setToastType("info");
-      const newToast = {
-        id: generateId(),
-        message: msg,
-        position: options?.position || "top-right",
-        className: options?.className || "",
-        type: toastType || "info",
-      };
-      show(newToast);
-    },
-    error: (msg: string, options?: ToastOptionsType) => {
-      setMessage(msg);
-      setPosition(options?.position || "top-right");
-      setClassName(options?.className || "");
-      setToastType("error");
-      const newToast = {
-        id: generateId(),
-        message: msg,
-        position: options?.position || "top-right",
-        className: options?.className || "",
-        type: toastType || "error",
-      };
-      show(newToast);
-    },
-    success: (msg: string, options?: ToastOptionsType) => {
-      setMessage(msg);
-      setPosition(options?.position || "top-right");
-      setClassName(options?.className || "");
-      setToastType("success");
-      const newToast = {
-        id: generateId(),
-        message: msg,
-        position: options?.position || "top-right",
-        className: options?.className || "",
-        type: toastType || "success",
-      };
-      show(newToast);
-    },
-  };
-
+  // Get label
   const getLabel = (type: ToastVariant) => {
     switch (type) {
       case "info":
@@ -114,29 +85,49 @@ const Toast = () => {
         return "Error";
       case "success":
         return "Success";
+      case "warning":
+        return "Warning";
     }
   };
 
+  // Get icon color
   const getIconColor = (type: ToastVariant) => {
     switch (type) {
       case "info":
-        return colors.blue500;
+        return colors.blue[500];
       case "error":
-        return colors.red500;
+        return colors.red[500];
       case "success":
-        return colors.green500;
+        return colors.green[500];
+      case "warning":
+        return colors.yellow[500];
     }
   };
 
+  // Get icon
   const getIcon = (type: ToastVariant) => {
     switch (type) {
       case "info":
-        return IoIosInformationCircle;
+        return RiInformationFill;
       case "error":
-        return BiSolidError;
+        return RiErrorWarningFill;
       case "success":
-        return IoIosCheckmarkCircle;
+        return FaCircleCheck;
+      case "warning":
+        return TiWarning;
     }
+  };
+
+  // Toast API
+  toast = {
+    info: (msg: string, options?: ToastOptionsType) =>
+      show({ id: generateId(), message: msg, type: "info", ...options }),
+    error: (msg: string, options?: ToastOptionsType) =>
+      show({ id: generateId(), message: msg, type: "error", ...options }),
+    success: (msg: string, options?: ToastOptionsType) =>
+      show({ id: generateId(), message: msg, type: "success", ...options }),
+    warning: (msg: string, options?: ToastOptionsType) =>
+      show({ id: generateId(), message: msg, type: "warning", ...options }),
   };
 
   return (
@@ -146,6 +137,7 @@ const Toast = () => {
           key={toast.id}
           position={toast.position || "top-right"}
           className={toast.className}
+          transition={toast.transition}
           showtoast={true}
         >
           <ContentWrap>
@@ -160,7 +152,7 @@ const Toast = () => {
             </ToastContent>
           </ContentWrap>
           <CloseIcon type={toast.type} onClick={() => removeToast(toast)}>
-            <IoCloseCircleOutline size={25} />
+            <IoCloseCircleOutline size={30} color="black" />
           </CloseIcon>
         </StyledToast>
       ))}

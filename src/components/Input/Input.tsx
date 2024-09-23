@@ -1,9 +1,10 @@
 import { colors } from "../../styles/colors";
 import React, { useEffect, useState } from "react";
-import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { InputType } from "../../types";
+import { Input, InputForm } from "../../styles/input/styled";
+import { RiErrorWarningFill, RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import { useTheme } from "../../context/useTheme";
 import Icon from "../Icon/Icon";
-import { StyledInput } from "../../styles/styled";
+import { InputType } from "../../types";
 
 /**
  * A versatile input field component that supports different types, styles, and additional features
@@ -41,15 +42,58 @@ import { StyledInput } from "../../styles/styled";
  * ```
  */
 
-const Input = ({
+const TextInput = ({
   icon,
-  variant = "solid",
-  radius = "sm",
+  variant = "outline",
+  radius = "lg",
   Type,
-  iconSize = 19,
+  iconSize = 20,
+  outLineBorderColor,
+  focusBorderColor,
+  focusColor,
+  hasError,
+  errorMessage,
+  width,
+  mode,
+  inputStyle,
+  formStyle,
+  color,
+  formClassName,
+  backgroundColor,
+  inputClass,
+  fullWidth,
   ...props
 }: InputType): JSX.Element => {
   const [inputType, setInputType] = useState(props.type);
+  const { theme, mode: themeMode } = useTheme();
+  const [m, setM] = useState(mode);
+
+  useEffect(() => {
+    if (mode) {
+      setM(mode);
+    } else {
+      setM(themeMode as InputType["mode"]);
+    }
+  }, [mode, themeMode]);
+
+  const typeMap = {
+    email: "email",
+    text: "text",
+    password: "password",
+    number: "number",
+  };
+
+  const getType = (type: InputType["Type"]) => {
+    if (!type) {
+      setInputType("text");
+      return;
+    }
+    setInputType(typeMap[type] || "text");
+  };
+
+  useEffect(() => {
+    getType(Type);
+  }, [Type]);
 
   const isPassword = inputType === "password";
 
@@ -57,25 +101,67 @@ const Input = ({
     setInputType((prevType) => (prevType === "password" ? "text" : "password"));
   };
 
+  const getWidth = () => {
+    if (fullWidth) {
+      return `100%`;
+    } else return width;
+  };
+
   return (
-    <StyledInput variant={variant} radius={radius} className={props.className}>
-      {icon && <Icon size={iconSize} icon={icon} color={colors.neutral500} />}
-      <input
-        {...props}
-        type={inputType}
-        placeholder={props.placeholder || "Type here..."}
-      />
-      {Type === "password" && (
-        <Icon
-          onClick={togglePasswordVisibility}
-          size={22}
-          icon={isPassword ? IoMdEye : IoMdEyeOff}
-          color={colors.neutral600}
-          className="eye_pass"
+    <InputForm
+      className={formClassName}
+      style={{ width: getWidth(), ...formStyle }}
+    >
+      <Input
+        disabled={props.disabled}
+        backgroundcolor={backgroundColor}
+        error={hasError}
+        color={color}
+        mode={m}
+        outlinebordercolor={
+          outLineBorderColor || theme.colors?.outline_ButtonBorderColor
+        }
+        variant={variant}
+        radius={radius}
+        className={props.className}
+        focusBorderColor={focusBorderColor}
+        focusColor={focusColor}
+        style={props.style}
+      >
+        {icon ? (
+          <Icon
+            className="Icon__Sui"
+            size={iconSize}
+            icon={icon}
+            color={colors.neutral[500]}
+          />
+        ) : hasError ? (
+          <Icon
+            className="Icon__Sui"
+            size={25}
+            icon={RiErrorWarningFill}
+            color="red"
+          />
+        ) : null}
+        <input
+          {...props}
+          className={inputClass}
+          style={inputStyle}
+          type={inputType}
+          placeholder={props.placeholder || "Type here..."}
         />
-      )}
-    </StyledInput>
+        {Type === "password" && (
+          <Icon
+            onClick={togglePasswordVisibility}
+            size={20}
+            icon={isPassword ? RiEyeFill : RiEyeOffFill}
+            className="eye_pass"
+          />
+        )}
+      </Input>
+      {hasError && <p>{errorMessage}</p>}
+    </InputForm>
   );
 };
 
-export default Input;
+export default TextInput;

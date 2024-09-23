@@ -1,13 +1,10 @@
-import React, { ComponentPropsWithRef } from "react";
-import Box from "../Box/Box";
-import styled from "styled-components";
-import { spacingValues } from "../../utils/spacing";
-import shouldForwardProp from "../../utils/is-prop-valid";
+import React from "react";
+import { BoxType } from "../../types";
+import { StackSui } from "../../styles/layout/styled";
+import { SizeVariantType } from "../../types/fun";
 
-type StackProps = ComponentPropsWithRef<"div">;
-
-interface StackType extends StackProps {
-  children: React.ReactNode;
+export interface StackType extends BoxType {
+  children?: React.ReactNode;
   /**
    * Defines the padding inside the Stack component.
    * Accepts any valid CSS padding value (e.g., "8px", "1rem", "10px 20px").
@@ -32,23 +29,11 @@ interface StackType extends StackProps {
    * Accepts predefined sizes: "sm" (small), "md" (medium), "lg" (large), "xl" (extra-large), "2xl" (2 times extra-large), "3xl" (3 times extra-large).
    */
   spacing?: SizeVariantType;
+  /**
+   * Enables wrapping for items if they exceed the available space in a row layout.
+   */
+  wrap?: boolean;
 }
-
-const StyledStack = styled(Box).withConfig({
-  shouldForwardProp,
-})<{
-  spacing?: StackType["spacing"];
-  align?: StackType["align"];
-}>`
-  flex-direction: ${(props) => (props.align === "vertical" ? "column" : "row")};
-  height: 100%;
-  gap: ${(props) => spacingValues(props.spacing)};
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  padding: 18px;
-`;
 
 /**
  * A layout component that arranges its children in a vertical or horizontal stack with configurable spacing.
@@ -83,19 +68,21 @@ const Stack = ({
   spacing = "md",
   align = "vertical",
   margin,
+  wrap,
   ...props
 }: StackType) => {
   return (
-    <StyledStack
+    <StackSui
       {...props}
       align={align}
       padding={padding}
       spacing={spacing}
       margin={margin}
       className={props.className}
+      wrap={wrap}
     >
       {children}
-    </StyledStack>
+    </StackSui>
   );
 };
 

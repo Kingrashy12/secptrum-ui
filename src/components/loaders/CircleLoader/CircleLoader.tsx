@@ -1,6 +1,6 @@
+import shouldForwardProp from "../../../utils/is-prop-valid";
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import Box from "../../Box/Box";
+import styled from "styled-components";
 
 type LoaderProps = {
   /**
@@ -22,34 +22,31 @@ const CircleLoader = ({
   color = "blue",
   containerColor = "lightgray",
 }: LoaderProps) => {
-  const Spinner = styled.div`
-    border: ${size / 15}px solid ${containerColor};
-    border-radius: 50%;
-    border-top: ${size / 15}px solid ${color};
-    width: ${size}px;
-    height: ${size}px;
-    -webkit-animation: spin 1s linear infinite; /* Safari */
-    animation: spin 1s linear infinite;
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  `;
-
-  return (
-    <Spinner>
-      <div className="lds-facebook">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </Spinner>
-  );
+  return <Spinner color={color} containerColor={containerColor} size={size} />;
 };
 
 export default CircleLoader;
+
+const Spinner = styled.div.withConfig({ shouldForwardProp })<{
+  size: LoaderProps["size"] | any;
+  color: LoaderProps["color"];
+  containerColor: LoaderProps["containerColor"];
+}>`
+  border: ${(props) => props.size / 15}px solid
+    ${(props) => props.containerColor};
+  border-radius: 50%;
+  border-top: ${(props) => props.size / 15}px solid ${(props) => props.color};
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+  -webkit-animation: spin 0.9s linear infinite; /* Safari */
+  animation: spin 0.9s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;

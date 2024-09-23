@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { ModalContainer } from "../../styles/styled";
+import React from "react";
 import { ModalProvider } from "../../context/useModalContext";
+import Backdrop from "../Backdrop/Backdrop";
 
 type ModalType = {
   /**
@@ -21,18 +21,32 @@ type ModalType = {
   /**
    * Optional custom styles to be applied to the component.
    */
-  styles?: React.CSSProperties;
+  style?: React.CSSProperties;
 
   /**
    * Content to be rendered inside the component.
    */
   children: React.ReactNode;
-
   /**
-   * Optional flag to indicate if the component is used in a story or not.
-   * - `Note` This should not be used outside of a Storybook environment.
+   * Determines the stack order of the backdrop, ensuring it appears above other content but behind interactive elements.
    */
-  isStory?: boolean;
+  zIndex?: number;
+  /**
+   * Prevents the modal from closing if an action is in progress.
+   * When set to `true`, the modal will remain open and cannot be closed
+   * until the ongoing action completes.
+   * Useful for preventing accidental closure during important tasks or loading states.
+   */
+  preventClose?: boolean;
+  /**
+   * Controls the intensity of the backdrop glass effect (blur).
+   * A higher value increases the blur, creating a stronger glass effect.
+   *
+   * @type {number} - The intensity of the glass effect (blur).
+   * @default Inherit from theme '6'
+   */
+  glassEffect?: number;
+  mode?: "light" | "dark";
 };
 
 /**
@@ -50,7 +64,9 @@ type ModalType = {
  * ```
  * <Modal open onClose={()=>setOpenModal(false)}>
  *      <ModalPanel align='vertical'>
- *       <h1>A modal</h1>
+ *       <ModalContent>
+ *         <h1>A modal</h1>
+ *       </ModalContent>
  *    </ModalPanel>
  * </Modal>
  * ```
@@ -61,26 +77,25 @@ const Modal = ({
   open,
   children,
   className,
-  styles,
-  isStory,
+  style,
+  preventClose,
+  glassEffect,
+  mode,
 }: ModalType) => {
   return (
-    <>
-      {isStory ? (
-        <>{children}</>
-      ) : (
-        <ModalProvider>
-          <ModalContainer
-            style={styles}
-            className={className}
-            onClick={onClose}
-            open={open}
-          >
-            {children}
-          </ModalContainer>
-        </ModalProvider>
-      )}
-    </>
+    <ModalProvider>
+      <Backdrop
+        style={style}
+        className={className}
+        onClose={onClose}
+        open={open}
+        preventClose={preventClose}
+        glassEffect={glassEffect}
+        mode={mode}
+      >
+        {children}
+      </Backdrop>
+    </ModalProvider>
   );
 };
 

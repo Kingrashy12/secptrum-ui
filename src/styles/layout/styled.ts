@@ -1,12 +1,55 @@
-import { getTabVariantStyle } from "@/utils/test/variant";
+import { getTabVariantStyle } from "../../utils/variant";
 import Box from "../../components/Box/Box";
 import styled from "styled-components";
 import { colors, shouldForwardProps } from "../../../src/index";
+import { spacingValues } from "../../utils/spacing";
+import { StackType } from "../../components/Stack/Stack";
+import { BoxType } from "../../types";
 
 const shouldForwardProp = shouldForwardProps;
 
+//************Box Components***************//
+export const BoxSui = styled.div.withConfig({
+  shouldForwardProp,
+})<{
+  padding?: BoxType["padding"];
+  margin?: BoxType["margin"];
+  centered?: BoxType["centered"];
+  paddingTop?: BoxType["paddingTop"];
+  paddingBottom?: BoxType["paddingBottom"];
+  paddingLeft?: BoxType["paddingLeft"];
+  paddingRight?: BoxType["paddingRight"];
+  border?: BoxType["border"];
+  marginTop?: BoxType["marginTop"];
+  marginBottom?: BoxType["marginBottom"];
+  marginLeft?: BoxType["marginLeft"];
+  marginRight?: BoxType["marginRight"];
+  direction?: BoxType["direction"];
+  wrap?: BoxType["wrap"];
+  spacing?: BoxType["spacing"];
+}>`
+  position: relative;
+  display: flex;
+  padding: ${(props) => props.padding};
+  margin: ${(props) => props.margin};
+  border: ${(props) => props.border};
+  flex-direction: ${(props) => props.direction || "row"};
+  padding-left: ${(props) => spacingValues(props.paddingLeft)};
+  padding-right: ${(props) => spacingValues(props.paddingRight)};
+  padding-top: ${(props) => spacingValues(props.paddingRight)};
+  padding-bottom: ${(props) => spacingValues(props.paddingBottom)};
+  margin-top: ${(props) => spacingValues(props.marginTop)};
+  margin-right: ${(props) => spacingValues(props.marginRight)};
+  margin-left: ${(props) => spacingValues(props.marginLeft)};
+  margin-bottom: ${(props) => spacingValues(props.marginBottom)};
+  justify-content: ${(props) => props.centered && "center"};
+  align-items: ${(props) => props.centered && "center"};
+  flex-wrap: ${(props) => props.wrap && "wrap"};
+  gap: ${(props) => spacingValues(props.spacing)};
+`;
+
 //*************Card Component************//
-export const CardWrap = styled(Box).withConfig({
+export const CardSui = styled(Box).withConfig({
   shouldForwardProp,
 })<{
   centerContent?: boolean;
@@ -33,6 +76,25 @@ export const CardWrap = styled(Box).withConfig({
   }
 `;
 
+//*************Stack Components*************//
+export const StackSui = styled(Box).withConfig({
+  shouldForwardProp,
+})<{
+  spacing?: StackType["spacing"];
+  align?: StackType["align"];
+  wrap: StackType["wrap"];
+}>`
+  flex-direction: ${(props) => (props.align === "vertical" ? "column" : "row")};
+  height: 100%;
+  gap: ${(props) => spacingValues(props.spacing)};
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  padding: 18px;
+  flex-wrap: ${(props) => props.wrap && "wrap"};
+`;
+
 //*************Tabs Components************//
 export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
   isCurrent: boolean;
@@ -41,7 +103,7 @@ export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
   inActiveColor: string;
   disabled: boolean;
 }>`
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: inherit;
   font-size: 0.875rem;
   line-height: 1.25rem;
   white-space: nowrap;

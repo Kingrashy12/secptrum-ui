@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Icon from "../Icon/Icon";
-import { StyledButton } from "../../styles/styled";
 import { ButtonProps } from "../../types";
+import { Button } from "../../styles/action/styled";
+import { useTheme } from "../../context/useTheme";
+import { getModeStyle } from "../../lib/helper/theme";
 
 /**
  * A customizable button component designed to handle various actions and events in your application.
@@ -49,7 +51,7 @@ import { ButtonProps } from "../../types";
  * ```
  */
 
-const Button = ({
+const Btn = ({
   children,
   radius = "xl",
   variant = "solid",
@@ -57,16 +59,72 @@ const Button = ({
   icon,
   isLoading,
   iconPosition = "left",
+  color,
+  backgroundColor,
+  onHoverBackgroundSolid,
+  onHoverBackgroundOutline,
+  onHoverBackgroundLight,
+  onHoverBackgroundGhost,
+  outlineBorderColor,
+  width,
+  iconSize,
+  fullWidth,
+  mode,
   ...props
 }: ButtonProps): JSX.Element => {
   const disabled = props.disabled;
+  const { mode: themeMode } = useTheme();
+  const [m, setM] = useState(mode);
+
+  useEffect(() => {
+    if (mode) {
+      setM(mode);
+    } else {
+      setM(themeMode as ButtonProps["mode"]);
+    }
+  }, [mode, themeMode]);
+
+  const getColor = (
+    varaint: ButtonProps["variant"],
+    color: ButtonProps["color"],
+    mode: "light" | "dark"
+  ) => {
+    switch (varaint) {
+      case "outline":
+        return `
+          ${color ? color : getModeStyle(mode)?.text}
+        `;
+      default:
+        return color;
+    }
+  };
+
+  const getOulineBorder = () => {
+    return getModeStyle(m as "light" | "dark")?.outline_ButtonBorderColor;
+  };
+
+  const getWidth = () => {
+    if (fullWidth) {
+      return `100%`;
+    } else return width;
+  };
+
   return (
-    <StyledButton
+    <Button
+      backgroundcolor={backgroundColor}
+      onHoverBackgroundSolid={onHoverBackgroundSolid}
+      onHoverBackgroundGhost={onHoverBackgroundGhost}
+      onHoverBackgroundLight={onHoverBackgroundLight}
+      onHoverBackgroundOutline={onHoverBackgroundOutline}
+      mode={m}
+      outlinebordercolor={outlineBorderColor || getOulineBorder()}
+      color={getColor(variant, color, m as "light" | "dark")}
       disabled={isLoading || disabled}
       {...props}
       variant={variant}
       size={size}
       radius={radius}
+      width={getWidth()}
       className={props.className}
     >
       {isLoading ? (
@@ -74,16 +132,16 @@ const Button = ({
       ) : (
         <>
           {icon && iconPosition === "left"
-            ? icon && <Icon icon={icon} />
+            ? icon && <Icon size={iconSize} icon={icon} />
             : null}
         </>
       )}{" "}
       {children}
       {!isLoading && icon && iconPosition === "right"
-        ? icon && <Icon icon={icon} />
+        ? icon && <Icon size={iconSize} icon={icon} />
         : null}
-    </StyledButton>
+    </Button>
   );
 };
 
-export default Button;
+export default Btn;

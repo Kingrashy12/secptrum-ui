@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Box from "../Box/Box";
 import { colors } from "../../styles/colors";
-import shouldForwardProp from "../../utils/is-prop-valid";
+import { Switch, SwitchHandle } from "../../styles/input/styled";
+import React from "react";
 
 type SwitchType = {
   /**
@@ -18,11 +16,11 @@ type SwitchType = {
   checkedColor?: string;
 
   /**
-   * The size variant of the switch, which determines its width and height.
+   * The size of the switch, which determines its width and height.
    * Can be either "md" (medium) or "lg" (large).
    * @default "md"
    */
-  variant?: "md" | "lg";
+  size?: "md" | "lg";
   /**
    * Callback function triggered when the switch is toggled.
    */
@@ -33,21 +31,28 @@ type SwitchType = {
    * @default false
    */
   checked?: boolean;
+  /**
+   * Optional class name for custom styling.
+   */
   className?: string;
+  /**
+   * Disables the switch when set to true, preventing user interaction.
+   */
+  disabled?: boolean;
 };
 
-const getSize = (variant: SwitchType["variant"]) => {
-  switch (variant) {
+const getSize = (size: SwitchType["size"]) => {
+  switch (size) {
     case "md":
-      return { width: `35px`, height: `15px` };
+      return { width: `35px`, height: `20px` };
     case "lg":
-      return { width: `42px`, height: `22px` };
+      return { width: `42px`, height: `27px` };
     default:
       return { width: `35px`, height: `15px` };
   }
 };
-const getSwitchSize = (variant: SwitchType["variant"]) => {
-  switch (variant) {
+const getSwitchSize = (size: SwitchType["size"]) => {
+  switch (size) {
     case "md":
       return { width: `15px`, height: `15px` };
     case "lg":
@@ -57,19 +62,20 @@ const getSwitchSize = (variant: SwitchType["variant"]) => {
   }
 };
 
-const Switch = ({
-  color = colors.neutral300,
+const Sw = ({
+  color = colors.neutral[300],
   checkedColor = "blue",
-  variant = "md",
+  size = "md",
   onSwitch,
   className,
   checked = false,
+  disabled,
 }: SwitchType) => {
-  const { width, height } = getSize(variant);
-  const { width: switchWidth } = getSwitchSize(variant);
+  const { width, height } = getSize(size);
+  const { width: switchWidth, height: switchHeight } = getSwitchSize(size);
 
   return (
-    <SwitchContainer
+    <Switch
       width={width}
       height={height}
       checked={checked}
@@ -77,50 +83,15 @@ const Switch = ({
       color={color}
       onClick={onSwitch}
       className={className}
+      disabled={disabled}
     >
       <SwitchHandle
-        height={height}
+        height={switchHeight}
         switchWidth={switchWidth}
         checked={checked}
       />
-    </SwitchContainer>
+    </Switch>
   );
 };
 
-export default Switch;
-
-const SwitchContainer = styled(Box).withConfig({ shouldForwardProp })<{
-  width: string;
-  height: string;
-  checked: boolean;
-  checkedColor: string;
-  color: string;
-}>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  border-radius: 9999px;
-  padding: 2px;
-  border: 1px solid ${colors.neutral200};
-  background-color: ${(props) =>
-    props.checked ? props.checkedColor : props.color};
-  cursor: pointer;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 500ms;
-`;
-
-const SwitchHandle = styled.div.withConfig({ shouldForwardProp })<{
-  height: string;
-  checked: boolean;
-  switchWidth: string;
-}>`
-  width: ${(props) => props.switchWidth};
-  height: ${(props) => props.height};
-  background: white;
-  border-radius: 9999px;
-  position: absolute;
-  right: ${(props) => props.checked && `2px`};
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 500ms;
-`;
+export default Sw;

@@ -1,12 +1,12 @@
-import { ButtonProps } from "@/components/test/Button";
 import {
   getBorderRadius,
   getButtonStyles,
   getHoverStyle,
   getSizeVariant,
-} from "@/utils/test/variant";
-import { shouldForwardProps } from "secptrum-ui";
+} from "../../utils/variant";
 import styled from "styled-components";
+import shouldForwardProps from "../../utils/is-prop-valid";
+import { ButtonProps } from "../../types";
 const shouldForwardProp = shouldForwardProps;
 
 //**************Button Component************//
@@ -37,7 +37,7 @@ export const Button = styled.button.withConfig({
   gap: 5px;
   padding: ${(props) => getSizeVariant(props.size)};
   border-radius: ${(props) => getBorderRadius(props.radius)};
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: inherit;
   &:focus {
     outline: none;
   }

@@ -1,4 +1,4 @@
-declare type SizeVariantType =
+export declare type SizeVariantType =
   | "xs"
   | "sm"
   | "md"
@@ -8,21 +8,31 @@ declare type SizeVariantType =
   | "3xl"
   | "4xl"
   | "5xl";
-declare type ToastVariant = "info" | "error" | "success";
-declare type ToastPositionType =
+export declare type ToastVariant = "info" | "error" | "success" | "warning";
+export declare type ToastTransitionType =
+  | "dropIn"
+  | "slideIn"
+  | "popIn"
+  | "walkIn";
+export declare type ToastPositionType =
   | "top-right"
   | "top-left"
   | "bottom-right"
   | "bottom-left";
 
-declare type ToastType = {
+export declare type ToastType = {
   [key in ToastVariant]: (
     message: string,
-    options?: { position?: ToastPositionType; className?: string }
+    options?: {
+      position?: ToastPositionType;
+      className?: string;
+      transition?: ToastTransitionType;
+    }
   ) => void;
 };
 
-declare type ToastOptionsType = {
+export declare type ToastOptionsType = {
   position?: ToastPositionType;
   className?: string;
+  transition?: "dropIn" | "slideIn" | "popIn" | "walkIn";
 };

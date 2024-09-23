@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import { useTheme } from "../../context/useTheme";
+import { CheckBox, Checked } from "../../styles/input/styled";
+import React from "react";
+import { IoIosCheckmark } from "react-icons/io";
 import Icon from "../Icon/Icon";
-import {
-  MdCheckBox,
-  MdOutlineCheckBoxOutlineBlank,
-  MdOutlineRadioButtonUnchecked,
-} from "react-icons/md";
-import { IoIosCheckmarkCircle } from "react-icons/io";
 
 type CheckBoxType = {
   /**
@@ -16,7 +13,7 @@ type CheckBoxType = {
 
   /**
    * Defines the size of the checkbox.
-   * @default 25
+   * @default 20
    */
   size?: number;
 
@@ -35,58 +32,54 @@ type CheckBoxType = {
    * Callback function triggered when the checkbox is checked or unchecked.
    */
   onCheck: () => void;
-
   /**
-   * Specifies if the checkbox is being used in a Storybook story.
-   * @default false
+   * Disables the checkbox if set to true, preventing user interaction.
+   * @type {boolean}
    */
-  isStory?: boolean;
-
-  /**
-   * Defines any child elements that should be rendered inside the checkbox component on storybook.
-   */
-  children?: React.ReactNode;
   disabled?: boolean;
+
+  /**
+   * Optional className for custom styling of the checkbox component.
+   * @type {string}
+   */
   className?: string;
+
+  /**
+   * Specifies the border color of the checkbox.
+   * Accepts any valid CSS color value (e.g., "red", "#f00", "rgb(255, 0, 0)").
+   * @type {string}
+   */
+  borderColor?: string;
 };
 
-const Checkbox = ({
+const Ch = ({
   rounded,
-  size = 25,
+  size = 20,
   color = "blue",
   checked,
   onCheck,
-  isStory,
-  children,
   disabled,
   className,
+  borderColor,
 }: CheckBoxType) => {
-  const roundedIcon = checked
-    ? IoIosCheckmarkCircle
-    : MdOutlineRadioButtonUnchecked;
-  const defaultIcon = checked ? MdCheckBox : MdOutlineCheckBoxOutlineBlank;
-
+  const { theme } = useTheme();
   return (
-    <>
-      {isStory ? (
-        children
-      ) : (
-        <Icon
-          icon={rounded ? roundedIcon : defaultIcon}
-          onClick={
-            disabled ? () => console.log("checkbox is disabled") : onCheck
-          }
-          size={size}
-          styles={{
-            cursor: disabled ? "not-allowed" : "pointer",
-            opacity: disabled ? 0.5 : 1,
-          }}
-          color={color}
-          className={className}
-        />
-      )}
-    </>
+    <CheckBox
+      onClick={onCheck}
+      size={size}
+      rounded={rounded}
+      disabled={disabled}
+      className={className}
+      checked={checked}
+      borderColor={borderColor || theme.colors?.checkBoxBorderColor}
+    >
+      {checked ? (
+        <Checked color={color} rounded={rounded} size={size}>
+          <Icon icon={IoIosCheckmark} size={size} color="white" />
+        </Checked>
+      ) : null}
+    </CheckBox>
   );
 };
 
-export default Checkbox;
+export default Ch;

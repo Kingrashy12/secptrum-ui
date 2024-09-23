@@ -1,4 +1,4 @@
-import { StyledBox } from "../../styles/styled";
+import { BoxSui } from "../../styles/layout/styled";
 import { BoxType } from "../../types";
 import React from "react";
 
@@ -29,9 +29,9 @@ import React from "react";
 
 const Box = ({ children, ...props }: BoxType) => {
   return (
-    <StyledBox {...props} className={props.className}>
+    <BoxSui {...props} className={props.className}>
       {children}
-    </StyledBox>
+    </BoxSui>
   );
 };
 

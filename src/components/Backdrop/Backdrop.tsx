@@ -1,13 +1,13 @@
-import React from "react";
-import { FixedBox } from "../../styles/styled";
-import styled from "styled-components";
-import shouldForwardProp from "../../utils/is-prop-valid";
+import React, { useEffect, useState } from "react";
+import { Drop } from "../../styles/feedback/styled";
+import { useTheme } from "../../context/useTheme";
+import { getModeStyle } from "../../lib/helper/theme";
 
 interface DropType {
   /**
    * The content to be rendered inside the drop component.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /**
    * Additional CSS class names to apply to the drop component.
@@ -31,15 +31,40 @@ interface DropType {
 
   /**
    * Determines whether to center the content within the drop component.
-   * @default false
+   * @default true
    */
   centerContent?: boolean;
-
   /**
-   * Indicates if the component is being used in Storybook.
-   * - `Note` This should not be used outside of a Storybook environment.
+   * Determines the stack order of the backdrop, ensuring it appears above other content but behind interactive elements.
    */
-  isStory?: boolean;
+  zIndex?: number;
+  /**
+   * Prevents the modal from closing if an action is in progress.
+   * When set to `true`, the modal will remain open and cannot be closed
+   * until the ongoing action completes.
+   * Useful for preventing accidental closure during important tasks or loading states.
+   */
+  preventClose?: boolean;
+  /**
+   * Sets the theme mode for the input component.
+   *
+   * Options:
+   * - `light` (default)
+   * - `dark`
+   * - Custom theme mode (override default styles)
+   *
+   * Allows developers to integrate with apps that support light/dark modes or provide a custom design.
+   * @type {"light" | "dark"}
+   */
+  mode?: "light" | "dark";
+  /**
+   * Controls the intensity of the backdrop glass effect (blur).
+   * A higher value increases the blur, creating a stronger glass effect.
+   *
+   * @type {number} - The intensity of the glass effect (blur).
+   * @default Inherit from theme '6'
+   */
+  glassEffect?: number;
 }
 
 const Backdrop = ({
@@ -49,36 +74,45 @@ const Backdrop = ({
   className,
   style,
   centerContent = true,
-  isStory,
+  preventClose,
+  mode,
+  glassEffect,
 }: DropType) => {
+  const { mode: themeMode, theme } = useTheme();
+  const [m, setM] = useState(mode);
+
+  useEffect(() => {
+    if (mode) {
+      setM(mode);
+    } else {
+      setM(themeMode as DropType["mode"]);
+    }
+  }, [mode, themeMode]);
+
+  const handleClose = (event: any) => {
+    if (!preventClose && event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
+  const dropStyle = {
+    background: getModeStyle(m as "light" | "dark")?.drop,
+  };
+
   return (
-    <>
-      {isStory ? (
-        <>{children}</>
-      ) : (
-        <Drop
-          open={open}
-          centerContent={centerContent}
-          className={className}
-          style={style}
-          onClick={onClose}
-        >
-          {children}
-        </Drop>
-      )}
-    </>
+    <Drop
+      open={open}
+      centerContent={centerContent}
+      className={className}
+      style={style}
+      onClick={handleClose}
+      background-color={dropStyle.background}
+      theme={theme}
+      glass-effect={glassEffect}
+    >
+      <> {children}</>
+    </Drop>
   );
 };
 
 export default Backdrop;
-
-const Drop = styled(FixedBox).withConfig({ shouldForwardProp })<{
-  open: boolean;
-  centerContent: boolean;
-}>`
-  background: rgb(0, 0, 0, 0.6);
-  display: ${(props) => (props.open ? "flex" : "none")};
-  justify-content: ${(props) => props.centerContent && "center"};
-  align-items: ${(props) => props.centerContent && "center"};
-  backdrop-filter: blur(6px);
-`;

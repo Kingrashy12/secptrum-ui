@@ -1,9 +1,11 @@
-import shouldForwardProp from "@/hooks/styled_prop";
-import { localColors } from "@/styles/global";
-import { InputType } from "@/types/test";
-import { getInputRadius, getInputVariantStyles } from "@/utils/test/input";
-import { Box, colors } from "secptrum-ui";
+import { InputType } from "../../types";
+import { getInputRadius, getInputVariantStyles } from "../../utils/input";
 import styled from "styled-components";
+import Box from "../../components/Box/Box";
+import { colors } from "../colors";
+import shouldForwardProps from "../../utils/is-prop-valid";
+
+const shouldForwardProp = shouldForwardProps;
 
 // Input style
 export const InputForm = styled(Box)`
@@ -14,7 +16,7 @@ export const InputForm = styled(Box)`
   p {
     font-weight: 500;
     font-size: 14px;
-    color: ${localColors.red[500]};
+    color: ${colors.red[500]};
     margin-left: 3px;
     font-family: inherit;
     animation: pop 1s ease-in;
@@ -82,7 +84,7 @@ export const Input = styled.div.withConfig({
     outline: none;
     border: none;
     background: transparent;
-    caret-color: ${colors.blue500};
+    caret-color: ${colors.blue[500]};
     color: ${(props) =>
       props.color || props.mode === "light" ? "black" : "white"};
     font-family: inherit;
@@ -99,11 +101,11 @@ export const Input = styled.div.withConfig({
 
   .eye_pass {
     cursor: pointer;
-    color: ${localColors.neutral[400]};
+    color: ${colors.neutral[400]};
     transition: color 0.3s ease;
 
     &:hover {
-      color: ${localColors.neutral[600]};
+      color: ${colors.neutral[600]};
     }
   }
 `;
@@ -121,7 +123,6 @@ export const Switch = styled(Box).withConfig({ shouldForwardProp })<{
   height: ${(props) => props.height};
   border-radius: 9999px;
   padding: 2px;
-  /* border: 1px solid ${colors.neutral200}; */
   background-color: ${(props) =>
     props.checked ? props.checkedColor : props.color};
   transition-property: all;

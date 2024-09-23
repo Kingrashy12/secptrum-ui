@@ -6,6 +6,8 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 import del from "rollup-plugin-delete";
+import copy from "rollup-plugin-copy";
+import postcss from "rollup-plugin-postcss";
 
 export default {
   input: "src/index.ts", // Entry point for your library
@@ -41,13 +43,20 @@ export default {
     typescript({
       tsconfig: "./tsconfig.json",
       outputToFilesystem: true,
-      exclude: ["src/example/**/*.tsx"],
     }), // Transpile TypeScript files
     babel({
       exclude: "node_modules/**", // Only transpile our source code
       babelHelpers: "bundled",
     }),
     terser(), // Minify the output for production builds
+    postcss({
+      extract: "global.css", // Extracts the CSS into a separate file
+      modules: false, // Use CSS modules if you prefer
+      minimize: true, // Minify the CSS
+    }),
+    copy({
+      targets: [{ src: "src/assets/fonts", dest: "dist/assets" }],
+    }),
   ],
   external: ["react", "react-dom"],
   // Prevent bundling of peer dependencies
