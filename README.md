@@ -89,7 +89,7 @@ SecptrumUI includes a variety of components to help you build your application
 
 - `Box`: A flexible container component that serves as a building block for layout and styling. The Box component allows you to easily control spacing (padding and margin), alignment, borders, and other CSS properties through props.
 
-For a full list of components and their usage, please refer to the [documentation](https://66d26c2ee57a3f7e4450a14c-noisslolsk.chromatic.com).
+For a full list of components and their usage, please refer to the [documentation](https://secptrumui.vercel.app/).
 
 ## Coutomization
 

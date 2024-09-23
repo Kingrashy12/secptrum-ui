@@ -6,6 +6,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 import del from "rollup-plugin-delete";
+import visualizer from "rollup-plugin-visualizer";
 
 export default {
   input: "src/index.ts", // Entry point for your library
@@ -47,7 +48,12 @@ export default {
       babelHelpers: "bundled",
     }),
     terser(), // Minify the output for production builds
+    visualizer({
+      filename: "./bundle-analysis.html",
+      open: true, // Automatically open the analysis in the browser
+    }),
   ],
   external: ["react", "react-dom"],
   // Prevent bundling of peer dependencies
 };
+// "next-setup": "file:./scripts/next-setup.js"
