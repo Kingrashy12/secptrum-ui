@@ -1,12 +1,10 @@
 import { getTabVariantStyle } from "../../utils/variant";
-import Box from "../../components/Box/Box";
 import styled from "styled-components";
-import { colors, shouldForwardProps } from "../../../src/index";
 import { spacingValues } from "../../utils/spacing";
 import { StackType } from "../../components/Stack/Stack";
 import { BoxType } from "../../types";
-
-const shouldForwardProp = shouldForwardProps;
+import shouldForwardProp from "../../utils/is-prop-valid";
+import { colors } from "../colors";
 
 //************Box Components***************//
 export const BoxSui = styled.div.withConfig({
@@ -49,7 +47,7 @@ export const BoxSui = styled.div.withConfig({
 `;
 
 //*************Card Component************//
-export const CardSui = styled(Box).withConfig({
+export const CardSui = styled(BoxSui).withConfig({
   shouldForwardProp,
 })<{
   centerContent?: boolean;
@@ -77,7 +75,7 @@ export const CardSui = styled(Box).withConfig({
 `;
 
 //*************Stack Components*************//
-export const StackSui = styled(Box).withConfig({
+export const StackSui = styled(BoxSui).withConfig({
   shouldForwardProp,
 })<{
   spacing?: StackType["spacing"];

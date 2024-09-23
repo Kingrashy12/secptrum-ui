@@ -10,7 +10,7 @@ export { default as Stack } from "./components/Stack/Stack";
 export { default as Modal } from "./components/modal/Modal";
 export { default as ModalPanel } from "./components/modal/ModalPanel";
 export { default as ModalTitle } from "./components/modal/ModalTitle";
-export { default as ModalContent } from "./components/modal/index";
+export { ModalContent } from "./styles/feedback/styled";
 export { default as Card } from "./components/Card/Card";
 export { default as Toaster } from "./components/Toast/Toaster";
 export { default as Checkbox } from "./components/Checkbox/Checkbox";
@@ -32,4 +32,4 @@ export { default as ScaleLoader } from "./components/loaders/ScaleLoader/ScaleLo
 // Utils
 export { default as shouldForwardProps } from "./utils/is-prop-valid";
 export { default as ThemeProvider } from "./context/useTheme";
-export { default as useTheme } from "./context/index";
+export { useTheme } from "./context/useTheme";

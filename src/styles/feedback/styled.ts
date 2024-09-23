@@ -4,15 +4,15 @@ import styled from "styled-components";
 import { getToastPosition } from "../../utils/position";
 import { getToastTransition } from "../../utils/transition";
 import shouldForwardProps from "../../utils/is-prop-valid";
-import Box from "../../components/Box/Box";
 import { colors } from "../colors";
-import "../global.css";
+
 import { FixedBox } from "../global";
 import {
   ToastOptionsType,
   ToastPositionType,
   ToastVariant,
 } from "../../types/fun";
+import { BoxSui } from "../layout/styled";
 
 const shouldForwardProp = shouldForwardProps;
 
@@ -96,7 +96,7 @@ export const ModalTitle = styled.h2`
 `;
 
 // Modal Description
-export const ModalContent = styled(Box).withConfig({
+export const ModalContent = styled(BoxSui).withConfig({
   shouldForwardProp: (prop) => prop !== "space",
 })<{ space?: number }>`
   margin: ${({ margin }) => margin || "5px 0"};
@@ -126,7 +126,7 @@ export const ModalFooter = styled.div.withConfig({
 
 //*****************Toast Components****************//
 // Toast style
-export const StyledToast = styled(Box).withConfig({
+export const StyledToast = styled(BoxSui).withConfig({
   shouldForwardProp,
 })<{
   position: ToastPositionType;
@@ -137,7 +137,7 @@ export const StyledToast = styled(Box).withConfig({
   width: auto;
   height: auto;
   border-radius: 6px;
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: inherit;
   border: 1px solid ${colors.neutral[200]};
   gap: 5px;
   position: fixed;
@@ -208,18 +208,18 @@ export const StyledToast = styled(Box).withConfig({
   }
 `;
 
-export const ContentWrap = styled(Box)`
+export const ContentWrap = styled(BoxSui)`
   padding: 12px;
   gap: 8px;
   width: fit-content;
 `;
 
-export const ToastContent = styled(Box)`
+export const ToastContent = styled(BoxSui)`
   gap: 2px;
   width: 90%;
 `;
 
-export const CloseIcon = styled(Box).withConfig({
+export const CloseIcon = styled(BoxSui).withConfig({
   shouldForwardProp,
 })<{ type: ToastVariant | "warning" }>`
   cursor: pointer;

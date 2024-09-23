@@ -1,11 +1,10 @@
 import { getFloatPosition } from "../../utils/position";
 import { getFloatSize, getFloatVariantStyle } from "../../utils/variant";
 import React, { ComponentPropsWithRef } from "react";
-import { colors, shouldForwardProps } from "../../index";
 import styled from "styled-components";
 import { ToastPositionType } from "../Toast/Toast";
-
-const shouldForwardProp = shouldForwardProps;
+import shouldForwardProp from "../../utils/is-prop-valid";
+import { colors } from "../../styles/colors";
 
 type BoxProps = ComponentPropsWithRef<"div">;
 

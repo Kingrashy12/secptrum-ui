@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import deepmerge from "deepmerge";
-import { modeColors } from "../lib/helper/theme";
 import { SystemTheme, Theme, ThemeContextType } from "../types/local";
+import { modeColors } from "../styles/colors";
 
 const systemTheme: SystemTheme = {
   defaultLightTheme: {
@@ -65,7 +65,6 @@ export const useTheme = () => {
       mode: "light",
       toggleTheme: () => {},
       setCustomTheme: () => {},
-      overrideTheme: () => {},
     };
   }
   return context;
@@ -137,7 +136,7 @@ const ThemeProvider = ({
 export default ThemeProvider;
 
 // Adjust the useThemeMode function
-export const useThemeMode = (mode: "light" | "dark"): Theme => {
+export const getThemeMode = (mode: "light" | "dark"): Theme => {
   if (mode === "light") {
     return systemTheme.defaultLightTheme;
   } else if (mode === "dark") {
