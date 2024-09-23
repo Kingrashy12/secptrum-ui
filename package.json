@@ -27,13 +27,8 @@
     "scripts"
   ],
   "scripts": {
-    "build:browser": "rollup -c rollup.config.browser.js",
-    "build:node": "rollup -c rollup.config.node.js",
     "build": "rollup -c",
     "postbuild": "copyfiles -u 1 src/types/**/* dist/",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
     "setup-next": "node ./scripts/next-setup.js"
   },
   "bin": {
