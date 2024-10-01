@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithRef } from "react";
+import React, { ComponentProps } from "react";
 import { SizeVariantType } from "./fun";
 
-type InputProps = ComponentPropsWithRef<"input">;
-type BoxProps = ComponentPropsWithRef<"div">;
-type ButtonTypes = ComponentPropsWithRef<"button">;
+type InputProps = ComponentProps<"input">;
+type BoxProps = ComponentProps<"div">;
+type ButtonTypes = ComponentProps<"button">;
 
 declare interface ButtonProps extends ButtonTypes {
   children: string;

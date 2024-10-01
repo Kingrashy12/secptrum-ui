@@ -1,4 +1,3 @@
-import React from "react";
 import shouldForwardProp from "../../../utils/is-prop-valid";
 import styled from "styled-components";
 

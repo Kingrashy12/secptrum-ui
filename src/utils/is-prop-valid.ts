@@ -54,6 +54,9 @@ const shouldForwardProp = (prop: string) => {
     "position",
     "wrap",
     "spacing",
+    "show-toast",
+    "glass-effect",
+    "background-color",
   ];
 
   return !invalidProps.includes(prop); // Only forward valid props

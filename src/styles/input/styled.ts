@@ -145,7 +145,8 @@ export const SwitchHandle = styled.div.withConfig({ shouldForwardProp })<{
   background: white;
   border-radius: 9999px;
   position: absolute;
-  right: ${(props) => props.checked && `2px`};
+  right: ${(props) => props.checked && `3px`};
+  left: ${(props) => !props.checked && `3px`};
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;

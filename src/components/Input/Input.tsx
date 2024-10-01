@@ -1,5 +1,5 @@
 import { colors } from "../../styles/colors";
-import React, { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Input, InputForm } from "../../styles/input/styled";
 import { RiErrorWarningFill, RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { useTheme } from "../../context/useTheme";
@@ -42,126 +42,134 @@ import { InputType } from "../../types";
  * ```
  */
 
-const TextInput = ({
-  icon,
-  variant = "outline",
-  radius = "lg",
-  Type,
-  iconSize = 20,
-  outLineBorderColor,
-  focusBorderColor,
-  focusColor,
-  hasError,
-  errorMessage,
-  width,
-  mode,
-  inputStyle,
-  formStyle,
-  color,
-  formClassName,
-  backgroundColor,
-  inputClass,
-  fullWidth,
-  ...props
-}: InputType): JSX.Element => {
-  const [inputType, setInputType] = useState(props.type);
-  const { theme, mode: themeMode } = useTheme();
-  const [m, setM] = useState(mode);
+const TextInput = forwardRef<HTMLInputElement, InputType>(
+  (
+    {
+      icon,
+      variant = "outline",
+      radius = "lg",
+      Type,
+      iconSize = 20,
+      outLineBorderColor,
+      focusBorderColor,
+      focusColor,
+      hasError,
+      errorMessage,
+      width,
+      mode,
+      inputStyle,
+      formStyle,
+      color,
+      formClassName,
+      backgroundColor,
+      inputClass,
+      fullWidth,
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const [inputType, setInputType] = useState(props.type);
+    const { theme, mode: themeMode } = useTheme();
+    const [m, setM] = useState(mode);
 
-  useEffect(() => {
-    if (mode) {
-      setM(mode);
-    } else {
-      setM(themeMode as InputType["mode"]);
-    }
-  }, [mode, themeMode]);
+    useEffect(() => {
+      if (mode) {
+        setM(mode);
+      } else {
+        setM(themeMode as InputType["mode"]);
+      }
+    }, [mode, themeMode]);
 
-  const typeMap = {
-    email: "email",
-    text: "text",
-    password: "password",
-    number: "number",
-  };
+    const typeMap = {
+      email: "email",
+      text: "text",
+      password: "password",
+      number: "number",
+    };
 
-  const getType = (type: InputType["Type"]) => {
-    if (!type) {
-      setInputType("text");
-      return;
-    }
-    setInputType(typeMap[type] || "text");
-  };
+    const getType = (type: InputType["Type"]) => {
+      if (!type) {
+        setInputType("text");
+        return;
+      }
+      setInputType(typeMap[type] || "text");
+    };
 
-  useEffect(() => {
-    getType(Type);
-  }, [Type]);
+    useEffect(() => {
+      getType(Type);
+    }, [Type]);
 
-  const isPassword = inputType === "password";
+    const isPassword = inputType === "password";
 
-  const togglePasswordVisibility = () => {
-    setInputType((prevType) => (prevType === "password" ? "text" : "password"));
-  };
+    const togglePasswordVisibility = () => {
+      setInputType((prevType) =>
+        prevType === "password" ? "text" : "password"
+      );
+    };
 
-  const getWidth = () => {
-    if (fullWidth) {
-      return `100%`;
-    } else return width;
-  };
+    const getWidth = () => {
+      if (fullWidth) {
+        return `100%`;
+      } else return width;
+    };
 
-  return (
-    <InputForm
-      className={formClassName}
-      style={{ width: getWidth(), ...formStyle }}
-    >
-      <Input
-        disabled={props.disabled}
-        backgroundcolor={backgroundColor}
-        error={hasError}
-        color={color}
-        mode={m}
-        outlinebordercolor={
-          outLineBorderColor || theme.colors?.outline_ButtonBorderColor
-        }
-        variant={variant}
-        radius={radius}
-        className={props.className}
-        focusBorderColor={focusBorderColor}
-        focusColor={focusColor}
-        style={props.style}
+    return (
+      <InputForm
+        className={formClassName}
+        style={{ width: getWidth(), ...formStyle }}
       >
-        {icon ? (
-          <Icon
-            className="Icon__Sui"
-            size={iconSize}
-            icon={icon}
-            color={colors.neutral[500]}
+        <Input
+          disabled={props.disabled}
+          backgroundcolor={backgroundColor}
+          error={hasError}
+          color={color}
+          mode={m}
+          outlinebordercolor={
+            outLineBorderColor || theme.colors?.outline_ButtonBorderColor
+          }
+          variant={variant}
+          radius={radius}
+          className={props.className}
+          focusBorderColor={focusBorderColor}
+          focusColor={focusColor}
+          style={props.style}
+        >
+          {icon ? (
+            <Icon
+              className="Icon__Sui"
+              size={iconSize}
+              icon={icon}
+              color={colors.neutral[500]}
+            />
+          ) : hasError ? (
+            <Icon
+              className="Icon__Sui"
+              size={25}
+              icon={RiErrorWarningFill}
+              color="red"
+            />
+          ) : null}
+          <input
+            {...props}
+            ref={ref}
+            className={inputClass}
+            style={inputStyle}
+            type={inputType}
+            placeholder={props.placeholder || "Type here..."}
           />
-        ) : hasError ? (
-          <Icon
-            className="Icon__Sui"
-            size={25}
-            icon={RiErrorWarningFill}
-            color="red"
-          />
-        ) : null}
-        <input
-          {...props}
-          className={inputClass}
-          style={inputStyle}
-          type={inputType}
-          placeholder={props.placeholder || "Type here..."}
-        />
-        {Type === "password" && (
-          <Icon
-            onClick={togglePasswordVisibility}
-            size={20}
-            icon={isPassword ? RiEyeFill : RiEyeOffFill}
-            className="eye_pass"
-          />
-        )}
-      </Input>
-      {hasError && <p>{errorMessage}</p>}
-    </InputForm>
-  );
-};
+          {Type === "password" && (
+            <Icon
+              onClick={togglePasswordVisibility}
+              size={20}
+              icon={isPassword ? RiEyeFill : RiEyeOffFill}
+              className="eye_pass"
+            />
+          )}
+        </Input>
+        {hasError && <p>{errorMessage}</p>}
+      </InputForm>
+    );
+  }
+);
 
 export default TextInput;

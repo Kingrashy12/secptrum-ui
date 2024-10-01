@@ -1,5 +1,3 @@
-import React from "react";
-import Box from "../../Box/Box";
 import styled from "styled-components";
 import Stack from "../../Stack/Stack";
 import shouldForwardProp from "../../../utils/is-prop-valid";

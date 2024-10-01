@@ -3,10 +3,10 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import babel from "@rollup/plugin-babel";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 import del from "rollup-plugin-delete";
-import visualizer from "rollup-plugin-visualizer";
+import terser from "@rollup/plugin-terser";
+import gzipPlugin from "rollup-plugin-gzip";
 
 export default {
   input: "src/index.ts", // Entry point for your library
@@ -30,10 +30,12 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
+        "styled-components": "styled",
       },
       sourcemap: true,
     },
   ],
+
   plugins: [
     del({ targets: "dist/*" }),
     peerDepsExternal(), // Automatically mark peer dependencies as external
@@ -47,13 +49,20 @@ export default {
       exclude: "node_modules/**", // Only transpile our source code
       babelHelpers: "bundled",
     }),
-    terser(), // Minify the output for production builds
-    visualizer({
-      filename: "./bundle-analysis.html",
-      open: true, // Automatically open the analysis in the browser
+    // Minify the output for production builds
+    terser({
+      format: {
+        comments: false,
+      },
+      compress: {
+        drop_console: true,
+      },
+      mangle: {
+        toplevel: true,
+      },
     }),
+    gzipPlugin(),
   ],
-  external: ["react", "react-dom"],
   // Prevent bundling of peer dependencies
+  external: ["react", "react-dom", "styled-components", "react-icons"],
 };
-// "next-setup": "file:./scripts/next-setup.js"

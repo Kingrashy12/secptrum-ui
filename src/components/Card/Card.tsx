@@ -1,7 +1,7 @@
 import { useTheme } from "../../context/useTheme";
 import { getModeStyle } from "../../lib/helper/theme";
 import { CardSui } from "../../styles/layout/styled";
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { BoxType } from "../../types";
 
 declare interface CardType extends BoxType {
@@ -38,45 +38,51 @@ declare interface CardType extends BoxType {
   mode?: "light" | "dark";
 }
 
-const Card = ({
-  children,
-  backgroundColor,
-  centerContent,
-  borderColor,
-  space,
-  mode,
-  ...props
-}: CardType) => {
-  const { mode: themeMode } = useTheme();
-  const [m, setM] = useState(mode);
+const Card = forwardRef<HTMLDivElement, CardType>(
+  (
+    {
+      children,
+      backgroundColor,
+      centerContent,
+      borderColor,
+      space,
+      mode,
+      ...props
+    },
+    ref
+  ) => {
+    const { mode: themeMode } = useTheme();
+    const [m, setM] = useState(mode);
 
-  useEffect(() => {
-    if (mode) {
-      setM(mode);
-    } else {
-      setM(themeMode as CardType["mode"]);
-    }
-  }, [mode, themeMode]);
+    useEffect(() => {
+      if (mode) {
+        setM(mode);
+      } else {
+        setM(themeMode as CardType["mode"]);
+      }
+    }, [mode, themeMode]);
 
-  const modeStyle = {
-    background: getModeStyle(m as "light" | "dark")?.card,
-    borderColor: getModeStyle(m as "light" | "dark")?.card_BorderColor,
-    cardShadow: getModeStyle(m as "light" | "dark")?.cardShadow,
-  };
+    const modeStyle = {
+      background: getModeStyle(m as "light" | "dark")?.card,
+      borderColor: getModeStyle(m as "light" | "dark")?.card_BorderColor,
+      cardShadow: getModeStyle(m as "light" | "dark")?.cardShadow,
+    };
 
-  return (
-    <CardSui
-      {...props}
-      space={space}
-      borderColor={borderColor || modeStyle.borderColor}
-      backgroundcolor={backgroundColor || modeStyle.background}
-      className={props.className}
-      centerContent={centerContent}
-      cardShadow={modeStyle.cardShadow}
-    >
-      {children}
-    </CardSui>
-  );
-};
+    return (
+      <CardSui
+        {...props}
+        ref={ref}
+        space={space}
+        borderColor={borderColor || modeStyle.borderColor}
+        backgroundcolor={backgroundColor || modeStyle.background}
+        className={props.className}
+        centerContent={centerContent}
+        cardShadow={modeStyle.cardShadow}
+      >
+        {children}
+      </CardSui>
+    );
+  }
+);
 
 export default Card;

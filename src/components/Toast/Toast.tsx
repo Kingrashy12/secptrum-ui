@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { RiErrorWarningFill, RiInformationFill } from "react-icons/ri";
 import { FaCircleCheck } from "react-icons/fa6";
@@ -138,7 +138,7 @@ const Toast = () => {
           position={toast.position || "top-right"}
           className={toast.className}
           transition={toast.transition}
-          showtoast={true}
+          show-toast={true}
         >
           <ContentWrap>
             <Icon

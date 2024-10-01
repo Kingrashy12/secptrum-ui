@@ -1,9 +1,8 @@
 import { colors } from "../../styles/colors";
 import { useTabList } from "../../context/useTabList";
-import { useTheme } from "../../context/useTheme";
 import { getModeStyle } from "../../lib/helper/theme";
 import { TabHandle } from "../../styles/layout/styled";
-import React from "react";
+import React, { forwardRef } from "react";
 
 /**
  * Type definition for TabsHandleType, representing the properties of a tab component.
@@ -42,49 +41,54 @@ type TabsHandleType = {
   disabled?: boolean;
 };
 
-const TabsHandle = ({
-  children,
-  activeColor,
-  activeSolidColor,
-  inActiveColor = colors.neutral[400],
-  value,
-  onClick,
-  disabled = false,
-}: TabsHandleType) => {
-  const { onSwitch, activeTabValue, variant, themeMode } = useTabList();
-  const { theme } = useTheme();
+const TabsHandle = forwardRef<HTMLButtonElement, TabsHandleType>(
+  (
+    {
+      children,
+      activeColor,
+      activeSolidColor,
+      inActiveColor = colors.neutral[400],
+      value,
+      onClick,
+      disabled = false,
+    },
+    ref
+  ) => {
+    const { onSwitch, activeTabValue, variant, themeMode } = useTabList();
 
-  function switchTab() {
-    onSwitch(value);
-    if (onClick) {
-      onClick();
-    }
-  }
-  const isCurrent = activeTabValue === value;
-
-  const handleStyle = {
-    activeColor: activeColor || getModeStyle(themeMode)?.active_TabColor,
-    activeSolidColor:
-      activeSolidColor || getModeStyle(themeMode)?.active_TabColor_Solid,
-  };
-
-  return (
-    <TabHandle
-      activeColor={
-        variant === "solid"
-          ? handleStyle.activeSolidColor
-          : handleStyle.activeColor
+    function switchTab() {
+      onSwitch(value);
+      if (onClick) {
+        onClick();
       }
-      isCurrent={isCurrent}
-      value={value}
-      onClick={switchTab}
-      variant={variant}
-      disabled={disabled}
-      inActiveColor={inActiveColor}
-    >
-      {children}
-    </TabHandle>
-  );
-};
+    }
+    const isCurrent = activeTabValue === value;
+
+    const handleStyle = {
+      activeColor: activeColor || getModeStyle(themeMode)?.active_TabColor,
+      activeSolidColor:
+        activeSolidColor || getModeStyle(themeMode)?.active_TabColor_Solid,
+    };
+
+    return (
+      <TabHandle
+        activeColor={
+          variant === "solid"
+            ? handleStyle.activeSolidColor
+            : handleStyle.activeColor
+        }
+        ref={ref}
+        isCurrent={isCurrent}
+        value={value}
+        onClick={switchTab}
+        variant={variant}
+        disabled={disabled}
+        inActiveColor={inActiveColor}
+      >
+        {children}
+      </TabHandle>
+    );
+  }
+);
 
 export default TabsHandle;

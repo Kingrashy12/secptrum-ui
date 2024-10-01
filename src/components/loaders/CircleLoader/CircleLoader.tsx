@@ -1,5 +1,5 @@
 import shouldForwardProp from "../../../utils/is-prop-valid";
-import React from "react";
+import { colors } from "../../../styles/colors";
 import styled from "styled-components";
 
 type LoaderProps = {
@@ -20,7 +20,7 @@ type LoaderProps = {
 const CircleLoader = ({
   size = 50,
   color = "blue",
-  containerColor = "lightgray",
+  containerColor = colors.blue[100],
 }: LoaderProps) => {
   return <Spinner color={color} containerColor={containerColor} size={size} />;
 };

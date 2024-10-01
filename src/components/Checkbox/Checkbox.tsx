@@ -1,6 +1,5 @@
 import { useTheme } from "../../context/useTheme";
 import { CheckBox, Checked } from "../../styles/input/styled";
-import React from "react";
 import { IoIosCheckmark } from "react-icons/io";
 import Icon from "../Icon/Icon";
 

@@ -1,6 +1,6 @@
 import { BoxSui } from "../../styles/layout/styled";
 import { BoxType } from "../../types";
-import React from "react";
+import { forwardRef } from "react";
 
 /**
  * A flexible container component that serves as a building block for layout and styling.
@@ -27,12 +27,14 @@ import React from "react";
  * ```
  */
 
-const Box = ({ children, ...props }: BoxType) => {
-  return (
-    <BoxSui {...props} className={props.className}>
-      {children}
-    </BoxSui>
-  );
-};
+const Box = forwardRef<HTMLDivElement, BoxType>(
+  ({ children, ...props }, ref) => {
+    return (
+      <BoxSui {...props} ref={ref} className={props.className}>
+        {children}
+      </BoxSui>
+    );
+  }
+);
 
 export default Box;

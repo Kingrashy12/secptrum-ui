@@ -1,4 +1,3 @@
-import React from "react";
 import { colors } from "../../../styles/colors";
 import styled from "styled-components";
 import shouldForwardProp from "../../../utils/is-prop-valid";

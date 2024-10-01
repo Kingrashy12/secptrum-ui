@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { BoxType } from "../../types";
 import { StackSui } from "../../styles/layout/styled";
 import { SizeVariantType } from "../../types/fun";
@@ -62,28 +62,34 @@ export interface StackType extends BoxType {
  * ```
  */
 
-const Stack = ({
-  children,
-  padding,
-  spacing = "md",
-  align = "vertical",
-  margin,
-  wrap,
-  ...props
-}: StackType) => {
-  return (
-    <StackSui
-      {...props}
-      align={align}
-      padding={padding}
-      spacing={spacing}
-      margin={margin}
-      className={props.className}
-      wrap={wrap}
-    >
-      {children}
-    </StackSui>
-  );
-};
+const Stack = forwardRef<HTMLDivElement, StackType>(
+  (
+    {
+      children,
+      padding,
+      spacing = "md",
+      align = "vertical",
+      margin,
+      wrap,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <StackSui
+        {...props}
+        ref={ref}
+        align={align}
+        padding={padding}
+        spacing={spacing}
+        margin={margin}
+        className={props.className}
+        wrap={wrap}
+      >
+        {children}
+      </StackSui>
+    );
+  }
+);
 
 export default Stack;

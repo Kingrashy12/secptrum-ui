@@ -200,8 +200,8 @@ const getColor = (
 
 const getFloatVariantStyle = (
   variant: FloatProps["variant"],
-  colorScheme: FloatProps["colorScheme"],
-  backgroundColor: string
+  colorScheme: FloatProps["colorScheme"]
+  // backgroundColor: string
 ) => {
   return getColor(colorScheme, variant);
 };

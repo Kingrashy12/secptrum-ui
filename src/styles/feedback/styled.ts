@@ -54,6 +54,7 @@ export const ModalPanel = styled.div.withConfig({ shouldForwardProp })<{
   ${(props) => getModalPanelTransition(props.transition)}
   animation-fill-mode: forwards;
   animation-delay: 0s;
+  display: flex;
 
   @keyframes slideIn {
     from {
@@ -130,7 +131,7 @@ export const StyledToast = styled(BoxSui).withConfig({
   shouldForwardProp,
 })<{
   position: ToastPositionType;
-  showtoast: boolean;
+  "show-toast": boolean;
   transition: ToastOptionsType["transition"];
 }>`
   background: white;
@@ -143,7 +144,7 @@ export const StyledToast = styled(BoxSui).withConfig({
   position: fixed;
   max-width: 400px;
   ${(props) => getToastPosition(props.position)}
-  display: ${(props) => (props.showtoast ? "flex" : "none")};
+  display: ${(props) => (props["show-toast"] ? "flex" : "none")};
   ${(props) => getToastTransition(props.transition)}
   z-index: 1000;
 

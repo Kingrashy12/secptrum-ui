@@ -116,7 +116,7 @@ const ThemeProvider = ({
 
   // Allow setting both light and dark custom themes dynamically
   const setCustomTheme = (newTheme: { light: any; dark: any }) => {
-    setTheme((prevTheme) => {
+    setTheme((_prevTheme) => {
       return deepmerge(
         mode === "light"
           ? systemTheme.defaultLightTheme

@@ -1,12 +1,12 @@
 import { getFloatPosition } from "../../utils/position";
 import { getFloatSize, getFloatVariantStyle } from "../../utils/variant";
-import React, { ComponentPropsWithRef } from "react";
+import React, { ComponentProps, forwardRef } from "react";
 import styled from "styled-components";
 import { ToastPositionType } from "../Toast/Toast";
 import shouldForwardProp from "../../utils/is-prop-valid";
 import { colors } from "../../styles/colors";
 
-type BoxProps = ComponentPropsWithRef<"div">;
+type BoxProps = ComponentProps<"div">;
 
 export interface FloatProps extends BoxProps {
   /**
@@ -26,33 +26,39 @@ export interface FloatProps extends BoxProps {
   moveOnScroll?: boolean;
 }
 
-const FloatingActionButton = ({
-  position = "bottom-right",
-  children,
-  backgroundColor,
-  size = "md",
-  disabled,
-  colorScheme = "primary",
-  variant = "solid",
-  moveOnScroll,
-  ...props
-}: FloatProps) => {
-  return (
-    <Fab
-      {...props}
-      className={props.className}
-      backgroundcolor={backgroundColor}
-      position={position}
-      colorScheme={colorScheme}
-      disabled={disabled}
-      variant={variant}
-      size={size}
-      moveOnScroll={moveOnScroll}
-    >
-      {children}
-    </Fab>
-  );
-};
+const FloatingActionButton = forwardRef<HTMLDivElement, FloatProps>(
+  (
+    {
+      position = "bottom-right",
+      children,
+      backgroundColor,
+      size = "md",
+      disabled,
+      colorScheme = "primary",
+      variant = "solid",
+      moveOnScroll,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Fab
+        {...props}
+        ref={ref}
+        className={props.className}
+        backgroundcolor={backgroundColor}
+        position={position}
+        colorScheme={colorScheme}
+        disabled={disabled}
+        variant={variant}
+        size={size}
+        moveOnScroll={moveOnScroll}
+      >
+        {children}
+      </Fab>
+    );
+  }
+);
 
 export default FloatingActionButton;
 
@@ -77,12 +83,7 @@ const Fab = styled.div.withConfig({ shouldForwardProp })<{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   ${(props) => getFloatPosition(props.position)};
   ${(props) => getFloatSize(props.size)};
-  ${(props) =>
-    getFloatVariantStyle(
-      props.variant,
-      props.colorScheme,
-      props.backgroundcolor
-    )};
+  ${(props) => getFloatVariantStyle(props.variant, props.colorScheme)};
 
   ${(props) =>
     props.disabled &&

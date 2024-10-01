@@ -12,9 +12,9 @@ export const getFloatPosition = (position: FloatProps["position"]) => {
     case "bottom-left":
       return { bottom: `25px`, left: `35px` };
     case "bottom-center":
-      return { bottom: `25px`, "align-self": "center" };
+      return { bottom: `25px`, left: `50%` };
     case "top-center":
-      return { top: `25px`, "align-self": "center" };
+      return { top: `25px`, right: `50%` };
   }
 };
 

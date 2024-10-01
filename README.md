@@ -95,22 +95,20 @@ For a full list of components and their usage, please refer to the [documentatio
 
 SecptrumUI leverages `styled-components` for customization. You can adjust the appearance of components by using the `styled-components` API to create your own styles.
 
+- **`Note:`** When customizing with styled-components, you might encounter issues where your custom styles don't apply due to the component's default styles having higher specificity. In such cases, you can use `&&` to increase the specificity of your styles.
+
 ### Example
 
 ```bash
 import styled from "styled-components";
 import { Button } from 'secptrum-ui';
 
+// Customizing the Button component
 const CustomButton = styled(Button)`
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
+  && {
+    background-color: #007bff; /* Override background color */
+    color: white;  # /* Override text color */
+    padding: 12px 24px; # /* Add custom padding */
   }
 `;
 

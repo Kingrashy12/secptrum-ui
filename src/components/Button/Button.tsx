@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Icon from "../Icon/Icon";
 import { ButtonProps } from "../../types";
@@ -51,97 +51,103 @@ import { getModeStyle } from "../../lib/helper/theme";
  * ```
  */
 
-const Btn = ({
-  children,
-  radius = "xl",
-  variant = "solid",
-  size = "md",
-  icon,
-  isLoading,
-  iconPosition = "left",
-  color,
-  backgroundColor,
-  onHoverBackgroundSolid,
-  onHoverBackgroundOutline,
-  onHoverBackgroundLight,
-  onHoverBackgroundGhost,
-  outlineBorderColor,
-  width,
-  iconSize,
-  fullWidth,
-  mode,
-  ...props
-}: ButtonProps): JSX.Element => {
-  const disabled = props.disabled;
-  const { mode: themeMode } = useTheme();
-  const [m, setM] = useState(mode);
+const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      radius = "xl",
+      variant = "solid",
+      size = "md",
+      icon,
+      isLoading,
+      iconPosition = "left",
+      color,
+      backgroundColor,
+      onHoverBackgroundSolid,
+      onHoverBackgroundOutline,
+      onHoverBackgroundLight,
+      onHoverBackgroundGhost,
+      outlineBorderColor,
+      width,
+      iconSize,
+      fullWidth,
+      mode,
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const disabled = props.disabled;
+    const { mode: themeMode } = useTheme();
+    const [m, setM] = useState(mode);
 
-  useEffect(() => {
-    if (mode) {
-      setM(mode);
-    } else {
-      setM(themeMode as ButtonProps["mode"]);
-    }
-  }, [mode, themeMode]);
+    useEffect(() => {
+      if (mode) {
+        setM(mode);
+      } else {
+        setM(themeMode as ButtonProps["mode"]);
+      }
+    }, [mode, themeMode]);
 
-  const getColor = (
-    varaint: ButtonProps["variant"],
-    color: ButtonProps["color"],
-    mode: "light" | "dark"
-  ) => {
-    switch (varaint) {
-      case "outline":
-        return `
+    const getColor = (
+      varaint: ButtonProps["variant"],
+      color: ButtonProps["color"],
+      mode: "light" | "dark"
+    ) => {
+      switch (varaint) {
+        case "outline":
+          return `
           ${color ? color : getModeStyle(mode)?.text}
         `;
-      default:
-        return color;
-    }
-  };
+        default:
+          return color;
+      }
+    };
 
-  const getOulineBorder = () => {
-    return getModeStyle(m as "light" | "dark")?.outline_ButtonBorderColor;
-  };
+    const getOulineBorder = () => {
+      return getModeStyle(m as "light" | "dark")?.outline_ButtonBorderColor;
+    };
 
-  const getWidth = () => {
-    if (fullWidth) {
-      return `100%`;
-    } else return width;
-  };
+    const getWidth = () => {
+      if (fullWidth) {
+        return `100%`;
+      } else return width;
+    };
 
-  return (
-    <Button
-      backgroundcolor={backgroundColor}
-      onHoverBackgroundSolid={onHoverBackgroundSolid}
-      onHoverBackgroundGhost={onHoverBackgroundGhost}
-      onHoverBackgroundLight={onHoverBackgroundLight}
-      onHoverBackgroundOutline={onHoverBackgroundOutline}
-      mode={m}
-      outlinebordercolor={outlineBorderColor || getOulineBorder()}
-      color={getColor(variant, color, m as "light" | "dark")}
-      disabled={isLoading || disabled}
-      {...props}
-      variant={variant}
-      size={size}
-      radius={radius}
-      width={getWidth()}
-      className={props.className}
-    >
-      {isLoading ? (
-        <AiOutlineLoading3Quarters className="loader" />
-      ) : (
-        <>
-          {icon && iconPosition === "left"
-            ? icon && <Icon size={iconSize} icon={icon} />
-            : null}
-        </>
-      )}{" "}
-      {children}
-      {!isLoading && icon && iconPosition === "right"
-        ? icon && <Icon size={iconSize} icon={icon} />
-        : null}
-    </Button>
-  );
-};
+    return (
+      <Button
+        backgroundcolor={backgroundColor}
+        onHoverBackgroundSolid={onHoverBackgroundSolid}
+        onHoverBackgroundGhost={onHoverBackgroundGhost}
+        onHoverBackgroundLight={onHoverBackgroundLight}
+        onHoverBackgroundOutline={onHoverBackgroundOutline}
+        mode={m}
+        outlinebordercolor={outlineBorderColor || getOulineBorder()}
+        color={getColor(variant, color, m as "light" | "dark")}
+        disabled={isLoading || disabled}
+        ref={ref}
+        {...props}
+        variant={variant}
+        size={size}
+        radius={radius}
+        width={getWidth()}
+        className={props.className}
+      >
+        {isLoading ? (
+          <AiOutlineLoading3Quarters className="loader" />
+        ) : (
+          <>
+            {icon && iconPosition === "left"
+              ? icon && <Icon size={iconSize} icon={icon} />
+              : null}
+          </>
+        )}{" "}
+        {children}
+        {!isLoading && icon && iconPosition === "right"
+          ? icon && <Icon size={iconSize} icon={icon} />
+          : null}
+      </Button>
+    );
+  }
+);
 
 export default Btn;

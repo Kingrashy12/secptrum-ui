@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
 import { BoxProps } from "../../types";
@@ -69,43 +69,48 @@ interface ModalTitleType extends BoxProps {
  * @param {ModalTitleType} props - The props for the ModalTitle component.
  * @returns {JSX.Element} The rendered ModalTitle component.
  */
-const ModalTitle = ({
-  iconClass,
-  iconSize,
-  title,
-  iconStyle,
-  onClose,
-  titleClassName,
-  titleStyle,
-  showClose,
-  preventClose,
-  ...props
-}: ModalTitleType): JSX.Element => {
-  function close() {
-    if (!preventClose) {
-      if (onClose) {
-        onClose();
+const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
+  (
+    {
+      iconClass,
+      iconSize,
+      title,
+      iconStyle,
+      onClose,
+      titleClassName,
+      titleStyle,
+      showClose,
+      preventClose,
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    function close() {
+      if (!preventClose) {
+        if (onClose) {
+          onClose();
+        }
       }
     }
+    return (
+      <TitleWrap {...props} ref={ref}>
+        <Title className={titleClassName} style={titleStyle}>
+          {title}
+        </Title>
+        {showClose && (
+          <CloseIcon>
+            <IoClose
+              className={iconClass}
+              style={iconStyle}
+              size={iconSize || 25}
+              onClick={close}
+            />
+          </CloseIcon>
+        )}
+      </TitleWrap>
+    );
   }
-  return (
-    <TitleWrap {...props}>
-      <Title className={titleClassName} style={titleStyle}>
-        {title}
-      </Title>
-      {showClose && (
-        <CloseIcon>
-          <IoClose
-            className={iconClass}
-            style={iconStyle}
-            size={iconSize || 25}
-            onClick={close}
-          />
-        </CloseIcon>
-      )}
-    </TitleWrap>
-  );
-};
+);
 
 export default ModalTitle;
 

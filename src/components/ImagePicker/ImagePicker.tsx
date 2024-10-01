@@ -194,7 +194,7 @@ const ImagePicker = ({
   }
 
   function onRemove(index: number) {
-    const filteredImages = images.filter((image, _i) => _i !== index);
+    const filteredImages = images.filter((_, i) => i !== index);
     setImages(filteredImages);
     setImage("");
     if (onMultipleImageSelect) {

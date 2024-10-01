@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { Drop } from "../../styles/feedback/styled";
 import { useTheme } from "../../context/useTheme";
 import { getModeStyle } from "../../lib/helper/theme";
@@ -67,52 +67,58 @@ interface DropType {
   glassEffect?: number;
 }
 
-const Backdrop = ({
-  open,
-  onClose,
-  children,
-  className,
-  style,
-  centerContent = true,
-  preventClose,
-  mode,
-  glassEffect,
-}: DropType) => {
-  const { mode: themeMode, theme } = useTheme();
-  const [m, setM] = useState(mode);
+const Backdrop = forwardRef<HTMLDivElement, DropType>(
+  (
+    {
+      open,
+      onClose,
+      children,
+      className,
+      style,
+      centerContent = true,
+      preventClose,
+      mode,
+      glassEffect,
+    },
+    ref
+  ) => {
+    const { mode: themeMode, theme } = useTheme();
+    const [m, setM] = useState(mode);
 
-  useEffect(() => {
-    if (mode) {
-      setM(mode);
-    } else {
-      setM(themeMode as DropType["mode"]);
-    }
-  }, [mode, themeMode]);
+    useEffect(() => {
+      if (mode) {
+        setM(mode);
+      } else {
+        setM(themeMode as DropType["mode"]);
+      }
+    }, [mode, themeMode]);
 
-  const handleClose = (event: any) => {
-    if (!preventClose && event.target === event.currentTarget) {
-      onClose();
-    }
-  };
+    const handleClose = (event: any) => {
+      if (!preventClose && event.target === event.currentTarget) {
+        onClose();
+      }
+    };
 
-  const dropStyle = {
-    background: getModeStyle(m as "light" | "dark")?.drop,
-  };
+    const dropStyle = {
+      background: getModeStyle(m as "light" | "dark")?.drop,
+    };
 
-  return (
-    <Drop
-      open={open}
-      centerContent={centerContent}
-      className={className}
-      style={style}
-      onClick={handleClose}
-      background-color={dropStyle.background}
-      theme={theme}
-      glass-effect={glassEffect}
-    >
-      <> {children}</>
-    </Drop>
-  );
-};
+    return (
+      <Drop
+        open={open}
+        ref={ref}
+        centerContent={centerContent}
+        className={className}
+        style={style}
+        onClick={handleClose}
+        background-color={dropStyle.background}
+        theme={theme}
+        glass-effect={glassEffect}
+      >
+        <> {children}</>
+      </Drop>
+    );
+  }
+);
 
 export default Backdrop;
