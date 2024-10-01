@@ -114,10 +114,7 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
     };
 
     return (
-      <InputForm
-        className={formClassName}
-        style={{ width: getWidth(), ...formStyle }}
-      >
+      <InputForm className={formClassName} width={getWidth()} style={formStyle}>
         <Input
           disabled={props.disabled}
           backgroundcolor={backgroundColor}

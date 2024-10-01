@@ -6,7 +6,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import pkg from "./package.json";
 import del from "rollup-plugin-delete";
 import terser from "@rollup/plugin-terser";
-import gzipPlugin from "rollup-plugin-gzip";
+import visualizer from "rollup-plugin-visualizer";
 
 export default {
   input: "src/index.ts", // Entry point for your library
@@ -35,7 +35,6 @@ export default {
       sourcemap: true,
     },
   ],
-
   plugins: [
     del({ targets: "dist/*" }),
     peerDepsExternal(), // Automatically mark peer dependencies as external
@@ -61,8 +60,10 @@ export default {
         toplevel: true,
       },
     }),
-    gzipPlugin(),
+    visualizer({ open: true, filename: "bundle-analysis.html" }),
   ],
   // Prevent bundling of peer dependencies
   external: ["react", "react-dom", "styled-components", "react-icons"],
 };
+
+//  "next-setup": "file:./scripts/next-setup.js"

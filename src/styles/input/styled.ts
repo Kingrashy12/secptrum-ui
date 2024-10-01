@@ -4,14 +4,15 @@ import styled from "styled-components";
 import Box from "../../components/Box/Box";
 import { colors } from "../colors";
 import shouldForwardProps from "../../utils/is-prop-valid";
+import { getClassName } from "../../utils/helper/secptrum";
 
 const shouldForwardProp = shouldForwardProps;
 
 // Input style
-export const InputForm = styled(Box)`
+export const InputForm = styled(Box)<{ width: string | any }>`
   flex-direction: column;
   gap: 8px;
-  min-width: auto;
+  min-width: ${(props) => props.width || "auto"};
   max-width: 100%;
   p {
     font-weight: 500;
@@ -37,6 +38,10 @@ export const InputForm = styled(Box)`
     width: 100%;
   }
 `;
+
+InputForm.defaultProps = {
+  className: getClassName(InputForm),
+};
 
 export const Input = styled.div.withConfig({
   shouldForwardProp,
@@ -110,6 +115,10 @@ export const Input = styled.div.withConfig({
   }
 `;
 
+Input.defaultProps = {
+  className: getClassName(Input),
+};
+
 //***********Switch Components****************//
 export const Switch = styled(Box).withConfig({ shouldForwardProp })<{
   width: string;
@@ -171,6 +180,10 @@ export const CheckBox = styled.div.withConfig({ shouldForwardProp })<{
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   pointer-events: ${(props) => props.disabled && "none"};
 `;
+
+CheckBox.defaultProps = {
+  className: getClassName(CheckBox),
+};
 
 // Extend shouldForwardProps to include - color and rounded
 export const Checked = styled(Box).withConfig({ shouldForwardProp })<{

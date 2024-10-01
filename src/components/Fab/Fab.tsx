@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { ToastPositionType } from "../Toast/Toast";
 import shouldForwardProp from "../../utils/is-prop-valid";
 import { colors } from "../../styles/colors";
+import { getClassName } from "../../utils/helper/secptrum";
 
 type BoxProps = ComponentProps<"div">;
 
@@ -111,3 +112,7 @@ const Fab = styled.div.withConfig({ shouldForwardProp })<{
     opacity: 0.9;
   }
 `;
+
+Fab.defaultProps = {
+  className: getClassName(Fab),
+};
