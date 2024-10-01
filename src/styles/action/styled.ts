@@ -7,7 +7,6 @@ import {
 import styled from "styled-components";
 import shouldForwardProps from "../../utils/is-prop-valid";
 import { ButtonProps } from "../../types";
-import { getClassName } from "../../utils/helper/secptrum";
 const shouldForwardProp = shouldForwardProps;
 
 //**************Button Component************//
@@ -83,7 +82,3 @@ export const Button = styled.button.withConfig({
     }
   }
 `;
-
-Button.defaultProps = {
-  className: getClassName(Button),
-};

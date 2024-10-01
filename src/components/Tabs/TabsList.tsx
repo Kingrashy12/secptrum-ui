@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Stack from "../Stack/Stack";
 import { colors } from "../../styles/colors";
-import { getClassName } from "../../utils/helper/secptrum";
 
 /**
  * Type definition for TabsListType, representing the properties of a list of tabs.
@@ -85,7 +84,3 @@ const TabList = styled(Stack)<{
   align-items: center;
   width: auto;
 `;
-
-TabList.defaultProps = {
-  className: getClassName(TabList),
-};

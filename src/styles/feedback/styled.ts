@@ -5,7 +5,6 @@ import { getToastPosition } from "../../utils/position";
 import { getToastTransition } from "../../utils/transition";
 import shouldForwardProps from "../../utils/is-prop-valid";
 import { colors } from "../colors";
-import { getClassName } from "../../utils/helper/secptrum";
 
 import { FixedBox } from "../global";
 import {
@@ -35,10 +34,6 @@ export const Drop = styled(FixedBox).withConfig({ shouldForwardProp })<{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
 `;
-
-Drop.defaultProps = {
-  className: getClassName(Drop),
-};
 
 //****************Modal Components*************//
 // Modal Panel
@@ -93,10 +88,6 @@ export const ModalPanel = styled.div.withConfig({ shouldForwardProp })<{
   }
 `;
 
-ModalPanel.defaultProps = {
-  className: getClassName(ModalPanel),
-};
-
 // Modal Title
 export const ModalTitle = styled.h2`
   margin: 0;
@@ -104,10 +95,6 @@ export const ModalTitle = styled.h2`
   color: ${(props) => props.theme?.colors?.text || "black"};
   font-family: inherit;
 `;
-
-ModalTitle.defaultProps = {
-  className: getClassName(ModalTitle),
-};
 
 // Modal Description
 export const ModalContent = styled(BoxSui).withConfig({
@@ -126,10 +113,6 @@ export const ModalContent = styled(BoxSui).withConfig({
   align-items: ${(props) => props.centered && "center"};
 `;
 
-ModalContent.defaultProps = {
-  className: getClassName(ModalContent),
-};
-
 // Modal Footer
 export const ModalFooter = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "space",
@@ -141,10 +124,6 @@ export const ModalFooter = styled.div.withConfig({
   padding-top: 10px;
   gap: ${(props) => props.space || 10}px;
 `;
-
-ModalFooter.defaultProps = {
-  className: getClassName(ModalFooter),
-};
 
 //*****************Toast Components****************//
 // Toast style
@@ -229,10 +208,6 @@ export const StyledToast = styled(BoxSui).withConfig({
     max-width: 90%;
   }
 `;
-
-StyledToast.defaultProps = {
-  className: getClassName(StyledToast),
-};
 
 export const ContentWrap = styled(BoxSui)`
   padding: 12px;

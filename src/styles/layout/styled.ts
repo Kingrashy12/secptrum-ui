@@ -5,7 +5,6 @@ import { StackType } from "../../components/Stack/Stack";
 import { BoxType } from "../../types";
 import shouldForwardProp from "../../utils/is-prop-valid";
 import { colors } from "../colors";
-import { getClassName } from "../../utils/helper/secptrum";
 
 //************Box Components***************//
 export const BoxSui = styled.div.withConfig({
@@ -47,10 +46,6 @@ export const BoxSui = styled.div.withConfig({
   gap: ${(props) => spacingValues(props.spacing)};
 `;
 
-BoxSui.defaultProps = {
-  className: getClassName(BoxSui),
-};
-
 //*************Card Component************//
 export const CardSui = styled(BoxSui).withConfig({
   shouldForwardProp,
@@ -79,10 +74,6 @@ export const CardSui = styled(BoxSui).withConfig({
   }
 `;
 
-CardSui.defaultProps = {
-  className: getClassName(CardSui),
-};
-
 //*************Stack Components*************//
 export const StackSui = styled(BoxSui).withConfig({
   shouldForwardProp,
@@ -101,10 +92,6 @@ export const StackSui = styled(BoxSui).withConfig({
   padding: 18px;
   flex-wrap: ${(props) => props.wrap && "wrap"};
 `;
-
-StackSui.defaultProps = {
-  className: getClassName(StackSui),
-};
 
 //*************Tabs Components************//
 export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
@@ -142,7 +129,3 @@ export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
     border-bottom-color: ${(props) => !props.isCurrent && colors.neutral[300]};
   }
 `;
-
-TabHandle.defaultProps = {
-  className: getClassName(TabHandle),
-};

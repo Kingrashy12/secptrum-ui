@@ -7,7 +7,7 @@
     [
       "babel-plugin-styled-components",
       {
-        "displayName": true,
+        // "displayName": true,
         "namespace": "Sui",
         "fileName": false
       }

@@ -1,7 +1,6 @@
 import Box from "../../components/Box/Box";
 import styled from "styled-components";
 import { colors } from "../colors";
-import { getClassName } from "../../utils/helper/secptrum";
 
 //***********ImagePicker Components************//
 // ImagePicker styles
@@ -29,10 +28,6 @@ export const FilePicker = styled(Box)`
     width: 90%;
   }
 `;
-
-FilePicker.defaultProps = {
-  className: getClassName(FilePicker),
-};
 
 export const UploadIcon = styled(Box)`
   align-items: center;
@@ -90,10 +85,6 @@ export const SelectedImage = styled.img`
     height: 100%;
   }
 `;
-
-SelectedImage.defaultProps = {
-  className: getClassName(SelectedImage),
-};
 
 export const SelectedImageContainer = styled(Box)`
   gap: 10px;
