@@ -41,6 +41,7 @@ export const ModalPanel = styled.div.withConfig({ shouldForwardProp })<{
   size: ModalPanelType["size"];
   transition: ModalPanelType["transition"];
   "background-color": string | any;
+  align: ModalPanelType["align"];
 }>`
   position: relative;
   background: ${(props) => props["background-color"] || "white"};
@@ -55,6 +56,7 @@ export const ModalPanel = styled.div.withConfig({ shouldForwardProp })<{
   animation-fill-mode: forwards;
   animation-delay: 0s;
   display: flex;
+  flex-direction: ${(props) => (props.align === "vertical" ? "column" : "row")};
 
   @keyframes slideIn {
     from {

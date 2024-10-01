@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {
@@ -72,6 +72,7 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "next-setup": "file:./scripts/next-setup.js"
   }
 }

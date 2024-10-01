@@ -19,8 +19,8 @@ export interface StackType extends BoxType {
 
   /**
    * Specifies the alignment direction of the Stack component's children.
-   * "vertical" for stacking items one above the other (column),
-   * "horizontal" for stacking items side by side (row).
+   * `vertical` for stacking items one above the other (column),
+   * `horizontal` for stacking items side by side (row).
    */
   align?: "vertical" | "horizontal";
 

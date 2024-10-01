@@ -1,6 +1,7 @@
 import { useModalContext } from "../../context/useModalContext";
 import { ModalPanel } from "../../styles/feedback/styled";
 import React from "react";
+import { StackType } from "../Stack/Stack";
 
 export type ModalPanelType = {
   /**
@@ -35,6 +36,12 @@ export type ModalPanelType = {
    */
   style?: React.CSSProperties;
   backgroundColor?: string;
+  /**
+   * Specifies the alignment direction of the Stack component's children.
+   * `vertical` for stacking items one above the other (column), `horizontal`
+   * for stacking items side by side (row).
+   */
+  align?: StackType["align"];
 };
 
 const MPl = ({
@@ -44,6 +51,7 @@ const MPl = ({
   className,
   style,
   backgroundColor,
+  align = "vertical",
 }: ModalPanelType) => {
   useModalContext();
   return (
@@ -52,6 +60,7 @@ const MPl = ({
       style={style}
       transition={transition}
       size={size}
+      align={align}
       background-color={backgroundColor}
     >
       {children}

@@ -47,7 +47,18 @@ export default {
     babel({
       exclude: "node_modules/**", // Only transpile our source code
       babelHelpers: "bundled",
+      plugins: [
+        [
+          "babel-plugin-styled-components",
+          {
+            displayName: true,
+            namespace: "Sui",
+            fileName: false,
+          },
+        ],
+      ],
     }),
+
     // Minify the output for production builds
     terser({
       format: {
@@ -65,5 +76,3 @@ export default {
   // Prevent bundling of peer dependencies
   external: ["react", "react-dom", "styled-components", "react-icons"],
 };
-
-//  "next-setup": "file:./scripts/next-setup.js"
