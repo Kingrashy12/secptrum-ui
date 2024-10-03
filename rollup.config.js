@@ -47,16 +47,6 @@ export default {
     babel({
       exclude: "node_modules/**", // Only transpile our source code
       babelHelpers: "bundled",
-      plugins: [
-        [
-          "babel-plugin-styled-components",
-          {
-            displayName: true,
-            namespace: "Sui",
-            fileName: false,
-          },
-        ],
-      ],
     }),
 
     // Minify the output for production builds

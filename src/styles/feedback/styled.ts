@@ -149,6 +149,7 @@ export const StyledToast = styled(BoxSui).withConfig({
   display: ${(props) => (props["show-toast"] ? "flex" : "none")};
   ${(props) => getToastTransition(props.transition)}
   z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   @keyframes slideInFromRight {
     0% {

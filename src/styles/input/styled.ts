@@ -20,6 +20,9 @@ export const InputForm = styled(Box)<{ width: string | any }>`
     margin-left: 3px;
     font-family: inherit;
     animation: pop 1s ease-in;
+    display: flex;
+    align-items: center;
+    gap: 3px;
   }
 
   @keyframes pop {

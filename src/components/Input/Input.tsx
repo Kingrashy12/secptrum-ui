@@ -138,13 +138,6 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
               icon={icon}
               color={colors.neutral[500]}
             />
-          ) : hasError ? (
-            <Icon
-              className="Icon__Sui"
-              size={25}
-              icon={RiErrorWarningFill}
-              color="red"
-            />
           ) : null}
           <input
             {...props}
@@ -163,7 +156,18 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
             />
           )}
         </Input>
-        {hasError && <p>{errorMessage}</p>}
+        {hasError && (
+          <p>
+            {" "}
+            <Icon
+              className="Icon__Sui"
+              size={15}
+              icon={RiErrorWarningFill}
+              color="red"
+            />{" "}
+            {errorMessage}
+          </p>
+        )}
       </InputForm>
     );
   }

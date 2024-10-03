@@ -95,37 +95,40 @@ export const StackSui = styled(BoxSui).withConfig({
 
 //*************Tabs Components************//
 export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
-  isCurrent: boolean;
+  iscurrent: boolean;
   activeColor: string | any;
   variant: "line" | "solid";
-  inActiveColor: string;
+  inactivecolor: string;
   disabled: boolean;
+  "full-width": boolean | any;
 }>`
-  font-family: inherit;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 0.87rem;
+  line-height: 1.2rem;
   white-space: nowrap;
   justify-content: center;
   align-items: center;
   display: flex;
-  width: 100%;
+  width: ${(props) => (props["full-width"] ? `100%` : "auto")};
+  height: 30px;
   border: none;
   padding: 9px;
   font-weight: 500;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.15s;
+  transition-duration: 500ms;
+  gap: 7px;
 
   ${(props) =>
     getTabVariantStyle(
       props.variant,
-      props.isCurrent,
+      props.iscurrent,
       props.activeColor,
-      props.inActiveColor,
+      props.inactivecolor,
       props.disabled
     )}
 
   &:hover {
-    border-bottom-color: ${(props) => !props.isCurrent && colors.neutral[300]};
+    border-bottom-color: ${(props) => !props.iscurrent && colors.gray[300]};
   }
 `;

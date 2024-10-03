@@ -38,8 +38,8 @@ const Spinner = styled.div.withConfig({ shouldForwardProp })<{
   border-top: ${(props) => props.size / 15}px solid ${(props) => props.color};
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
-  -webkit-animation: spin 0.9s linear infinite; /* Safari */
-  animation: spin 0.9s linear infinite;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
 
   @keyframes spin {
     0% {

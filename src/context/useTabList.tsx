@@ -6,12 +6,14 @@ type TabListContextType = {
   variant: "line" | "solid";
   activeTabValue: string;
   themeMode: "light" | "dark";
+  fullWidth?: boolean;
 };
 
 type TabListProviderType = {
   children: ContextProviderType["children"];
   tabVariant: "line" | "solid";
   mode: "light" | "dark";
+  useFullWidth?: boolean;
 };
 
 const ListContext = createContext<TabListContextType | undefined>(undefined);
@@ -20,9 +22,11 @@ const TabListProvider = ({
   children,
   tabVariant,
   mode,
+  useFullWidth,
 }: TabListProviderType) => {
   const [activeTabValue, setActiveTabValue] = useState("");
   const [themeMode, setThemeMode] = useState(mode);
+  const [fullWidth, setFullWidth] = useState(useFullWidth);
   const [variant, setVaraint] =
     useState<TabListContextType["variant"]>(tabVariant);
 
@@ -33,6 +37,10 @@ const TabListProvider = ({
   useEffect(() => {
     setThemeMode(mode);
   }, [mode]);
+
+  useEffect(() => {
+    setFullWidth(useFullWidth);
+  }, [useFullWidth]);
 
   useEffect(() => {
     const tab = document.querySelectorAll("button");
@@ -47,7 +55,7 @@ const TabListProvider = ({
 
   return (
     <ListContext.Provider
-      value={{ onSwitch, themeMode, activeTabValue, variant }}
+      value={{ onSwitch, themeMode, activeTabValue, variant, fullWidth }}
     >
       {children}
     </ListContext.Provider>

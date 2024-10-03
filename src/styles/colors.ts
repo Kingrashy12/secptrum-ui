@@ -97,9 +97,11 @@ export const modeColors = {
     background: "#ffffff",
     text: "#000000",
     outline_ButtonBorderColor: colors.neutral[200],
-    active_TabColor: "black", //TabHandle active color
+    //********Tabs theme*********//
+    active_TabColor: colors.blue[600], //TabHandle active color
     active_TabColor_Solid: "black", //TabHandle active color for solid varaint
     inActiveTabColor: colors.neutral[400], //TabHandle inactive color
+    lineBorder: colors.neutral[200],
     tabListBackground: colors.gray[100], //TabList BackgroundColor
     button_OutlineHoverColor: colors.gray[50],
     card: "white",
@@ -113,9 +115,11 @@ export const modeColors = {
     background: "#121212",
     text: "#ffffff",
     outline_ButtonBorderColor: colors.neutral[800],
+    //********Tabs theme*********//
     active_TabColor: "white", //TabHandle active color
     active_TabColor_Solid: "black", //TabHandle active color for solid variant
     inActiveTabColor: colors.neutral[800], //TabHandle inactive color
+    lineBorder: colors.neutral[700],
     tabListBackground: colors.neutral[800], //TabList BackgroundColor
     button_OutlineHoverColor: "rgb(59,130,246,.1)",
     card: "#000000",
