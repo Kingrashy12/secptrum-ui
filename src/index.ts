@@ -31,5 +31,13 @@ export { default as FadeLoader } from "./components/loaders/FadeLoader/FadeLoade
 export { default as ScaleLoader } from "./components/loaders/ScaleLoader/ScaleLoader";
 // Utils
 export { default as shouldForwardProps } from "./utils/is-prop-valid";
-export { default as ThemeProvider } from "./context/useTheme";
 export { useTheme } from "./context/useTheme";
+export { default as BrowserRouter } from "./components/router/BrowserRouter";
+export { default as Router } from "./components/router/Router";
+export { default as Link } from "./components/router/Link";
+
+// Hooks
+export { useAuth } from "./hooks/useAuth";
+export { default as AuthProvider } from "./hooks/useAuth";
+export { default as useNavigation } from "./hooks/useNavigation";
+export { default as ThemeProvider } from "./context/useTheme";

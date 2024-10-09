@@ -5,3 +5,4 @@ tsconfig.tsbuildinfo
 chromatic.config.json
 .env
 trash.tsx
+bundle-analysis.html
