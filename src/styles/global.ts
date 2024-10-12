@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "styled-chroma";
 
-export const FixedBox = styled.div`
+export const FixedBox = styled("div")`
   position: fixed;
   width: 100%;
   height: 100%;

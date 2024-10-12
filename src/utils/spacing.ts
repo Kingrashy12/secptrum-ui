@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const getSpacing = (size: number) => {
   const spacingScale: Record<number, string> = {
     0: "0px",

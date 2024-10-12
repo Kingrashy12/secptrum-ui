@@ -1,87 +1,110 @@
-import { getTabVariantStyle } from "../../utils/variant";
-import styled from "styled-components";
+import { css, styled } from "styled-chroma";
+import { IStyleBox, IStyleStack, IStyleTabHandle } from "../../types/istyle";
 import { spacingValues } from "../../utils/spacing";
-import { StackType } from "../../components/Stack/Stack";
-import { BoxType } from "../../types";
-import shouldForwardProp from "../../utils/is-prop-valid";
+import { CardProps } from "../../types/sui";
+import { cardStyles, getTabVariantStyle } from "../../utils/layout";
 import { colors } from "../colors";
 
 //************Box Components***************//
-export const BoxSui = styled.div.withConfig({
-  shouldForwardProp,
-})<{
-  padding?: BoxType["padding"];
-  margin?: BoxType["margin"];
-  centered?: BoxType["centered"];
-  paddingTop?: BoxType["paddingTop"];
-  paddingBottom?: BoxType["paddingBottom"];
-  paddingLeft?: BoxType["paddingLeft"];
-  paddingRight?: BoxType["paddingRight"];
-  border?: BoxType["border"];
-  marginTop?: BoxType["marginTop"];
-  marginBottom?: BoxType["marginBottom"];
-  marginLeft?: BoxType["marginLeft"];
-  marginRight?: BoxType["marginRight"];
-  direction?: BoxType["direction"];
-  wrap?: BoxType["wrap"];
-  spacing?: BoxType["spacing"];
-}>`
-  position: relative;
+export const BoxSui = styled<IStyleBox>("div")`
   display: flex;
-  padding: ${(props) => props.padding};
-  margin: ${(props) => props.margin};
-  border: ${(props) => props.border};
-  flex-direction: ${(props) => props.direction || "row"};
-  padding-left: ${(props) => spacingValues(props.paddingLeft)};
-  padding-right: ${(props) => spacingValues(props.paddingRight)};
-  padding-top: ${(props) => spacingValues(props.paddingRight)};
-  padding-bottom: ${(props) => spacingValues(props.paddingBottom)};
-  margin-top: ${(props) => spacingValues(props.marginTop)};
-  margin-right: ${(props) => spacingValues(props.marginRight)};
-  margin-left: ${(props) => spacingValues(props.marginLeft)};
-  margin-bottom: ${(props) => spacingValues(props.marginBottom)};
-  justify-content: ${(props) => props.centered && "center"};
-  align-items: ${(props) => props.centered && "center"};
-  flex-wrap: ${(props) => props.wrap && "wrap"};
-  gap: ${(props) => spacingValues(props.spacing)};
+  position: relative;
+  flex-direction: ${(props) => props.direction || ""};
+  ${(props) =>
+    props.fullWidth || props.width
+      ? css`
+          width: ${props.fullWidth ? "100%" : props.width};
+        `
+      : ""}
+  ${(props) =>
+    props.padding
+      ? css`
+          padding: ${props.padding};
+        `
+      : ""};
+  ${(props) =>
+    props.margin
+      ? css`
+          margin: ${props.margin};
+        `
+      : ""}
+  ${(props) =>
+    props.border
+      ? css`
+          border: ${props.border};
+        `
+      : ""}
+  ${(props) =>
+    props.paddingLeft
+      ? css`
+          padding-left: ${spacingValues(props.paddingLeft)};
+        `
+      : ""}
+  ${(props) =>
+    props.paddingRight
+      ? css`
+          padding-right: ${spacingValues(props.paddingRight)};
+        `
+      : ""}
+  ${(props) =>
+    props.paddingTop
+      ? css`
+          padding-top: ${spacingValues(props.paddingTop)};
+        `
+      : ""}
+  ${(props) =>
+    props.paddingBottom
+      ? css`
+          padding-bottom: ${spacingValues(props.paddingBottom)};
+        `
+      : ""}
+  ${(props) =>
+    props.marginTop
+      ? css`
+          margin-top: ${spacingValues(props.marginTop)};
+        `
+      : ""}
+  ${(props) =>
+    props.marginRight
+      ? css`
+          margin-right: ${spacingValues(props.marginRight)};
+        `
+      : ""}
+  ${(props) =>
+    props.marginLeft
+      ? css`
+          margin-left: ${spacingValues(props.marginLeft)};
+        `
+      : ""}
+  ${(props) =>
+    props.marginBottom
+      ? css`
+          margin-bottom: ${spacingValues(props.marginBottom)};
+        `
+      : ""}
+  ${(props) =>
+    props.centered
+      ? css`
+          align-items: center;
+        `
+      : ""}
+  ${(props) =>
+    props.wrap
+      ? css`
+          flex-wrap: wrap;
+        `
+      : ""}
+  ${(props) =>
+    props.spacing
+      ? css`
+          gap: ${spacingValues(props.spacing)};
+        `
+      : ""}
 `;
-
-//*************Card Component************//
-export const CardSui = styled(BoxSui).withConfig({
-  shouldForwardProp,
-})<{
-  centerContent?: boolean;
-  backgroundcolor: string | any;
-  borderColor: string | any;
-  space: number | any;
-  cardShadow: string | any;
-}>`
-  flex-direction: column;
-  background: ${(props) => props.backgroundcolor};
-  border: 1px solid ${(props) => props.borderColor};
-  border-radius: 11px;
-  padding: ${(props) => props.padding || "16px"};
-  gap: ${(props) => props.space || 16}px;
-  width: auto;
-  max-width: 100%;
-  justify-content: center;
-  align-items: ${(props) => props.centerContent && "center"};
-  height: auto;
-  box-shadow: 0 4px 8px ${(props) => props.cardShadow};
-
-  @media screen and (max-width: 550px) {
-    padding: 10px;
-  }
-`;
+BoxSui.displayName = "BoxSui";
 
 //*************Stack Components*************//
-export const StackSui = styled(BoxSui).withConfig({
-  shouldForwardProp,
-})<{
-  spacing?: StackType["spacing"];
-  align?: StackType["align"];
-  wrap: StackType["wrap"];
-}>`
+export const StackSui = styled<IStyleStack>(BoxSui)`
   flex-direction: ${(props) => (props.align === "vertical" ? "column" : "row")};
   height: 100%;
   gap: ${(props) => spacingValues(props.spacing)};
@@ -89,19 +112,34 @@ export const StackSui = styled(BoxSui).withConfig({
   align-items: center;
   width: 100%;
   position: relative;
-  padding: 18px;
-  flex-wrap: ${(props) => props.wrap && "wrap"};
+  padding: ${(props) => props.padding || "18px"};
+  flex-wrap: ${(props) => (props.wrap ? "wrap" : "nowrap")};
 `;
+StackSui.displayName = "StackSui";
+
+//*************Card Components*************//
+export const CardSui = styled<CardProps>(BoxSui)`
+  ${(props) =>
+    props.centerContent
+      ? css`
+          align-items: center;
+          justify-content: center;
+        `
+      : ""}
+  border-radius: 10px;
+  padding: 20px;
+  gap: ${(props) => props.space || "16px"};
+  background-color: ${({ background, mode }) =>
+    background || cardStyles(mode).background};
+  box-shadow: ${({ boxShadow, mode }) =>
+    boxShadow || cardStyles(mode).boxShadow};
+  border: ${({ mode }) => cardStyles(mode).border};
+  width: ${({ fullWidth, width }) => (fullWidth ? "100%" : width || "auto")};
+`;
+CardSui.displayName = "CardSui";
 
 //*************Tabs Components************//
-export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
-  iscurrent: boolean;
-  activeColor: string | any;
-  variant: "line" | "solid";
-  inactivecolor: string;
-  disabled: boolean;
-  "full-width": boolean | any;
-}>`
+export const TabHandle = styled<IStyleTabHandle>("button")`
   font-family: "Poppins-Medium", sans-serif;
   font-size: 0.87rem;
   line-height: 1.2rem;
@@ -109,9 +147,10 @@ export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
   justify-content: center;
   align-items: center;
   display: flex;
-  width: ${(props) => (props["full-width"] ? `100%` : "auto")};
+  width: ${(props) => (props.fullWidth ? "100%" : "auto")};
   height: 30px;
   border: none;
+  border-top: none;
   padding: 9px;
   font-weight: 500;
   transition-property: all;
@@ -119,16 +158,35 @@ export const TabHandle = styled.button.withConfig({ shouldForwardProp })<{
   transition-duration: 500ms;
   gap: 7px;
 
-  ${(props) =>
-    getTabVariantStyle(
+  ${(props) => {
+    const style = getTabVariantStyle(
       props.variant,
       props.iscurrent,
       props.activeColor,
       props.inactivecolor,
       props.disabled
-    )}
+    );
+    return css`
+      background: ${style.background};
+      border-radius: ${style["border-radius"]};
+      color: ${style.color};
+      cursor: ${style.cursor};
+      pointer-events: ${style["pointer-events"]};
+      opacity: ${style.opacity};
+      filter: ${style.filter};
+      border-bottom-width: ${style["border-bottom-width"]};
+      border-bottom-color: ${style["border-bottom-color"]};
+      border-bottom-style: ${style["border-bottom-style"]};
+    `;
+  }}
 
   &:hover {
-    border-bottom-color: ${(props) => !props.iscurrent && colors.gray[300]};
+    ${(props) =>
+      !props.iscurrent
+        ? css`
+            border-bottom-color: ${colors.gray[300]};
+          `
+        : ""}
   }
 `;
+TabHandle.displayName = "TabHandleSui";

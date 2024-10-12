@@ -5,7 +5,7 @@ type IconBaseType = {
    * @param icon Accepts a JSX element representing an icon, such as `icon={FaUser}` from react-icons.
    * Avoid wrapping the icon in a fragment (`<>...</>` or `<FaUser/>`) or other component, as this may cause the component to break.
    */
-  icon: any;
+  icon: React.ElementType;
   /**
    * Size of the icon, this accepts only `number`
    * @type {number}
@@ -55,8 +55,11 @@ type IconBaseType = {
   title?: string;
 };
 
+/**
+ * An Icon component that renders a given icon with customizable properties.
+ */
 const Icon = ({
-  icon,
+  icon: IconComponent,
   size,
   className,
   onClick,
@@ -66,9 +69,8 @@ const Icon = ({
   title,
   styles,
 }: IconBaseType) => {
-  const BaseIcon: IconBaseType["icon"] = icon;
   return (
-    <BaseIcon
+    <IconComponent
       title={title}
       size={size}
       className={className}
@@ -82,3 +84,4 @@ const Icon = ({
 };
 
 export default Icon;
+Icon.displayName = "Icon";

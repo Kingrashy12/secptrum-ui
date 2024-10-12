@@ -1,5 +1,5 @@
 import { colors } from "../../styles/colors";
-import { Switch, SwitchHandle } from "../../styles/input/styled";
+import { SwitchHandle, SwitchSui } from "../../styles/input/styled";
 
 type SwitchType = {
   /**
@@ -29,7 +29,7 @@ type SwitchType = {
    * Indicates whether the switch is currently checked (on) or not (off).
    * @default false
    */
-  checked?: boolean;
+  checked: boolean;
   /**
    * Optional class name for custom styling.
    */
@@ -61,7 +61,7 @@ const getSwitchSize = (size: SwitchType["size"]) => {
   }
 };
 
-const Sw = ({
+const Switch = ({
   color = colors.neutral[300],
   checkedColor = "blue",
   size = "md",
@@ -74,7 +74,7 @@ const Sw = ({
   const { width: switchWidth, height: switchHeight } = getSwitchSize(size);
 
   return (
-    <Switch
+    <SwitchSui
       width={width}
       height={height}
       checked={checked}
@@ -89,8 +89,8 @@ const Sw = ({
         switchWidth={switchWidth}
         checked={checked}
       />
-    </Switch>
+    </SwitchSui>
   );
 };
 
-export default Sw;
+export default Switch;

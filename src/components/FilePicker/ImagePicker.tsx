@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ExtraImagePicker,
   FilePicker,
@@ -189,6 +190,7 @@ const ImagePicker = ({
           addImage();
         }
       };
+
       reader.readAsDataURL(file[0]);
     }
   }

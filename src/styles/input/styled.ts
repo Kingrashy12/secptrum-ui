@@ -1,39 +1,44 @@
-import { InputType } from "../../types";
-import { getInputRadius, getInputVariantStyles } from "../../utils/input";
-import styled from "styled-components";
-import Box from "../../components/Box/Box";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { css, DivProps, keyframes, styled } from "styled-chroma";
 import { colors } from "../colors";
-import shouldForwardProps from "../../utils/is-prop-valid";
+import { getInputRadius, getInputStyles } from "../../utils/input";
+import { InputType } from "../../types/sui";
+import {
+  IStyleCheckbox,
+  IStyleChecked,
+  IStyleSwitch,
+  IStyleSwitchHandle,
+} from "../../types/istyle";
 
-const shouldForwardProp = shouldForwardProps;
+const pop = keyframes`
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+`;
 
-// Input style
-export const InputForm = styled(Box)<{ width: string | any }>`
+// **** input   s   t   y   l   e   s   **** //
+export const InputForm = styled<DivProps & { width: string | any }>("div")`
   flex-direction: column;
   gap: 8px;
   min-width: ${(props) => props.width || "auto"};
   max-width: 100%;
+  display: flex;
   p {
     font-weight: 500;
     font-size: 14px;
     color: ${colors.red[500]};
     margin-left: 3px;
     font-family: inherit;
-    animation: pop 1s ease-in;
+    animation: ${pop} 1s ease-in;
     display: flex;
     align-items: center;
     gap: 3px;
-  }
-
-  @keyframes pop {
-    0% {
-      transform: translateY(-50%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
   }
 
   @media screen and (max-width: 550px) {
@@ -41,12 +46,10 @@ export const InputForm = styled(Box)<{ width: string | any }>`
   }
 `;
 
-export const Input = styled.div.withConfig({
-  shouldForwardProp,
-})<{
+interface IStyle extends InputType {
   variant: InputType["variant"];
   radius: InputType["radius"];
-  outlinebordercolor: string | any;
+  outLineBorderColor: InputType["outLineBorderColor"];
   focusColor: InputType["focusColor"];
   focusBorderColor: InputType["focusBorderColor"];
   disabled: boolean | any;
@@ -54,7 +57,9 @@ export const Input = styled.div.withConfig({
   color: string | any;
   backgroundcolor: InputType["backgroundColor"];
   mode: InputType["mode"];
-}>`
+}
+
+export const Input = styled<IStyle>("div")`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,7 +67,7 @@ export const Input = styled.div.withConfig({
   height: 45px;
   padding: 12px;
   gap: 6px;
-  border-radius: ${(props) => getInputRadius(props.radius)};
+  border-radius: ${(props) => getInputRadius(props.radius as any)};
 
   ${(props) =>
     props.disabled &&
@@ -70,16 +75,26 @@ export const Input = styled.div.withConfig({
   pointer-event: none;
   cursor: default;
   `};
-  ${(props) =>
-    getInputVariantStyles(
-      props.variant,
-      props.outlinebordercolor,
-      props.focusBorderColor,
-      props.focusColor,
-      props.disabled,
-      props.error,
-      props.mode
-    )};
+  ${(props) => {
+    const styles = getInputStyles(props);
+    return css`
+      background: ${styles.background};
+      border: ${styles.border};
+      transition: ${styles.transition};
+      box-shadow: ${styles.boxShadow};
+
+      &:hover {
+        border: ${styles.hover.border};
+        background: ${styles.hover.background};
+      }
+
+      &:focus-within {
+        border: ${styles.focus.border};
+        background: ${styles.focus.background};
+        box-shadow: ${styles.focus.boxShadow};
+      }
+    `;
+  }};
 
   input {
     flex: 1;
@@ -112,16 +127,35 @@ export const Input = styled.div.withConfig({
     }
   }
 `;
+Input.displayName = "TextInputSui";
+
+//************Checkbox Components**************//
+export const Checker = styled<IStyleCheckbox>("div")`
+  background: none;
+  border: ${(props) =>
+    props.checked ? "none" : `1.5px solid ${props.borderColor}`};
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : "7px")};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  pointer-events: ${(props) => props.disabled && "none"};
+`;
+Checker.displayName = "CheckboxSui";
+
+export const Checked = styled<IStyleChecked>("div")`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: ${(props) => props.color};
+  width: 100%;
+  height: 100%;
+  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : "7px")};
+  border: none;
+`;
 
 //***********Switch Components****************//
-export const Switch = styled(Box).withConfig({ shouldForwardProp })<{
-  width: string;
-  height: string;
-  checked: boolean;
-  checkedColor: string;
-  color: string;
-  disabled: boolean | any;
-}>`
+export const SwitchSui = styled<IStyleSwitch>("div")`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 9999px;
@@ -136,56 +170,29 @@ export const Switch = styled(Box).withConfig({ shouldForwardProp })<{
   pointer-events: ${(props) => props.disabled && "none"};
   display: flex;
   align-items: center;
+  position: relative;
 `;
+SwitchSui.displayName = "SwitchSui";
 
-export const SwitchHandle = styled.div.withConfig({ shouldForwardProp })<{
-  height: string;
-  checked: boolean;
-  switchWidth: string;
-}>`
+export const SwitchHandle = styled<IStyleSwitchHandle>("div")`
   width: ${(props) => props.switchWidth};
   height: ${(props) => props.height};
   background: white;
   border-radius: 9999px;
   position: absolute;
-  right: ${(props) => props.checked && `3px`};
-  left: ${(props) => !props.checked && `3px`};
+  ${(props) =>
+    props.checked
+      ? css`
+          right: 3px;
+        `
+      : ""}
+  ${(props) =>
+    !props.checked
+      ? css`
+          left: 3px;
+        `
+      : ""}
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
-`;
-
-//************Checkbox Components**************//
-// Extend shouldForwardProps to include - size, rounded ad disabled
-export const CheckBox = styled.div.withConfig({ shouldForwardProp })<{
-  rounded: boolean | any;
-  size: number;
-  disabled: boolean | any;
-  borderColor: string | any;
-  checked: boolean;
-}>`
-  background: none;
-  border: ${(props) =>
-    props.checked ? "none" : `1.5px solid ${props.borderColor}`};
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : "7px")};
-  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
-  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  pointer-events: ${(props) => props.disabled && "none"};
-`;
-
-// Extend shouldForwardProps to include - color and rounded
-export const Checked = styled(Box).withConfig({ shouldForwardProp })<{
-  color: string;
-  rounded: boolean | any;
-  size: number;
-}>`
-  justify-content: center;
-  align-items: center;
-  background: ${(props) => props.color};
-  width: 100%;
-  height: 100%;
-  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : "7px")};
-  border: none;
 `;

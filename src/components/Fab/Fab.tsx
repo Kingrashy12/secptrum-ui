@@ -1,32 +1,8 @@
-import { getFloatPosition } from "../../utils/position";
-import { getFloatSize, getFloatVariantStyle } from "../../utils/variant";
-import React, { ComponentProps, forwardRef } from "react";
-import styled from "styled-components";
-import { ToastPositionType } from "../Toast/Toast";
-import shouldForwardProp from "../../utils/is-prop-valid";
-import { colors } from "../../styles/colors";
+import { forwardRef } from "react";
+import { FloatProps } from "../../types/sui";
+import { FabSui } from "../../styles/action/styled";
 
-type BoxProps = ComponentProps<"div">;
-
-export interface FloatProps extends BoxProps {
-  /**
-   * The React element that will be positioned to float.
-   */
-  children?: React.ReactNode;
-  /**
-   * The position of the float element, which defines where the element
-   * should appear on the screen. It can be of type `ToastPositionType`.
-   */
-  position?: ToastPositionType | "bottom-center" | "top-center";
-  backgroundColor?: string;
-  size?: "md" | "lg" | "xl";
-  disabled?: boolean;
-  variant?: "solid" | "light";
-  colorScheme?: "primary" | "secondary" | "danger";
-  moveOnScroll?: boolean;
-}
-
-const FloatingActionButton = forwardRef<HTMLDivElement, FloatProps>(
+const Fab = forwardRef<HTMLDivElement, FloatProps>(
   (
     {
       position = "bottom-right",
@@ -42,7 +18,7 @@ const FloatingActionButton = forwardRef<HTMLDivElement, FloatProps>(
     ref
   ) => {
     return (
-      <Fab
+      <FabSui
         {...props}
         ref={ref}
         className={props.className}
@@ -55,59 +31,10 @@ const FloatingActionButton = forwardRef<HTMLDivElement, FloatProps>(
         moveOnScroll={moveOnScroll}
       >
         {children}
-      </Fab>
+      </FabSui>
     );
   }
 );
 
-export default FloatingActionButton;
-
-const Fab = styled.div.withConfig({ shouldForwardProp })<{
-  backgroundcolor: string | any;
-  position: FloatProps["position"];
-  disabled: boolean | any;
-  colorScheme: FloatProps["colorScheme"];
-  variant: FloatProps["variant"];
-  size: FloatProps["size"];
-  moveOnScroll: FloatProps["moveOnScroll"];
-}>`
-  position: ${(props) => (props.moveOnScroll ? "absolute" : "fixed")};
-  width: auto;
-  height: auto;
-  border-radius: 9999px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  ${(props) => getFloatPosition(props.position)};
-  ${(props) => getFloatSize(props.size)};
-  ${(props) => getFloatVariantStyle(props.variant, props.colorScheme)};
-
-  ${(props) =>
-    props.disabled &&
-    `
-     cursor: not-allowed;
-    opacity: 0.75;
-    pointer-events: none;
-    background: ${colors.gray[400]};
-  `};
-
-  transform: translateZ(0);
-  will-change: transform;
-  animation: zoom 0.5s linear;
-
-  @keyframes zoom {
-    from {
-      transform: scale(0.1);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-
-  &:hover {
-    opacity: 0.9;
-  }
-`;
+export default Fab;
+Fab.displayName = "FabSui";

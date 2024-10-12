@@ -1,5 +1,5 @@
 import { BoxSui } from "../../styles/layout/styled";
-import { BoxType } from "../../types";
+import { BoxType } from "../../types/sui";
 import { forwardRef } from "react";
 
 /**
@@ -38,3 +38,5 @@ const Box = forwardRef<HTMLDivElement, BoxType>(
 );
 
 export default Box;
+
+Box.displayName = "Box";

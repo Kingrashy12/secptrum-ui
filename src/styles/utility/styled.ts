@@ -1,5 +1,5 @@
+import { styled } from "styled-chroma";
 import Box from "../../components/Box/Box";
-import styled from "styled-components";
 import { colors } from "../colors";
 
 //***********ImagePicker Components************//
@@ -44,7 +44,7 @@ export const UploadIcon = styled(Box)`
   }
 `;
 
-export const SelectedImage = styled.img`
+export const SelectedImage = styled("img")`
   width: 115px;
   height: 115px;
   border-radius: 9px;
@@ -93,7 +93,7 @@ export const SelectedImageContainer = styled(Box)`
   flex-direction: column;
   border: 1px solid ${colors.neutral[300]};
   background: white;
-  /* width: 400px; */
+
   width: 50vw;
   min-height: 250px;
   height: auto;
@@ -198,7 +198,7 @@ export const Picker_ImageContainer = styled(Box)`
   gap: 2px;
 `;
 
-export const ImageRemover = styled.div`
+export const ImageRemover = styled("div")`
   position: absolute;
   background: black;
   z-index: 10;

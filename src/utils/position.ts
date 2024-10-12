@@ -1,5 +1,4 @@
-import { ToastPositionType } from "../types/fun";
-import { FloatProps } from "../components/Fab/Fab";
+import { FloatProps, ToastPositionType } from "../types/sui";
 
 export const getFloatPosition = (position: FloatProps["position"]) => {
   switch (position) {

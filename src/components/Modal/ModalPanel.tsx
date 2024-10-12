@@ -1,7 +1,7 @@
-import { useModalContext } from "../../context/useModalContext";
-import { ModalPanel } from "../../styles/feedback/styled";
+import { useModalContext } from "../../context/useModal";
+import { ModalPanelSui } from "../../styles/feedback/styled";
 import React from "react";
-import { StackType } from "../Stack/Stack";
+import { StackType } from "../../types/sui";
 
 export type ModalPanelType = {
   /**
@@ -42,9 +42,10 @@ export type ModalPanelType = {
    * for stacking items side by side (row).
    */
   align?: StackType["align"];
+  spacing?: StackType["spacing"];
 };
 
-const MPl = ({
+const ModalPanel = ({
   size = "lg",
   children,
   transition = "walkIn",
@@ -52,20 +53,23 @@ const MPl = ({
   style,
   backgroundColor,
   align = "vertical",
+  spacing,
 }: ModalPanelType) => {
-  useModalContext();
+  const { isVisible } = useModalContext();
   return (
-    <ModalPanel
+    <ModalPanelSui
       className={className}
       style={style}
       transition={transition}
       size={size}
       align={align}
-      background-color={backgroundColor}
+      spacing={spacing}
+      backgroundColor={backgroundColor}
+      isVisible={isVisible}
     >
       {children}
-    </ModalPanel>
+    </ModalPanelSui>
   );
 };
 
-export default MPl;
+export default ModalPanel;

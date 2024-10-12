@@ -1,124 +1,103 @@
-import { ModalPanelType } from "../../components/modal/ModalPanel";
-import { getPanelSize, getModalPanelTransition } from "../../utils/variant";
-import styled from "styled-components";
-import { getToastPosition } from "../../utils/position";
-import { getToastTransition } from "../../utils/transition";
-import shouldForwardProps from "../../utils/is-prop-valid";
-import { colors } from "../colors";
-
-import { FixedBox } from "../global";
+import { css, styled } from "styled-chroma";
 import {
-  ToastOptionsType,
-  ToastPositionType,
-  ToastVariant,
-} from "../../types/fun";
+  IStyleDrop,
+  IStyleModalFooter,
+  IStyleModalPanel,
+  IStyleToast,
+  IStyleToastCloseIcon,
+} from "../../types/istyle";
+import { getModalPanelTransition, getPanelSize } from "../../utils/feedback";
+import { FixedBox } from "../global";
 import { BoxSui } from "../layout/styled";
+import { spacingValues } from "../../utils/spacing";
+import { colors } from "../colors";
+import { getToastPosition } from "../../utils/position";
+import { getToastTransition } from "../../utils/transitions";
 
-const shouldForwardProp = shouldForwardProps;
-
-//************Backdrop Component**************//
-// Backdrop style
-export const Drop = styled(FixedBox).withConfig({ shouldForwardProp })<{
-  open: boolean;
-  centerContent: boolean;
-  "background-color": string | any;
-  "glass-effect": number | any;
-}>`
-  background: ${(props) => props["background-color"]};
+//*************Backdrop Components*************//
+export const DropSui = styled<IStyleDrop>(FixedBox)`
+  background: ${(props) => props.backgroundColor};
   display: ${(props) => (props.open ? "flex" : "none")};
-  justify-content: ${(props) => props.centerContent && "center"};
-  align-items: ${(props) => props.centerContent && "center"};
-  backdrop-filter: ${(props) =>
-    `blur(${props["glass-effect"] || props.theme.effects?.drop_blur}px)`};
+  justify-content: ${(props) => (props.centerContent ? "center" : "")};
+  align-items: ${(props) => (props.centerContent ? "center" : "")};
+  backdrop-filter: ${(props) => `blur(${props.glassEffect || 6}px)`};
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
 `;
+DropSui.displayName = "DropSui";
 
-//****************Modal Components*************//
+//*************Modal Components*************//
 // Modal Panel
-export const ModalPanel = styled.div.withConfig({ shouldForwardProp })<{
-  size: ModalPanelType["size"];
-  transition: ModalPanelType["transition"];
-  "background-color": string | any;
-  align: ModalPanelType["align"];
-}>`
+export const ModalPanelSui = styled<IStyleModalPanel>("div")`
   position: relative;
-  background: ${(props) => props["background-color"] || "white"};
+  background: ${(props) => props.backgroundColor || "white"};
   border-radius: 11px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 100%;
   padding: 20px;
   z-index: 1000;
   overflow: hidden;
-  ${(props) => getPanelSize(props.size)};
-  ${(props) => getModalPanelTransition(props.transition)}
+  border: 1px solid ${colors.neutral[200]};
+  ${(props) => {
+    const size = getPanelSize(props.size);
+    return css`
+      ${size}
+    `;
+  }};
+  ${(props) => {
+    const transition = getModalPanelTransition(
+      props.transition,
+      props.isVisible
+    );
+    return css`
+      ${transition}
+    `;
+  }}
   animation-fill-mode: forwards;
   animation-delay: 0s;
   display: flex;
+  gap: ${(props) => spacingValues(props.spacing) || "10px"};
   flex-direction: ${(props) => (props.align === "vertical" ? "column" : "row")};
-
-  @keyframes slideIn {
-    from {
-      transform: translateX(-50%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0%);
-      opacity: 1;
-    }
-  }
-  @keyframes dropIn {
-    from {
-      transform: translateY(-50%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-  }
-  @keyframes walkIn {
-    from {
-      scale: 0.2;
-      opacity: 0;
-    }
-    to {
-      scale: 1;
-      opacity: 1;
-    }
-  }
 `;
-
-// Modal Title
-export const ModalTitle = styled.h2`
-  margin: 0;
-  font-size: 1.5rem;
-  color: ${(props) => props.theme?.colors?.text || "black"};
-  font-family: inherit;
-`;
+ModalPanelSui.displayName = "ModalPanelSui";
 
 // Modal Description
-export const ModalContent = styled(BoxSui).withConfig({
-  shouldForwardProp: (prop) => prop !== "space",
-})<{ space?: number }>`
+export const ModalContent = styled(BoxSui)`
   margin: ${({ margin }) => margin || "5px 0"};
-  padding: ${({ padding }) => padding};
-  padding-top: ${({ paddingTop }) => paddingTop};
-  padding-bottom: ${({ paddingBottom }) => paddingBottom};
-  padding-right: ${({ paddingRight }) => paddingRight};
-  padding-left: ${({ paddingLeft }) => paddingLeft};
-  border: ${({ border }) => border};
+  ${(props) =>
+    props.padding
+      ? css`
+          padding: ${props.padding};
+        `
+      : ""}
+  ${(props) =>
+    props.paddingTop
+      ? css`
+          padding-top: ${props.paddingTop};
+        `
+      : ""}
+  ${(props) =>
+    props.paddingBottom
+      ? css`
+          padding-bottom: ${props.paddingBottom};
+        `
+      : ""}
+  ${(props) =>
+    props.border
+      ? css`
+          border: ${props.border};
+        `
+      : ""}
   flex-direction: ${(props) => props.direction || "column"};
-  gap: ${(props) => props.space || 16}px;
-  justify-content: ${(props) => props.centered && "center"};
-  align-items: ${(props) => props.centered && "center"};
+  gap: ${(props) => props.spacing || 16}px;
+  justify-content: ${(props) => (props.centered ? "center" : "")};
+  align-items: ${(props) => (props.centered ? "center" : "")};
 `;
+ModalContent.displayName = "ModalContent";
 
 // Modal Footer
-export const ModalFooter = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "space",
-})<{ space?: number; position?: "right" | "left" }>`
+export const ModalFooter = styled<IStyleModalFooter>("div")`
   display: flex;
   justify-content: ${(props) =>
     props.position === "left" ? "flex-start" : "flex-end"};
@@ -126,16 +105,11 @@ export const ModalFooter = styled.div.withConfig({
   padding-top: 10px;
   gap: ${(props) => props.space || 10}px;
 `;
+ModalFooter.displayName = "ModalFooterSui";
 
 //*****************Toast Components****************//
 // Toast style
-export const StyledToast = styled(BoxSui).withConfig({
-  shouldForwardProp,
-})<{
-  position: ToastPositionType;
-  "show-toast": boolean;
-  transition: ToastOptionsType["transition"];
-}>`
+export const StyledToast = styled<IStyleToast>("div")`
   background: white;
   width: auto;
   height: auto;
@@ -144,53 +118,26 @@ export const StyledToast = styled(BoxSui).withConfig({
   border: 1px solid ${colors.neutral[200]};
   gap: 5px;
   position: fixed;
+  display: flex;
   max-width: 400px;
-  ${(props) => getToastPosition(props.position)}
-  display: ${(props) => (props["show-toast"] ? "flex" : "none")};
-  ${(props) => getToastTransition(props.transition)}
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  ${(props) => {
+    const positions = getToastPosition(props.position);
+    return css`
+      top: ${positions.top};
+      bottom: ${positions.bottom};
+      right: ${positions.right};
+      left: ${positions.left};
+    `;
+  }}
+  ${(props) => {
+    const transition = getToastTransition(props.transition, props.isVisible);
+    return css`
+      ${transition}
+    `;
+  }}
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  @keyframes slideInFromRight {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes dropIn {
-    0% {
-      transform: translateY(-50%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-  }
-  @keyframes popIn {
-    0% {
-      transform: translateY(50%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-  }
-  @keyframes walkIn {
-    0% {
-      scale: 0.1;
-      opacity: 0;
-    }
-    100% {
-      scale: 1;
-      opacity: 1;
-    }
-  }
 
   .header {
     font-weight: 600;
@@ -223,9 +170,7 @@ export const ToastContent = styled(BoxSui)`
   width: 90%;
 `;
 
-export const CloseIcon = styled(BoxSui).withConfig({
-  shouldForwardProp,
-})<{ type: ToastVariant | "warning" }>`
+export const CloseIcon = styled<IStyleToastCloseIcon>(BoxSui)`
   cursor: pointer;
   justify-content: center;
   align-items: center;

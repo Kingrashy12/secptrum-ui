@@ -57,6 +57,10 @@ const systemTheme: SystemTheme = {
 // Create ThemeContext
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+/**
+ * Custom hook to access the current theme context.
+ * @deprecated
+ */
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
@@ -69,6 +73,11 @@ export const useTheme = () => {
   }
   return context;
 };
+
+/**
+ * ThemeProvider component to wrap your application with the theme context.
+ * @deprecated
+ */
 const ThemeProvider = ({
   children,
   theme: userTheme = { light: {}, dark: {} },
@@ -103,7 +112,10 @@ const ThemeProvider = ({
     );
   }, [mode, userTheme]);
 
-  // Toggle between light and dark modes
+  /**
+   *
+   * @deprecated
+   */
   const toggleTheme = () => {
     setMode((prevMode) => {
       const newMode = prevMode === "light" ? "dark" : "light";

@@ -7,7 +7,9 @@ declare type Theme = {
   };
   [key: string]: any; // To handle custom properties
 };
-
+/**
+ * @deprecated
+ */
 declare type ThemeContextType = {
   /**
    * The current theme configuration applied to the application.
@@ -31,6 +33,7 @@ declare type ThemeContextType = {
    * The current theme mode of the application, either `light` or `dark`.
    *
    * @type {`light` | `dark`}
+   * @deprecated
    */
   mode: "light" | "dark";
 };

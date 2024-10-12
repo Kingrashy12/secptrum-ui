@@ -1,39 +1,6 @@
-import React, { forwardRef } from "react";
-import { BoxType } from "../../types";
+import { forwardRef } from "react";
+import { StackType } from "../../types/sui";
 import { StackSui } from "../../styles/layout/styled";
-import { SizeVariantType } from "../../types/fun";
-
-export interface StackType extends BoxType {
-  children?: React.ReactNode;
-  /**
-   * Defines the padding inside the Stack component.
-   * Accepts any valid CSS padding value (e.g., "8px", "1rem", "10px 20px").
-   */
-  padding?: string;
-
-  /**
-   * Defines the margin outside the Stack component.
-   * Accepts any valid CSS margin value (e.g., "8px", "1rem", "10px 20px").
-   */
-  margin?: string;
-
-  /**
-   * Specifies the alignment direction of the Stack component's children.
-   * `vertical` for stacking items one above the other (column),
-   * `horizontal` for stacking items side by side (row).
-   */
-  align?: "vertical" | "horizontal";
-
-  /**
-   * Controls the spacing (gap) between child elements within the Stack component.
-   * Accepts predefined sizes: "sm" (small), "md" (medium), "lg" (large), "xl" (extra-large), "2xl" (2 times extra-large), "3xl" (3 times extra-large).
-   */
-  spacing?: SizeVariantType;
-  /**
-   * Enables wrapping for items if they exceed the available space in a row layout.
-   */
-  wrap?: boolean;
-}
 
 /**
  * A layout component that arranges its children in a vertical or horizontal stack with configurable spacing.
@@ -93,3 +60,4 @@ const Stack = forwardRef<HTMLDivElement, StackType>(
 );
 
 export default Stack;
+Stack.displayName = "Stack";

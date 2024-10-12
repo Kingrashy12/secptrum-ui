@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { ContextProviderType } from "../types/local";
 
 type TabListContextType = {
   onSwitch: (value: string) => void;
@@ -10,7 +9,7 @@ type TabListContextType = {
 };
 
 type TabListProviderType = {
-  children: ContextProviderType["children"];
+  children: React.ReactNode;
   tabVariant: "line" | "solid";
   mode: "light" | "dark";
   useFullWidth?: boolean;
@@ -63,6 +62,8 @@ const TabListProvider = ({
 };
 
 export default TabListProvider;
+
+/* eslint-disable */
 
 export const useTabList = () => {
   const context = useContext(ListContext);

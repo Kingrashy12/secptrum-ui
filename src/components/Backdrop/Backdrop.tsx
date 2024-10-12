@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { forwardRef, useEffect, useState } from "react";
-import { Drop } from "../../styles/feedback/styled";
-import { useTheme } from "../../context/useTheme";
-import { getModeStyle } from "../../lib/helper/theme";
+import { DropSui } from "../../styles/feedback/styled";
+import { useTheme } from "styled-chroma";
 
 interface DropType {
   /**
@@ -62,7 +62,7 @@ interface DropType {
    * A higher value increases the blur, creating a stronger glass effect.
    *
    * @type {number} - The intensity of the glass effect (blur).
-   * @default Inherit from theme '6'
+   * @default '6'
    */
   glassEffect?: number;
 }
@@ -82,7 +82,7 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
     },
     ref
   ) => {
-    const { mode: themeMode, theme } = useTheme();
+    const { mode: themeMode } = useTheme();
     const [m, setM] = useState(mode);
 
     useEffect(() => {
@@ -100,25 +100,25 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
     };
 
     const dropStyle = {
-      background: getModeStyle(m as "light" | "dark")?.drop,
+      background: m === "dark" ? "rgb(0,0,0, 0.6)" : "rgb(255, 255, 255, 0.5)",
     };
 
     return (
-      <Drop
+      <DropSui
         open={open}
         ref={ref}
         centerContent={centerContent}
         className={className}
         style={style}
         onClick={handleClose}
-        background-color={dropStyle.background}
-        theme={theme}
-        glass-effect={glassEffect}
+        backgroundColor={dropStyle.background}
+        glassEffect={glassEffect}
       >
         <> {children}</>
-      </Drop>
+      </DropSui>
     );
   }
 );
 
 export default Backdrop;
+Backdrop.displayName = "BackdropSui";

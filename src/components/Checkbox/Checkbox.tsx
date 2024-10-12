@@ -1,7 +1,7 @@
-import { useTheme } from "../../context/useTheme";
-import { CheckBox, Checked } from "../../styles/input/styled";
+import { Checked, Checker } from "../../styles/input/styled";
 import { IoIosCheckmark } from "react-icons/io";
 import Icon from "../Icon/Icon";
+import { colors } from "../../styles/colors";
 
 type CheckBoxType = {
   /**
@@ -49,9 +49,14 @@ type CheckBoxType = {
    * @type {string}
    */
   borderColor?: string;
+  /**
+   * Specifies the mode of the checkbox. Can be either "dark" or "light".
+   * @default "light"
+   */
+  mode?: "dark" | "light";
 };
 
-const Ch = ({
+const CheckBox = ({
   rounded,
   size = 20,
   color = "blue",
@@ -60,25 +65,29 @@ const Ch = ({
   disabled,
   className,
   borderColor,
+  mode = "light",
 }: CheckBoxType) => {
-  const { theme } = useTheme();
+  const checkStyle = {
+    border: mode === "dark" ? colors.neutral[700] : colors.neutral[200],
+  };
   return (
-    <CheckBox
+    <Checker
       onClick={onCheck}
       size={size}
       rounded={rounded}
       disabled={disabled}
       className={className}
       checked={checked}
-      borderColor={borderColor || theme.colors?.checkBoxBorderColor}
+      borderColor={borderColor || checkStyle.border}
     >
       {checked ? (
         <Checked color={color} rounded={rounded} size={size}>
           <Icon icon={IoIosCheckmark} size={size} color="white" />
         </Checked>
       ) : null}
-    </CheckBox>
+    </Checker>
   );
 };
 
-export default Ch;
+export default CheckBox;
+CheckBox.displayName = "CheckBoxSui";

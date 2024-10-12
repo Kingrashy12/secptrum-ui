@@ -1,12 +1,9 @@
 import React from "react";
-import { useTabList } from "../../context/useTabList";
-import { getModeStyle } from "../../lib/helper/theme";
-import { colors } from "../../styles/colors";
 import { TabHandle } from "../../styles/layout/styled";
+import { colors } from "../../styles/colors";
+import { useTabList } from "../../context/useTabList";
+import { getModeStyle } from "../../utils/mode";
 
-/**
- * Type definition for TabsHandleType, representing the properties of a tab component.
- */
 type TabsHandleType = {
   /**
    * The content to be rendered inside the tab.
@@ -111,7 +108,7 @@ const TabsHandle: React.FC<TabsHandleType> = ({
       variant={variant}
       disabled={disabled}
       inactivecolor={inActiveColor}
-      full-width={fullWidth}
+      fullWidth={fullWidth}
       className={className}
       style={style}
     >

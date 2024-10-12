@@ -9,27 +9,15 @@ import {
   StyledToast,
   ToastContent,
 } from "../../styles/feedback/styled";
+import {
+  ToastOptionsType,
+  ToastPositionType,
+  ToastType,
+  ToastVariant,
+} from "../../types/sui";
 import { colors } from "../../styles/colors";
-import { generateId } from "../../lib/helper";
 import Icon from "../Icon/Icon";
-import { ToastType } from "../../types/fun";
-
-// Toast types
-export type ToastVariant = "info" | "success" | "error" | "warning";
-
-// Toast positions
-export type ToastPositionType =
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right";
-
-// Toast options
-type ToastOptionsType = {
-  position?: ToastPositionType;
-  className?: string;
-  transition?: "dropIn" | "slideIn" | "popIn" | "walkIn";
-};
+import { generateId } from "../../lib/helper";
 
 // Toast notification
 type ToastNotification = {
@@ -39,8 +27,16 @@ type ToastNotification = {
   className?: string;
   transition?: ToastOptionsType["transition"];
   type: ToastVariant;
+  isVisible: boolean;
 };
 
+/**
+ * @typedef {Object} ToastFunctions
+ * @property {(message: string, options?: ToastOptions) => void} success - Display a success toast.
+ * @property {(message: string, options?: ToastOptions) => void} error - Display an error toast.
+ * @property {(message: string, options?: ToastOptions) => void} info - Display an info toast.
+ * @property {(message: string, options?: ToastOptions) => void} warning - Display a warning toast.
+ */
 let toast: ToastType;
 
 const Toast = () => {
@@ -51,12 +47,22 @@ const Toast = () => {
   const show = (newToast: ToastNotification, duration: number = 4000) => {
     setToasts((prevToasts) => [...prevToasts, newToast]);
 
-    // Set timeout to remove toast
+    // Set timeout to make toast !visible
     const timeoutId = setTimeout(() => {
-      setToasts((prevToasts) => prevToasts.filter((t) => t.id !== newToast.id));
-      delete toastTimeouts.current[newToast.id];
-    }, duration);
+      setToasts((prevToasts) =>
+        prevToasts.map((t) =>
+          t.id === newToast.id ? { ...t, isVisible: false } : t
+        )
+      );
 
+      // Set another timeout to remove the toast from the state
+      setTimeout(() => {
+        setToasts((prevToasts) =>
+          prevToasts.filter((t) => t.id !== newToast.id)
+        );
+        delete toastTimeouts.current[newToast.id];
+      }, 300);
+    }, duration);
     // Store timeout ID
     toastTimeouts.current[newToast.id] = timeoutId;
   };
@@ -71,8 +77,9 @@ const Toast = () => {
 
   // Cleanup on unmount
   useEffect(() => {
+    const toastTime = toastTimeouts.current;
     return () => {
-      Object.values(toastTimeouts.current).forEach(clearTimeout);
+      Object.values(toastTime).forEach(clearTimeout);
     };
   }, []);
 
@@ -121,13 +128,37 @@ const Toast = () => {
   // Toast API
   toast = {
     info: (msg: string, options?: ToastOptionsType) =>
-      show({ id: generateId(), message: msg, type: "info", ...options }),
+      show({
+        id: generateId(),
+        message: msg,
+        type: "info",
+        ...options,
+        isVisible: true,
+      }),
     error: (msg: string, options?: ToastOptionsType) =>
-      show({ id: generateId(), message: msg, type: "error", ...options }),
+      show({
+        id: generateId(),
+        message: msg,
+        type: "error",
+        ...options,
+        isVisible: true,
+      }),
     success: (msg: string, options?: ToastOptionsType) =>
-      show({ id: generateId(), message: msg, type: "success", ...options }),
+      show({
+        id: generateId(),
+        message: msg,
+        type: "success",
+        ...options,
+        isVisible: true,
+      }),
     warning: (msg: string, options?: ToastOptionsType) =>
-      show({ id: generateId(), message: msg, type: "warning", ...options }),
+      show({
+        id: generateId(),
+        message: msg,
+        type: "warning",
+        ...options,
+        isVisible: true,
+      }),
   };
 
   return (
@@ -138,7 +169,7 @@ const Toast = () => {
           position={toast.position || "top-right"}
           className={toast.className}
           transition={toast.transition}
-          show-toast={true}
+          isVisible={toast.isVisible}
         >
           <ContentWrap>
             <Icon
@@ -161,5 +192,5 @@ const Toast = () => {
 };
 
 export default Toast;
-
+/* eslint-disable */
 export { toast };

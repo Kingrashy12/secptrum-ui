@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TabListProvider from "../../context/useTabList";
-import { useTheme } from "../../context/useTheme";
-import { getModeStyle } from "../../lib/helper/theme";
-import styled from "styled-components";
-import Box from "../Box/Box";
+import { IStyleTabList } from "../../types/istyle";
+import { css, styled, useTheme } from "styled-chroma";
+import { getModeStyle } from "../../utils/mode";
 
-/**
- * Type definition for TabsListType, representing the properties of a list of tabs.
- */
 export type TabsListType = {
   /**
    * The content to be rendered inside the list of tabs, typically an array of tab components.
@@ -82,7 +78,7 @@ const TabsList = ({
 
   const tablistStyle = {
     background:
-      backgroundColor || getModeStyle(m as "light" | "dark")?.tabListBackground,
+      backgroundColor || getModeStyle(m as "light" | "dark")?.tabListBg,
     lineBorder:
       lineBorderColor || getModeStyle(m as "light" | "dark")?.lineBorder,
   };
@@ -94,10 +90,10 @@ const TabsList = ({
     >
       <TabList
         backgroundcolor={tablistStyle.background}
-        line-color={tablistStyle.lineBorder}
+        lineColor={tablistStyle.lineBorder}
         variant={variant}
         direction="row"
-        full-width={fullWidth}
+        fullWidth={fullWidth}
       >
         {children}
       </TabList>
@@ -106,21 +102,26 @@ const TabsList = ({
 };
 
 export default TabsList;
+TabsList.displayName = "TabsListSui";
 
-const TabList = styled(Box)<{
-  variant: TabsListType["variant"];
-  backgroundcolor: string | any;
-  "full-width": TabsListType["fullWidth"];
-  "line-color": string | any;
-}>`
+const TabList = styled<IStyleTabList>("div")`
   padding: 0;
   border-bottom: ${(props) =>
-    props.variant === "line" ? `1px solid ${props["line-color"]}` : "none"};
+    props.variant === "line" ? `1px solid ${props.lineColor}` : "none"};
   padding: ${(props) => (props.variant === "solid" ? "5px" : 0)};
   border-radius: ${(props) => (props.variant === "solid" ? "4.5px" : "none")};
   background: ${(props) =>
     props.variant === "solid" ? props.backgroundcolor : "transparent"};
   align-items: center;
-  ${(props) => getTabWidth(props.variant, props["full-width"])};
+  ${(props) => {
+    const width = getTabWidth(props.variant, props.fullWidth);
+    return css`
+      width: ${width?.width};
+    `;
+  }};
   gap: 1px;
+  border-top: none;
+  display: flex;
+  position: relative;
 `;
+TabList.displayName = "TabListSui";

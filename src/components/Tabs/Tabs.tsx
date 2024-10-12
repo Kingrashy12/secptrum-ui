@@ -1,9 +1,26 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import TabsList, { TabsListType } from "./TabsList";
 import TabsHandle from "./TabsHandle";
 import Box from "../Box/Box";
 import TabPanel from "./TabPanel";
+import { styled } from "styled-chroma";
+
+/**
+ * Tab component for creating tabbed interfaces.
+ *
+ * This component manages the state of active tab and renders TabsList and TabPanel components.
+ * It allows for customization of tab appearance and behavior through various props.
+ *
+ * @component
+ * @param {Object} props - The properties that define the Tab component's behavior and appearance.
+ * @param {ReactNode} props.children - The child elements, expected to be TabsHandle and TabPanel components.
+ * @param {'line' | 'enclosed' | 'enclosed-colored' | 'soft-rounded' | 'solid-rounded' | 'unstyled'} [props.variant='line'] - The visual variant of the tabs.
+ * @param {'light' | 'dark'} [props.mode] - The color mode of the tabs.
+ * @param {boolean} [props.fullWidth] - Whether the tabs should take up the full width of their container.
+ * @param {string} [props.backgroundColor] - The background color of the tabs.
+ * @param {string} [props.lineBorderColor] - The color of the line border for the 'line' variant.
+ * @returns {JSX.Element} The rendered Tab component.
+ */
 
 const Tab = ({
   children,
@@ -65,6 +82,6 @@ const Tabs = styled(Box)`
   width: 100%;
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled("div")`
   margin-top: 2px;
 `;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ModalProvider } from "../../context/useModalContext";
+import { ModalProvider } from "../../context/useModal";
 import Backdrop from "../Backdrop/Backdrop";
 
 type ModalType = {
@@ -83,7 +83,7 @@ const Modal = ({
   mode,
 }: ModalType) => {
   return (
-    <ModalProvider>
+    <ModalProvider open={open}>
       <Backdrop
         style={style}
         className={className}

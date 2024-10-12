@@ -1,13 +1,3 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": [
-    [
-      "babel-plugin-styled-components",
-      {
-        "namespace": "Sui",
-        "fileName": false,
-        "displayName": true
-      }
-    ]
-  ]
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
 }

@@ -1,56 +1,28 @@
-import { useTheme } from "../../context/useTheme";
-import { getModeStyle } from "../../lib/helper/theme";
+import { forwardRef, useEffect, useState } from "react";
 import { CardSui } from "../../styles/layout/styled";
-import React, { forwardRef, useEffect, useState } from "react";
-import { BoxType } from "../../types";
+import { CardProps } from "../../types/sui";
+import { useTheme } from "styled-chroma";
 
-declare interface CardType extends BoxType {
-  children?: React.ReactNode;
-  /**
-   * An indication to center card content
-   */
-  centerContent?: boolean;
-  /**
-   * A custom background color to overide current one or provide theme colors
-   */
-  backgroundColor?: string;
-  /**
-   * A custom border color to override the default or theme border color
-   */
-  borderColor?: string;
+/**
+ * Card component for displaying content in a styled container.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {React.ReactNode} props.children - The content to be rendered inside the card.
+ * @param {CardProps['mode']} [props.mode] - The visual mode of the card ('light' or 'dark'). If not provided, it uses the theme mode.
+ * @param {'row' | 'column'} [props.direction='column'] - The direction of the card's content layout. defaults to `column`
+ * @param {string} [props.width] - The width of the card.
+ * @param {boolean} [props.fullWidth] - Whether the card should take up the full width of its container.
+ * @param {string} [props.background] - The background color of the card.
+ * @param {string} [props.borderColor] - The border color of the card.
+ * @param {string} [props.boxShadow] - The box shadow of the card.
+ * @param {string} [props.space] - The spacing between child elements in the card.
+ * @param {React.Ref<HTMLDivElement>} ref - The ref to be forwarded to the card's root element.
+ * @returns {React.ReactElement} The rendered Card component.
+ */
 
-  /**
-   * Controls the internal spacing between card elements
-   * Accepts only number
-   */
-  space?: number;
-  /**
-   * Sets the theme mode for the input component.
-   *
-   * Options:
-   * - `light` (default)
-   * - `dark`
-   * - Custom theme mode (override default styles)
-   *
-   * Allows developers to integrate with apps that support light/dark modes or provide a custom design.
-   * @type {"light" | "dark"}
-   */
-  mode?: "light" | "dark";
-}
-
-const Card = forwardRef<HTMLDivElement, CardType>(
-  (
-    {
-      children,
-      backgroundColor,
-      centerContent,
-      borderColor,
-      space,
-      mode,
-      ...props
-    },
-    ref
-  ) => {
+const Card = forwardRef<HTMLDivElement, CardProps>(
+  ({ children, mode, direction = "column", ...rest }, ref) => {
     const { mode: themeMode } = useTheme();
     const [m, setM] = useState(mode);
 
@@ -58,27 +30,12 @@ const Card = forwardRef<HTMLDivElement, CardType>(
       if (mode) {
         setM(mode);
       } else {
-        setM(themeMode as CardType["mode"]);
+        setM(themeMode as CardProps["mode"]);
       }
     }, [mode, themeMode]);
 
-    const modeStyle = {
-      background: getModeStyle(m as "light" | "dark")?.card,
-      borderColor: getModeStyle(m as "light" | "dark")?.card_BorderColor,
-      cardShadow: getModeStyle(m as "light" | "dark")?.cardShadow,
-    };
-
     return (
-      <CardSui
-        {...props}
-        ref={ref}
-        space={space}
-        borderColor={borderColor || modeStyle.borderColor}
-        backgroundcolor={backgroundColor || modeStyle.background}
-        className={props.className}
-        centerContent={centerContent}
-        cardShadow={modeStyle.cardShadow}
-      >
+      <CardSui {...rest} mode={m} direction={direction} ref={ref}>
         {children}
       </CardSui>
     );
@@ -86,3 +43,4 @@ const Card = forwardRef<HTMLDivElement, CardType>(
 );
 
 export default Card;
+Card.displayName = "CardSui";

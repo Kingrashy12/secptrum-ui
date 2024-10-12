@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef, useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Icon from "../Icon/Icon";
-import { ButtonProps } from "../../types";
-import { Button } from "../../styles/action/styled";
-import { useTheme } from "../../context/useTheme";
-import { getModeStyle } from "../../lib/helper/theme";
+import { ButtonProps } from "../../types/sui";
+import { ButtonSui } from "../../styles/action/styled";
+import { useTheme } from "styled-chroma";
 
 /**
  * A customizable button component designed to handle various actions and events in your application.
@@ -20,18 +20,20 @@ import { getModeStyle } from "../../lib/helper/theme";
  *   - `"sm"`: Small size.
  *   - `"md"`: Medium size (default).
  *   - `"lg"`: Large size.
- * - `radius` (optional): Defines the border-radius of the button, making its corners rounded.
- *   Options include `"sm"`, `"md"`, `"lg"`, `"xl"`, or `"full"`.
+ * - `mode` (optional): Determines the mode of the button. Options include:
+ *   - `"light"`: Light mode.
+ *   - `"dark"`: Dark mode.
+ * - `fullWidth` (optional): A boolean that, when set to `true`, makes the button take the full width of its container.
+ * - `radius` (optional): Defines the border-radius of the button. Options include:
+ *   - `"sm"`: Small radius.
+ *   - `"md"`: Medium radius
+ *   - `"lg"`: Large radius.
+ *   - `"xl"`: Extra large radius. (default).
+ *   - `"full"`: Full radius, making the button circular.
  * - `icon` (optional): Allows an icon to be displayed inside the button. Accepts JSX icons (e.g., `FaUser` from react-icons)
  *   without a fragment. If a fragment is used, it may cause the component to break.
  * - `isLoading` (optional): A boolean that, when set to `true`, displays a loading indicator within the button,
  *   indicating that an action is being processed.
- *
- * Features:
- * - Supports different styles and sizes to fit various design needs.
- * - Can display an optional icon within the button.
- * - Handles disabled and loading states to improve user experience.
- * - Triggers an `onClick` function to handle actions.
  *
  * Usage:
  * Use the Button component to trigger actions, submit forms, or navigate between pages.
@@ -51,32 +53,21 @@ import { getModeStyle } from "../../lib/helper/theme";
  * ```
  */
 
-const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
+      mode,
+      size = "md",
       radius = "xl",
       variant = "solid",
-      size = "md",
       icon,
-      isLoading,
       iconPosition = "left",
-      color,
-      backgroundColor,
-      onHoverBackgroundSolid,
-      onHoverBackgroundOutline,
-      onHoverBackgroundLight,
-      onHoverBackgroundGhost,
-      outlineBorderColor,
-      width,
       iconSize,
-      fullWidth,
-      mode,
       ...props
     },
     ref
-  ): JSX.Element => {
-    const disabled = props.disabled;
+  ) => {
     const { mode: themeMode } = useTheme();
     const [m, setM] = useState(mode);
 
@@ -88,66 +79,45 @@ const Btn = forwardRef<HTMLButtonElement, ButtonProps>(
       }
     }, [mode, themeMode]);
 
-    const getColor = (
-      varaint: ButtonProps["variant"],
-      color: ButtonProps["color"],
-      mode: "light" | "dark"
-    ) => {
-      switch (varaint) {
-        case "outline":
-          return `
-          ${color ? color : getModeStyle(mode)?.text}
-        `;
-        default:
-          return color;
-      }
-    };
-
-    const getOulineBorder = () => {
-      return getModeStyle(m as "light" | "dark")?.outline_ButtonBorderColor;
-    };
-
     const getWidth = () => {
-      if (fullWidth) {
-        return `100%`;
-      } else return width;
+      if (props.fullWidth) return "100%";
+      if (props.width) return props.width;
+      return "fit-content";
     };
 
     return (
-      <Button
-        backgroundcolor={backgroundColor}
-        onHoverBackgroundSolid={onHoverBackgroundSolid}
-        onHoverBackgroundGhost={onHoverBackgroundGhost}
-        onHoverBackgroundLight={onHoverBackgroundLight}
-        onHoverBackgroundOutline={onHoverBackgroundOutline}
+      <ButtonSui
         mode={m}
-        outlinebordercolor={outlineBorderColor || getOulineBorder()}
-        color={getColor(variant, color, m as "light" | "dark")}
-        disabled={isLoading || disabled}
-        ref={ref}
-        {...props}
-        variant={variant}
         size={size}
         radius={radius}
+        variant={variant}
         width={getWidth()}
-        className={props.className}
+        disabled={props.disabled || props.isLoading}
+        {...props}
+        ref={ref}
       >
-        {isLoading ? (
-          <AiOutlineLoading3Quarters className="loader" />
-        ) : (
+        {props.isLoading ? (
           <>
-            {icon && iconPosition === "left"
-              ? icon && <Icon size={iconSize} icon={icon} />
-              : null}
+            <AiOutlineLoading3Quarters className="loader" />
+            {children}
           </>
-        )}{" "}
-        {children}
-        {!isLoading && icon && iconPosition === "right"
-          ? icon && <Icon size={iconSize} icon={icon} />
-          : null}
-      </Button>
+        ) : (
+          ((
+            <>
+              {icon && iconPosition === "left" && (
+                <Icon size={iconSize} icon={icon} />
+              )}
+              {children}
+              {icon && iconPosition === "right" && (
+                <Icon size={iconSize} icon={icon} />
+              )}
+            </>
+          ) as any)
+        )}
+      </ButtonSui>
     );
   }
 );
 
-export default Btn;
+export default Button;
+Button.displayName = "Button";

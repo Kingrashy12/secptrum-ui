@@ -30,7 +30,7 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
-        "styled-components": "styled",
+        "styled-chroma": "StyledChroma",
       },
       sourcemap: true,
     },
@@ -64,5 +64,5 @@ export default {
     visualizer({ open: true, filename: "bundle-analysis.html" }),
   ],
   // Prevent bundling of peer dependencies
-  external: ["react", "react-dom", "styled-components", "react-icons"],
+  external: ["react", "react-dom", "styled-chroma", "react-icons"],
 };
