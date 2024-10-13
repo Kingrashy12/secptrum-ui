@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/images/secptrum-logo.png" alt="SecptrumUI Logo" width="200" height="200" />
+  <img src="https://github.com/SecptrumLab/secptrum-ui/blob/main/images/secptrumui-logo.png" alt="SecptrumUI Logo" width="200" height="200" />
 </div>
 
 #
