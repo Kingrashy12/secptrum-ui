@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.32",
+  "version": "1.1.33-beta.1",
   "description": "**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {
@@ -28,11 +28,15 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "insert-client": "node scripts/insertUseClient.js",
     "postbuild": "copyfiles -u 1 src/types/**/* dist/",
     "prerelease": "npx tsc --noEmit",
     "release": "npm version patch && git push origin master --follow-tags",
     "release-org": "npm version patch && git push org-origin master --follow-tags",
     "typecheck": "tsc --noEmit"
+  },
+  "bin": {
+    "insert-client": "./scripts/insertUseClient.js"
   },
   "keywords": [
     "react",
@@ -71,6 +75,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",
     "tslib": "^2.7.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "insert-client": "./scripts/insertUseClient.js"
   }
 }
