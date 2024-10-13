@@ -30,7 +30,8 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
-        "styled-chroma": "StyledChroma",
+        "styled-chroma": "styled",
+        "react/jsx-runtime": "jsxRuntime",
       },
       sourcemap: true,
     },
@@ -64,5 +65,5 @@ export default {
     visualizer({ open: true, filename: "bundle-analysis.html" }),
   ],
   // Prevent bundling of peer dependencies
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "react/jsx-runtime"],
 };

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import useNavigation from "../../hooks/useNavigation";
-import { useAuth } from "../../hooks/useAuth";
 
 type AuthenticateSessionProps = {
   children: React.ReactNode;
@@ -10,6 +9,7 @@ type AuthenticateSessionProps = {
    * If neither this prop nor the environment variable is set, an error will be thrown.
    */
   RedirectUrl: string;
+  isAuthenticated: boolean;
 };
 
 /**
@@ -25,8 +25,8 @@ type AuthenticateSessionProps = {
 const AuthenticateSession = ({
   children,
   RedirectUrl,
+  isAuthenticated,
 }: AuthenticateSessionProps) => {
-  const { isAuthenticated } = useAuth();
   const navigate = useNavigation();
 
   /**

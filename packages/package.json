@@ -1,0 +1,76 @@
+{
+  "name": "secptrum-ui",
+  "version": "1.1.32",
+  "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-chroma`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
+  "homepage": "https://secptrumui.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SecptrumLab/secptrum-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/SecptrumLab/secptrum-ui/issues"
+  },
+  "main": "dist/secptrum-ui.cjs.js",
+  "module": "dist/secptrum-ui.es.js",
+  "unpkg": "dist/secptrum-ui.umd.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/secptrum-ui.es.js",
+      "require": "./dist/secptrum-ui.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "dist/types",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "postbuild": "copyfiles -u 1 src/types/**/* dist/",
+    "prerelease": "npx tsc --noEmit",
+    "release": "npm version patch && git push origin master --follow-tags",
+    "release-org": "npm version patch && git push org-origin master --follow-tags",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "react",
+    "ui-components",
+    "react-components",
+    "button",
+    "input",
+    "modal",
+    "toast",
+    "image-picker",
+    "loader"
+  ],
+  "author": {
+    "name": "Rapheal Chizitere"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "jwt-decode": "^4.0.0",
+    "react-icons": "^5.3.0",
+    "styled-chroma": "^0.1.61"
+  },
+  "peerDependencies": {
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.3",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.5",
+    "copyfiles": "^2.4.1",
+    "rollup": "^2.79.2",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "tslib": "^2.7.0",
+    "typescript": "^5.5.4"
+  }
+}
