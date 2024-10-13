@@ -64,5 +64,5 @@ export default {
     visualizer({ open: true, filename: "bundle-analysis.html" }),
   ],
   // Prevent bundling of peer dependencies
-  external: ["react", "react-dom", "styled-chroma", "react-icons"],
+  external: ["react", "react-dom"],
 };

@@ -27,14 +27,25 @@
 
 ## Installation
 
+### Prerequisites
+
+Before installing SecptrumUI, ensure you have:
+
+- React `>= 18.0.0`
+- ReactDOM `>= 18.0.0`
+
+installed in your project.
+
+### Install SecptrumUI
+
 To install SecptrumUI, you can use npm or yarn:
 
 ```bash
 # Using npm
-npm install secptrum-ui styled-components react-icons
+npm install secptrum-ui
 
 # Using yarn
-yarn add secptrum-ui styled-components react-icons
+yarn add secptrum-ui
 ```
 
 ## Usage
