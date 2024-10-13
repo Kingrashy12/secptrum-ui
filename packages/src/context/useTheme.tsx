@@ -59,7 +59,8 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 /**
  * Custom hook to access the current theme context.
- * @deprecated
+ * @deprecated useTheme is deprecated and will be removed in the next major release.
+ * Use the `useTheme` hook from `styled-chroma` instead.
  */
 export const useTheme = () => {
   const context = useContext(ThemeContext);
@@ -76,7 +77,8 @@ export const useTheme = () => {
 
 /**
  * ThemeProvider component to wrap your application with the theme context.
- * @deprecated
+ * @deprecated ThemeProvider is deprecated and will be removed in the next major release.
+ * Use the `ThemeProvider` component from `styled-chroma` instead.
  */
 const ThemeProvider = ({
   children,
