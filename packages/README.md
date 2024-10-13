@@ -4,7 +4,7 @@
 
 #
 
-**SecptrumUI** is a customizable and modern UI component library for react, built with `styled-components`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.
+**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`.
 
 ## Table of Contents
 
@@ -13,12 +13,11 @@
 - [Usage](#usage)
 - [Components](#components)
 - [Customization](#customization)
-- [CLI Tool](#cli-tool)
 - [Contributing](#contributing)
 
 ## Features
 
-- 🎨 **Customizable**: Easily customize components using `styled-components` for advanced styling.
+- 🎨 **Customizable**: Easily customize components using `styled-chroma` for advanced styling.
 - 🧩 **Modular**: Import only the components you need, reducing bundle size.
 - 💻 **Responsive**: All components are designed to be fully responsive.
 - ⚡ **Fast Development**: Speed up your development process with pre-built, easy-to-integrate components.
@@ -78,7 +77,7 @@ SecptrumUI includes a variety of components to help you build your application
 - [Modal](#Modal): A modal dialog for alerts, confirmations, or custom content.
 - [Toast](#Toast): Notifications and messages to provide feedback to users.
 - [Input](#Input): Customizable input fields with validation support.
-- [Dropdown](#Dropdown): A dropdown menu for navigation or selection options.
+- [Tabs](#Tabs): A tabs component for navigation or selection options.
 - [Stack](#Stack): A layout component for arranging child elements with spacing.
 - [Box](#Box): A versatile container component for layout and styling purposes.
 - [ImagePicker](#ImagePicker): A picker components that allows users to select and upload an image.
@@ -99,27 +98,28 @@ SecptrumUI includes a variety of components to help you build your application
 
 - `Box`: A flexible container component that serves as a building block for layout and styling. The Box component allows you to easily control spacing (padding and margin), alignment, borders, and other CSS properties through props.
 
-For a full list of components and their usage, please refer to the [documentation](https://secptrumui.vercel.app/).
+## Tabs
+
+- `Tabs`: A tabs component that allows users to switch between different views or sections of content. The Tabs component provides a clean and intuitive interface for navigating between different parts of an application.
+
+For a full list of components and their usage, please refer to the [documentation](https://secptrumui.vercel.app//docs/components/action/button).
 
 ## Coutomization
 
-SecptrumUI leverages `styled-components` for customization. You can adjust the appearance of components by using the `styled-components` API to create your own styles.
-
-- **`Note:`** When customizing with styled-components, you might encounter issues where your custom styles don't apply due to the component's default styles having higher specificity. In such cases, you can use `&&` to increase the specificity of your styles.
+SecptrumUI leverages `styled-chroma` for customization. You can adjust the appearance of components by using the `styled-chroma` API to create your own styles.
 
 ### Example
 
 ```bash
-import styled from "styled-components";
+import { styled } from "styled-chroma";
 import { Button } from 'secptrum-ui';
 
 // Customizing the Button component
+
 const CustomButton = styled(Button)`
-  && {
-    background-color: #007bff; /* Override background color */
-    color: white;  # /* Override text color */
-    padding: 12px 24px; # /* Add custom padding */
-  }
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
 `;
 
 function App() {
@@ -133,85 +133,6 @@ function App() {
 export default App;
 ```
 
-## CLI Tool
+## Contributing
 
-SecptrumUI includes a CLI tool to help set up your Next.js project for use with `styled-components`. This tool automatically configures your project with the necessary files and settings.
-
-- **_Note:_**
-  This setup is specific to Next.js and provides detailed instructions for configuration.
-
-### Setup the CLI Tool Locally
-
-1. **Install Dependencies**
-
-   First, ensure you have the `secptrum-ui` and `styled-components` packages installed:
-
-   ```bash
-   npm install secptrum-ui styled-components
-   ```
-
-2. **Run the Setup Command**
-
-Navigate to your project directory and run the setup script:
-
-```bash
- npx secptrum-setup setup
-```
-
-This command will perform the following actions:
-
-- If the `src` Directory Exists: Creates a `lib/registry.tsx` (or `lib/registry.js` for JavaScript) inside the `src` directory if it doesn't already exist.
-
-- If the `src` Directory Does Not Exist: Creates `lib/registry.tsx` (or `lib/registry.js`) in the root directory.
-
-3. **Enable styled-components in next.config.js.**
-
-```bash
-
-module.exports = {
-  compiler: {
-    styledComponents: true,
-  },
-}
-
-```
-
-4. **Wrap the children of the root layout with the style registry component:**
-
-- **Typescript:**
-
-```bash
-import StyledComponentsRegistry from './lib/registry'
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html>
-      <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-      </body>
-    </html>
-  )
-}
-```
-
-- **Javascript:**
-
-```bash
-import StyledComponentsRegistry from './lib/registry'
-
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-      </body>
-    </html>
-  )
-}
-```
-
-These steps ensure that your project is properly configured for styled-components with Next.js, following the latest guidelines.
+We welcome contributions to improve SecptrumUI! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to submit improvements and bug fixes.

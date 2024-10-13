@@ -1,7 +1,7 @@
 {
   "name": "secptrum-ui",
   "version": "1.1.32",
-  "description": "**SecptrumUI** is a customizable and modern UI component library built with `styled-chroma`. Designed to help developers quickly build beautiful and responsive web applications, SecptrumUI offers a range of components that are easy to use and adapt to any project.",
+  "description": "**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {
     "type": "git",
