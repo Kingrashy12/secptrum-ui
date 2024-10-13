@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import AuthenticateSession from "../utils/auth/Authenticate";
 import { jwtDecode } from "jwt-decode";
-import useNavigation from "../hooks/useNavigation";
+import useNavigation from "./useNavigation";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -92,7 +92,10 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, loginUser, logout, user }}>
-      <AuthenticateSession RedirectUrl={RedirectUrl}>
+      <AuthenticateSession
+        RedirectUrl={RedirectUrl}
+        isAuthenticated={isAuthenticated}
+      >
         {children}
       </AuthenticateSession>
     </AuthContext.Provider>
