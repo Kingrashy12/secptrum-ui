@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Icon from '../Icon/Icon';
 import { ButtonProps } from '../../types/sui';
@@ -69,15 +69,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const { mode: themeMode } = useTheme();
-    const [m, setM] = useState(mode);
-
-    useEffect(() => {
-      if (mode) {
-        setM(mode);
-      } else {
-        setM(themeMode as ButtonProps['mode']);
-      }
-    }, [mode, themeMode]);
+    const currentMode = mode ?? themeMode;
 
     const getWidth = () => {
       if (props.fullWidth) return '100%';
@@ -87,7 +79,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <ButtonSui
-        mode={m}
+        mode={currentMode as ButtonProps['mode']}
         size={size}
         radius={radius}
         variant={variant}
