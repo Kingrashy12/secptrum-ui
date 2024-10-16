@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { CardSui } from '../../styles/layout/styled';
 import { CardProps } from '../../types/sui';
-import { useTheme } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 /**
  * Card component for displaying content in a styled container.
@@ -23,8 +23,9 @@ import { useTheme } from 'styled-chroma';
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ children, mode, direction = 'column', ...rest }, ref) => {
-    const { mode: themeMode } = useTheme();
-    const currentMode = mode ?? themeMode;
+    const { mode: modeContext } = useMode();
+
+    const currentMode = useMemo(() => mode ?? modeContext, [mode, modeContext]);
 
     return (
       <CardSui
@@ -40,4 +41,4 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
 );
 
 export default Card;
-Card.displayName = 'CardSui';
+Card.displayName = 'Card';

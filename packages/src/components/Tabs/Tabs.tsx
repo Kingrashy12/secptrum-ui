@@ -3,7 +3,8 @@ import TabsList, { TabsListType } from './TabsList';
 import TabsHandle from './TabsHandle';
 import Box from '../Box/Box';
 import TabPanel from './TabPanel';
-import { styled, useTheme } from 'styled-chroma';
+import { styled } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 /**
  * Tab component for creating tabbed interfaces.
@@ -40,7 +41,7 @@ const Tab = ({
     (child) => (child as React.ReactElement).type === TabPanel
   );
 
-  const { mode: themeMode } = useTheme();
+  const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
 
   return (

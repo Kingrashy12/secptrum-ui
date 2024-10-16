@@ -1,7 +1,8 @@
 import React from 'react';
 import { colors } from '../../styles/colors';
 import Icon from './Icon';
-import { css, DivProps, styled, useTheme } from 'styled-chroma';
+import { css, DivProps, styled } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 type IconTypes = {
   icon: React.ElementType;
@@ -12,6 +13,10 @@ type IconTypes = {
   onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  className?: string;
+  color?: string;
+  title?: string;
+  styles?: React.CSSProperties;
 };
 
 /**
@@ -34,14 +39,18 @@ type IconTypes = {
 const HoverableIcon = ({
   icon,
   size,
-  mode,
-  backgroundColor,
-  radius,
+  className,
   onClick,
   onMouseEnter,
   onMouseLeave,
+  color,
+  title,
+  styles,
+  backgroundColor,
+  mode,
+  radius,
 }: IconTypes) => {
-  const { mode: themeMode } = useTheme();
+  const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
 
   return (
@@ -52,8 +61,11 @@ const HoverableIcon = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      className={className}
+      title={title}
+      styles={styles}
     >
-      <Icon icon={icon} size={size} />
+      <Icon icon={icon} color={color} size={size} />
     </HoverIcon>
   );
 };

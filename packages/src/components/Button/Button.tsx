@@ -4,7 +4,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import Icon from '../Icon/Icon';
 import { ButtonProps } from '../../types/sui';
 import { ButtonSui } from '../../styles/action/styled';
-import { useTheme } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 /**
  * A customizable button component designed to handle various actions and events in your application.
@@ -68,7 +68,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const { mode: themeMode } = useTheme();
+    const { mode: themeMode } = useMode();
     const currentMode = mode ?? themeMode;
 
     const getWidth = () => {

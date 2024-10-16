@@ -4,7 +4,7 @@ import { RiErrorWarningFill, RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import Icon from '../Icon/Icon';
 import { InputType } from '../../types/sui';
 import { colors } from '../../styles/colors';
-import { useTheme } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 /**
  * A customizable Input component for text, email, password, and number inputs.
@@ -61,7 +61,7 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
     ref
   ): JSX.Element => {
     const [inputType, setInputType] = useState(props.type);
-    const { mode: themeMode } = useTheme();
+    const { mode: themeMode } = useMode();
     const currentMode = mode ?? themeMode;
 
     const typeMap = {

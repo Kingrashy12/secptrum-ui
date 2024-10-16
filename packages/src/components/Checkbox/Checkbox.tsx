@@ -2,7 +2,7 @@ import { Checked, Checker } from '../../styles/input/styled';
 import { IoIosCheckmark } from 'react-icons/io';
 import Icon from '../Icon/Icon';
 import { colors } from '../../styles/colors';
-import { useTheme } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 type CheckBoxType = {
   /**
@@ -68,7 +68,7 @@ const CheckBox = ({
   borderColor,
   mode = 'light',
 }: CheckBoxType) => {
-  const { mode: themeMode } = useTheme();
+  const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
   const checkStyle = {
     border: currentMode === 'dark' ? colors.neutral[700] : colors.neutral[200],
@@ -93,4 +93,4 @@ const CheckBox = ({
 };
 
 export default CheckBox;
-CheckBox.displayName = 'CheckBoxSui';
+CheckBox.displayName = 'CheckBox';

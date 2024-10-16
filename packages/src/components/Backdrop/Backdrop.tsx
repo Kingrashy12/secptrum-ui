@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { forwardRef } from 'react';
 import { DropSui } from '../../styles/feedback/styled';
-import { useTheme } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 interface DropType {
   /**
@@ -82,7 +82,7 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
     },
     ref
   ) => {
-    const { mode: themeMode } = useTheme();
+    const { mode: themeMode } = useMode();
     const currentMode = mode ?? themeMode;
 
     const handleClose = (event: any) => {
@@ -114,4 +114,4 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
 );
 
 export default Backdrop;
-Backdrop.displayName = 'BackdropSui';
+Backdrop.displayName = 'Backdrop';

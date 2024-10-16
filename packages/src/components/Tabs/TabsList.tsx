@@ -1,8 +1,9 @@
 import React from 'react';
 import TabListProvider from '../../context/useTabList';
 import { IStyleTabList } from '../../types/istyle';
-import { css, styled, useTheme } from 'styled-chroma';
+import { css, styled } from 'styled-chroma';
 import { getModeStyle } from '../../utils/mode';
+import { useMode } from '../../hooks/useMode';
 
 export type TabsListType = {
   /**
@@ -65,7 +66,7 @@ const TabsList = ({
   fullWidth,
   mode,
 }: TabsListType) => {
-  const { mode: themeMode } = useTheme();
+  const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
 
   const tablistStyle = {

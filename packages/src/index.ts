@@ -13,6 +13,7 @@ export { default as Modal } from './components/modal/Modal';
 export { default as ModalPanel } from './components/modal/ModalPanel';
 export { default as ModalTitle } from './components/modal/ModalTitle';
 export { ModalContent } from './styles/feedback/styled';
+export { ModalFooter } from './styles/feedback/styled';
 export { default as Card } from './components/Card/Card';
 export { default as Toaster } from './components/Toast/Toaster';
 export { default as Checkbox } from './components/Checkbox/Checkbox';
@@ -41,6 +42,7 @@ export { useAuth } from './hooks/useAuth';
 export { default as AuthProvider } from './hooks/useAuth';
 export { default as useNavigation } from './hooks/useNavigation';
 export { default as ThemeProvider } from './context/useTheme';
+export { default as ModeProvider } from './hooks/useMode';
 
 // Types
 // export * from "./types/sui";
