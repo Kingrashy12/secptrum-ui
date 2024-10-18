@@ -52,6 +52,7 @@ const StyledBar = styled<{ light: boolean }>('div')`
   overflow-y: auto;
   flex-direction: column;
   position: sticky;
+  flex-shrink: 0;
   top: 0;
   right: 0;
   gap: 3rem;

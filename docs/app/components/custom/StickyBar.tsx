@@ -70,11 +70,12 @@ export default StickyBar;
 const StyledBar = styled<{ light: boolean }>('div')`
   height: 100vh;
   background: ${(props) => props.theme?.colors?.background};
-  width: 280px;
+  width: 260px;
   flex-direction: column;
   border-right: 1px solid
     ${(props) => (props.light ? colors.gray[300] : colors.neutral[800])};
   position: sticky;
+  flex-shrink: 0;
   top: 0;
   padding-right: 3px;
   display: flex;
