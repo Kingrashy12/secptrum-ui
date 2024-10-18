@@ -23,18 +23,6 @@ export default {
       sourcemap: true,
       exports: 'named',
     },
-    {
-      file: pkg.unpkg,
-      format: 'umd', // UMD format for use in browsers
-      name: 'SecptrumUI', // The global variable name for UMD builds
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'styled-chroma': 'styled',
-        'react/jsx-runtime': 'jsxRuntime',
-      },
-      sourcemap: true,
-    },
   ],
   plugins: [
     del({ targets: 'dist/*' }),

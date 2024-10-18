@@ -1,12 +1,13 @@
-import { css, styled } from "styled-chroma";
-import { colors } from "../../../styles/colors";
-import { barload } from "../keyframes";
+import { css, styled } from 'styled-chroma';
+import { colors } from '../../../styles/colors';
+import { barload } from '../keyframes';
 
 type BarLoaderType = {
   width?: string | number;
   height?: string | number;
   color?: string;
   rounded?: boolean;
+  //TODO Add containerColor
 };
 
 const BarLoader = ({
@@ -15,8 +16,8 @@ const BarLoader = ({
   rounded,
   color = colors.blue[600],
 }: BarLoaderType) => {
-  const parsedWidth = width.toString().includes("%") ? width : `${width}px`;
-  const parsedHeight = height.toString().includes("%") ? height : `${height}px`;
+  const parsedWidth = width.toString().includes('%') ? width : `${width}px`;
+  const parsedHeight = height.toString().includes('%') ? height : `${height}px`;
   return (
     <Container
       rounded={rounded || false}
@@ -36,7 +37,7 @@ interface IStyleLoader {
   rounded: boolean;
 }
 
-const Container = styled<IStyleLoader>("div")`
+const Container = styled<IStyleLoader>('div')`
   background: ${colors.blue[100]};
   height: ${(props) => props.height};
   width: ${(props) => props.width};
@@ -47,10 +48,10 @@ const Container = styled<IStyleLoader>("div")`
       ? css`
           border-radius: 3px;
         `
-      : ""}
+      : ''}
 `;
 
-const Loader = styled<{ color?: string }>("div")`
+const Loader = styled<{ color?: string }>('div')`
   ${(props) => css`
     background: ${props.color};
   `}
