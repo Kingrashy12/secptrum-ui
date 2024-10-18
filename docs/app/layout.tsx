@@ -19,13 +19,13 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
+        <SpeedInsights />
+        <Analytics />
         <MenuProvider>
           <SideBarProvider>
             <AppWrap>{children}</AppWrap>
           </SideBarProvider>
         </MenuProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
