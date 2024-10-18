@@ -1,10 +1,10 @@
-import { forwardRef, useEffect, useState } from "react";
-import { Input, InputForm } from "../../styles/input/styled";
-import { RiErrorWarningFill, RiEyeFill, RiEyeOffFill } from "react-icons/ri";
-import Icon from "../Icon/Icon";
-import { InputType } from "../../types/sui";
-import { colors } from "../../styles/colors";
-import { useTheme } from "styled-chroma";
+import { forwardRef, useEffect, useState } from 'react';
+import { Input, InputForm } from '../../styles/input/styled';
+import { RiErrorWarningFill, RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
+import Icon from '../Icon/Icon';
+import { InputType } from '../../types/sui';
+import { colors } from '../../styles/colors';
+import { useMode } from '../../hooks/useMode';
 
 /**
  * A customizable Input component for text, email, password, and number inputs.
@@ -38,8 +38,8 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
   (
     {
       icon,
-      variant = "outline",
-      radius = "lg",
+      variant = 'outline',
+      radius = 'lg',
       Type,
       iconSize = 20,
       outLineBorderColor,
@@ -61,30 +61,22 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
     ref
   ): JSX.Element => {
     const [inputType, setInputType] = useState(props.type);
-    const { mode: themeMode } = useTheme();
-    const [m, setM] = useState(mode);
-
-    useEffect(() => {
-      if (mode) {
-        setM(mode);
-      } else {
-        setM(themeMode as InputType["mode"]);
-      }
-    }, [mode, themeMode]);
+    const { mode: themeMode } = useMode();
+    const currentMode = mode ?? themeMode;
 
     const typeMap = {
-      email: "email",
-      text: "text",
-      password: "password",
-      number: "number",
+      email: 'email',
+      text: 'text',
+      password: 'password',
+      number: 'number',
     };
 
-    const getType = (type: InputType["Type"]) => {
+    const getType = (type: InputType['Type']) => {
       if (!type) {
-        setInputType("text");
+        setInputType('text');
         return;
       }
-      setInputType(typeMap[type] || "text");
+      setInputType(typeMap[type] || 'text');
     };
 
     useEffect(() => {
@@ -92,11 +84,11 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [Type]);
 
-    const isPassword = inputType === "password";
+    const isPassword = inputType === 'password';
 
     const togglePasswordVisibility = () => {
       setInputType((prevType) =>
-        prevType === "password" ? "text" : "password"
+        prevType === 'password' ? 'text' : 'password'
       );
     };
 
@@ -113,7 +105,7 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
           backgroundcolor={backgroundColor}
           error={hasError}
           color={color}
-          mode={m}
+          mode={currentMode as InputType['mode']}
           outLineBorderColor={outLineBorderColor}
           variant={variant}
           radius={radius}
@@ -137,9 +129,9 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
             className={inputClass}
             style={inputStyle}
             type={inputType}
-            placeholder={props.placeholder || "Type here..."}
+            placeholder={props.placeholder || 'Type here...'}
           />
-          {Type === "password" && (
+          {Type === 'password' && (
             <Icon
               onClick={togglePasswordVisibility}
               size={20}
@@ -150,13 +142,13 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
         </Input>
         {hasError && (
           <p>
-            {" "}
+            {' '}
             <Icon
               className="Icon__Sui"
               size={15}
               icon={RiErrorWarningFill}
               color="red"
-            />{" "}
+            />{' '}
             {errorMessage}
           </p>
         )}
@@ -166,4 +158,4 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
 );
 
 export default TextInput;
-TextInput.displayName = "TextInputSui";
+TextInput.displayName = 'TextInputSui';

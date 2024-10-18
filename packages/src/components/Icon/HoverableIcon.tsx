@@ -1,14 +1,22 @@
-import React from "react";
-import { colors } from "../../styles/colors";
-import Icon from "./Icon";
-import { css, DivProps, styled } from "styled-chroma";
+import React from 'react';
+import { colors } from '../../styles/colors';
+import Icon from './Icon';
+import { css, DivProps, styled } from 'styled-chroma';
+import { useMode } from '../../hooks/useMode';
 
 type IconTypes = {
   icon: React.ElementType;
   size?: number;
   backgroundColor?: string;
-  mode?: "light" | "dark";
+  mode?: 'light' | 'dark';
   radius?: number;
+  onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  className?: string;
+  color?: string;
+  title?: string;
+  styles?: React.CSSProperties;
 };
 
 /**
@@ -31,17 +39,33 @@ type IconTypes = {
 const HoverableIcon = ({
   icon,
   size,
-  mode,
+  className,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  color,
+  title,
+  styles,
   backgroundColor,
+  mode,
   radius,
 }: IconTypes) => {
+  const { mode: themeMode } = useMode();
+  const currentMode = mode ?? themeMode;
+
   return (
     <HoverIcon
       backgroundColor={backgroundColor}
-      mode={mode}
+      mode={currentMode as IconTypes['mode']}
       radius={radius || 6}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={className}
+      title={title}
+      styles={styles}
     >
-      <Icon icon={icon} size={size} />
+      <Icon icon={icon} color={color} size={size} />
     </HoverIcon>
   );
 };
@@ -49,23 +73,23 @@ const HoverableIcon = ({
 export default HoverableIcon;
 
 const Istyle = (
-  mode: IconTypes["mode"],
-  background: IconTypes["backgroundColor"]
+  mode: IconTypes['mode'],
+  background: IconTypes['backgroundColor']
 ) => {
   return {
     background:
-      background || mode === "dark" ? colors.gray[700] : colors.gray[100],
-    hover: mode === "dark" ? colors.gray[800] : colors.gray[200],
+      background || mode === 'dark' ? colors.gray[700] : colors.gray[100],
+    hover: mode === 'dark' ? colors.gray[800] : colors.gray[200],
   };
 };
 
 interface IStyleIcon extends DivProps {
-  backgroundColor: IconTypes["backgroundColor"];
-  mode: IconTypes["mode"];
+  backgroundColor: IconTypes['backgroundColor'];
+  mode: IconTypes['mode'];
   radius: number;
 }
 
-const HoverIcon = styled<IStyleIcon>("div")`
+const HoverIcon = styled<IStyleIcon>('div')`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,4 +107,4 @@ const HoverIcon = styled<IStyleIcon>("div")`
   }}
   transition: background-color 0.2s ease;
 `;
-HoverIcon.displayName = "HoverIconSui";
+HoverIcon.displayName = 'HoverIconSui';

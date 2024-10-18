@@ -4,7 +4,7 @@
 
 #
 
-**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`.
+**SecptrumUI** A comprehensive React component library
 
 ## Table of Contents
 

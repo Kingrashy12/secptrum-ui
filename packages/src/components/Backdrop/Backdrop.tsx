@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { forwardRef, useEffect, useState } from "react";
-import { DropSui } from "../../styles/feedback/styled";
-import { useTheme } from "styled-chroma";
+import React, { forwardRef } from 'react';
+import { DropSui } from '../../styles/feedback/styled';
+import { useMode } from '../../hooks/useMode';
 
 interface DropType {
   /**
@@ -56,7 +56,7 @@ interface DropType {
    * Allows developers to integrate with apps that support light/dark modes or provide a custom design.
    * @type {"light" | "dark"}
    */
-  mode?: "light" | "dark";
+  mode?: 'light' | 'dark';
   /**
    * Controls the intensity of the backdrop glass effect (blur).
    * A higher value increases the blur, creating a stronger glass effect.
@@ -82,16 +82,8 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
     },
     ref
   ) => {
-    const { mode: themeMode } = useTheme();
-    const [m, setM] = useState(mode);
-
-    useEffect(() => {
-      if (mode) {
-        setM(mode);
-      } else {
-        setM(themeMode as DropType["mode"]);
-      }
-    }, [mode, themeMode]);
+    const { mode: themeMode } = useMode();
+    const currentMode = mode ?? themeMode;
 
     const handleClose = (event: any) => {
       if (!preventClose && event.target === event.currentTarget) {
@@ -100,7 +92,8 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
     };
 
     const dropStyle = {
-      background: m === "dark" ? "rgb(0,0,0, 0.6)" : "rgb(255, 255, 255, 0.5)",
+      background:
+        currentMode === 'dark' ? 'rgb(0,0,0, 0.6)' : 'rgb(255, 255, 255, 0.5)',
     };
 
     return (
@@ -121,4 +114,4 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
 );
 
 export default Backdrop;
-Backdrop.displayName = "BackdropSui";
+Backdrop.displayName = 'Backdrop';
