@@ -1,7 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "docs",
+    "docs/*",
     "packages/*"
   ],
   "scripts": {
@@ -10,6 +10,9 @@
     "typecheck:packages": "cd packages && npm run typecheck",
     "ship:packages": "cd packages && npm publish",
     "start:docs": "cd docs && npm run dev",
-    "install:docs": "cd docs && npm install"
+    "install:docs": "cd docs && npm install",
+    "push-main": "git push origin master",
+    "push-org": "git push org-origin master",
+    "push-all": "npm run push-main && npm run push-org"
   }
 }
