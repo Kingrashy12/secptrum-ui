@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DivProps } from "styled-chroma";
+import { DivProps } from 'styled-chroma';
 import {
   BoxType,
   FloatProps,
@@ -7,39 +7,39 @@ import {
   ToastOptionsType,
   ToastPositionType,
   ToastVariant,
-} from "./sui";
-import { ModalPanelType } from "../components/modal/ModalPanel";
+} from './sui';
+import { ModalPanelType } from '../components/modal/ModalPanel';
 
 /**
  * Interface for styling Box component
  */
 export interface IStyleBox {
-  padding?: BoxType["padding"];
-  margin?: BoxType["margin"];
-  centered?: BoxType["centered"];
-  paddingTop?: BoxType["paddingTop"];
-  paddingBottom?: BoxType["paddingBottom"];
-  paddingLeft?: BoxType["paddingLeft"];
-  paddingRight?: BoxType["paddingRight"];
-  border?: BoxType["border"];
-  marginTop?: BoxType["marginTop"];
-  marginBottom?: BoxType["marginBottom"];
-  marginLeft?: BoxType["marginLeft"];
-  marginRight?: BoxType["marginRight"];
-  direction?: BoxType["direction"];
-  wrap?: BoxType["wrap"];
-  spacing?: BoxType["spacing"];
-  fullWidth?: BoxType["fullWidth"];
-  width?: BoxType["width"];
+  padding?: BoxType['padding'];
+  margin?: BoxType['margin'];
+  centered?: BoxType['centered'];
+  paddingTop?: BoxType['paddingTop'];
+  paddingBottom?: BoxType['paddingBottom'];
+  paddingLeft?: BoxType['paddingLeft'];
+  paddingRight?: BoxType['paddingRight'];
+  border?: BoxType['border'];
+  marginTop?: BoxType['marginTop'];
+  marginBottom?: BoxType['marginBottom'];
+  marginLeft?: BoxType['marginLeft'];
+  marginRight?: BoxType['marginRight'];
+  direction?: BoxType['direction'];
+  wrap?: BoxType['wrap'];
+  spacing?: BoxType['spacing'];
+  fullWidth?: BoxType['fullWidth'];
+  width?: BoxType['width'];
 }
 
 /**
  * Interface for styling Stack component, extends IStyleBox
  */
 export interface IStyleStack extends IStyleBox {
-  spacing: StackType["spacing"];
-  align: StackType["align"];
-  wrap?: StackType["wrap"];
+  spacing: StackType['spacing'];
+  align: StackType['align'];
+  wrap?: StackType['wrap'];
 }
 
 /**
@@ -77,23 +77,23 @@ export interface IStyleChecked {
  */
 export interface IStyleFab {
   backgroundcolor: string | any;
-  position: ToastPositionType | "bottom-center" | "top-center";
+  position: ToastPositionType | 'bottom-center' | 'top-center';
   disabled: boolean | any;
-  colorScheme: FloatProps["colorScheme"];
-  variant: FloatProps["variant"];
-  size: FloatProps["size"];
-  moveOnScroll: FloatProps["moveOnScroll"];
+  colorScheme: FloatProps['colorScheme'];
+  variant: FloatProps['variant'];
+  size: FloatProps['size'];
+  moveOnScroll: FloatProps['moveOnScroll'];
 }
 
 /**
  * Interface for styling ModalPanel component
  */
 export interface IStyleModalPanel {
-  size: ModalPanelType["size"];
-  transition: ModalPanelType["transition"];
+  size: ModalPanelType['size'];
+  transition: ModalPanelType['transition'];
   backgroundColor: string | any;
-  align: ModalPanelType["align"];
-  spacing: ModalPanelType["spacing"];
+  align: ModalPanelType['align'];
+  spacing: ModalPanelType['spacing'];
   isVisible: boolean;
 }
 
@@ -102,7 +102,7 @@ export interface IStyleModalPanel {
  */
 export interface IStyleModalFooter {
   space?: number;
-  position?: "right" | "left";
+  position?: 'right' | 'left';
 }
 
 /**
@@ -111,7 +111,7 @@ export interface IStyleModalFooter {
 export interface IStyleToast extends DivProps {
   position: ToastPositionType;
   isVisible: boolean;
-  transition: ToastOptionsType["transition"];
+  transition: ToastOptionsType['transition'];
 }
 
 /**
@@ -147,7 +147,7 @@ export interface IStyleSwitchHandle {
  */
 
 export interface IStyleTabList {
-  variant: "line" | "solid" | any;
+  variant: 'line' | 'solid' | any;
   backgroundcolor: string | any;
   fullWidth: boolean | any;
   lineColor: string | any;
@@ -160,8 +160,17 @@ export interface IStyleTabList {
 export interface IStyleTabHandle {
   iscurrent: boolean;
   activeColor: string | any;
-  variant: "line" | "solid";
+  variant: 'line' | 'solid';
   inactivecolor: string;
   disabled: boolean;
   fullWidth: boolean | any;
+}
+
+export interface IStyleDrawer {
+  position: 'left' | 'right';
+  variant: 'default' | 'modal';
+  background: string | any;
+  width: string;
+  mode: 'light' | 'dark';
+  spacing: number;
 }

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import useNavigation from "../../hooks/useNavigation";
+import React, { useEffect } from 'react';
+import useRouter from 'src/hooks/useRouter';
 
 type AuthenticateSessionProps = {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ const AuthenticateSession = ({
   RedirectUrl,
   isAuthenticated,
 }: AuthenticateSessionProps) => {
-  const navigate = useNavigation();
+  const { router } = useRouter();
 
   /**
    * Function to get the redirect URL from the environment variables.
@@ -43,7 +43,7 @@ const AuthenticateSession = ({
       return RedirectUrl;
     } else {
       throw new Error(
-        "No redirect URL is set, please set SUI_AUTH_REDIRECT_URL or pass RedirectUrl prop"
+        'No redirect URL is set, please set SUI_AUTH_REDIRECT_URL or pass RedirectUrl prop'
       );
     }
   }
@@ -52,9 +52,9 @@ const AuthenticateSession = ({
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate(redirectUrl);
+      router.push(redirectUrl);
     }
-  }, [isAuthenticated, navigate, redirectUrl]);
+  }, [isAuthenticated, redirectUrl]);
 
   return <>{children}</>;
 };

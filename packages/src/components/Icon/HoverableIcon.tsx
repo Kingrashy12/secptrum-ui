@@ -17,6 +17,7 @@ type IconTypes = {
   color?: string;
   title?: string;
   styles?: React.CSSProperties;
+  disabled?: boolean;
 };
 
 /**
@@ -49,9 +50,11 @@ const HoverableIcon = ({
   backgroundColor,
   mode,
   radius,
+  disabled,
 }: IconTypes) => {
   const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
+  const modeColor = currentMode === 'dark' ? 'white' : 'black';
 
   return (
     <HoverIcon
@@ -64,8 +67,9 @@ const HoverableIcon = ({
       className={className}
       title={title}
       styles={styles}
+      disabled={disabled}
     >
-      <Icon icon={icon} color={color} size={size} />
+      <Icon icon={icon} color={color || modeColor} size={size} />
     </HoverIcon>
   );
 };
@@ -87,6 +91,7 @@ interface IStyleIcon extends DivProps {
   backgroundColor: IconTypes['backgroundColor'];
   mode: IconTypes['mode'];
   radius: number;
+  disabled?: boolean;
 }
 
 const HoverIcon = styled<IStyleIcon>('div')`
@@ -106,5 +111,8 @@ const HoverIcon = styled<IStyleIcon>('div')`
     `;
   }}
   transition: background-color 0.2s ease;
+  opacity: ${(props) => (props.disabled ? 0.9 : 1)};
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
 `;
 HoverIcon.displayName = 'HoverIconSui';

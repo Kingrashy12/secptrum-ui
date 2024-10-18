@@ -1,4 +1,4 @@
-import { keyframes } from "styled-chroma";
+import { keyframes } from 'styled-chroma';
 
 export const spin = keyframes`
 from {
@@ -111,5 +111,16 @@ export const popOut = keyframes`
     100% {
       transform: translateY(50%);
       opacity: 0;
+    }
+`;
+
+export const slideInFromLeft = keyframes`
+  0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
     }
 `;

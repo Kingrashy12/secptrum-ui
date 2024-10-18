@@ -78,7 +78,7 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
       centerContent = true,
       preventClose,
       mode,
-      glassEffect,
+      glassEffect = 6,
     },
     ref
   ) => {
