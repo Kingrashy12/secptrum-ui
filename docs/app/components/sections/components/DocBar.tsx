@@ -7,7 +7,7 @@ import { fonts } from '@/styles/global';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { Box, colors } from 'secptrum-ui';
-import { styled, DivProps } from 'styled-chroma';
+import { styled } from 'styled-chroma';
 
 const DocBar = () => {
   const headers = useAppSelector((state) => state.page_content.contents);
@@ -24,54 +24,40 @@ const DocBar = () => {
   }, [headers.length]);
 
   return (
-    <BarWrap>
-      <StyledBar theme={theme} light={light}>
-        <ContentWrap>
-          <UL>
-            {headers
-              .filter((header) => header.text.length! < 50 && header.id !== '')
-              .map((header, index) => (
-                <Link href={`#${header.id}`} key={index}>
-                  <ListItem theme={theme} key={header.id}>
-                    {header.text}
-                  </ListItem>
-                </Link>
-              ))}
-          </UL>
-        </ContentWrap>
-      </StyledBar>
-    </BarWrap>
+    <StyledBar theme={theme} light={light}>
+      <ContentWrap>
+        <UL>
+          {headers
+            .filter((header) => header.text.length! < 50 && header.id !== '')
+            .map((header, index) => (
+              <Link href={`#${header.id}`} key={index}>
+                <ListItem theme={theme} key={header.id}>
+                  {header.text}
+                </ListItem>
+              </Link>
+            ))}
+        </UL>
+      </ContentWrap>
+    </StyledBar>
   );
 };
 
 export default DocBar;
 
-const BarWrap = styled(Box)`
-  width: 300px;
-
-  @media screen and (max-width: 1024px) {
-    display: none;
-  }
-`;
-
-const StyledBar = styled<DivProps & { light: boolean }>('div')`
-  height: 100vh;
+const StyledBar = styled<{ light: boolean }>('div')`
   width: 250px;
   display: flex;
   border-left: 1px solid
     ${(props) => (props.light ? colors.neutral[300] : colors.neutral[800])};
   overflow-y: auto;
   flex-direction: column;
-  position: fixed;
+  position: sticky;
   top: 0;
-  flex-shrink: 0;
   right: 0;
   gap: 3rem;
   background: ${(props) => props.theme.colors?.background};
+  height: 100vh;
 
-  @media screen and (max-width: 1024px) {
-    width: 150px;
-  }
   @media screen and (max-width: 1024px) {
     display: none;
   }

@@ -1,7 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "docs",
+    "docs/*",
     "packages/*"
   ],
   "scripts": {

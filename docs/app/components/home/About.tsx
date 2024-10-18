@@ -29,9 +29,8 @@ const Hero_About = () => {
       </TagWrapper>
       <DescWrap>
         <Typography font="nunito" className="desc">
-          A versatile and user-friendly UI component library that offers
-          customizable and responsive design elements, empowering developers to
-          create dynamic interfaces with ease.
+          A comprehensive React component library, combining modern design
+          principles with powerful customization.
         </Typography>
       </DescWrap>
       {/* <CardsSection /> */}

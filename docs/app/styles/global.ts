@@ -17,7 +17,7 @@ export const Container = styled(Box)`
 
 export const RootWrap = styled(Box)`
   width: 100%;
-  display: flex !important;
+  display: flex;
   height: 100%;
 `;
 
@@ -30,8 +30,6 @@ export const GlobalStyles = createGlobalStyle`
   body{
     font-family: 'Poppins', sans-serif;
     background-color: ${({ theme }) => theme.colors?.background};
-    width: 100%;
-    height: 100%;
   }
 `;
 
