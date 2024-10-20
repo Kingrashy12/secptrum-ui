@@ -1,28 +1,30 @@
-'use client';
+"use client";
 
-import PropOptions from '@/components/custom/docs/PropOptions';
-import DocsLayout from '@/components/layout/DocsLayout';
+import PropOptions from "@/components/custom/docs/PropOptions";
+import DocsLayout from "@/components/layout/DocsLayout";
 
 import {
   BodyText,
   LargeTextHeader,
   TextContent_Wrap,
-} from '@/styles/docs/start.styled';
-import React from 'react';
+} from "@/styles/docs/start.styled";
+import React from "react";
 import ToastProps, {
   ToastPositions,
   ToastTransition,
   ToastTypes,
-} from '../../components/Toast';
-import DocInfo from '@/components/custom/docs/DocInfo';
-import HeaderText from '@/components/custom/docs/HeaderText';
-import BasicToast from '@/components/preview/toast/Basic';
-import PositionToast from '@/components/preview/toast/Position';
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import { toastCodes } from '@/data/code/toast';
-import TransitionsToast from '@/components/preview/toast/Transitions';
-import { Divider } from '@/styles/global';
-import ComponentsBadge from '@/components/custom/ComponentsBadge';
+} from "../../components/Toast";
+import DocInfo from "@/components/custom/docs/DocInfo";
+import HeaderText from "@/components/custom/docs/HeaderText";
+import BasicToast from "@/components/preview/toast/Basic";
+import PositionToast from "@/components/preview/toast/Position";
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import { toastCodes } from "@/data/code/toast";
+import TransitionsToast from "@/components/preview/toast/Transitions";
+import { Divider } from "@/styles/global";
+import ComponentsBadge from "@/components/custom/ComponentsBadge";
+import ToasterConfig from "@/components/example/feedback/toast/ToasterConfig";
+import ToasterConfigTs from "@/components/example/feedback/toast/ToasterConfigTs";
 
 const Toast = () => {
   return (
@@ -52,9 +54,9 @@ const Toast = () => {
         <BodyText>
           The Toast component comes with four built-in transition effects to
           enhance the way notifications appear on the screen. You can choose
-          between <ComponentsBadge>walkIn</ComponentsBadge>,{' '}
-          <ComponentsBadge>slideIn</ComponentsBadge>,{' '}
-          <ComponentsBadge>dropIn</ComponentsBadge>, and{' '}
+          between <ComponentsBadge>walkIn</ComponentsBadge>,{" "}
+          <ComponentsBadge>slideIn</ComponentsBadge>,{" "}
+          <ComponentsBadge>dropIn</ComponentsBadge>, and{" "}
           <ComponentsBadge>popIn</ComponentsBadge> transitions depending on the
           type of animation you want for your toast notifications.
         </BodyText>
@@ -69,19 +71,19 @@ const Toast = () => {
       <DocInfo type="info" mt={10}>
         <BodyText>
           To use the <ComponentsBadge>toast</ComponentsBadge> functionality, you
-          must import and render the <ComponentsBadge>Toaster</ComponentsBadge>{' '}
+          must import and render the <ComponentsBadge>Toaster</ComponentsBadge>{" "}
           component in your root layout or root file.
         </BodyText>
       </DocInfo>
       <PropOptions hideHeader>
-        <li>Next.Js</li>
+        <li>JavaScript</li>
       </PropOptions>
-      <CodeBlock code={toastCodes.next} />
+      <ToasterConfig />
       <div style={{ marginTop: 16 }} />
       <PropOptions hideHeader>
-        <li>Plain React (CRA)</li>
+        <li>TypeScript</li>
       </PropOptions>
-      <CodeBlock code={toastCodes.cra} />
+      <ToasterConfigTs />
     </DocsLayout>
   );
 };

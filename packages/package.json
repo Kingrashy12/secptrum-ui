@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.42",
+  "version": "1.1.45",
   "description": "**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {
@@ -31,7 +31,7 @@
     "copy-types": "copyfiles -u 1 src/types/**/* dist/",
     "postbuild": "npm run copy-types && npm run insert-client",
     "prerelease": "npx tsc --noEmit",
-    "release": "npm version patch && git push origin master --follow-tags",
+    "release": "npm version patch && git push org-origin master --follow-tags",
     "release-org": "npm version patch && git push org-origin master --follow-tags",
     "release-both": "npm run release && npm run release-org",
     "typecheck": "tsc --noEmit"

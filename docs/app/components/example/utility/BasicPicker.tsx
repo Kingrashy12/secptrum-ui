@@ -1,7 +1,7 @@
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import Media from '@/components/custom/Media';
-import { Preview } from '@/styles/docs/start.styled';
-import React, { useState } from 'react';
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import Media from "@/components/custom/Media";
+import { Preview } from "@/styles/docs/start.styled";
+import React, { useState } from "react";
 import {
   Stack,
   Button,
@@ -10,17 +10,17 @@ import {
   TabsHandle,
   TabPanel,
   toast,
-} from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+} from "secptrum-ui";
+import { styled } from "styled-chroma";
 
 const BasicPicker = ({ code }: { code: string }) => {
   const [openPicker, setOpenPicker] = useState(false);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
 
   function handleImageSelect(image: string) {
     setImage(image);
     if (image) {
-      toast.success('Great, now click on the image to remove');
+      toast.success("Great, now click on the image to remove");
     } else {
       toast.info("😢 You didn't pick any image");
     }
@@ -41,7 +41,12 @@ const BasicPicker = ({ code }: { code: string }) => {
             />
 
             {image ? (
-              <SelectedImage src={image} onClick={() => setImage('')} />
+              <SelectedImage
+                src={image}
+                width={50}
+                height={50}
+                onClick={() => setImage("")}
+              />
             ) : (
               <Button variant="outline" onClick={() => setOpenPicker(true)}>
                 Upload image

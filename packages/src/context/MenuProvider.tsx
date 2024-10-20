@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
-import Menu from '../components/Menu/Menu';
-import MenuTrigger from '../components/Menu/MenuTrigger';
-import { MenuProps } from '../types/sui';
-import MenuItem from '../components/Menu/MenuItem';
-import Box from '../components/Box/Box';
-import { MenuContext } from './menu';
+import React, { useRef, useState } from "react";
+import Menu from "../components/Menu/Menu";
+import MenuTrigger from "../components/Menu/MenuTrigger";
+import { MenuProps } from "../types/sui";
+import MenuItem from "../components/Menu/MenuItem";
+import Box from "../components/Box/Box";
+import { MenuContext } from "./menu";
 
 /**
  * MenuProvider component is a context provider for the Menu component.
@@ -34,20 +34,36 @@ const MenuProvider = ({ children, ...props }: MenuProps) => {
   );
 
   function renderChildren(elements: React.ReactNode[], isTrigger?: boolean) {
-    return elements.map((element, index) =>
-      isTrigger ? (
-        <MenuTrigger key={index} ref={triggerRef}>
-          {(element as React.ReactElement).props.children}
-        </MenuTrigger>
-      ) : (
+    return elements.map((element, index) => {
+      if (!React.isValidElement(element)) {
+        // Skip invalid elements
+        return null;
+      }
+
+      if (isTrigger) {
+        return (
+          <MenuTrigger key={index} ref={triggerRef}>
+            {element.props.children}
+          </MenuTrigger>
+        );
+      }
+
+      return (
         <MenuItem
-          space={(element as React.ReactElement).props.space}
           key={index}
+          onClick={element.props.onClick}
+          className={element.props.className}
+          id={element.props.id}
+          color={element.props.color}
+          style={element.props.style}
+          space={element.props.space}
+          mode={element.props.mode}
+          disabled={element.props.disabled}
         >
-          {(element as React.ReactElement).props.children}
+          {element.props.children}
         </MenuItem>
-      )
-    );
+      );
+    });
   }
 
   return (
@@ -61,4 +77,4 @@ const MenuProvider = ({ children, ...props }: MenuProps) => {
 };
 
 export default MenuProvider;
-MenuProvider.displayName = 'MenuProvider';
+MenuProvider.displayName = "MenuProvider";

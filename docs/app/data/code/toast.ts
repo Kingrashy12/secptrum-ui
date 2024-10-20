@@ -7,10 +7,10 @@ import YourApp from './YourApp';
 
 const App = () => {
   return (
-    <div>
+    <>
       <Toaster />
       <YourApp />
-    </div>
+    </>
   );
 };
 
@@ -20,7 +20,7 @@ export default App;
 // pages/_app.js
 import { Toaster } from 'secptrum-ui';
 
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Toaster />
@@ -28,8 +28,56 @@ function App({ Component, pageProps }) {
     </>
   );
 }
+    `,
+  next_ts: `
+// pages/_app.tsx
+import { Toaster } from 'secptrum-ui';
+import type { AppProps } from "next/app";
 
-export default App;
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Toaster />
+      <Component {...pageProps} />
+    </>
+  );
+}
+    `,
+  next_app: `
+// app/layout.jsx
+import { Toaster } from 'secptrum-ui';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head />
+      <body>
+       <Toaster />
+       <>{children}</>
+      </body>
+    </html>
+  );
+}
+    `,
+  next_app_ts: `
+// app/layout.tsx
+import { Toaster } from 'secptrum-ui';
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <head />
+      <body>
+       <Toaster />
+       <>{children}</>
+      </body>
+    </html>
+  );
+}
     `,
   basic: `
 import { toast, Button, Stack } from 'secptrum-ui';

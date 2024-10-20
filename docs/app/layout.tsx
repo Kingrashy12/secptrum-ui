@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
-import { AppWrap } from './components';
-import './globals.css';
-import { MenuProvider, SideBarProvider } from './context';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from "next";
+import { AppWrap } from "./components";
+import "./globals.css";
+import { MenuProvider, SideBarProvider } from "./context";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "secptrum-ui";
 
 export const metadata: Metadata = {
-  title: 'Secptrum UI',
-  description: 'A comprehensive React component library',
+  title: "Secptrum UI",
+  description: "A comprehensive React component library",
 };
 
 export default function RootLayout({
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Analytics />
         <MenuProvider>
           <SideBarProvider>
+            <Toaster />
             <AppWrap>{children}</AppWrap>
           </SideBarProvider>
         </MenuProvider>

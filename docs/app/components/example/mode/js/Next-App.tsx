@@ -1,5 +1,5 @@
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import React from 'react';
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import React from "react";
 
 const code = `
 //In Next.js 13+ with the App Router, you can structure your application as follows:
@@ -41,7 +41,7 @@ export default AppWrap;
 //app/layout.jsx
 import AppWrap from '@/components/layout/AppWrap';
 
-export default function RootLayout = ({ children }) => {
+export default function RootLayout ({ children }) {
   return (
     <html lang="en">
       <head />

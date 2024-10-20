@@ -1,14 +1,13 @@
-import React from 'react';
-import { colors } from '../../styles/colors';
-import Icon from './Icon';
-import { css, DivProps, styled } from 'styled-chroma';
-import { useMode } from '../../hooks/useMode';
+import React from "react";
+import { colors } from "../../styles/colors";
+import Icon from "./Icon";
+import { css, DivProps, styled } from "styled-chroma";
+import { useMode } from "../../hooks/useMode";
 
 type IconTypes = {
   icon: React.ElementType;
   size?: number;
-  backgroundColor?: string;
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
   radius?: number;
   onClick?: () => void;
   onMouseEnter?: () => void;
@@ -47,19 +46,17 @@ const HoverableIcon = ({
   color,
   title,
   styles,
-  backgroundColor,
   mode,
   radius,
   disabled,
 }: IconTypes) => {
   const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
-  const modeColor = currentMode === 'dark' ? 'white' : 'black';
+  const modeColor = currentMode === "dark" ? "white" : "black";
 
   return (
     <HoverIcon
-      backgroundColor={backgroundColor}
-      mode={currentMode as IconTypes['mode']}
+      mode={currentMode as IconTypes["mode"]}
       radius={radius || 6}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
@@ -75,26 +72,21 @@ const HoverableIcon = ({
 };
 
 export default HoverableIcon;
+HoverableIcon.displayName = "HoverableIcon";
 
-const Istyle = (
-  mode: IconTypes['mode'],
-  background: IconTypes['backgroundColor']
-) => {
+const Istyle = (mode: IconTypes["mode"]) => {
   return {
-    background:
-      background || mode === 'dark' ? colors.gray[700] : colors.gray[100],
-    hover: mode === 'dark' ? colors.gray[800] : colors.gray[200],
+    hover: mode === "dark" ? colors.neutral[800] : colors.gray[100],
   };
 };
 
 interface IStyleIcon extends DivProps {
-  backgroundColor: IconTypes['backgroundColor'];
-  mode: IconTypes['mode'];
+  mode: IconTypes["mode"];
   radius: number;
   disabled?: boolean;
 }
 
-const HoverIcon = styled<IStyleIcon>('div')`
+const HoverIcon = styled<IStyleIcon>("div")`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,9 +94,8 @@ const HoverIcon = styled<IStyleIcon>('div')`
   border-radius: ${(props) => props.radius}px;
   cursor: pointer;
   ${(props) => {
-    const bg = Istyle(props.mode, props.backgroundColor);
+    const bg = Istyle(props.mode);
     return css`
-      background: ${bg.background};
       &:hover {
         background: ${bg.hover};
       }
@@ -112,7 +103,7 @@ const HoverIcon = styled<IStyleIcon>('div')`
   }}
   transition: background-color 0.2s ease;
   opacity: ${(props) => (props.disabled ? 0.9 : 1)};
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
-  pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+  pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
 `;
-HoverIcon.displayName = 'HoverIconSui';
+HoverIcon.displayName = "HoverIconSui";

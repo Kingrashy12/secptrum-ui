@@ -1,14 +1,53 @@
-import React from 'react';
-import { MenuItemSui } from '../../styles/selection/styled';
-import { useMode } from '../../hooks/useMode';
+import React from "react";
+import { MenuItemSui } from "../../styles/selection/styled";
+import { useMode } from "../../hooks/useMode";
+import { useMenu } from "src/hooks/useMenu";
 
-interface MenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
+interface MenuItemProps {
+  /**
+   * Menu item content, typically text or an icon.
+   */
   children: React.ReactNode;
+
+  /**
+   * Optional CSS class name to apply to the menu item.
+   */
   className?: string;
+
+  /**
+   * Optional inline styles to apply to the menu item.
+   */
   style?: React.CSSProperties;
+
+  /**
+   * Spacing between menu items (e.g., pixels).
+   * @default `0.25rem`
+   */
   space?: number;
+
+  /**
+   * Text color (e.g., '#000', 'rgba(0, 0, 0, 1)').
+   * @default '#000'
+   */
   color?: string;
-  mode?: 'light' | 'dark';
+
+  /**
+   * Theme mode, either 'light' or 'dark'.
+   * @default 'light'
+   */
+  mode?: "light" | "dark";
+  /**
+   * Function to be called when the MenuItem is clicked.
+   */
+  onClick?: () => void;
+  /**
+   * Unique identifier for the MenuItem.
+   */
+  id?: string;
+  /**
+   * Indicates if the MenuItem is disabled.
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -30,18 +69,36 @@ const MenuItem = ({
   space,
   color,
   mode,
-  ...props
+  onClick,
+  disabled,
+  id,
 }: MenuItemProps) => {
   const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
+  const { onClose: closeMenu } = useMenu();
+
+  function killMenu() {
+    try {
+      if (onClick) {
+        onClick();
+      }
+    } catch (error) {
+      console.error("Error calling onClick:", error);
+    } finally {
+      closeMenu();
+    }
+  }
+
   return (
     <MenuItemSui
       className={className}
       style={style}
       space={space}
       color={color}
-      mode={currentMode as 'light' | 'dark'}
-      {...props}
+      mode={currentMode as "light" | "dark"}
+      onClick={killMenu}
+      disabled={disabled}
+      id={id}
     >
       {children}
     </MenuItemSui>
@@ -49,4 +106,4 @@ const MenuItem = ({
 };
 
 export default MenuItem;
-MenuItem.displayName = 'MenuItem';
+MenuItem.displayName = "MenuItem";

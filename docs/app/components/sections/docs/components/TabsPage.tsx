@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import DocsLayout from '@/components/layout/DocsLayout';
-import { tabsCode } from '@/data/code/tabs';
-import BasicTabs from '@/components/example/layout/BasicTabs';
-import DisabledTab from '@/components/example/layout/DisabledTab';
-import FullWidthTabs from '@/components/example/layout/FullWidthTabs';
-import SolidVariantTabs from '@/components/example/layout/SolidTabs';
-import TabsWithIcons from '@/components/example/layout/TabsWithIcon';
+import DocsLayout from "@/components/layout/DocsLayout";
+import { tabsCode } from "@/data/code/tabs";
+import BasicTabs from "@/components/example/layout/BasicTabs";
+import DisabledTab from "@/components/example/layout/DisabledTab";
+import FullWidthTabs from "@/components/example/layout/FullWidthTabs";
+import SolidVariantTabs from "@/components/example/layout/SolidTabs";
+import TabsWithIcons from "@/components/example/layout/TabsWithIcon";
 import {
   BodyText,
   LargeTextHeader,
   TextContent_Wrap,
-} from '@/styles/docs/start.styled';
-import { Divider } from '@/styles/global';
-import React from 'react';
-import { TabPanelApi, TabsApi, TabsHandleApi } from '../../components/Tabs';
-import ComponentsBadge from '@/components/custom/ComponentsBadge';
-import HeaderText from '@/components/custom/docs/HeaderText';
+} from "@/styles/docs/start.styled";
+import { Divider, SpaceTop } from "@/styles/global";
+import React from "react";
+import ComponentsBadge from "@/components/custom/ComponentsBadge";
+import HeaderText from "@/components/custom/docs/HeaderText";
+import ReferenceTable from "@/components/custom/docs/ReferenceTable";
+import { tabsHandleRef, tabsRef } from "@/data/reference/tabs";
 const Tabs_Page = () => {
   return (
     <DocsLayout>
@@ -51,15 +52,38 @@ const Tabs_Page = () => {
         <Divider style={{ marginBottom: 10 }} />
       </TextContent_Wrap>
       <FullWidthTabs code={tabsCode.fullWidth} />
-      <TextContent_Wrap id="api-reference">
-        <HeaderText id="api-reference">API Reference</HeaderText>
-        <Divider style={{ marginBottom: 10 }} />
+      <TextContent_Wrap id="api-reference:tabs">
+        <HeaderText id="api-reference:tabs">API Reference: Tabs</HeaderText>
+        <BodyText>
+          Below you&apos;ll find a reference to the props available for the{" "}
+          <ComponentsBadge>Tabs</ComponentsBadge> component.
+        </BodyText>
+        <ReferenceTable reference={tabsRef} />
       </TextContent_Wrap>
-      <TabsApi />
-      <Divider style={{ marginBottom: 25, marginTop: 10 }} />
-      <TabsHandleApi />
-      <Divider style={{ marginBottom: 25, marginTop: 10 }} />
-      <TabPanelApi />
+      <Divider style={{ marginTop: 25 }} />
+      <TextContent_Wrap id="api-reference:tabshandle">
+        <HeaderText id="api-reference:tabshandle">
+          API Reference: TabsHandle
+        </HeaderText>
+        <BodyText>
+          Below you&apos;ll find a reference to the props available for the{" "}
+          <ComponentsBadge>TabsHandle</ComponentsBadge> component.
+        </BodyText>
+        <ReferenceTable reference={tabsHandleRef} />
+      </TextContent_Wrap>
+      <Divider style={{ marginTop: 25 }} />
+      <TextContent_Wrap id="api-reference:tabpanel">
+        <SpaceTop marginTop="xl" />
+        <HeaderText id="api-reference:tabpanel">
+          API Reference: TabPanel
+        </HeaderText>
+        <BodyText>
+          This is a simple wrapper around a standard HTML{" "}
+          <ComponentsBadge>div</ComponentsBadge> element, used to display the
+          content associated with the active tab. It does not accept any
+          additional props beyond the standard HTML attributes.
+        </BodyText>
+      </TextContent_Wrap>
     </DocsLayout>
   );
 };

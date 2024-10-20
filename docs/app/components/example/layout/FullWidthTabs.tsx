@@ -1,9 +1,9 @@
-import { Typography } from '@/components';
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import { fonts } from '@/styles/global';
-import React from 'react';
-import { Box, Tabs, TabsHandle, TabPanel, Card } from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+import { Typography } from "@/components";
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import { fonts } from "@/styles/global";
+import React from "react";
+import { Box, Tabs, TabsHandle, TabPanel, Card } from "secptrum-ui";
+import { styled } from "styled-chroma";
 
 const FullWidthTabs = ({ code }: { code: string }) => {
   return (

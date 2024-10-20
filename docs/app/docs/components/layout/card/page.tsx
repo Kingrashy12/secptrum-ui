@@ -1,9 +1,9 @@
-import { CardDocs } from '@/components';
-import { Metadata } from 'next';
-import React from 'react';
+import { CardDocs } from "@/components";
+import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'Backdrop - Secptrum UI',
+  title: "Card - Secptrum UI",
 };
 
 const Card = () => {

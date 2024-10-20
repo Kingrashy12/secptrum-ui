@@ -1,18 +1,19 @@
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import { Preview } from '@/styles/docs/start.styled';
-import { fonts } from '@/styles/global';
-import React from 'react';
-import { AiFillHome, AiFillMessage } from 'react-icons/ai';
-import { FaUserCircle } from 'react-icons/fa';
-import { IoNotificationsCircle } from 'react-icons/io5';
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import { Preview } from "@/styles/docs/start.styled";
+import { fonts } from "@/styles/global";
+import React from "react";
+import { AiFillHome, AiFillMessage } from "react-icons/ai";
+import { FaUserCircle } from "react-icons/fa";
+import { IoNotificationsCircle } from "react-icons/io5";
 import {
   BottomNav,
   BottomNavTab,
   TabPanel,
   Tabs,
   TabsHandle,
-} from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+  toast,
+} from "secptrum-ui";
+import { styled } from "styled-chroma";
 
 const BottomNavExample = ({ code }: { code: string }) => {
   return (
@@ -22,15 +23,32 @@ const BottomNavExample = ({ code }: { code: string }) => {
         <TabsHandle value="code">Code</TabsHandle>
         <TabPanel>
           <BottomNav className="custom-nav" variant="full">
-            <BottomNavTab icon={AiFillHome} title="Home" isactive href="/" />
-            <BottomNavTab icon={AiFillMessage} title="Chat" href="/chat" />
+            <BottomNavTab
+              icon={AiFillHome}
+              preventPush
+              title="Home"
+              isactive
+              href="/"
+            />
+            <BottomNavTab
+              icon={AiFillMessage}
+              preventPush
+              title="Chat"
+              href="/chat"
+            />
 
             <BottomNavTab
               icon={IoNotificationsCircle}
+              preventPush
               title="Notifications"
               href="/notifications"
             />
-            <BottomNavTab icon={FaUserCircle} title="Profile" href="/profile" />
+            <BottomNavTab
+              icon={FaUserCircle}
+              preventPush
+              title="Profile"
+              href="/profile"
+            />
           </BottomNav>
         </TabPanel>
         <TabPanel>

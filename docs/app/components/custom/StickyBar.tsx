@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { Box, colors } from 'secptrum-ui';
-import Collapsible from './Collapsible';
-import { sidebarlinks } from '@/data/sidebar';
-import Typography from './Typography';
-import Link from 'next/link';
-import { DivProps, HeadProps, styled, useTheme } from 'styled-chroma';
-import { useRouter } from '@/hooks';
+import React from "react";
+import { Box, colors } from "secptrum-ui";
+import Collapsible from "./Collapsible";
+import { sidebarlinks } from "@/data/sidebar";
+import Typography from "./Typography";
+import Link from "next/link";
+import { DivProps, HeadProps, styled, useTheme } from "styled-chroma";
+import { useRouter } from "@/hooks";
 
 const StickyBar = () => {
   const { pathname } = useRouter();
 
   const { mode } = useTheme();
 
-  const light = mode === 'light';
+  const light = mode === "light";
 
   return (
     <StyledBar light={light}>
@@ -67,7 +67,7 @@ const StickyBar = () => {
 
 export default StickyBar;
 
-const StyledBar = styled<{ light: boolean }>('div')`
+const StyledBar = styled<{ light: boolean }>("div")`
   height: 100vh;
   background: ${(props) => props.theme?.colors?.background};
   width: 270px;
@@ -79,10 +79,6 @@ const StyledBar = styled<{ light: boolean }>('div')`
   top: 0;
   padding-right: 3px;
   display: flex;
-
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 500ms;
 
   @media screen and (max-width: 820px) {
     display: none;
@@ -115,7 +111,7 @@ export const DocsContent = styled<DocsContentProps>(Box)`
 
   a {
     text-decoration: none;
-    pointer-events: ${(props) => props.notavailable && 'none'};
+    pointer-events: ${(props) => props.notavailable && "none"};
   }
 `;
 
@@ -143,7 +139,7 @@ export const DocAlert = styled<DocsLabelProps>(Typography)`
   padding: 4px;
   font-size: 12px;
   border-radius: 5px;
-  display: ${(props) => (props.notavailable ? 'flex' : 'none')};
+  display: ${(props) => (props.notavailable ? "flex" : "none")};
   opacity: 0.4;
 `;
 
@@ -160,11 +156,11 @@ export const DocLinkWrap = styled<
     props.isactive
       ? props.light
         ? colors.blue[100]
-        : 'rgb(30 41 59)'
-      : 'transparent'};
+        : "rgb(30 41 59)"
+      : "transparent"};
   padding: 4px 8px;
   border-radius: 6px;
-  cursor: ${(props) => (props.notavailable ? 'default' : 'pointer')};
+  cursor: ${(props) => (props.notavailable ? "default" : "pointer")};
 `;
 
 export const ExtraLinks = styled(Box)`

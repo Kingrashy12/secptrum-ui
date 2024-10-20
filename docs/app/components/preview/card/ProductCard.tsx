@@ -1,10 +1,10 @@
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import Media from '@/components/custom/Media';
-import { products } from '@/data/products';
-import { fonts } from '@/styles/global';
-import React from 'react';
-import { Stack, Tabs, TabsHandle, TabPanel, Card, Box } from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import Media from "@/components/custom/Media";
+import { products } from "@/data/products";
+import { fonts } from "@/styles/global";
+import React from "react";
+import { Stack, Tabs, TabsHandle, TabPanel, Card, Box } from "secptrum-ui";
+import { styled } from "styled-chroma";
 
 const ProductCard = ({ code }: { code: string }) => {
   return (
@@ -14,11 +14,16 @@ const ProductCard = ({ code }: { code: string }) => {
         <TabsHandle value="code">Code</TabsHandle>
 
         <TabPanel>
-          <ProductContainer align="horizontal" style={{ flexWrap: 'wrap' }}>
+          <ProductContainer align="horizontal" style={{ flexWrap: "wrap" }}>
             {products.map((product, index) => (
               <StyledCard key={index}>
                 <ImageContainer>
-                  <Media src={product.image} alt={product.title} />
+                  <Media
+                    width={100}
+                    height={100}
+                    src={product.image}
+                    alt={product.title}
+                  />
                 </ImageContainer>
                 <ProductInfo>
                   <Price>$ {product.price?.toLocaleString()}</Price>
@@ -77,12 +82,12 @@ const ProductInfo = styled(Box)`
   gap: 9px;
 
   p {
-    font-family: 'Poppins-Normal', sans-serif;
+    font-family: "Poppins-Normal", sans-serif;
     color: ${(props) => props.theme.colors?.body};
   }
 `;
 
-const Price = styled('h1')`
+const Price = styled("h1")`
   font-size: 1.35rem;
   font-family: ${fonts.poppins};
   font-weight: 600;
