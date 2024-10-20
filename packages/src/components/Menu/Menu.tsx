@@ -1,46 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MenuPanel } from '../../styles/selection/styled';
 import { MenuSui } from '../../styles/selection/styled';
 import { useMode } from '../../hooks/useMode';
-
-interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  open?: boolean;
-  onClose?: () => void;
-  mode?: 'light' | 'dark';
-  zIndex?: number;
-  top?: number;
-  left?: number;
-  right?: number;
-  bottom?: number;
-}
-
-/**
- * Menu component for displaying a context menu in a vertical modal.
- *
- * @component
- * @param {Object} props - The component props.
- * @param {React.ReactNode} props.children - The content to be rendered inside the menu.
- * @param {string} [props.className] - Additional CSS class for the menu.
- * @param {React.CSSProperties} [props.style] - Inline styles for the menu.
- * @param {boolean} [props.open] - Whether the menu is open or closed.
- * @param {() => void} [props.onClose] - Function to be called when the menu should close.
- * @param {'light' | 'dark'} [props.mode] - The color mode of the menu.
- * @param {number} [props.zIndex] - The z-index of the menu.
- * @param {number} [props.top] - The top position of the menu.
- * @param {number} [props.left] - The left position of the menu.
- * @param {number} [props.right] - The right position of the menu.
- * @param {number} [props.bottom] - The bottom position of the menu.
- */
+import { useMenu } from '../../hooks/useMenu';
+import { MenuProps } from '../../types/sui';
 
 const Menu = ({
   children,
   className,
   style,
-  open,
-  onClose,
   mode,
   zIndex,
   top,
@@ -51,6 +19,7 @@ const Menu = ({
 }: MenuProps) => {
   const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
+  const { isOpen, onClose } = useMenu();
 
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -61,17 +30,24 @@ const Menu = ({
       }
     }
 
-    if (open) {
+    if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [open, onClose]);
+  }, [isOpen, onClose]);
 
   return (
-    <MenuPanel open={open} zIndex={zIndex as number} ref={menuRef}>
+    <MenuPanel
+      open={isOpen}
+      zIndex={zIndex as number}
+      ref={menuRef}
+      top={top}
+      left={left}
+      right={right}
+    >
       <MenuSui
         mode={currentMode as 'light' | 'dark'}
         zIndex={zIndex as number}

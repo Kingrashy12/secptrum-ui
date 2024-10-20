@@ -83,6 +83,14 @@ export const BarLoaderDocs = dynamic(
   () => import('./docs/components/feedback/BarLoaderDocs'),
   { ssr: false }
 );
+export const DrawerDocs = dynamic(
+  () => import('./docs/components/navigation/DrawerDocs'),
+  { ssr: false }
+);
+export const BottomNavDocs = dynamic(
+  () => import('./docs/components/navigation/BottomNavDocs'),
+  { ssr: false }
+);
 
 // Main export
 export { default as AppWrap } from './layout/AppWrap';

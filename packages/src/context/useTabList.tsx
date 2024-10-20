@@ -1,17 +1,17 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 
 type TabListContextType = {
   onSwitch: (value: string) => void;
-  variant: "line" | "solid";
+  variant: 'line' | 'solid';
   activeTabValue: string;
-  themeMode: "light" | "dark";
+  themeMode: 'light' | 'dark';
   fullWidth?: boolean;
 };
 
 type TabListProviderType = {
   children: React.ReactNode;
-  tabVariant: "line" | "solid";
-  mode: "light" | "dark";
+  tabVariant: 'line' | 'solid';
+  mode: 'light' | 'dark';
   useFullWidth?: boolean;
 };
 
@@ -23,11 +23,11 @@ const TabListProvider = ({
   mode,
   useFullWidth,
 }: TabListProviderType) => {
-  const [activeTabValue, setActiveTabValue] = useState("");
+  const [activeTabValue, setActiveTabValue] = useState('');
   const [themeMode, setThemeMode] = useState(mode);
   const [fullWidth, setFullWidth] = useState(useFullWidth);
   const [variant, setVaraint] =
-    useState<TabListContextType["variant"]>(tabVariant);
+    useState<TabListContextType['variant']>(tabVariant);
 
   useEffect(() => {
     setVaraint(tabVariant);
@@ -42,7 +42,7 @@ const TabListProvider = ({
   }, [useFullWidth]);
 
   useEffect(() => {
-    const tab = document.querySelectorAll("button");
+    const tab = document.querySelectorAll('button');
     if (!activeTabValue) {
       setActiveTabValue(tab[0].value);
     }
@@ -62,13 +62,14 @@ const TabListProvider = ({
 };
 
 export default TabListProvider;
+TabListProvider.displayName = 'TabListProvider';
 
 /* eslint-disable */
 
 export const useTabList = () => {
   const context = useContext(ListContext);
   if (context === undefined) {
-    throw new Error("TabHandle must be used within TabsList components");
+    throw new Error('TabHandle must be used within TabsList components');
   }
   return context;
 };

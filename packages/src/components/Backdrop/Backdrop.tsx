@@ -79,6 +79,7 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
       preventClose,
       mode,
       glassEffect = 6,
+      zIndex,
     },
     ref
   ) => {
@@ -106,6 +107,7 @@ const Backdrop = forwardRef<HTMLDivElement, DropType>(
         onClick={handleClose}
         backgroundColor={dropStyle.background}
         glassEffect={glassEffect}
+        zIndex={zIndex}
       >
         <> {children}</>
       </DropSui>

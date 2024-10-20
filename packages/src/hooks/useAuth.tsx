@@ -103,6 +103,7 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
 };
 
 export default AuthProvider;
+AuthProvider.displayName = 'AuthProvider';
 
 // Custom hook to access the AuthContext
 // This hook can be used to access the authentication state and actions

@@ -1,6 +1,6 @@
-import React from "react";
-import { ModalProvider } from "../../context/useModal";
-import Backdrop from "../Backdrop/Backdrop";
+import React from 'react';
+import { ModalProvider } from '../../context/useModal';
+import Backdrop from '../Backdrop/Backdrop';
 
 type ModalType = {
   /**
@@ -46,7 +46,7 @@ type ModalType = {
    * @default Inherit from theme '6'
    */
   glassEffect?: number;
-  mode?: "light" | "dark";
+  mode?: 'light' | 'dark';
 };
 
 /**
@@ -81,6 +81,7 @@ const Modal = ({
   preventClose,
   glassEffect,
   mode,
+  zIndex,
 }: ModalType) => {
   return (
     <ModalProvider open={open}>
@@ -92,6 +93,7 @@ const Modal = ({
         preventClose={preventClose}
         glassEffect={glassEffect}
         mode={mode}
+        zIndex={zIndex}
       >
         {children}
       </Backdrop>

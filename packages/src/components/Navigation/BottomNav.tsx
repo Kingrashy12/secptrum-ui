@@ -21,11 +21,12 @@ interface BottomNavProps extends DivProps {
  */
 const BottomNav = ({
   children,
-  variant = 'wide',
+  variant = 'full',
   background,
+  ...rest
 }: BottomNavProps) => {
   return (
-    <BottomNavSui variant={variant} background={background}>
+    <BottomNavSui variant={variant} background={background} {...rest}>
       {children}
     </BottomNavSui>
   );

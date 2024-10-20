@@ -43,6 +43,13 @@ export const fabRef = [
     default: 'solid',
   },
   {
+    prop: 'zIndex',
+    type: 'number',
+    description:
+      'Determines the stack order of the Fab, ensuring it appears above other content but behind interactive elements.',
+    default: '400',
+  },
+  {
     prop: 'disabled',
     type: 'boolean',
     description: 'Disables the Fab, preventing user interaction.',

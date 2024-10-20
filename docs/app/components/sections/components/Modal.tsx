@@ -29,6 +29,11 @@ const ModalProps = () => {
           if an action is in progress.
         </li>
         <li>
+          <PropBadge>zIndex</PropBadge>: Determines the stack order of the
+          backdrop, ensuring it appears above other content but behind
+          interactive elements. (default: <PropBadge>500</PropBadge>)
+        </li>
+        <li>
           <PropBadge>className</PropBadge>: Optional string to add custom CSS
           classes.
         </li>

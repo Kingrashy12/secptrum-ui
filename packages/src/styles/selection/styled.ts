@@ -2,14 +2,26 @@
 import { colors, styled } from 'styled-chroma';
 import { walkIn } from '../animations';
 
+type IStyledMenuPanel = {
+  open?: boolean;
+  zIndex: number;
+  top: number | any;
+  left: number | any;
+  right: number | any;
+};
+
 //******* Menu Component *********//
-export const MenuPanel = styled<{ open?: boolean; zIndex: number }>('div')`
+export const MenuPanel = styled<IStyledMenuPanel>('div')`
   display: ${({ open }) => (open ? 'flex' : 'none')};
   width: 100%;
-  position: fixed;
+  position: absolute;
   height: auto;
   z-index: ${({ zIndex }) => zIndex || 100};
+  ${({ top }) => top && `top: ${top}px`};
+  ${({ left }) => left && `left: ${left}px`};
+  ${({ right }) => right && `right: ${right}px`};
 `;
+MenuPanel.displayName = 'MenuPanel';
 
 type IStyledMenu = {
   mode: 'light' | 'dark';

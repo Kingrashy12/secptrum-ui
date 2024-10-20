@@ -74,13 +74,11 @@ export const sidebarlinks = [
       { label: 'Switch', uri: '/docs/components/input/switch' },
       {
         label: 'Bottom Navigation',
-        not_available: true,
         category: 'Navigation',
         uri: '/docs/components/navigation/bottom-navigation',
       },
       {
         label: 'Drawer',
-        not_available: true,
         uri: '/docs/components/navigation/drawer',
       },
       {

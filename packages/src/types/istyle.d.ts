@@ -50,6 +50,7 @@ export interface IStyleDrop extends DivProps {
   centerContent: boolean;
   backgroundColor: string;
   glassEffect: number | any;
+  zIndex?: number;
 }
 
 /**
@@ -83,6 +84,7 @@ export interface IStyleFab {
   variant: FloatProps['variant'];
   size: FloatProps['size'];
   moveOnScroll: FloatProps['moveOnScroll'];
+  zIndex?: number;
 }
 
 /**

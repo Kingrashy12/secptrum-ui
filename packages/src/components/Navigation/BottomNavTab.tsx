@@ -5,6 +5,8 @@ import Icon from '../Icon/Icon';
 import useRouter from '../../hooks/useRouter';
 import { colors } from 'styled-chroma';
 import { GoDotFill } from 'react-icons/go';
+import { toast } from '../Toast/Toast';
+import Toaster from '../Toast/Toaster';
 
 interface BottomNavTabProps extends BoxType {
   /** The text to display below the icon, name of the tab */
@@ -27,6 +29,16 @@ interface BottomNavTabProps extends BoxType {
    * @deprecated
    */
   isactive?: boolean;
+  /**
+   * Prevents the tab from navigating to the specified `href` when clicked.
+   */
+  preventPush?: boolean;
+  /**
+   * A callback function that is executed when `preventPush` is set to true.
+   * This function is intended to handle the navigation logic when the default
+   * navigation behavior is prevented.
+   */
+  onClick?: () => void;
 }
 
 /**
@@ -57,6 +69,8 @@ const BottomNavTab = ({
   useDotOnActive,
   isactive,
   padding = '0.2rem',
+  preventPush,
+  onClick,
   ...props
 }: BottomNavTabProps) => {
   const { router } = useRouter();
@@ -66,21 +80,36 @@ const BottomNavTab = ({
     inactive: inactiveColor || colors.gray[500],
   };
   const color = isActive || isactive ? tabColor.active : tabColor.inactive;
+
+  function push(e: React.MouseEvent) {
+    e.stopPropagation();
+    if (preventPush) {
+      if (!onClick) {
+        toast.error('onClick function is required when preventPush is true', {
+          position: 'bottom-left',
+          transition: 'slideIn',
+        });
+        return;
+      }
+      onClick();
+    } else router.push(href);
+  }
+
   return (
-    <BottomNavTabSui
-      {...props}
-      padding={padding}
-      color={color}
-      onClick={(e) => {
-        e.stopPropagation();
-        router.push(href);
-      }}
-    >
-      {icon && <Icon icon={icon} color={color} size={iconSize || 25} />}
-      {title && (
-        <>{useDotOnActive ? <GoDotFill color={color} /> : <p>{title}</p>}</>
-      )}
-    </BottomNavTabSui>
+    <>
+      <Toaster />
+      <BottomNavTabSui
+        {...props}
+        padding={padding}
+        color={color}
+        onClick={(e) => push(e)}
+      >
+        {icon && <Icon icon={icon} color={color} size={iconSize || 25} />}
+        {title && (
+          <>{useDotOnActive ? <GoDotFill color={color} /> : <p>{title}</p>}</>
+        )}
+      </BottomNavTabSui>
+    </>
   );
 };
 

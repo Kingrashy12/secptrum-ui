@@ -24,8 +24,10 @@ export { default as Tabs } from './components/Tabs/Tabs';
 export { default as TabPanel } from './components/Tabs/TabPanel';
 export { default as TabsHandle } from './components/Tabs/TabsHandle';
 export { default as Drawer } from './components/Drawer/Drawer';
-export { default as Menu } from './components/Menu/Menu';
+export { default as DrawerContent } from './components/Drawer/DrawerContent';
+export { default as Menu } from './context/MenuProvider';
 export { default as MenuItem } from './components/Menu/MenuItem';
+export { default as MenuTrigger } from './components/Menu/MenuTrigger';
 export { default as BottomNav } from './components/Navigation/BottomNav';
 export { default as BottomNavTab } from './components/Navigation/BottomNavTab';
 

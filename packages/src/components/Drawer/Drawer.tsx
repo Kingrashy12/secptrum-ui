@@ -21,6 +21,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       preventClose,
       className,
       style,
+      zIndex,
     },
     ref
   ) => {
@@ -33,6 +34,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         glassEffect={glassEffect}
         mode={currentMode as 'light' | 'dark'}
         preventClose={preventClose}
+        zIndex={zIndex}
       >
         <DrawerSui
           ref={ref}

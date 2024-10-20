@@ -513,6 +513,11 @@ export interface FloatProps extends BoxProps {
    * Whether the float element should move when the page is scrolled.
    */
   moveOnScroll?: boolean;
+  /**
+   * Determines the stack order of the Fab, ensuring it appears
+   * above other content but behind interactive elements.
+   */
+  zIndex?: number;
 }
 export type DrawerProps = {
   /**
@@ -571,4 +576,21 @@ export type DrawerProps = {
    * Additional inline styles to be applied to the drawer.
    */
   style?: React.CSSProperties;
+  /**
+   * Determines the stack order of the backdrop, ensuring it appears above other content but behind interactive elements.
+   */
+  zIndex?: number;
 };
+
+export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  open?: boolean;
+  mode?: 'light' | 'dark';
+  zIndex?: number;
+  top?: number;
+  left?: number;
+  right?: number;
+  bottom?: number;
+}
