@@ -27,7 +27,7 @@ const MenuDocs = () => {
       <MenuExample />
       <TextContent_Wrap id="example-user-banner">
         <HeaderText id="example-user-banner">Examples: User Banner</HeaderText>
-        <BodyText>Here's an example of a menu in a post:</BodyText>
+        <BodyText>Here&apos;s an example of a menu in a post:</BodyText>
       </TextContent_Wrap>
       <MenuExampleUB />
       <TextContent_Wrap id="api-reference:menu">
