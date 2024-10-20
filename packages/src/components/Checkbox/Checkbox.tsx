@@ -66,7 +66,7 @@ const CheckBox = ({
   disabled,
   className,
   borderColor,
-  mode = 'light',
+  mode,
 }: CheckBoxType) => {
   const { mode: themeMode } = useMode();
   const currentMode = mode ?? themeMode;
@@ -83,11 +83,14 @@ const CheckBox = ({
       checked={checked}
       borderColor={borderColor || checkStyle.border}
     >
-      {checked ? (
-        <Checked color={color} rounded={rounded} size={size}>
-          <Icon icon={IoIosCheckmark} size={size} color="white" />
-        </Checked>
-      ) : null}
+      <Checked
+        className={checked ? 'sui-checked' : 'sui-unchecked'}
+        color={color}
+        rounded={rounded}
+        size={size}
+      >
+        <Icon icon={IoIosCheckmark} size={size} color="white" />
+      </Checked>
     </Checker>
   );
 };

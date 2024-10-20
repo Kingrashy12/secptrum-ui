@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 type ProviderType = { children: React.ReactNode; open: boolean };
 
@@ -10,7 +10,7 @@ const ModalContext = createContext<{ isVisible: boolean } | undefined>(
 export const useModalContext = () => {
   const context = useContext(ModalContext);
   if (context === undefined) {
-    throw new Error("ModalPanel must be used within the Modal component");
+    throw new Error('ModalPanel must be used within the Modal component');
   }
   return context;
 };
@@ -28,3 +28,4 @@ const ModalProvider = ({ children, open }: ProviderType) => {
 };
 
 export { ModalProvider };
+ModalProvider.displayName = 'ModalProvider';

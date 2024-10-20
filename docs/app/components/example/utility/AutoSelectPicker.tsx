@@ -1,8 +1,8 @@
-import CodeBlock from '@/components/custom/code/CodeBlock';
-import Media from '@/components/custom/Media';
+import CodeBlock from "@/components/custom/code/CodeBlock";
+import Media from "@/components/custom/Media";
 
-import { Preview } from '@/styles/docs/start.styled';
-import React, { useState } from 'react';
+import { Preview } from "@/styles/docs/start.styled";
+import React, { useState } from "react";
 import {
   Stack,
   Button,
@@ -11,8 +11,8 @@ import {
   TabsHandle,
   TabPanel,
   toast,
-} from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+} from "secptrum-ui";
+import { styled } from "styled-chroma";
 
 const AutoSelectPicker = ({ code }: { code: string }) => {
   const [openPicker, setOpenPicker] = useState(false);
@@ -21,7 +21,7 @@ const AutoSelectPicker = ({ code }: { code: string }) => {
   function handleImageSelect(Images: string[]) {
     setImages(Images);
     if (Images.length >= 1) {
-      toast.success('Great, now click on the image to remove');
+      toast.success("Great, now click on the image to remove");
     } else {
       toast.info("😢 You didn't pick any image");
     }
@@ -41,7 +41,7 @@ const AutoSelectPicker = ({ code }: { code: string }) => {
         <TabsHandle value="code">Code</TabsHandle>
 
         <TabPanel>
-          <Stack spacing="lg" align="horizontal">
+          <Stack spacing="lg" align="horizontal" wrap>
             <ImagePicker
               onMultipleImageSelect={handleImageSelect}
               isPickerOpen={openPicker}
@@ -56,6 +56,8 @@ const AutoSelectPicker = ({ code }: { code: string }) => {
                   <SelectedImage
                     src={image}
                     key={index}
+                    width={100}
+                    height={100}
                     onClick={() => removeImage(index)}
                   />
                 ))}

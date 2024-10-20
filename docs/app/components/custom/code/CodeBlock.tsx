@@ -36,8 +36,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             ...a11yDark,
             // Base theme from dracula
             hljs: {
-              background: '#0000', // Black background
-              color: 'lightblue', // Main text color (you can replace it with your theme's main color)
+              background: '#0000',
+              color: 'lightblue',
               display: 'flex',
               flexDirection: 'column',
               gap: '2rem',

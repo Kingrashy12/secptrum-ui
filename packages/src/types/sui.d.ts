@@ -513,4 +513,126 @@ export interface FloatProps extends BoxProps {
    * Whether the float element should move when the page is scrolled.
    */
   moveOnScroll?: boolean;
+  /**
+   * Determines the stack order of the Fab, ensuring it appears
+   * above other content but behind interactive elements.
+   */
+  zIndex?: number;
+}
+export type DrawerProps = {
+  /**
+   * Determines if the drawer is open.
+   */
+  open: boolean;
+  /**
+   * Function to be called when the drawer is closed.
+   */
+  onClose: () => void;
+  /**
+   * The content to be rendered inside the drawer.
+   */
+  children: React.ReactNode;
+  /**
+   * The position of the drawer. Can be 'left' or 'right'.
+   */
+  position?: "left" | "right";
+  /**
+   * The variant of the drawer. Can be 'default' or 'modal'.
+   */
+  variant?: "default" | "modal";
+  /**
+   * The intensity of the glass effect for the backdrop.
+   */
+  glassEffect?: number;
+  /**
+   * The background color of the drawer.
+   */
+  background?: string;
+  /**
+   * The color mode of the drawer. Can be 'light' or 'dark'.
+   */
+  mode?: "light" | "dark";
+  /**
+   * The width of the drawer.
+   */
+  width?: string;
+  /**
+   * The spacing between elements inside the drawer.
+   */
+  spacing?: number;
+  /**
+   * The content to be rendered in the drawer's header.
+   */
+  header?: React.ReactNode;
+  /**
+   * If true, prevents the drawer from being closed when clicking outside.
+   */
+  preventClose?: boolean;
+  /**
+   * Additional CSS class name(s) to be applied to the drawer.
+   */
+  className?: string;
+  /**
+   * Additional inline styles to be applied to the drawer.
+   */
+  style?: React.CSSProperties;
+  /**
+   * Determines the stack order of the backdrop, ensuring it appears above other content but behind interactive elements.
+   */
+  zIndex?: number;
+};
+
+export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Menu content, typically menu items.
+   */
+  children: React.ReactNode;
+
+  /**
+   * Optional CSS class name to apply to the menu.
+   */
+  className?: string;
+
+  /**
+   * Optional inline styles to apply to the menu.
+   */
+  style?: React.CSSProperties;
+
+  /**
+   * Flag indicating whether the menu is initially open.
+   * @default false
+   */
+  open?: boolean;
+
+  /**
+   * Theme mode, either 'light' or 'dark'.
+   * @default 'light'
+   */
+  mode?: "light" | "dark";
+
+  /**
+   * Z-index value for positioning the menu.
+   * @default 100
+   */
+  zIndex?: number;
+
+  /**
+   * Top position value (e.g., pixels).
+   */
+  top?: number;
+
+  /**
+   * Left position value (e.g., pixels).
+   */
+  left?: number;
+
+  /**
+   * Right position value (e.g., pixels).
+   */
+  right?: number;
+
+  /**
+   * Bottom position value (e.g., pixels).
+   */
+  bottom?: number;
 }

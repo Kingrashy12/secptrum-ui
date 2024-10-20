@@ -1,9 +1,9 @@
-import { ImagePickerDocs } from '@/components';
-import { Metadata } from 'next';
-import React from 'react';
+import { ImagePickerDocs } from "@/components";
+import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'Backdrop - Secptrum UI',
+  title: "ImagePicker - Secptrum UI",
 };
 
 const ImagePicker = () => {

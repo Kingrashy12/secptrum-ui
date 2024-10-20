@@ -1,23 +1,22 @@
-'use client';
+"use client";
 
-import { HeroBg, ReactImage } from '@/assets';
-import React from 'react';
-import Typography from '../custom/Typography';
-import { Box, Button } from 'secptrum-ui';
-import Media from '../custom/Media';
-import { fonts } from '@/styles/global';
-import Link from 'next/link';
-import { RiArrowRightUpLine } from 'react-icons/ri';
-import { sidebarlinks } from '@/data/sidebar';
-import { styled } from 'styled-chroma';
-// import CardsSection from "./CardsSection";
+import { HeroBg, ReactImage } from "@/assets";
+import React from "react";
+import Typography from "../custom/Typography";
+import { Box, Button } from "secptrum-ui";
+import Media from "../custom/Media";
+import { fonts } from "@/styles/global";
+import Link from "next/link";
+import { RiArrowRightUpLine } from "react-icons/ri";
+import { sidebarlinks } from "@/data/sidebar";
+import { styled } from "styled-chroma";
+import { dropIn, walkIn } from "@/lib/animation";
+import AnimatedText from "../custom/AnimatedText";
 
 const Hero_About = () => {
   return (
     <Hero>
-      <Typography as="h1" font="nunito">
-        SecptrumUI
-      </Typography>
+      <AnimatedText animation={dropIn} text="Secptrum UI" />
       <TagWrapper>
         <Typography font="off" className="built">
           Built for
@@ -28,12 +27,13 @@ const Hero_About = () => {
         </Typography>
       </TagWrapper>
       <DescWrap>
-        <Typography font="nunito" className="desc">
-          A comprehensive React component library, combining modern design
-          principles with powerful customization.
-        </Typography>
+        <AnimatedText
+          className="desc"
+          text="A comprehensive React component library, combining modern design principles 
+          with powerful customization."
+          animation={walkIn}
+        />
       </DescWrap>
-      {/* <CardsSection /> */}
 
       <BTN>
         <Link href="/docs/getting-started">
@@ -61,7 +61,7 @@ const Hero_About = () => {
 
 export default Hero_About;
 
-const Hero = styled('section')`
+const Hero = styled("section")`
   width: 100%;
   height: 100vh;
   background-image: url(${HeroBg.src});
@@ -81,6 +81,8 @@ const Hero = styled('section')`
   .desc {
     font-weight: 600;
     color: white;
+    font-size: 17px;
+    line-height: 1.2rem;
   }
   .built {
     font-weight: 400;

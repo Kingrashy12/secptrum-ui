@@ -103,7 +103,7 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
         <Input
           disabled={props.disabled}
           backgroundcolor={backgroundColor}
-          error={hasError}
+          hasError={hasError}
           color={color}
           mode={currentMode as InputType['mode']}
           outLineBorderColor={outLineBorderColor}

@@ -1,18 +1,19 @@
-import { forwardRef } from "react";
-import { FloatProps } from "../../types/sui";
-import { FabSui } from "../../styles/action/styled";
+import { forwardRef } from 'react';
+import { FloatProps } from '../../types/sui';
+import { FabSui } from '../../styles/action/styled';
 
 const Fab = forwardRef<HTMLDivElement, FloatProps>(
   (
     {
-      position = "bottom-right",
+      position = 'bottom-right',
       children,
       backgroundColor,
-      size = "md",
+      size = 'md',
       disabled,
-      colorScheme = "primary",
-      variant = "solid",
+      colorScheme = 'primary',
+      variant = 'solid',
       moveOnScroll,
+      zIndex,
       ...props
     },
     ref
@@ -29,6 +30,7 @@ const Fab = forwardRef<HTMLDivElement, FloatProps>(
         variant={variant}
         size={size}
         moveOnScroll={moveOnScroll}
+        zIndex={zIndex}
       >
         {children}
       </FabSui>
@@ -37,4 +39,4 @@ const Fab = forwardRef<HTMLDivElement, FloatProps>(
 );
 
 export default Fab;
-Fab.displayName = "FabSui";
+Fab.displayName = 'FabSui';

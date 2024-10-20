@@ -9,7 +9,7 @@ import terser from '@rollup/plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
 
 export default {
-  input: 'src/index.ts', // Entry point for your library
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.main,
@@ -28,7 +28,7 @@ export default {
     del({ targets: 'dist/*' }),
     peerDepsExternal(), // Automatically mark peer dependencies as external
     resolve(), // Helps Rollup find external modules
-    commonjs(), // Converts CommonJS modules to ES6
+    commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
       outputToFilesystem: true,

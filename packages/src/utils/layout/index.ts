@@ -4,13 +4,14 @@ import { CardProps } from "../../types/sui";
 export const cardStyles = (mode: CardProps["mode"]) => {
   return {
     background: mode === "dark" ? "black" : "white",
+    drawerBg: mode === "dark" ? "black" : "white",
     boxShadow:
       mode === "dark"
-        ? `0 4px 8px ${colors.slate[800]}`
+        ? `0 4px 8px ${colors.slate[950]}`
         : "0 4px 8px rgba(0, 0, 0, 0.1)",
     border:
       mode === "dark"
-        ? `1px solid ${colors.neutral[800]}`
+        ? `1px solid ${colors.neutral[900]}`
         : `1px solid ${colors.neutral[200]}`,
   };
 };

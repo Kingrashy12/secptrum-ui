@@ -1,18 +1,19 @@
-import TextContent from '@/components/custom/docs/TextContent';
-import { Divider, SpaceTop } from '@/styles/global';
-import React from 'react';
-import DocsLayout from '@/components/layout/DocsLayout';
-import { BodyText, TextContent_Wrap } from '@/styles/docs/start.styled';
-import HeaderText from '@/components/custom/docs/HeaderText';
-import { styled } from 'styled-chroma';
-import ContentWithOptions from '@/components/custom/code/ContentWithOptions';
+import TextContent from "@/components/custom/docs/TextContent";
+import { Divider, SpaceTop } from "@/styles/global";
+import React from "react";
+import DocsLayout from "@/components/layout/DocsLayout";
+import { BodyText, TextContent_Wrap } from "@/styles/docs/start.styled";
+import HeaderText from "@/components/custom/docs/HeaderText";
+import { styled } from "styled-chroma";
+import ContentWithOptions from "@/components/custom/code/ContentWithOptions";
 // import Link from 'next/link';
-import PreviewCard from '@/components/custom/docs/PreviewCard';
-import { usageCode } from '@/data/code/usage';
-import ComponentsBadge from '@/components/custom/ComponentsBadge';
-import NormalInfo from '@/components/custom/docs/NormalInfo';
-import ModeProviderExample from '@/components/example/mode/ModeProviderExample';
-import LayoutWrap from '@/components/example/mode/LayoutWrap';
+import PreviewCard from "@/components/custom/docs/PreviewCard";
+import { usageCode } from "@/data/code/usage";
+import ComponentsBadge from "@/components/custom/ComponentsBadge";
+import NormalInfo from "@/components/custom/docs/NormalInfo";
+import ModeProviderExample from "@/components/example/mode/ModeProviderExample";
+import LayoutWrap from "@/components/example/mode/LayoutWrap";
+import SingleModeLayout from "@/components/example/mode/SingleModeLayout";
 
 const Install = () => {
   return (
@@ -70,13 +71,13 @@ const Install = () => {
         <BodyText>
           Secptrum UI components are designed to work with light and dark modes.
           To control the theme of Spectrum UI components across your
-          application, you can use the{' '}
+          application, you can use the{" "}
           <ComponentsBadge>ModeProvider</ComponentsBadge> component.
         </BodyText>
       </TextContent_Wrap>
       <TextContent_Wrap>
         <BodyText>
-          Below are few examples of how to implement the{' '}
+          Below are few examples of how to implement the{" "}
           <ComponentsBadge>ModeProvider</ComponentsBadge> in your project:
         </BodyText>
         <ModeProviderExample />
@@ -84,7 +85,7 @@ const Install = () => {
       <TextContent_Wrap id="using-mode-provider">
         <HeaderText id="using-mode-provider">Using ModeProvider</HeaderText>
         <BodyText>
-          Below you&apos;ll find examples of how to use the{' '}
+          Below you&apos;ll find examples of how to use the{" "}
           <ComponentsBadge>ModeProvider</ComponentsBadge> in your project layout
         </BodyText>
         <LayoutWrap />
@@ -92,22 +93,33 @@ const Install = () => {
       <SpaceTop marginBottom="lg" />
       <NormalInfo>
         <BodyText>
-          If your application has a single theme (
-          <ComponentsBadge>light</ComponentsBadge> or{' '}
+          If your application uses a single theme (either{" "}
+          <ComponentsBadge>light</ComponentsBadge> or{" "}
           <ComponentsBadge>dark</ComponentsBadge>), you can pass the mode prop
-          directly to individual components to ensure consistency with your
-          theme. Alternatively, pass the mode prop to the{' '}
-          <ComponentsBadge>ModeProvider</ComponentsBadge> at the root of your
-          project.
+          directly to the <ComponentsBadge>ModeProvider</ComponentsBadge>{" "}
+          component to ensure consistency with components theme.
         </BodyText>
       </NormalInfo>
+      <TextContent_Wrap id="using-mode-provider:single-mode">
+        <HeaderText id="using-mode-provider:single-mode">
+          Using ModeProvide: Single mode
+        </HeaderText>
+        <BodyText>
+          Below you&apos;ll find examples of how to use the{" "}
+          <ComponentsBadge>ModeProvider</ComponentsBadge> with a single mode,
+          either
+          <ComponentsBadge>light</ComponentsBadge> or{" "}
+          <ComponentsBadge>dark</ComponentsBadge>
+        </BodyText>
+      </TextContent_Wrap>
+      <SingleModeLayout />
     </DocsLayout>
   );
 };
 
 export default Install;
 
-const PrerequisitesList = styled('ul')`
+const PrerequisitesList = styled("ul")`
   list-style: none;
   padding-left: 10px;
 
@@ -117,7 +129,7 @@ const PrerequisitesList = styled('ul')`
     font-weight: 400;
     color: ${({ theme }) => theme.colors?.text};
     &::before {
-      content: '•';
+      content: "•";
       position: absolute;
       left: 0;
       top: 0;
