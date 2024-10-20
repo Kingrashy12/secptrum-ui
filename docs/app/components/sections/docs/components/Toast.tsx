@@ -18,7 +18,6 @@ import DocInfo from "@/components/custom/docs/DocInfo";
 import HeaderText from "@/components/custom/docs/HeaderText";
 import BasicToast from "@/components/preview/toast/Basic";
 import PositionToast from "@/components/preview/toast/Position";
-import CodeBlock from "@/components/custom/code/CodeBlock";
 import { toastCodes } from "@/data/code/toast";
 import TransitionsToast from "@/components/preview/toast/Transitions";
 import { Divider } from "@/styles/global";

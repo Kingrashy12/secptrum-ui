@@ -12,7 +12,6 @@ import {
   TabPanel,
   Tabs,
   TabsHandle,
-  toast,
 } from "secptrum-ui";
 import { styled } from "styled-chroma";
 

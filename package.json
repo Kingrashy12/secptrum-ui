@@ -1,4 +1,6 @@
 {
+  "name": "secptrum-ui",
+  "version": "1.1.45",
   "private": true,
   "workspaces": [
     "docs/*",
@@ -13,6 +15,7 @@
     "install:docs": "cd docs && npm install",
     "push-main": "git push origin master",
     "push-org": "git push org-origin master",
-    "push-all": "npm run push-main && npm run push-org"
+    "push-all": "npm run push-main && npm run push-org",
+    "release": "git push org-origin master --follow-tags"
   }
 }
