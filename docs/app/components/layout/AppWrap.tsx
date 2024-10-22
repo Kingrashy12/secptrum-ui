@@ -54,9 +54,7 @@ const AppWrap = ({ children }: { children: React.ReactNode }) => {
           <ShowcaseFormProvider>
             <Navbar />
             <RootWrap>
-              {notAllowed.some((path) =>
-                pathname === path ? null : <StickyBar />
-              )}
+              {notAllowed.every((path) => pathname !== path) && <StickyBar />}
               <DispatchState pathname={pathname}>{children}</DispatchState>
             </RootWrap>
           </ShowcaseFormProvider>
