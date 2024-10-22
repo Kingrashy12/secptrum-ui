@@ -30,3 +30,11 @@ declare type ReferenceType = {
     default: string;
   }[];
 };
+
+declare type ShowCaseType = {
+  id: string;
+  name: string;
+  imageurl: string;
+  livedemourl: string;
+  description: string;
+};

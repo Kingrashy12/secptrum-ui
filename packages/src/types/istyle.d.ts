@@ -97,6 +97,7 @@ export interface IStyleModalPanel {
   align: ModalPanelType['align'];
   spacing: ModalPanelType['spacing'];
   isVisible: boolean;
+  mode: 'light' | 'dark';
 }
 
 /**
@@ -105,6 +106,8 @@ export interface IStyleModalPanel {
 export interface IStyleModalFooter {
   space?: number;
   position?: 'right' | 'left';
+  mode: 'light' | 'dark';
+  showBorder: boolean;
 }
 
 /**

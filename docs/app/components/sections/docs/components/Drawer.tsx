@@ -14,7 +14,11 @@ import DrawerVariant from '@/components/example/navigation/DrawerVariant';
 import DrawerPosition from '@/components/example/navigation/DrawerPosition';
 import { PropBadge } from '@/styles/custom';
 import ReferenceTable from '@/components/custom/docs/ReferenceTable';
-import { drawerRef } from '@/data/reference/drawer';
+import {
+  drawerFooterRef,
+  drawerHeaderRef,
+  drawerRef,
+} from '@/data/reference/drawer';
 import Link from 'next/link';
 const Drawer = () => {
   return (
@@ -52,11 +56,31 @@ const Drawer = () => {
         <HeaderText id="api-reference">API Reference: Drawer</HeaderText>
         <BodyText>
           Below you&apos;ll find a reference to the props available for the{' '}
-          <ComponentsBadge>Drawer</ComponentsBadge> component, which allows you
-          to customize its appearance and behavior.
+          <ComponentsBadge>Drawer</ComponentsBadge> component.
         </BodyText>
       </TextContent_Wrap>
       <ReferenceTable reference={drawerRef} />
+      <TextContent_Wrap id="api-reference:header">
+        <HeaderText id="api-reference:header">
+          API Reference: DrawerHeader
+        </HeaderText>
+        <BodyText>
+          DrawerHeader extends the <ComponentsBadge>Box</ComponentsBadge>{' '}
+          component inheriting all its styling, layout properties, and props
+          allowing for flexible customization.
+        </BodyText>
+      </TextContent_Wrap>
+      <ReferenceTable reference={drawerHeaderRef} />
+      <TextContent_Wrap id="api-reference:footer">
+        <HeaderText id="api-reference:footer">
+          API Reference: DrawerFooter
+        </HeaderText>
+        <BodyText>
+          Below are reference to the props available for{' '}
+          <ComponentsBadge>DrawerFooter</ComponentsBadge> component.
+        </BodyText>
+      </TextContent_Wrap>
+      <ReferenceTable reference={drawerFooterRef} />
       <TextContent_Wrap id="api-reference:drawer-content">
         <HeaderText id="api-reference:drawer-content">
           API Reference: DrawerContent

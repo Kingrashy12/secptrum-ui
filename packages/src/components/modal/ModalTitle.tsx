@@ -1,9 +1,10 @@
-import React, { forwardRef } from "react";
-import { IoClose } from "react-icons/io5";
-import Box from "../Box/Box";
-import { BoxType } from "../../types/sui";
-import { colors } from "../../styles/colors";
-import { styled } from "styled-chroma";
+import React, { forwardRef } from 'react';
+import { IoClose } from 'react-icons/io5';
+import Box from '../Box/Box';
+import { BoxType } from '../../types/sui';
+import { useModalContext } from '../../context/useModal';
+import { colors, styled } from 'styled-chroma';
+import HoverableIcon from '../Icon/HoverableIcon';
 
 interface ModalTitleType extends BoxType {
   /**
@@ -61,6 +62,12 @@ interface ModalTitleType extends BoxType {
    * @default false
    */
   preventClose?: boolean;
+  /**
+   * Adds border-bottom to the component.
+   * @type {boolean}
+   * @default true
+   */
+  showBorder?: boolean;
 }
 
 /**
@@ -81,6 +88,7 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
       titleStyle,
       showClose,
       preventClose,
+      showBorder = true,
       ...props
     },
     ref
@@ -92,20 +100,31 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
         }
       }
     }
+
+    const { mode } = useModalContext();
+
     return (
-      <TitleWrap {...props} ref={ref}>
-        <Title className={titleClassName} style={titleStyle}>
+      <TitleWrap
+        {...props}
+        ref={ref}
+        showBorder={showBorder}
+        mode={mode as 'light' | 'dark'}
+      >
+        <Title
+          className={titleClassName}
+          mode={mode as 'light' | 'dark'}
+          style={titleStyle}
+        >
           {title}
         </Title>
         {showClose && (
-          <CloseIcon>
-            <IoClose
-              className={iconClass}
-              style={iconStyle}
-              size={iconSize || 25}
-              onClick={close}
-            />
-          </CloseIcon>
+          <HoverableIcon
+            icon={IoClose}
+            className={iconClass}
+            size={iconSize ?? 24}
+            styles={iconStyle}
+            onClick={close}
+          />
         )}
       </TitleWrap>
     );
@@ -113,36 +132,38 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
 );
 
 export default ModalTitle;
-ModalTitle.displayName = "ModalTitle";
+ModalTitle.displayName = 'ModalTitle';
+
+const titleMode = (mode: 'light' | 'dark') => {
+  return {
+    title: mode === 'dark' ? 'white' : 'black',
+    border: mode === 'dark' ? colors.neutral[800] : colors.neutral[200],
+  };
+};
 
 /**
  * TitleWrap is a styled-component that wraps the title and close icon in the modal header.
  */
-const TitleWrap = styled(Box)`
+const TitleWrap = styled<
+  BoxType & { showBorder: boolean; mode: 'light' | 'dark' }
+>(Box)`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding: 13px;
+  ${(props) =>
+    props.showBorder
+      ? `border-bottom: 1px solid ${titleMode(props.mode).border};`
+      : ''}
 `;
 
 /**
  * Title is a styled-component that renders the title (`h2`) element.
  */
-const Title = styled("h2")`
+const Title = styled<{ mode: 'light' | 'dark' }>('h2')`
   margin: 0;
   font-size: 1.5rem;
-  color: currentColor;
+  color: ${(props) => titleMode(props.mode).title};
   font-family: inherit;
-`;
-
-const CloseIcon = styled(Box)`
-  padding: 6px;
-  border-radius: 6px;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background: ${colors.gray[100]};
-  }
 `;

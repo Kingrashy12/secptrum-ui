@@ -6,7 +6,8 @@ import {
   Drawer,
   HoverableIcon,
   Stack,
-  ModalFooter,
+  DrawerHeader,
+  DrawerFooter,
   toast,
   Box,
   Checkbox,
@@ -29,45 +30,40 @@ const DrawerExample = () => {
     }
   };
 
-  const header = (
-    <>
-      <HeaderText>Apply for a Role</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpen(false)}
-      />
-    </>
-  );
   return (
    <>
     <Stack>
       <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
     </Stack>
-      <Drawer
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        header={header}
-        >
-        <Divider />
-        <Stack>
-          <SubHeaderText>Terms and Conditions</SubHeaderText>
-          <Box spacing="md" centered onClick={() => setChecked(!checked)}>
-            <Checkbox
+    <Drawer
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
+    >
+      <DrawerHeader>
+        <HeaderText>Apply for a Role</HeaderText>
+        <HoverableIcon
+          icon={AiOutlineClose}
+          size={22}
+          onClick={() => setIsOpen(false)}
+        />
+      </DrawerHeader>
+      <Stack>
+        <SubHeaderText>Terms and Conditions</SubHeaderText>
+        <Box spacing="md" centered onClick={() => setChecked(!checked)}>
+          <Checkbox
             checked={checked}
             onCheck={() => setChecked(!checked)}
-            />
-              <Paragraph>Lorem ipsum dolor sit amet consectetur</Paragraph>
-            </Box>
-            </Stack>
-            <Divider />
-            <ModalFooter position="right">
-              <Button variant="outline" onClick={() => setIsOpen(false)}>
-                Close Drawer
-              </Button>
-              <Button onClick={handleSubmit}>Submit</Button>
-            </ModalFooter>
-        </Drawer>
+          />
+          <Paragraph>Lorem ipsum dolor sit amet consectetur</Paragraph>
+        </Box>
+      </Stack>
+      <DrawerFooter position="right">
+        <Button variant="outline" onClick={() => setIsOpen(false)}>
+          Close Drawer
+        </Button>
+        <Button onClick={handleSubmit}>Submit</Button>
+      </DrawerFooter>
+    </Drawer>
    </>
   );
 };
@@ -96,10 +92,12 @@ import {
   Drawer,
   HoverableIcon,
   Stack,
-  ModalFooter,
-  toast,
+  TabPanel,
+  Tabs,
+  TabsHandle,
   Box,
-  Checkbox,
+  DrawerHeader,
+  DrawerFooter,
 } from 'secptrum-ui';
 import { styled } from 'styled-chroma';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -109,82 +107,69 @@ const DrawerVariants = () => {
    const [isOpen, setIsOpen] = useState(false);
   const [isOpenDefault, setIsOpenDefault] = useState(false);
 
-  const header = (
-    <>
-      <HeaderText>Modal Drawer</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpen(false)}
-      />
-    </>
-  );
-  const header_default = (
-    <>
-      <HeaderText>Default Drawer</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpenDefault(false)}
-      />
-    </>
-  );
   return (
     <>
-      <Stack>
-        <Box centered spacing="lg">
-          <Paragraph>Modal Drawer:</Paragraph>
-          <Button variant="outline" onClick={() => setIsOpen(true)}>
-            Open
-          </Button>
-        </Box>
-        <Divider />
-        <Box centered spacing="lg">
-          <Paragraph>Default Drawer:</Paragraph>
-          <Button variant="outline" onClick={() => setIsOpenDefault(true)}>
-            Open
-          </Button>
-        </Box>
-      </Stack>
-      <Drawer
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        header={header}
-        variant="modal"
-      >
-        <Divider />
-        <Stack>
-          <Box spacing="md" centered>
-            <Paragraph>Content of the drawer</Paragraph>
-          </Box>
-        </Stack>
-        <Divider />
-        <ModalFooter position="right">
-          <Button variant="outline" onClick={() => setIsOpen(false)}>
-            Close Drawer
-          </Button>
-          <Button onClick={() => setIsOpen(false)}>Okay</Button>
-        </ModalFooter>
-      </Drawer>
-      <Drawer
-        open={isOpenDefault}
-        onClose={() => setIsOpenDefault(false)}
-        header={header_default}
-      >
-        <Divider />
-        <Stack>
-          <Box spacing="md" centered>
-            <Paragraph>Content of the drawer</Paragraph>
-          </Box>
-        </Stack>
-        <Divider />
-        <ModalFooter position="right">
-          <Button variant="outline" onClick={() => setIsOpenDefault(false)}>
-            Close Drawer
-          </Button>
-          <Button onClick={() => setIsOpenDefault(false)}>Okay</Button>
-        </ModalFooter>
-      </Drawer>
+       <Stack>
+         <Box centered spacing="lg">
+           <Paragraph>Modal Drawer:</Paragraph>
+           <Button variant="outline" onClick={() => setIsOpen(true)}>
+             Open
+           </Button>
+         </Box>
+         <Divider />
+         <Box centered spacing="lg">
+           <Paragraph>Default Drawer:</Paragraph>
+           <Button variant="outline" onClick={() => setIsOpenDefault(true)}>
+             Open
+           </Button>
+         </Box>
+       </Stack>
+       <Drawer
+         open={isOpen}
+         onClose={() => setIsOpen(false)}
+         variant="modal"
+       >
+         <DrawerHeader>
+           <HeaderText>Modal Drawer</HeaderText>
+           <HoverableIcon
+             icon={AiOutlineClose}
+             size={22}
+             onClick={() => setIsOpen(false)}
+           />
+         </DrawerHeader>
+         <Stack>
+           <Box spacing="md" centered>
+             <Paragraph>Content of the drawer</Paragraph>
+           </Box>
+         </Stack>
+         <DrawerFooter position="right">
+           <Button variant="outline" onClick={() => setIsOpen(false)}>
+             Close Drawer
+           </Button>
+           <Button onClick={() => setIsOpen(false)}>Okay</Button>
+         </DrawerFooter>
+       </Drawer>
+       <Drawer open={isOpenDefault} onClose={() => setIsOpenDefault(false)}>
+         <DrawerHeader>
+           <HeaderText>Default Drawer</HeaderText>
+           <HoverableIcon
+             icon={AiOutlineClose}
+             size={22}
+             onClick={() => setIsOpenDefault(false)}
+           />
+         </DrawerHeader>
+         <Stack>
+           <Box spacing="md" centered>
+             <Paragraph>Content of the drawer</Paragraph>
+           </Box>
+         </Stack>
+         <DrawerFooter position="right">
+           <Button variant="outline" onClick={() => setIsOpenDefault(false)}>
+             Close Drawer
+           </Button>
+           <Button onClick={() => setIsOpenDefault(false)}>Okay</Button>
+         </DrawerFooter>
+       </Drawer>
     </>
   );
 };
@@ -213,37 +198,21 @@ import {
   Drawer,
   HoverableIcon,
   Stack,
-  ModalFooter,
-  toast,
+  TabPanel,
+  Tabs,
+  TabsHandle,
+  Box,
+  DrawerFooter,
+  DrawerHeader,
 } from 'secptrum-ui';
 import { styled } from 'styled-chroma';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Divider } from '@/styles/global';
 
+
 const DrawerPosition = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLeft, setIsOpenLeft] = useState(false);
-
-  const header = (
-    <>
-      <HeaderText>Right Position Drawer</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpen(false)}
-      />
-    </>
-  );
-  const header_left = (
-    <>
-      <HeaderText>Left Position Drawer</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpenLeft(false)}
-      />
-    </>
-  );
   return (
     <>
       <Stack>
@@ -261,45 +230,51 @@ const DrawerPosition = () => {
           </Button>
         </Box>
       </Stack>
-      <Drawer
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        header={header}
-       
-      >
-        <Divider />
+      <Drawer open={isOpen} onClose={() => setIsOpen(false)}>
+        <DrawerHeader>
+          <HeaderText>Right Position Drawer</HeaderText>
+          <HoverableIcon
+            icon={AiOutlineClose}
+            size={22}
+            onClick={() => setIsOpen(false)}
+          />
+        </DrawerHeader>
         <Stack>
           <Box spacing="md" centered>
             <Paragraph>Content of the drawer</Paragraph>
           </Box>
         </Stack>
-        <Divider />
-        <ModalFooter position="right">
+        <DrawerFooter position="right">
           <Button variant="outline" onClick={() => setIsOpen(false)}>
             Close Drawer
           </Button>
           <Button onClick={() => setIsOpen(false)}>Okay</Button>
-        </ModalFooter>
+        </DrawerFooter>
       </Drawer>
       <Drawer
         open={isOpenLeft}
         onClose={() => setIsOpenLeft(false)}
-        header={header_left}
         position="left"
       >
-        <Divider />
+        <DrawerHeader>
+          <HeaderText>Left Position Drawer</HeaderText>
+          <HoverableIcon
+            icon={AiOutlineClose}
+            size={22}
+            onClick={() => setIsOpenLeft(false)}
+          />
+        </DrawerHeader>
         <Stack>
           <Box spacing="md" centered>
             <Paragraph>Content of the drawer</Paragraph>
           </Box>
         </Stack>
-        <Divider />
-        <ModalFooter position="left">
+        <DrawerFooter position="left">
           <Button variant="outline" onClick={() => setIsOpenLeft(false)}>
             Close Drawer
           </Button>
           <Button onClick={() => setIsOpenLeft(false)}>Okay</Button>
-        </ModalFooter>
+        </DrawerFooter>
       </Drawer>
     </>
   );

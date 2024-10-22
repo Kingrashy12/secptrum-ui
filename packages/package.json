@@ -1,6 +1,6 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.45",
+  "version": "1.1.47",
   "description": "**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {

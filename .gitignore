@@ -1,2 +1,4 @@
 node_modules
 tash.ts
+.env
+database.db
