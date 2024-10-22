@@ -9,14 +9,14 @@ import {
   TabPanel,
   Tabs,
   TabsHandle,
-  ModalFooter,
   toast,
   Box,
   Checkbox,
+  DrawerFooter,
+  DrawerHeader,
 } from 'secptrum-ui';
 import { styled } from 'styled-chroma';
 import { AiOutlineClose } from 'react-icons/ai';
-import { Divider } from '@/styles/global';
 
 const DrawerExample = ({ code }: { code: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,16 +32,6 @@ const DrawerExample = ({ code }: { code: string }) => {
     }
   };
 
-  const header = (
-    <>
-      <HeaderText>Apply for a Role</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpen(false)}
-      />
-    </>
-  );
   return (
     <Container>
       <Tabs variant="solid">
@@ -51,12 +41,15 @@ const DrawerExample = ({ code }: { code: string }) => {
           <Stack>
             <Button onClick={() => setIsOpen(true)}>Open Drawer</Button>
           </Stack>
-          <Drawer
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            header={header}
-          >
-            <Divider />
+          <Drawer open={isOpen} onClose={() => setIsOpen(false)}>
+            <DrawerHeader>
+              <HeaderText>Apply for a Role</HeaderText>
+              <HoverableIcon
+                icon={AiOutlineClose}
+                size={22}
+                onClick={() => setIsOpen(false)}
+              />
+            </DrawerHeader>
             <Stack>
               <SubHeaderText>Terms and Conditions</SubHeaderText>
               <Box spacing="md" centered onClick={() => setChecked(!checked)}>
@@ -67,13 +60,12 @@ const DrawerExample = ({ code }: { code: string }) => {
                 <Paragraph>Lorem ipsum dolor sit amet consectetur</Paragraph>
               </Box>
             </Stack>
-            <Divider />
-            <ModalFooter position="right">
+            <DrawerFooter position="right">
               <Button variant="outline" onClick={() => setIsOpen(false)}>
                 Close Drawer
               </Button>
               <Button onClick={handleSubmit}>Submit</Button>
-            </ModalFooter>
+            </DrawerFooter>
           </Drawer>
         </TabPanel>
         <TabPanel>

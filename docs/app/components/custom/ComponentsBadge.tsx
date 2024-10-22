@@ -34,7 +34,7 @@ interface BadgeProps extends ParagraphProps {
   bordercolor: string;
 }
 
-const Badge = styled<BadgeProps>('p')`
+const Badge = styled<BadgeProps>('span')`
   padding: 2px 4px;
   border-radius: 5px;
   font-family: ${fonts.poppins};

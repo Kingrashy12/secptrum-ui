@@ -17,8 +17,6 @@ export const DrawerSui = styled<IStyleDrawer>('div')`
   ${(props) => getDrawerPosition(props.position, props.variant)};
   border-radius: ${(props) => getDrawerRadius(props.variant, props.position)};
   background: ${(props) => props.background || cardStyles(props.mode).drawerBg};
-  padding: 12px;
-  border: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
   border: ${({ mode }) => cardStyles(mode).border};
@@ -32,7 +30,6 @@ export const DrawerSui = styled<IStyleDrawer>('div')`
   transition: all 0.3s ease-in-out;
   flex-direction: column;
   gap: ${(props) => props.spacing}px;
-  overflow-y: auto;
 
   @media (max-width: 1024px) {
     width: 60%;

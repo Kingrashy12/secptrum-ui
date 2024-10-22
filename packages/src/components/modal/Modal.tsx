@@ -1,6 +1,7 @@
 import React from 'react';
 import { ModalProvider } from '../../context/useModal';
 import Backdrop from '../Backdrop/Backdrop';
+import { useMode } from '../../hooks/useMode';
 
 type ModalType = {
   /**
@@ -83,8 +84,11 @@ const Modal = ({
   mode,
   zIndex,
 }: ModalType) => {
+  const { mode: themeMode } = useMode();
+  const currentMode = mode ?? themeMode;
+
   return (
-    <ModalProvider open={open}>
+    <ModalProvider open={open} mode={currentMode as 'light' | 'dark'}>
       <Backdrop
         style={style}
         className={className}
@@ -92,7 +96,7 @@ const Modal = ({
         open={open}
         preventClose={preventClose}
         glassEffect={glassEffect}
-        mode={mode}
+        mode={currentMode as 'light' | 'dark'}
         zIndex={zIndex}
       >
         {children}
@@ -102,3 +106,4 @@ const Modal = ({
 };
 
 export default Modal;
+Modal.displayName = 'Modal';

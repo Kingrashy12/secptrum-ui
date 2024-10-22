@@ -1,6 +1,6 @@
 import React from 'react';
 import { BoxType } from '../../types/sui';
-import Box from '../Box/Box';
+import { ModalContent } from '../../styles/feedback/styled';
 
 /**
  * DrawerContent component is used to display the content of the Drawer.
@@ -13,9 +13,9 @@ import Box from '../Box/Box';
 const DrawerContent = React.forwardRef<HTMLDivElement, BoxType>(
   ({ children, ...props }, ref) => {
     return (
-      <Box ref={ref} {...props}>
+      <ModalContent ref={ref} {...props}>
         {children}
-      </Box>
+      </ModalContent>
     );
   }
 );

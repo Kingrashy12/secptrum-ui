@@ -16,12 +16,14 @@ import { LuMenu } from 'react-icons/lu';
 import { useMenu } from '@/context/useMenu';
 import { useSideBar } from '@/context/useSideBar';
 import { fonts } from '@/styles/global';
+// import { useShowcaseForm } from '@/context/useShowCase';
 
 const Navbar = () => {
   const { mode, theme, toggleTheme } = useTheme();
   const { onOpen } = useMenu();
   const { onOpen: openSideBar } = useSideBar();
   const light = mode === 'light';
+  // const { onOpen: showCase } = useShowcaseForm();
 
   return (
     <Nav light={light}>
@@ -63,6 +65,10 @@ const Navbar = () => {
             onClick={toggleTheme}
           />
         </Links>
+        {/* <Divider />
+        <Button radius="md" variant="outline" onClick={showCase}>
+          Showcase Your Website
+        </Button> */}
       </LinkWrapper>
       <MenuIcon>
         <Icon
@@ -140,18 +146,9 @@ const Logo = styled(Media)`
 
 const LinkWrapper = styled(Box)`
   justify-content: space-between;
-  width: 30%;
-  @media screen and (max-width: 1024px) {
-    width: 40%;
-  }
-  @media screen and (max-width: 820px) {
-    gap: 1.5rem;
-    width: 50%;
-  }
-  @media screen and (max-width: 768px) {
-    gap: 1rem;
-    width: 55%;
-  }
+  width: auto;
+  gap: 1.5rem;
+
   @media screen and (max-width: 550px) {
     display: none !important;
   }

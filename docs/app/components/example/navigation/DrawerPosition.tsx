@@ -9,8 +9,9 @@ import {
   TabPanel,
   Tabs,
   TabsHandle,
-  ModalFooter,
   Box,
+  DrawerFooter,
+  DrawerHeader,
 } from 'secptrum-ui';
 import { styled } from 'styled-chroma';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -20,26 +21,6 @@ const DrawerPosition = ({ code }: { code: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenLeft, setIsOpenLeft] = useState(false);
 
-  const header = (
-    <>
-      <HeaderText>Right Position Drawer</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpen(false)}
-      />
-    </>
-  );
-  const header_default = (
-    <>
-      <HeaderText>Left Position Drawer</HeaderText>
-      <HoverableIcon
-        icon={AiOutlineClose}
-        size={22}
-        onClick={() => setIsOpenLeft(false)}
-      />
-    </>
-  );
   return (
     <Container>
       <Tabs variant="solid">
@@ -61,44 +42,51 @@ const DrawerPosition = ({ code }: { code: string }) => {
               </Button>
             </Box>
           </Stack>
-          <Drawer
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
-            header={header}
-          >
-            <Divider />
+          <Drawer open={isOpen} onClose={() => setIsOpen(false)}>
+            <DrawerHeader>
+              <HeaderText>Right Position Drawer</HeaderText>
+              <HoverableIcon
+                icon={AiOutlineClose}
+                size={22}
+                onClick={() => setIsOpen(false)}
+              />
+            </DrawerHeader>
             <Stack>
               <Box spacing="md" centered>
                 <Paragraph>Content of the drawer</Paragraph>
               </Box>
             </Stack>
-            <Divider />
-            <ModalFooter position="right">
+            <DrawerFooter position="right">
               <Button variant="outline" onClick={() => setIsOpen(false)}>
                 Close Drawer
               </Button>
               <Button onClick={() => setIsOpen(false)}>Okay</Button>
-            </ModalFooter>
+            </DrawerFooter>
           </Drawer>
           <Drawer
             open={isOpenLeft}
             onClose={() => setIsOpenLeft(false)}
-            header={header_default}
             position="left"
           >
-            <Divider />
+            <DrawerHeader>
+              <HeaderText>Left Position Drawer</HeaderText>
+              <HoverableIcon
+                icon={AiOutlineClose}
+                size={22}
+                onClick={() => setIsOpenLeft(false)}
+              />
+            </DrawerHeader>
             <Stack>
               <Box spacing="md" centered>
                 <Paragraph>Content of the drawer</Paragraph>
               </Box>
             </Stack>
-            <Divider />
-            <ModalFooter position="left">
+            <DrawerFooter position="left">
               <Button variant="outline" onClick={() => setIsOpenLeft(false)}>
                 Close Drawer
               </Button>
               <Button onClick={() => setIsOpenLeft(false)}>Okay</Button>
-            </ModalFooter>
+            </DrawerFooter>
           </Drawer>
         </TabPanel>
         <TabPanel>

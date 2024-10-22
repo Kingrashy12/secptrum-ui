@@ -55,7 +55,7 @@ const FormModal = ({ code }: { code: string }) => {
               onClose={() => setOpen(false)}
             />
             <ModalContent>
-              <Typography style={{ color: 'black' }}>
+              <Typography style={{ color: 'black' }} className="modal-text">
                 Welcome back, login to your account to continue
               </Typography>
               <TextInput

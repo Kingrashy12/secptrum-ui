@@ -31,6 +31,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     background-color: ${({ theme }) => theme.colors?.background};
   }
+
+  .modal-text{
+    color: ${({ theme }) => theme.colors?.text};
+  }
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

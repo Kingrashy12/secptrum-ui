@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { HeroBg, ReactImage } from "@/assets";
-import React from "react";
-import Typography from "../custom/Typography";
-import { Box, Button } from "secptrum-ui";
-import Media from "../custom/Media";
-import { fonts } from "@/styles/global";
-import Link from "next/link";
-import { RiArrowRightUpLine } from "react-icons/ri";
-import { sidebarlinks } from "@/data/sidebar";
-import { styled } from "styled-chroma";
-import { dropIn, walkIn } from "@/lib/animation";
-import AnimatedText from "../custom/AnimatedText";
+import { HeroBg, ReactImage } from '@/assets';
+import React from 'react';
+import Typography from '../custom/Typography';
+import { Box, Button } from 'secptrum-ui';
+import Media from '../custom/Media';
+import { fonts } from '@/styles/global';
+import Link from 'next/link';
+import { RiArrowRightUpLine } from 'react-icons/ri';
+import { sidebarlinks } from '@/data/sidebar';
+import { styled } from 'styled-chroma';
+import { dropIn, walkIn } from '@/lib/animation';
+import AnimatedText from '../custom/AnimatedText';
 
 const Hero_About = () => {
   return (
@@ -61,7 +61,7 @@ const Hero_About = () => {
 
 export default Hero_About;
 
-const Hero = styled("section")`
+const Hero = styled('section')`
   width: 100%;
   height: 100vh;
   background-image: url(${HeroBg.src});

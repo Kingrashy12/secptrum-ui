@@ -13,6 +13,7 @@ import { spacingValues } from '../../utils/spacing';
 import { colors } from '../colors';
 import { getToastPosition } from '../../utils/position';
 import { getToastTransition } from '../../utils/transitions';
+import { getModeStyle } from 'src/utils/mode';
 
 //*************Backdrop Components*************//
 export const DropSui = styled<IStyleDrop>(FixedBox)`
@@ -32,14 +33,19 @@ DropSui.displayName = 'DropSui';
 // Modal Panel
 export const ModalPanelSui = styled<IStyleModalPanel>('div')`
   position: relative;
-  background: ${(props) => props.backgroundColor || 'white'};
+  background: ${(props) => props.backgroundColor};
   border-radius: 11px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px
+    ${(props) =>
+      props.mode === 'dark' ? colors.slate[950] : 'rgba(0, 0, 0, 0.1)'};
   max-width: 100%;
-  padding: 20px;
+  height: auto;
+  max-height: 93%;
   z-index: 1000;
   overflow: hidden;
-  border: 1px solid ${colors.neutral[200]};
+  border: 1px solid
+    ${(props) =>
+      props.mode === 'dark' ? colors.neutral[800] : colors.neutral[200]};
   ${(props) => {
     const size = getPanelSize(props.size);
     return css`
@@ -66,47 +72,29 @@ ModalPanelSui.displayName = 'ModalPanelSui';
 // Modal Description
 export const ModalContent = styled(BoxSui)`
   margin: ${({ margin }) => margin || '5px 0'};
-  ${(props) =>
-    props.padding
-      ? css`
-          padding: ${props.padding};
-        `
-      : ''}
-  ${(props) =>
-    props.paddingTop
-      ? css`
-          padding-top: ${props.paddingTop};
-        `
-      : ''}
-  ${(props) =>
-    props.paddingBottom
-      ? css`
-          padding-bottom: ${props.paddingBottom};
-        `
-      : ''}
-  ${(props) =>
-    props.border
-      ? css`
-          border: ${props.border};
-        `
-      : ''}
+  overflow-y: auto;
+  height: 100%;
   flex-direction: ${(props) => props.direction || 'column'};
   gap: ${(props) => props.spacing || 16}px;
   justify-content: ${(props) => (props.centered ? 'center' : '')};
   align-items: ${(props) => (props.centered ? 'center' : '')};
+  padding: ${(props) => props.padding ?? '13px'};
 `;
 ModalContent.displayName = 'ModalContent';
 
 // Modal Footer
-export const ModalFooter = styled<IStyleModalFooter>('div')`
+export const ModalFooterSui = styled<IStyleModalFooter>('div')`
   display: flex;
   justify-content: ${(props) =>
     props.position === 'left' ? 'flex-start' : 'flex-end'};
-  margin-top: 20px;
-  padding-top: 10px;
   gap: ${(props) => props.space || 10}px;
+  padding: 13px;
+  ${(props) =>
+    props.showBorder
+      ? `border-top: 1px solid ${getModeStyle(props.mode).border};`
+      : ''}
 `;
-ModalFooter.displayName = 'ModalFooterSui';
+ModalFooterSui.displayName = 'ModalFooterSui';
 
 //*****************Toast Components****************//
 // Toast style

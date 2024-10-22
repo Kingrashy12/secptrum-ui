@@ -14,6 +14,8 @@ import { useRouter } from '@/hooks';
 import React from 'react';
 import { Backdrop, Box, colors } from 'secptrum-ui';
 import { DivProps, styled, useTheme } from 'styled-chroma';
+// import Typography from '@/components/custom/Typography';
+// import { HiMiniArrowUpRight } from 'react-icons/hi2';
 
 const SideBarModal = () => {
   const { isOpen, onClose } = useSideBar();
@@ -60,15 +62,12 @@ const SideBarModal = () => {
             </Collapsible>
           ))}
           <ExtraLinks>
-            {/* <SignedIn>
-              <CollapsibleAction
-               
-                onClick={() => window.open("/test/components")}
-              >
-                <Typography>Test Environment</Typography>
-                <RiArrowRightUpLine />
-              </CollapsibleAction>
-            </SignedIn> */}
+            {/* <Link href="/showcase-lab">
+              <Box spacing="md" centered>
+                <Typography>Showcase Lab</Typography>
+                <HiMiniArrowUpRight size={20} />
+              </Box>
+            </Link> */}
           </ExtraLinks>
         </BarContent>
       </SideBarContainer>

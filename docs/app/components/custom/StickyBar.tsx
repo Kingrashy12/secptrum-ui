@@ -1,21 +1,23 @@
-"use client";
+'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import { Box, colors } from "secptrum-ui";
-import Collapsible from "./Collapsible";
-import { sidebarlinks } from "@/data/sidebar";
-import Typography from "./Typography";
-import Link from "next/link";
-import { DivProps, HeadProps, styled, useTheme } from "styled-chroma";
-import { useRouter } from "@/hooks";
+import React from 'react';
+import { Box, colors } from 'secptrum-ui';
+import Collapsible from './Collapsible';
+import { sidebarlinks } from '@/data/sidebar';
+import Typography from './Typography';
+import Link from 'next/link';
+import { DivProps, HeadProps, styled, useTheme } from 'styled-chroma';
+import { useRouter } from '@/hooks';
+// import { HiMiniArrowUpRight } from 'react-icons/hi2';
+import { fonts } from '@/styles/global';
 
 const StickyBar = () => {
   const { pathname } = useRouter();
 
   const { mode } = useTheme();
 
-  const light = mode === "light";
+  const light = mode === 'light';
 
   return (
     <StyledBar light={light}>
@@ -59,6 +61,20 @@ const StickyBar = () => {
               </Collapsible>
             ))}
           </>
+          <ExtraLinks spacing="lg">
+            {/* <Link href="/showcase-lab">
+              <Box spacing="md" centered>
+                <Typography>Showcase Lab</Typography>
+                <HiMiniArrowUpRight size={20} />
+              </Box>
+            </Link> */}
+            {/* <Link href="">
+              <Box spacing="md" centered>
+                <Typography>Templates</Typography>
+                <HiMiniArrowUpRight size={20} />
+              </Box>
+            </Link> */}
+          </ExtraLinks>
         </BarStack>
       </BarContent>
     </StyledBar>
@@ -67,7 +83,7 @@ const StickyBar = () => {
 
 export default StickyBar;
 
-const StyledBar = styled<{ light: boolean }>("div")`
+const StyledBar = styled<{ light: boolean }>('div')`
   height: 100vh;
   background: ${(props) => props.theme?.colors?.background};
   width: 270px;
@@ -111,7 +127,7 @@ export const DocsContent = styled<DocsContentProps>(Box)`
 
   a {
     text-decoration: none;
-    pointer-events: ${(props) => props.notavailable && "none"};
+    pointer-events: ${(props) => props.notavailable && 'none'};
   }
 `;
 
@@ -127,20 +143,22 @@ interface DocsLabelProps extends HeadProps {
   notavailable: boolean | any;
 }
 
-export const DocsLabel = styled<DocsLabelProps>(Typography)`
+export const DocsLabel = styled<DocsLabelProps>('p')`
   color: ${(props) => props.theme.colors?.text};
   font-size: 14px;
   opacity: ${(props) => (props.notavailable ? 0.4 : 1)};
+  font-family: ${fonts.poppins};
 `;
 
-export const DocAlert = styled<DocsLabelProps>(Typography)`
+export const DocAlert = styled<DocsLabelProps>('p')`
   color: blue;
   background: rgb(191 219 254);
   padding: 4px;
   font-size: 12px;
   border-radius: 5px;
-  display: ${(props) => (props.notavailable ? "flex" : "none")};
+  display: ${(props) => (props.notavailable ? 'flex' : 'none')};
   opacity: 0.4;
+  font-family: ${fonts.poppins};
 `;
 
 export const DocLinkWrap = styled<
@@ -156,16 +174,24 @@ export const DocLinkWrap = styled<
     props.isactive
       ? props.light
         ? colors.blue[100]
-        : "rgb(30 41 59)"
-      : "transparent"};
+        : 'rgb(30 41 59)'
+      : 'transparent'};
   padding: 4px 8px;
   border-radius: 6px;
-  cursor: ${(props) => (props.notavailable ? "default" : "pointer")};
+  cursor: ${(props) => (props.notavailable ? 'default' : 'pointer')};
 `;
 
 export const ExtraLinks = styled(Box)`
-  flex-direction: column;
   width: 100%;
   height: 100%;
   padding: 10px 16px;
+  color: ${(props) => props.theme.colors?.text};
+  flex-direction: column;
+  height: 100%;
+
+  p {
+    font-size: 15px;
+    line-height: 1.5rem;
+    font-weight: 600;
+  }
 `;

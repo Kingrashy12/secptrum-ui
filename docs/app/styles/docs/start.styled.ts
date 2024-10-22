@@ -55,15 +55,13 @@ export const LargeTextHeader = styled(Typography)`
     'Segoe UI Emoji', 'Segoe UI Symbol';
 `;
 export const MediumTextHeader = styled<HeaderProps & { isMedium?: boolean }>(
-  Typography
+  'h4'
 )`
   color: ${(props) => props.theme.colors?.text};
   font-size: ${(props) => (props.isMedium ? '1.45rem' : '1.625rem')};
   line-height: 1.5;
   letter-spacing: 0.1px;
-  font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: ${fonts.inter};
   font-weight: 600;
   margin: 40px 0 4px;
 `;
