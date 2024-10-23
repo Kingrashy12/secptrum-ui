@@ -1,23 +1,24 @@
-'use client';
+"use client";
 
-import NastedList from '@/components/custom/docs/NastedList';
-import ReferenceTable from '@/components/custom/docs/ReferenceTable';
-import DocsLayout from '@/components/layout/DocsLayout';
-import { switchCode } from '@/data/code/switch';
-import { switchRef } from '@/data/reference/switch';
-import BasicSwitch from '@/components/example/input/BasicSwitch';
-import DisabledSwitch from '@/components/example/input/DisabledSwitch';
-import SwitchColors from '@/components/example/input/SwitchColors';
-import SwitchSizes from '@/components/example/input/SwitchSizes';
+import NastedList from "@/components/custom/docs/NastedList";
+import ReferenceTable from "@/components/custom/docs/ReferenceTable";
+import DocsLayout from "@/components/layout/DocsLayout";
+import { switchCode } from "@/data/code/switch";
+import { switchRef } from "@/data/reference/switch";
+import BasicSwitch from "@/components/example/input/BasicSwitch";
+import DisabledSwitch from "@/components/example/input/DisabledSwitch";
+import SwitchColors from "@/components/example/input/SwitchColors";
+import SwitchSizes from "@/components/example/input/SwitchSizes";
 import {
   BodyText,
   LargeTextHeader,
   TextContent_Wrap,
-} from '@/styles/docs/start.styled';
-import { Divider } from '@/styles/global';
-import React from 'react';
-import ComponentsBadge from '@/components/custom/ComponentsBadge';
-import HeaderText from '@/components/custom/docs/HeaderText';
+} from "@/styles/docs/start.styled";
+import { Divider } from "@/styles/global";
+import React from "react";
+import ComponentsBadge from "@/components/custom/ComponentsBadge";
+import HeaderText from "@/components/custom/docs/HeaderText";
+import PropOptions from "@/components/custom/docs/PropOptions";
 
 const SwitchPage = () => {
   return (
@@ -35,8 +36,8 @@ const SwitchPage = () => {
       <TextContent_Wrap id="sizes">
         <HeaderText id="sizes">Sizes</HeaderText>
         <BodyText>
-          The Switch component comes in two size variants{' '}
-          <ComponentsBadge>md</ComponentsBadge> and{' '}
+          The Switch component comes in two size variants{" "}
+          <ComponentsBadge>md</ComponentsBadge> and{" "}
           <ComponentsBadge>lg</ComponentsBadge>.
         </BodyText>
       </TextContent_Wrap>
@@ -55,26 +56,28 @@ const SwitchPage = () => {
           Customizing the Switch
         </HeaderText>
         <NastedList>
-          <li>
-            <b>Size</b>: You can change the size of the switch to{' '}
-            <ComponentsBadge>md</ComponentsBadge> or{' '}
-            <ComponentsBadge>lg</ComponentsBadge> to fit different UI layouts.
-          </li>
-          <li>
-            <b>Colors</b>: Use the <ComponentsBadge>color</ComponentsBadge> and{' '}
-            <ComponentsBadge>checkedColor</ComponentsBadge> props to set custom
-            colors for the switch&apos;s on and off states.
-          </li>
-          <li>
-            <b>Disabled State</b>: The switch can be disabled to prevent
-            interaction when a particular action is not available.
-          </li>
+          <PropOptions hideHeader>
+            <li>
+              <b>Size</b>: You can change the size of the switch to{" "}
+              <ComponentsBadge>md</ComponentsBadge> or{" "}
+              <ComponentsBadge>lg</ComponentsBadge> to fit different UI layouts.
+            </li>
+            <li>
+              <b>Colors</b>: Use the <ComponentsBadge>color</ComponentsBadge>{" "}
+              and <ComponentsBadge>checkedColor</ComponentsBadge> props to set
+              custom colors for the switch&apos;s on and off states.
+            </li>
+            <li>
+              <b>Disabled State</b>: The switch can be disabled to prevent
+              interaction when a particular action is not available.
+            </li>
+          </PropOptions>
         </NastedList>
       </TextContent_Wrap>
       <TextContent_Wrap id="api-refrence">
         <HeaderText id="api-reference">API Reference</HeaderText>
         <BodyText>
-          Below is a table detailing the available props for the{' '}
+          Below is a table detailing the available props for the{" "}
           <ComponentsBadge>Switch</ComponentsBadge> component.
         </BodyText>
       </TextContent_Wrap>

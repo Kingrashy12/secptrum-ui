@@ -76,6 +76,12 @@ export const bottomnavTabRef = [
     default: "false",
   },
   {
+    prop: "disabled",
+    type: "boolean",
+    description: "Indicates if the tab is disabled and cannot be clicked.",
+    default: "false",
+  },
+  {
     prop: "onClick",
     type: "()=>void",
     description:

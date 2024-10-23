@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ExtraImagePicker,
   FilePicker,
@@ -22,12 +21,12 @@ interface ImagePickerProps {
    * A callback function that is triggered when an image is selected.
    * @param image - The selected image data, which can be a base64 string, an ArrayBuffer, or null if no image is selected.
    */
-  onImageSelect?: (image: string | any) => void;
+  onImageSelect?: (image: string | unknown) => void;
   /**
    * Callback function invoked when multiple images are selected
    * Returns an array of image URLs or null if no images are selected
    */
-  onMultipleImageSelect?: (image: string[] | any) => void;
+  onMultipleImageSelect?: (image: string[] | unknown[]) => void;
   /**
    * Enable or disable multiple image selection
    */
@@ -96,6 +95,10 @@ interface ImagePickerProps {
    * If false or not provided, images will be added only when the picker is closed.
    */
   autoSelectImage?: boolean;
+  /**
+   * Determines the stack order of the backdrop, ensuring it appears above other content but behind interactive elements.
+   */
+  zIndex?: number;
 }
 
 /**
@@ -154,10 +157,11 @@ const ImagePicker = ({
   isPickerOpen,
   closePicker,
   mode,
+  zIndex,
   autoSelectImage,
 }: ImagePickerProps) => {
-  const [images, setImages] = useState<string[] | any[]>([]);
-  const [image, setImage] = useState<string | ArrayBuffer | any>("");
+  const [images, setImages] = useState<string[] | unknown[]>([]);
+  const [image, setImage] = useState<string | unknown>("");
 
   useEffect(() => {
     if (autoSelectImage && images.length > 0) {
@@ -219,7 +223,7 @@ const ImagePicker = ({
   }
 
   return (
-    <Backdrop open={isPickerOpen} onClose={close} mode={mode}>
+    <Backdrop zIndex={zIndex} open={isPickerOpen} onClose={close} mode={mode}>
       {image || images.length >= 1 ? (
         <SelectedImageContainer
           style={containerStyles}

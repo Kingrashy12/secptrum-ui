@@ -1,12 +1,12 @@
-import React from 'react';
-import { BottomNavTabSui } from '../../styles/navigation/styled';
-import { BoxType } from '../../types/sui';
-import Icon from '../Icon/Icon';
-import useRouter from '../../hooks/useRouter';
-import { colors } from 'styled-chroma';
-import { GoDotFill } from 'react-icons/go';
-import { toast } from '../Toast/Toast';
-import Toaster from '../Toast/Toaster';
+import React from "react";
+import { BottomNavTabSui } from "../../styles/navigation/styled";
+import { BoxType } from "../../types/sui";
+import Icon from "../Icon/Icon";
+import useRouter from "../../hooks/useRouter";
+import { colors } from "styled-chroma";
+import { GoDotFill } from "react-icons/go";
+import { toast } from "../Toast/Toast";
+import Toaster from "../Toast/Toaster";
 
 interface BottomNavTabProps extends BoxType {
   /** The text to display below the icon, name of the tab */
@@ -39,6 +39,10 @@ interface BottomNavTabProps extends BoxType {
    * navigation behavior is prevented.
    */
   onClick?: () => void;
+  /**
+   * Indicates if the tab is disabled and cannot be clicked.
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -68,7 +72,7 @@ const BottomNavTab = ({
   iconSize,
   useDotOnActive,
   isactive,
-  padding = '0.2rem',
+  padding = "0.2rem",
   preventPush,
   onClick,
   ...props
@@ -85,9 +89,9 @@ const BottomNavTab = ({
     e.stopPropagation();
     if (preventPush) {
       if (!onClick) {
-        toast.error('onClick function is required when preventPush is true', {
-          position: 'bottom-left',
-          transition: 'slideIn',
+        toast.error("onClick function is required when preventPush is true", {
+          position: "bottom-left",
+          transition: "slideIn",
         });
         return;
       }
@@ -114,4 +118,4 @@ const BottomNavTab = ({
 };
 
 export default BottomNavTab;
-BottomNavTab.displayName = 'BottomNavTab';
+BottomNavTab.displayName = "BottomNavTab";

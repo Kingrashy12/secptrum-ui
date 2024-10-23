@@ -4,11 +4,17 @@ import { ParagraphProps, styled } from "styled-chroma";
 type IStyleText = {
   animation: string;
   delay: number;
+  infinite?: boolean;
 };
 
 const NameSpan = styled<IStyleText>("span")`
   display: inline-block;
-  animation: ${(props) => props.animation} 1s ease-in-out forwards;
+  ${(props) =>
+    props.infinite
+      ? `
+    animation: ${props.animation} 1s infinite ease-in-out forwards;
+  `
+      : `animation: ${props.animation} 1s ease-in-out forwards;`}
   animation-delay: ${({ delay }) => delay}s;
   opacity: 0;
 `;
@@ -45,6 +51,8 @@ interface AnimatedTextProps extends ParagraphProps {
    * @type {React.CSSProperties | undefined}
    */
   spanStyle?: React.CSSProperties;
+  /** If true, animation will run infinitely */
+  infinite?: boolean;
 }
 
 /**
@@ -61,7 +69,10 @@ interface AnimatedTextProps extends ParagraphProps {
  */
 
 const AnimatedText = React.forwardRef<HTMLParagraphElement, AnimatedTextProps>(
-  ({ text, animation, spanClass, spanId, spanStyle, ...props }, ref) => {
+  (
+    { text, animation, spanClass, spanId, spanStyle, infinite, ...props },
+    ref
+  ) => {
     return (
       <p {...props} ref={ref}>
         {text.split("").map((letter, index) => (
@@ -72,6 +83,7 @@ const AnimatedText = React.forwardRef<HTMLParagraphElement, AnimatedTextProps>(
             className={spanClass}
             style={spanStyle}
             id={spanId}
+            infinite={infinite}
           >
             {letter === " " ? "\u00A0" : letter}
           </NameSpan>

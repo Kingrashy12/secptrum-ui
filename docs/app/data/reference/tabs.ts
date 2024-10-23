@@ -19,6 +19,12 @@ export const tabsRef = [
     default: "false",
   },
   {
+    prop: "className",
+    type: "string",
+    description: "A custom class name to apply to the TabsList component.",
+    default: "undefined",
+  },
+  {
     prop: "backgroundColor",
     type: "string",
     description: "Sets the background color of the TabsList.",

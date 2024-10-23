@@ -1,25 +1,25 @@
-export const getBottomNavVariant = (variant: 'rounded' | 'full' | 'wide') => {
+export const getBottomNavVariant = (variant: "rounded" | "full" | "wide") => {
   switch (variant) {
-    case 'wide':
+    case "wide":
       return {
-        'border-radius': '0.95rem 0.95rem 0 0',
-        padding: '0.25rem',
-        width: '100%',
-        bottom: '0',
+        "border-radius": "0.7rem 0.7rem 0 0",
+        padding: "0.25rem",
+        width: "100%",
+        bottom: "0",
       };
-    case 'rounded':
+    case "rounded":
       return {
-        'border-radius': '9999px',
-        padding: '0.5rem',
-        width: '98%',
-        bottom: '1.5rem',
+        "border-radius": "9999px",
+        padding: "0.5rem",
+        width: "98%",
+        bottom: "1.5rem",
       };
-    case 'full':
+    case "full":
       return {
-        'border-radius': '0',
-        padding: '0.25rem',
-        width: '100%',
-        bottom: '0',
+        "border-radius": "0",
+        padding: "0.25rem",
+        width: "100%",
+        bottom: "0",
       };
   }
 };
