@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import TabsList, { TabsListType } from './TabsList';
-import TabsHandle from './TabsHandle';
-import Box from '../Box/Box';
-import TabPanel from './TabPanel';
-import { styled } from 'styled-chroma';
-import { useMode } from '../../hooks/useMode';
+import React, { useState } from "react";
+import TabsList, { TabsListType } from "./TabsList";
+import TabsHandle from "./TabsHandle";
+import Box from "../Box/Box";
+import TabPanel from "./TabPanel";
+import { styled } from "styled-chroma";
+import { useMode } from "../../hooks/useMode";
 
 /**
  * Tab component for creating tabbed interfaces.
@@ -25,11 +25,12 @@ import { useMode } from '../../hooks/useMode';
 
 const Tab = ({
   children,
-  variant = 'line',
+  variant = "line",
   mode,
   fullWidth,
   backgroundColor,
   lineBorderColor,
+  className,
 }: TabsListType) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
@@ -51,7 +52,8 @@ const Tab = ({
         fullWidth={fullWidth}
         lineBorderColor={lineBorderColor}
         backgroundColor={backgroundColor}
-        mode={currentMode as TabsListType['mode']}
+        mode={currentMode as TabsListType["mode"]}
+        className={className}
       >
         {tabs.map((tab, index) => (
           <TabsHandle
@@ -87,6 +89,6 @@ const Tabs = styled(Box)`
   width: 100%;
 `;
 
-const ContentWrapper = styled('div')`
+const ContentWrapper = styled("div")`
   margin-top: 2px;
 `;
