@@ -21,12 +21,12 @@ interface ImagePickerProps {
    * A callback function that is triggered when an image is selected.
    * @param image - The selected image data, which can be a base64 string, an ArrayBuffer, or null if no image is selected.
    */
-  onImageSelect?: (image: string | unknown) => void;
+  onImageSelect?: (image: string | any) => void;
   /**
    * Callback function invoked when multiple images are selected
    * Returns an array of image URLs or null if no images are selected
    */
-  onMultipleImageSelect?: (image: string[] | unknown[]) => void;
+  onMultipleImageSelect?: (image: string[] | any[]) => void;
   /**
    * Enable or disable multiple image selection
    */
@@ -160,8 +160,8 @@ const ImagePicker = ({
   zIndex,
   autoSelectImage,
 }: ImagePickerProps) => {
-  const [images, setImages] = useState<string[] | unknown[]>([]);
-  const [image, setImage] = useState<string | unknown>("");
+  const [images, setImages] = useState<string[] | any[]>([]);
+  const [image, setImage] = useState<string | any>("");
 
   useEffect(() => {
     if (autoSelectImage && images.length > 0) {
