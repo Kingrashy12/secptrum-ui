@@ -1,7 +1,7 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.50",
-  "description": "**SecptrumUI** A React component library with adaptable, responsive designs using `styled-chroma`",
+  "version": "1.1.51",
+  "description": "**SecptrumUI** A comprehensive React component library",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {
     "type": "git",
@@ -54,7 +54,7 @@
   "dependencies": {
     "jwt-decode": "^4.0.0",
     "react-icons": "^5.3.0",
-    "styled-chroma": "^0.1.68"
+    "styled-chroma": "^0.1.71"
   },
   "peerDependencies": {
     "react": ">= 18.0.0",

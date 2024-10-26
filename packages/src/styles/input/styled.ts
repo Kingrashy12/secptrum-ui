@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { css, DivProps, keyframes, styled } from 'styled-chroma';
-import { colors } from '../colors';
-import { getInputRadius, getInputStyles } from '../../utils/input';
-import { InputType } from '../../types/sui';
+import { css, DivProps, keyframes, styled } from "styled-chroma";
+import { colors } from "../colors";
+import { getInputRadius, getInputStyles } from "../../utils/input";
+import { InputType } from "../../types/sui";
 import {
   IStyleCheckbox,
   IStyleChecked,
   IStyleSwitch,
   IStyleSwitchHandle,
-} from '../../types/istyle';
+} from "../../types/istyle";
 
 const pop = keyframes`
   0% {
@@ -23,10 +23,10 @@ const pop = keyframes`
 `;
 
 // **** input   s   t   y   l   e   s   **** //
-export const InputForm = styled<DivProps & { width: string | any }>('div')`
+export const InputForm = styled<DivProps & { width: string | any }>("div")`
   flex-direction: column;
   gap: 8px;
-  min-width: ${(props) => props.width || 'auto'};
+  min-width: ${(props) => props.width || "auto"};
   max-width: 100%;
   display: flex;
   p {
@@ -47,19 +47,19 @@ export const InputForm = styled<DivProps & { width: string | any }>('div')`
 `;
 
 interface IStyle extends InputType {
-  variant: InputType['variant'];
-  radius: InputType['radius'];
-  outLineBorderColor: InputType['outLineBorderColor'];
-  focusColor: InputType['focusColor'];
-  focusBorderColor: InputType['focusBorderColor'];
+  variant: InputType["variant"];
+  radius: InputType["radius"];
+  outLineBorderColor: InputType["outLineBorderColor"];
+  focusColor: InputType["focusColor"];
+  focusBorderColor: InputType["focusBorderColor"];
   disabled: boolean | any;
-  hasError: InputType['hasError'] | any;
+  hasError: InputType["hasError"] | any;
   color: string | any;
-  backgroundcolor: InputType['backgroundColor'];
-  mode: InputType['mode'];
+  backgroundcolor: InputType["backgroundColor"];
+  mode: InputType["mode"];
 }
 
-export const Input = styled<IStyle>('div')`
+export const Input = styled<IStyle>("div")`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,7 +104,7 @@ export const Input = styled<IStyle>('div')`
     background: transparent;
     caret-color: ${colors.blue[500]};
     color: ${(props) =>
-      props.color || props.mode === 'light' ? 'black' : 'white'};
+      props.color || props.mode === "light" ? "black" : "white"};
     font-family: inherit;
     transition: color 0.3s ease;
     height: 100%;
@@ -115,31 +115,33 @@ export const Input = styled<IStyle>('div')`
   }
   .Icon__Sui {
     height: 100%;
+    flex-shrink: 0;
   }
 
   .eye_pass {
     cursor: pointer;
     color: ${colors.neutral[400]};
     transition: color 0.3s ease;
+    flex-shrink: 0;
 
     &:hover {
       color: ${colors.neutral[600]};
     }
   }
 `;
-Input.displayName = 'TextInputSui';
+Input.displayName = "TextInputSui";
 
 //************Checkbox Components**************//
-export const Checker = styled<IStyleCheckbox>('div')`
+export const Checker = styled<IStyleCheckbox>("div")`
   background: none;
   border: ${(props) =>
-    props.checked ? 'none' : `1.5px solid ${props.borderColor}`};
+    props.checked ? "none" : `1.5px solid ${props.borderColor}`};
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
-  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : '7px')};
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : "7px")};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  pointer-events: ${(props) => props.disabled && 'none'};
+  pointer-events: ${(props) => props.disabled && "none"};
 
   .sui-unchecked {
     opacity: 0;
@@ -148,38 +150,38 @@ export const Checker = styled<IStyleCheckbox>('div')`
     opacity: 1;
   }
 `;
-Checker.displayName = 'CheckboxSui';
+Checker.displayName = "CheckboxSui";
 
-export const Checked = styled<IStyleChecked>('div')`
+export const Checked = styled<IStyleChecked>("div")`
   justify-content: center;
   align-items: center;
   display: flex;
   background: ${(props) => props.color};
   width: 100%;
   height: 100%;
-  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : '7px')};
+  border-radius: ${(props) => (props.rounded ? `${props.size / 2}px` : "7px")};
   border: none;
 `;
 
 //***********Switch Components****************//
-export const SwitchSui = styled<IStyleSwitch>('div')`
+export const SwitchSui = styled<IStyleSwitch>("div")`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 9999px;
   padding: 2px;
   background-color: ${(props) =>
     props.checked ? props.checkedColor : props.color};
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
-  pointer-events: ${(props) => props.disabled && 'none'};
+  pointer-events: ${(props) => props.disabled && "none"};
   display: flex;
   align-items: center;
   position: relative;
   flex-shrink: 0;
 `;
-SwitchSui.displayName = 'SwitchSui';
+SwitchSui.displayName = "SwitchSui";
 
-export const SwitchHandle = styled<IStyleSwitchHandle>('div')`
+export const SwitchHandle = styled<IStyleSwitchHandle>("div")`
   width: ${(props) => props.switchWidth};
   height: ${(props) => props.height};
   background: white;
@@ -190,13 +192,13 @@ export const SwitchHandle = styled<IStyleSwitchHandle>('div')`
       ? css`
           right: 3px;
         `
-      : ''}
+      : ""}
   ${(props) =>
     !props.checked
       ? css`
           left: 3px;
         `
-      : ''}
+      : ""}
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;

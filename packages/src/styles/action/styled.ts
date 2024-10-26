@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { css, styled } from 'styled-chroma';
-import { spin, zoom } from '../animations';
+import { css, styled } from "styled-chroma";
+import { spin, zoom } from "../animations";
 
-import { ButtonProps } from '../../types/sui';
+import { ButtonProps } from "../../types/sui";
 import {
   getButtonRadius,
   getButtonStyles,
   getHoverStyle,
   getSizeVariant,
-} from '../../utils/button';
-import { colors } from '../colors';
-import { getFloatPosition } from '../../utils/position';
-import { getFloatSize, getFloatVariantStyle } from '../../utils/actions';
-import { IStyleFab } from '../../types/istyle';
+} from "../../utils/button";
+import { colors } from "../colors";
+import { getFloatPosition } from "../../utils/position";
+import { getFloatSize, getFloatVariantStyle } from "../../utils/actions";
+import { IStyleFab } from "../../types/istyle";
 
 //************Button Components***************//
-export const ButtonSui = styled<ButtonProps>('button')`
+export const ButtonSui = styled<ButtonProps>("button")`
   width: ${(props) => props.width as any};
   border: none;
   cursor: pointer;
@@ -34,6 +34,7 @@ export const ButtonSui = styled<ButtonProps>('button')`
   border-radius: ${(props) => getButtonRadius(props.radius) as any};
   background: ${(props) => getButtonStyles(props)?.background as any};
   border: ${(props) => getButtonStyles(props)?.border as any};
+  flex-shrink: 0;
 
   &:hover {
     background: ${(props) => getHoverStyle(props)?.background as any};
@@ -46,7 +47,7 @@ export const ButtonSui = styled<ButtonProps>('button')`
       opacity: 0.75;
       pointer-events: none;
     `
-      : ''}
+      : ""}
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -55,11 +56,11 @@ export const ButtonSui = styled<ButtonProps>('button')`
     animation: ${spin} 1.1s infinite linear;
   }
 `;
-ButtonSui.displayName = 'ButtonSui';
+ButtonSui.displayName = "ButtonSui";
 
 //***********Fab Components***************//
-export const FabSui = styled<IStyleFab>('div')`
-  position: ${(props) => (props.moveOnScroll ? 'absolute' : 'fixed')};
+export const FabSui = styled<IStyleFab>("div")`
+  position: ${(props) => (props.moveOnScroll ? "absolute" : "fixed")};
   width: auto;
   height: auto;
   border-radius: 9999px;
@@ -70,6 +71,7 @@ export const FabSui = styled<IStyleFab>('div')`
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: ${(props) => props.zIndex || 400};
+  flex-shrink: 0;
   ${(props) => {
     const position = getFloatPosition(props.position);
     return css`
@@ -111,4 +113,4 @@ export const FabSui = styled<IStyleFab>('div')`
     opacity: 0.9;
   }
 `;
-FabSui.displayName = 'FabSui';
+FabSui.displayName = "FabSui";

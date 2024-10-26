@@ -1,32 +1,32 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Media from '../custom/Media';
-import { GithubImg, SecptrumLogo } from '@/assets';
-import { Box, colors, Icon } from 'secptrum-ui';
-import Typography from '../custom/Typography';
-import Link from 'next/link';
-import { styled, useTheme } from 'styled-chroma';
-import { RiMenuUnfold3Line } from 'react-icons/ri';
+import React from "react";
+import Media from "../custom/Media";
+import { GithubImg, SecptrumLogo } from "@/assets";
+import { Box, colors, Icon } from "secptrum-ui";
+import Typography from "../custom/Typography";
+import Link from "next/link";
+import { styled, useTheme } from "styled-chroma";
+import { RiMenuUnfold3Line } from "react-icons/ri";
 // import { GoBell } from 'react-icons/go';
-import { MdSunny } from 'react-icons/md';
-import { IoMdMoon } from 'react-icons/io';
-import { sidebarlinks } from '@/data/sidebar';
-import { LuMenu } from 'react-icons/lu';
-import { useMenu } from '@/context/useMenu';
-import { useSideBar } from '@/context/useSideBar';
-import { fonts } from '@/styles/global';
+import { MdSunny } from "react-icons/md";
+import { IoMdMoon } from "react-icons/io";
+import { sidebarlinks } from "@/data/sidebar";
+import { LuMenu } from "react-icons/lu";
+import { useMenu } from "@/context/useMenu";
+import { useSideBar } from "@/context/useSideBar";
+import { fonts } from "@/styles/global";
 // import { useShowcaseForm } from '@/context/useShowCase';
 
-const Navbar = () => {
+const Navbar = ({ visible }: { visible: boolean }) => {
   const { mode, theme, toggleTheme } = useTheme();
   const { onOpen } = useMenu();
   const { onOpen: openSideBar } = useSideBar();
-  const light = mode === 'light';
+  const light = mode === "light";
   // const { onOpen: showCase } = useShowcaseForm();
 
   return (
-    <Nav light={light}>
+    <Nav light={light} visible={visible}>
       <Box className="logo">
         <Icon
           icon={RiMenuUnfold3Line}
@@ -92,7 +92,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-const Secptrum = styled('p')`
+const Secptrum = styled("p")`
   color: ${(props) => props.theme.colors?.text};
   font-family: ${fonts.nunito};
   font-weight: 600;
@@ -100,9 +100,9 @@ const Secptrum = styled('p')`
   transform: translateY(2px);
 `;
 
-const Nav = styled<{ light: boolean }>('div')`
+const Nav = styled<{ light: boolean; visible: boolean }>("div")`
   background: ${(props) =>
-    props.light ? 'rgb(255,255,255,0.5)' : 'rgb(0,0,0,0.5)'};
+    props.light ? "rgb(255,255,255,0.5)" : "rgb(0,0,0,0.5)"};
   display: flex;
   position: fixed;
   width: 100%;
@@ -112,8 +112,11 @@ const Nav = styled<{ light: boolean }>('div')`
   justify-content: space-around;
   align-items: center;
   backdrop-filter: blur(6px);
+  transform: ${(props) =>
+    props.visible ? "translateY(0)" : "translateY(-40px)"};
+  transition: transform 0.3s ease;
   border-bottom: 1px solid
-    ${(props) => (props.light ? colors.gray[300] : 'rgb(38 38 38)')};
+    ${(props) => (props.light ? colors.gray[300] : "rgb(38 38 38)")};
 
   .logo {
     flex-grow: 0.5;
@@ -144,7 +147,9 @@ const Logo = styled(Media)`
   height: 50px;
 `;
 
-const LinkWrapper = styled(Box)`
+const LinkWrapper = styled("div")`
+  display: flex;
+  position: relative;
   justify-content: space-between;
   width: auto;
   gap: 1.5rem;
@@ -154,7 +159,9 @@ const LinkWrapper = styled(Box)`
   }
 `;
 
-const Links = styled(Box)`
+const Links = styled("div")`
+  display: flex;
+  position: relative;
   gap: 3.5rem;
   align-items: center;
 
@@ -181,7 +188,7 @@ const Links = styled(Box)`
   }
 
   p {
-    font-family: 'Poppins-Medium';
+    font-family: "Poppins-Medium";
     font-size: 14px;
   }
 `;
@@ -194,13 +201,13 @@ const Git = styled(Media)`
   }
 `;
 
-const Divider = styled('div')`
+const Divider = styled("div")`
   background: ${(props) => props.theme.colors?.divider};
   width: 1px;
   height: auto;
 `;
 
-const MenuIcon = styled('div')`
+const MenuIcon = styled("div")`
   display: none;
 
   @media screen and (max-width: 550px) {

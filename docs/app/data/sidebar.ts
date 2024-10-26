@@ -44,10 +44,22 @@ export const sidebarlinks = [
       { label: "Modal", uri: "/docs/components/feedback/modal" },
       { label: "Toast", uri: "/docs/components/feedback/toast" },
       {
+        label: "NotificationBadge",
+        not_available: true,
+        category: "Indicators",
+        uri: "/docs/components/indicator/notification-badge",
+      },
+      {
+        label: "StatusBadge",
+        not_available: true,
+        uri: "/docs/components/indicator/status-badge",
+      },
+      {
         label: "Tooltip",
         not_available: true,
-        uri: "/docs/components/feedback/tooltip",
+        uri: "/docs/components/indicator/tooltip",
       },
+
       { label: "Box", category: "Layout", uri: "/docs/components/layout/box" },
       { label: "Card", uri: "/docs/components/layout/card" },
       {
@@ -80,11 +92,6 @@ export const sidebarlinks = [
       {
         label: "Drawer",
         uri: "/docs/components/navigation/drawer",
-      },
-      {
-        label: "Sticky Bar",
-        not_available: true,
-        uri: "/docs/components/navigation/sticky-bar",
       },
       {
         label: "Dropdown Menu",
