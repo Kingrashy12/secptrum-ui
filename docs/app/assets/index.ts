@@ -5,6 +5,7 @@ import ReactImage from "./images/science.png";
 import NextJs from "./svgs/next";
 import CreateReactApp from "./svgs/react";
 import Page_Not_Found from "./svgs/page_not_found.svg";
+import HeroBgMp4 from "./hero-bg.mp4";
 
 export {
   SecptrumLogo,
@@ -14,4 +15,5 @@ export {
   CreateReactApp,
   NextJs,
   Page_Not_Found,
+  HeroBgMp4,
 };

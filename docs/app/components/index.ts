@@ -1,105 +1,106 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 // Dynamic export
-export const HomePage = dynamic(() => import('./home/About'), { ssr: false });
-export const OverViewPage = dynamic(() => import('./docs/start/OverviewPage'), {
+export const HomePage = dynamic(() => import("./home/About"), { ssr: false });
+// export { default as HomePage } from "./home/About";
+export const OverViewPage = dynamic(() => import("./docs/start/OverviewPage"), {
   ssr: false,
 });
-export const InstallPage = dynamic(() => import('./docs/start/InstallPage'), {
+export const InstallPage = dynamic(() => import("./docs/start/InstallPage"), {
   ssr: false,
 });
-export const NotFoundPage = dynamic(() => import('./404_NotFound'), {
+export const NotFoundPage = dynamic(() => import("./404_NotFound"), {
   ssr: false,
 });
 export const ButtonPage = dynamic(
-  () => import('./docs/components/action/ButtonDocs'),
+  () => import("./docs/components/action/ButtonDocs"),
   {
     ssr: false,
   }
 );
 export const FabPage = dynamic(
-  () => import('./docs/components/action/FABDocs'),
+  () => import("./docs/components/action/FABDocs"),
   {
     ssr: false,
   }
 );
 export const BackdropDocs = dynamic(
-  () => import('./docs/components/feedback/BackdropDocs'),
+  () => import("./docs/components/feedback/BackdropDocs"),
   { ssr: false }
 );
 export const CircleLoaderDocs = dynamic(
-  () => import('./docs/components/feedback/CircleLoaderDocs'),
+  () => import("./docs/components/feedback/CircleLoaderDocs"),
   { ssr: false }
 );
 export const ModalDocs = dynamic(
-  () => import('./docs/components/feedback/ModalDocs'),
+  () => import("./docs/components/feedback/ModalDocs"),
   { ssr: false }
 );
 export const ToastDocs = dynamic(
-  () => import('./docs/components/feedback/ToastDocs'),
+  () => import("./docs/components/feedback/ToastDocs"),
   { ssr: false }
 );
-export const BoxDocs = dynamic(() => import('./docs/components/layout/Box'), {
+export const BoxDocs = dynamic(() => import("./docs/components/layout/Box"), {
   ssr: false,
 });
-export const CardDocs = dynamic(() => import('./docs/components/layout/Card'), {
+export const CardDocs = dynamic(() => import("./docs/components/layout/Card"), {
   ssr: false,
 });
 export const StackDocs = dynamic(
-  () => import('./docs/components/layout/Stack'),
+  () => import("./docs/components/layout/Stack"),
   { ssr: false }
 );
-export const TabsDocs = dynamic(() => import('./docs/components/layout/Tabs'), {
+export const TabsDocs = dynamic(() => import("./docs/components/layout/Tabs"), {
   ssr: false,
 });
 export const InputDocs = dynamic(
-  () => import('./docs/components/input/InputDocs')
+  () => import("./docs/components/input/InputDocs")
 );
 export const CheckboxDocs = dynamic(
-  () => import('./docs/components/input/CheckBoxDocs'),
+  () => import("./docs/components/input/CheckBoxDocs"),
   { ssr: false }
 );
 export const SwitchDocs = dynamic(
-  () => import('./docs/components/input/SwitchDocs'),
+  () => import("./docs/components/input/SwitchDocs"),
   { ssr: false }
 );
 export const ImagePickerDocs = dynamic(
-  () => import('./docs/components/utility/ImagePickerDocs'),
+  () => import("./docs/components/utility/ImagePickerDocs"),
   { ssr: false }
 );
 export const CircularProgressDocs = dynamic(
-  () => import('./docs/components/feedback/CircularProgress'),
+  () => import("./docs/components/feedback/CircularProgress"),
   { ssr: false }
 );
 export const PulseLoaderDocs = dynamic(
-  () => import('./docs/components/feedback/PulseLoader'),
+  () => import("./docs/components/feedback/PulseLoader"),
   { ssr: false }
 );
 export const ScaleLoaderDocs = dynamic(
-  () => import('./docs/components/feedback/ScaleLoader'),
+  () => import("./docs/components/feedback/ScaleLoader"),
   { ssr: false }
 );
 export const BarLoaderDocs = dynamic(
-  () => import('./docs/components/feedback/BarLoaderDocs'),
+  () => import("./docs/components/feedback/BarLoaderDocs"),
   { ssr: false }
 );
 export const DrawerDocs = dynamic(
-  () => import('./docs/components/navigation/DrawerDocs'),
+  () => import("./docs/components/navigation/DrawerDocs"),
   { ssr: false }
 );
 export const BottomNavDocs = dynamic(
-  () => import('./docs/components/navigation/BottomNavDocs'),
+  () => import("./docs/components/navigation/BottomNavDocs"),
   { ssr: false }
 );
 export const MenuPage = dynamic(
-  () => import('./docs/components/selection/Menu'),
+  () => import("./docs/components/selection/Menu"),
   { ssr: false }
 );
-export const ShowCasePage = dynamic(() => import('./ShowCaseList'), {
+export const ShowCasePage = dynamic(() => import("./ShowCaseList"), {
   ssr: false,
 });
 
 // Main export
-export { default as AppWrap } from './layout/AppWrap';
-export { default as BackgroundLoader } from './custom/BackgroundLoader';
-export { default as Typography } from './custom/Typography';
+export { default as AppWrap } from "./layout/AppWrap";
+export { default as BackgroundLoader } from "./custom/BackgroundLoader";
+export { default as Typography } from "./custom/Typography";
