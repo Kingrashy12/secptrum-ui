@@ -1,5 +1,5 @@
 import React from "react";
-import { keyframes, styled } from "styled-chroma";
+import { keyframes, styled } from "../../../styled";
 import { colors } from "../../../styles/colors";
 
 type ScaleLoaderProps = {

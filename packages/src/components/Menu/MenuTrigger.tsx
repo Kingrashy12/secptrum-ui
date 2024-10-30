@@ -1,6 +1,6 @@
-import React from 'react';
-import { useMenu } from '../../hooks/useMenu';
-import { DivProps } from 'styled-chroma';
+import React from "react";
+import { useMenu } from "../../hooks/useMenu";
+import { DivProps } from "../../styled";
 
 /**
  * MenuTrigger component that opens a menu when clicked.
@@ -22,4 +22,4 @@ const MenuTrigger = React.forwardRef<HTMLDivElement, DivProps>(
 );
 
 export default MenuTrigger;
-MenuTrigger.displayName = 'MenuTrigger';
+MenuTrigger.displayName = "MenuTrigger";

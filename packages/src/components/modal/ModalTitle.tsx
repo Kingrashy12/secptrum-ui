@@ -1,10 +1,11 @@
-import React, { forwardRef } from 'react';
-import { IoClose } from 'react-icons/io5';
-import Box from '../Box/Box';
-import { BoxType } from '../../types/sui';
-import { useModalContext } from '../../context/useModal';
-import { colors, styled } from 'styled-chroma';
-import HoverableIcon from '../Icon/HoverableIcon';
+import React, { forwardRef } from "react";
+import { IoClose } from "react-icons/io5";
+import Box from "../Box/Box";
+import { BoxType } from "../../types/sui";
+import { useModalContext } from "../../context/useModal";
+import { styled } from "../../styled";
+import HoverableIcon from "../Icon/HoverableIcon";
+import { colors } from "../../styles/colors";
 
 interface ModalTitleType extends BoxType {
   /**
@@ -108,11 +109,11 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
         {...props}
         ref={ref}
         showBorder={showBorder}
-        mode={mode as 'light' | 'dark'}
+        mode={mode as "light" | "dark"}
       >
         <Title
           className={titleClassName}
-          mode={mode as 'light' | 'dark'}
+          mode={mode as "light" | "dark"}
           style={titleStyle}
         >
           {title}
@@ -132,12 +133,12 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
 );
 
 export default ModalTitle;
-ModalTitle.displayName = 'ModalTitle';
+ModalTitle.displayName = "ModalTitle";
 
-const titleMode = (mode: 'light' | 'dark') => {
+const titleMode = (mode: "light" | "dark") => {
   return {
-    title: mode === 'dark' ? 'white' : 'black',
-    border: mode === 'dark' ? colors.neutral[800] : colors.neutral[200],
+    title: mode === "dark" ? "white" : "black",
+    border: mode === "dark" ? colors.neutral[800] : colors.neutral[200],
   };
 };
 
@@ -145,7 +146,7 @@ const titleMode = (mode: 'light' | 'dark') => {
  * TitleWrap is a styled-component that wraps the title and close icon in the modal header.
  */
 const TitleWrap = styled<
-  BoxType & { showBorder: boolean; mode: 'light' | 'dark' }
+  BoxType & { showBorder: boolean; mode: "light" | "dark" }
 >(Box)`
   display: flex;
   align-items: center;
@@ -155,13 +156,13 @@ const TitleWrap = styled<
   ${(props) =>
     props.showBorder
       ? `border-bottom: 1px solid ${titleMode(props.mode).border};`
-      : ''}
+      : ""}
 `;
 
 /**
  * Title is a styled-component that renders the title (`h2`) element.
  */
-const Title = styled<{ mode: 'light' | 'dark' }>('h2')`
+const Title = styled<{ mode: "light" | "dark" }>("h2")`
   margin: 0;
   font-size: 1.5rem;
   color: ${(props) => titleMode(props.mode).title};

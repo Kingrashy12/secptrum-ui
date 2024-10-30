@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import useRouter from 'src/hooks/useRouter';
+import React, { useEffect } from "react";
+import useRouter from "../../hooks/useRouter";
 
 type AuthenticateSessionProps = {
   children: React.ReactNode;
@@ -43,7 +43,7 @@ const AuthenticateSession = ({
       return RedirectUrl;
     } else {
       throw new Error(
-        'No redirect URL is set, please set SUI_AUTH_REDIRECT_URL or pass RedirectUrl prop'
+        "No redirect URL is set, please set SUI_AUTH_REDIRECT_URL or pass RedirectUrl prop"
       );
     }
   }

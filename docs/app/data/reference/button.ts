@@ -52,7 +52,7 @@ export const buttonRef = [
   {
     prop: "backgroundColor",
     type: "string",
-    description: "Sets the custom background color",
+    description: "The background color of the button",
     default: "default",
   },
   {
@@ -77,31 +77,13 @@ export const buttonRef = [
   {
     prop: "outlineBorderColor",
     type: "string",
-    description: "Sets the border color for the outline variant",
+    description: "The border style for the button when in outline variant",
     default: "default",
   },
-  // {
-  //   prop: "onHoverBackgroundGhost",
-  //   type: "string",
-  //   description: "Sets the hover background color for ghost variant",
-  //   default: "none",
-  // },
-  // {
-  //   prop: "onHoverBackgroundLight",
-  //   type: "string",
-  //   description: "Sets the hover background color for light variant",
-  //   default: "none",
-  // },
-  // {
-  //   prop: "onHoverBackgroundSolid",
-  //   type: "string",
-  //   description: "Sets the hover background color for solid variant",
-  //   default: "none",
-  // },
-  // {
-  //   prop: "onHoverBackgroundOutline",
-  //   type: "string",
-  //   description: "Sets the hover background color for outline variant",
-  //   default: "none",
-  // },
+  {
+    prop: "onHoverBackground",
+    type: "string",
+    description: "The background color of the button when hovered.",
+    default: "colors.blue[600]",
+  },
 ];

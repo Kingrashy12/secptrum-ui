@@ -1,19 +1,19 @@
-import { styled } from 'styled-chroma';
-import { IStyleDrawer } from '../../types/istyle';
-import { cardStyles } from '../../utils/layout';
+import { styled } from "../../styled";
+import { IStyleDrawer } from "../../types/istyle";
+import { cardStyles } from "../../utils/layout";
 import {
   getDrawerPosition,
   getDrawerPositionMobile,
   getDrawerRadius,
-} from '../../utils/overlays';
-import { slideInFromLeft, slideInFromRight } from '../animations';
+} from "../../utils/overlays";
+import { slideInFromLeft, slideInFromRight } from "../animations";
 
 //******* Drawer Component ********** */
-export const DrawerSui = styled<IStyleDrawer>('div')`
+export const DrawerSui = styled<IStyleDrawer>("div")`
   position: fixed;
-  top: ${(props) => (props.variant === 'modal' ? '8px' : '0')};
+  top: ${(props) => (props.variant === "modal" ? "8px" : "0")};
   width: ${(props) => props.width};
-  height: ${(props) => (props.variant === 'modal' ? '97%' : '100%')};
+  height: ${(props) => (props.variant === "modal" ? "97%" : "100%")};
   ${(props) => getDrawerPosition(props.position, props.variant)};
   border-radius: ${(props) => getDrawerRadius(props.variant, props.position)};
   background: ${(props) => props.background || cardStyles(props.mode).drawerBg};
@@ -22,7 +22,7 @@ export const DrawerSui = styled<IStyleDrawer>('div')`
   border: ${({ mode }) => cardStyles(mode).border};
   box-shadow: ${({ mode }) => cardStyles(mode).boxShadow};
   ${(props) =>
-    props.position === 'left'
+    props.position === "left"
       ? `
   animation: ${slideInFromLeft} 0.3s ease-in-out;
   `
@@ -38,15 +38,15 @@ export const DrawerSui = styled<IStyleDrawer>('div')`
     width: 80%;
   }
   @media (max-width: 550px) {
-    width: ${(props) => (props.variant === 'modal' ? '98%' : '100%')};
+    width: ${(props) => (props.variant === "modal" ? "98%" : "100%")};
     ${(props) => getDrawerPositionMobile(props.variant)};
-    border-radius: ${(props) => (props.variant === 'default' ? '0' : '9px')};
+    border-radius: ${(props) => (props.variant === "default" ? "0" : "9px")};
   }
 `;
 
-DrawerSui.displayName = 'DrawerSui';
+DrawerSui.displayName = "DrawerSui";
 
-export const DrawerHeaderSui = styled('div')`
+export const DrawerHeaderSui = styled("div")`
   display: flex;
   justify-content: space-between;
   align-items: center;

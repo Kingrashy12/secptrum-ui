@@ -1,7 +1,7 @@
 import React from "react";
 import { colors } from "../../styles/colors";
 import Icon from "./Icon";
-import { css, DivProps, styled } from "styled-chroma";
+import { css, DivProps, styled } from "../../styled";
 import { useMode } from "../../hooks/useMode";
 
 type IconTypes = {
@@ -105,5 +105,6 @@ const HoverIcon = styled<IStyleIcon>("div")`
   opacity: ${(props) => (props.disabled ? 0.9 : 1)};
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
+  flex-shrink: 0;
 `;
 HoverIcon.displayName = "HoverIconSui";

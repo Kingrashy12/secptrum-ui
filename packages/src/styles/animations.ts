@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-chroma';
+import { keyframes } from "../styled";
 
 export const spin = keyframes`
 from {

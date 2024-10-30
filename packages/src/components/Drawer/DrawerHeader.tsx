@@ -1,9 +1,9 @@
-import React from 'react';
-import Box from '../Box/Box';
-import { BoxType } from '../../types/sui';
-import { useDrawer } from '../../context/useDrawer';
-import { styled } from 'styled-chroma';
-import { colors } from '../../styles/colors';
+import React from "react";
+import Box from "../Box/Box";
+import { BoxType } from "../../types/sui";
+import { useDrawer } from "../../context/useDrawer";
+import { styled } from "../../styled";
+import { colors } from "../../styles/colors";
 
 interface DrawerHeaderType extends BoxType {
   /**
@@ -29,7 +29,7 @@ const DrawerHeader = React.forwardRef<HTMLDivElement, DrawerHeaderType>(
         {...props}
         ref={ref}
         showBorder={showBorder}
-        mode={mode as 'light' | 'dark'}
+        mode={mode as "light" | "dark"}
       >
         {children}
       </HeaderSui>
@@ -38,12 +38,12 @@ const DrawerHeader = React.forwardRef<HTMLDivElement, DrawerHeaderType>(
 );
 
 export default DrawerHeader;
-DrawerHeader.displayName = 'DrawerHeader';
+DrawerHeader.displayName = "DrawerHeader";
 
-const titleMode = (mode: 'light' | 'dark') => {
+const titleMode = (mode: "light" | "dark") => {
   return {
-    title: mode === 'dark' ? 'white' : 'black',
-    border: mode === 'dark' ? colors.neutral[800] : colors.neutral[200],
+    title: mode === "dark" ? "white" : "black",
+    border: mode === "dark" ? colors.neutral[800] : colors.neutral[200],
   };
 };
 
@@ -51,7 +51,7 @@ const titleMode = (mode: 'light' | 'dark') => {
  * HeaderSui is a styled-component that wraps the title and close icon in the modal header.
  */
 const HeaderSui = styled<
-  BoxType & { showBorder: boolean; mode: 'light' | 'dark' }
+  BoxType & { showBorder: boolean; mode: "light" | "dark" }
 >(Box)`
   display: flex;
   align-items: center;
@@ -61,6 +61,6 @@ const HeaderSui = styled<
   ${(props) =>
     props.showBorder
       ? `border-bottom: 1px solid ${titleMode(props.mode).border};`
-      : ''}
+      : ""}
 `;
-HeaderSui.displayName = 'DrawerHeaderSui';
+HeaderSui.displayName = "DrawerHeaderSui";

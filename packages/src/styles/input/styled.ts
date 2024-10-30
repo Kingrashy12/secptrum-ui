@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import { css, DivProps, keyframes, styled } from "styled-chroma";
+import { styled, css, keyframes, DivProps } from "../../styled";
 import { colors } from "../colors";
 import { getInputRadius, getInputStyles } from "../../utils/input";
-import { InputType } from "../../types/sui";
+
 import {
   IStyleCheckbox,
   IStyleChecked,
   IStyleSwitch,
   IStyleSwitchHandle,
+  IStyleTextInput,
 } from "../../types/istyle";
 
 const pop = keyframes`
@@ -46,20 +46,7 @@ export const InputForm = styled<DivProps & { width: string | any }>("div")`
   }
 `;
 
-interface IStyle extends InputType {
-  variant: InputType["variant"];
-  radius: InputType["radius"];
-  outLineBorderColor: InputType["outLineBorderColor"];
-  focusColor: InputType["focusColor"];
-  focusBorderColor: InputType["focusBorderColor"];
-  disabled: boolean | any;
-  hasError: InputType["hasError"] | any;
-  color: string | any;
-  backgroundcolor: InputType["backgroundColor"];
-  mode: InputType["mode"];
-}
-
-export const Input = styled<IStyle>("div")`
+export const Input = styled<IStyleTextInput>("div")`
   display: flex;
   align-items: center;
   justify-content: space-between;

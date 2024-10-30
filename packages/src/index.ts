@@ -36,6 +36,8 @@ export { default as AnimatedText } from "./components/Text/AnimatedText";
 export { default as NotificationBadge } from "./components/Badge/NotificationBadge";
 export { default as StatusBadge } from "./components/Badge/StatusBadge";
 
+export * from "./styled";
+
 // Loaders
 export { default as BarLoader } from "./components/loaders/BarLoader/BarLoader";
 export { default as CircleLoader } from "./components/loaders/CircleLoader/CircleLoader";
@@ -43,13 +45,9 @@ export { default as CircularProgress } from "./components/loaders/CircleLoader/C
 export { default as ScaleLoader } from "./components/loaders/ScaleLoader/ScaleLoader";
 export { default as PulseLoader } from "./components/loaders/PulseLoader/PulseLoader";
 
-// Utils
-export { useTheme } from "./context/useTheme";
-
 // Hooks
 export { useAuth } from "./hooks/useAuth";
 export { default as AuthProvider } from "./hooks/useAuth";
-export { default as ThemeProvider } from "./context/useTheme";
 export { default as ModeProvider } from "./hooks/useMode";
 export { default as useRouter } from "./hooks/useRouter";
 

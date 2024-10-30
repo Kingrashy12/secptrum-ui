@@ -31,25 +31,22 @@ const getSizeVariant = (size: ButtonProps["size"]) => {
 
 const getModeColors = (
   mode: ButtonProps["mode"],
-  onHoverBackgroundOutline: ButtonProps["onHoverBackgroundOutline"],
-  onHoverBackgroundGhost: ButtonProps["onHoverBackgroundGhost"],
-  onHoverBackgroundSolid: ButtonProps["onHoverBackgroundSolid"],
-  onHoverBackgroundLight: ButtonProps["onHoverBackgroundLight"]
+  onHoverBackground: ButtonProps["onHoverBackground"]
 ) => {
   switch (mode) {
     case "light":
       return {
-        outline_hover_bg: onHoverBackgroundOutline || colors.gray[50],
-        ghost_hover_bg: onHoverBackgroundGhost || colors.blue[100],
-        solid_hover_bg: onHoverBackgroundSolid || colors.blue[600],
-        light_hover_bg: onHoverBackgroundLight || colors.blue[200],
+        outline_hover_bg: onHoverBackground || colors.gray[50],
+        ghost_hover_bg: onHoverBackground || colors.blue[100],
+        solid_hover_bg: onHoverBackground || colors.blue[600],
+        light_hover_bg: onHoverBackground || colors.blue[200],
       };
     case "dark":
       return {
-        outline_hover_bg: onHoverBackgroundOutline || "rgb(59,130,246,.1)",
-        ghost_hover_bg: onHoverBackgroundGhost || "rgb(59,130,246,.1)",
-        solid_hover_bg: onHoverBackgroundSolid || colors.blue[600],
-        light_hover_bg: onHoverBackgroundLight || colors.blue[200],
+        outline_hover_bg: onHoverBackground || "rgb(59,130,246,.1)",
+        ghost_hover_bg: onHoverBackground || "rgb(59,130,246,.1)",
+        solid_hover_bg: onHoverBackground || colors.blue[600],
+        light_hover_bg: onHoverBackground || colors.blue[200],
       };
   }
 };
@@ -90,21 +87,8 @@ const getModeStyles = (
   }
 };
 
-const getHoverStyle = ({
-  variant,
-  onHoverBackgroundSolid,
-  onHoverBackgroundOutline,
-  onHoverBackgroundGhost,
-  onHoverBackgroundLight,
-  mode,
-}: ButtonProps) => {
-  const modeColors = getModeColors(
-    mode,
-    onHoverBackgroundOutline,
-    onHoverBackgroundGhost,
-    onHoverBackgroundSolid,
-    onHoverBackgroundLight
-  );
+const getHoverStyle = ({ variant, onHoverBackground, mode }: ButtonProps) => {
+  const modeColors = getModeColors(mode, onHoverBackground);
 
   switch (variant) {
     case "solid":

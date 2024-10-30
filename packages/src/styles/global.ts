@@ -1,4 +1,4 @@
-import { styled } from "styled-chroma";
+import { styled } from "../styled";
 
 export const FixedBox = styled("div")`
   position: fixed;

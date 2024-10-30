@@ -51,7 +51,7 @@ const NavHeader = ({
       <p>
         If you like Secptrum UI, give it a{" "}
         <Link
-          href="https://github.com/SecptrumLab/secptrum-ui"
+          href="https://github.com/Kingrashy12/secptrum-ui"
           target="_blank"
           rel="noopener noreferrer"
         >

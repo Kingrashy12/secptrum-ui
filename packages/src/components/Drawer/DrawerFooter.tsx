@@ -1,6 +1,6 @@
-import { DivProps } from 'styled-chroma';
-import { ModalFooterSui } from '../../styles/feedback/styled';
-import { useDrawer } from '../../context/useDrawer';
+import { DivProps } from "../../styled";
+import { ModalFooterSui } from "../../styles/feedback/styled";
+import { useDrawer } from "../../context/useDrawer";
 
 interface DrawerFooterProps extends DivProps {
   /**
@@ -14,7 +14,7 @@ interface DrawerFooterProps extends DivProps {
    *
    * @default `right`
    */
-  position?: 'right' | 'left';
+  position?: "right" | "left";
   /**
    * Add a border-top to the component.
    * @type {boolean}
@@ -47,4 +47,4 @@ const DrawerFooter = ({
 };
 
 export default DrawerFooter;
-DrawerFooter.displayName = 'DrawerFooter';
+DrawerFooter.displayName = "DrawerFooter";

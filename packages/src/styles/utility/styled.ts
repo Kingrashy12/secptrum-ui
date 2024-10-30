@@ -1,4 +1,4 @@
-import { styled } from "styled-chroma";
+import { styled } from "../../styled";
 import Box from "../../components/Box/Box";
 import { colors } from "../colors";
 

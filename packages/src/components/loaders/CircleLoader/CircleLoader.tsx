@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { css, styled } from "styled-chroma";
+import { css, styled } from "../../../styled";
 import { colors } from "../../../styles/colors";
 import { spin } from "../keyframes";
 

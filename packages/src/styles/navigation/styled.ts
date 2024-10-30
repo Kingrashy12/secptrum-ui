@@ -1,7 +1,8 @@
-import { colors, css, styled } from "styled-chroma";
+import { styled, css } from "../../styled";
 import { getBottomNavVariant } from "../../utils/navigation";
 import Box from "../../components/Box/Box";
 import { BoxType } from "../../types/sui";
+import { colors } from "../colors";
 
 type IStyledBottomNav = {
   variant: "rounded" | "full" | "wide";
@@ -46,6 +47,7 @@ export const BottomNavTabSui = styled<IStyledBottomNavTab>(Box)`
   padding: 0.1rem;
   cursor: pointer;
   color: ${(props) => props.color ?? ""};
+  flex-shrink: 0;
 
   ${(props) =>
     props.disabled

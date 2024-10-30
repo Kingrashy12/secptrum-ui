@@ -1,15 +1,13 @@
-// import { css } from "styled-chroma";
-
-import { colors } from '../../styles/colors';
-import { InputType } from '../../types/sui';
+import { colors } from "../../styles/colors";
+import { InputType } from "../../types/sui";
 
 const getColors = (
-  outLineBorderColor: InputType['outLineBorderColor'],
-  focusBorderColor: InputType['focusBorderColor'],
-  focusColor: InputType['focusColor'],
-  variant: InputType['variant'],
-  error: InputType['hasError'],
-  mode: InputType['mode']
+  outLineBorderColor: InputType["outLineBorderColor"],
+  focusBorderColor: InputType["focusBorderColor"],
+  focusColor: InputType["focusColor"],
+  variant: InputType["variant"],
+  error: InputType["hasError"],
+  mode: InputType["mode"]
 ) => {
   if (error) {
     return {
@@ -24,12 +22,12 @@ const getColors = (
   };
 
   switch (variant) {
-    case 'solid':
-    case 'ghost':
+    case "solid":
+    case "ghost":
       return {
         ...baseColors,
       };
-    case 'outline':
+    case "outline":
       return {
         border: outLineBorderColor || modeColors(mode).outline_border,
         focusBorder: focusBorderColor || modeColors(mode).outline_focusBorder,
@@ -39,16 +37,16 @@ const getColors = (
 };
 
 // This function handles the colors for the input based on the mode
-const modeColors = (mode: InputType['mode']) => {
+const modeColors = (mode: InputType["mode"]) => {
   const modeColors =
-    mode === 'dark'
+    mode === "dark"
       ? {
-          neutral100: '#2E2E2E',
-          neutral200: '#3C3C3C',
-          solid: '#484848',
-          outline: '#595959',
+          neutral100: "#2E2E2E",
+          neutral200: "#3C3C3C",
+          solid: "#484848",
+          outline: "#595959",
           ghost: colors.neutral[700],
-          focusBox: '#66BB6A',
+          focusBox: "#66BB6A",
           outline_border: colors.neutral[800],
           error_border: colors.red[500],
           error_focusBorder: colors.red[500],
@@ -57,12 +55,12 @@ const modeColors = (mode: InputType['mode']) => {
           outline_focusBox: colors.blue[400],
         }
       : {
-          neutral100: '#F9F9F9',
+          neutral100: "#F9F9F9",
           neutral200: colors.neutral[200],
-          solid: '#CCCCCC',
-          outline: '#AAAAAA',
+          solid: "#CCCCCC",
+          outline: "#AAAAAA",
           ghost: colors.gray[100],
-          focusBox: '#4CAF50',
+          focusBox: "#4CAF50",
           outline_border: colors.neutral[200],
           error_border: colors.red[500],
           error_focusBorder: colors.red[500],
@@ -81,6 +79,8 @@ const getSolidInputStyles = ({
   focusBorderColor,
   focusColor,
   outLineBorderColor,
+  onHoverBg,
+  backgroundColor,
 }: InputType) => {
   const color = getColors(
     outLineBorderColor,
@@ -95,18 +95,18 @@ const getSolidInputStyles = ({
     border: `1px solid ${color?.border}`,
     background: disabled
       ? modeColors(mode).neutral200
-      : modeColors(mode).neutral100,
-    color: mode === 'dark' ? '#fff' : '#333',
+      : backgroundColor || modeColors(mode).neutral100,
+    color: mode === "dark" ? "#fff" : "#333",
     boxShadow: `inset 0 2px 4px ${modeColors(mode).solid}`,
-    transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
+    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
     focus: {
       boxShadow: `0 0 0 2px ${color?.focusBox}`,
       background: modeColors(mode).neutral100,
       border: `1px solid ${color?.focusBox}`,
     },
     hover: {
-      background: modeColors(mode).neutral200,
-      border: '',
+      background: onHoverBg || modeColors(mode).neutral200,
+      border: "",
     },
   };
 };
@@ -119,6 +119,8 @@ const getOutlineInputStyles = ({
   focusColor,
   outLineBorderColor,
   disabled,
+  onHoverBg,
+  backgroundColor,
 }: InputType) => {
   const color = getColors(
     outLineBorderColor,
@@ -131,19 +133,21 @@ const getOutlineInputStyles = ({
 
   return {
     border: `1px solid ${color?.border}`,
-    background: disabled ? modeColors(mode).neutral100 : 'transparent',
-    color: mode === 'dark' ? '#fff' : '#333',
-    transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-    boxShadow: '',
+    background: disabled
+      ? modeColors(mode).neutral100
+      : backgroundColor || "transparent",
+    color: mode === "dark" ? "#fff" : "#333",
+    transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+    boxShadow: "",
 
     focus: {
       boxShadow: `0 0 0 2px ${color?.focusBox}`,
       border: `1px solid ${color?.focusBorder}`,
-      background: 'transparent',
+      background: "transparent",
     },
     hover: {
       border: !disabled && `1px solid ${modeColors(mode).outline}`,
-      background: 'transparent',
+      background: onHoverBg || "transparent",
     },
   };
 };
@@ -156,6 +160,8 @@ const getGhostInputStyles = ({
   focusColor,
   outLineBorderColor,
   disabled,
+  onHoverBg,
+  backgroundColor,
 }: InputType) => {
   const color = getColors(
     outLineBorderColor,
@@ -168,10 +174,12 @@ const getGhostInputStyles = ({
 
   return {
     border: `1px solid ${color?.border}`,
-    background: disabled ? modeColors(mode).ghost : 'transparent',
-    color: mode === 'dark' ? '#fff' : '#333',
-    boxShadow: '',
-    transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
+    background: disabled
+      ? modeColors(mode).ghost
+      : backgroundColor || "transparent",
+    color: mode === "dark" ? "#fff" : "#333",
+    boxShadow: "",
+    transition: "background-color 0.3s ease, box-shadow 0.3s ease",
     focus: {
       boxShadow: `0 0 0 2px ${color?.focusBox}`,
       background: focusBorderColor
@@ -180,8 +188,8 @@ const getGhostInputStyles = ({
       border: `1px solid ${color?.focusBox}`,
     },
     hover: {
-      background: modeColors(mode).ghost,
-      border: '',
+      background: onHoverBg || modeColors(mode).ghost,
+      border: "",
     },
   };
 };
@@ -196,9 +204,11 @@ const getInputStyles = ({
   disabled,
   hasError,
   Type,
+  onHoverBg,
+  backgroundColor,
 }: InputType) => {
   switch (variant) {
-    case 'solid':
+    case "solid":
       return getSolidInputStyles({
         mode,
         disabled,
@@ -207,9 +217,11 @@ const getInputStyles = ({
         focusBorderColor,
         focusColor,
         outLineBorderColor,
+        onHoverBg,
+        backgroundColor,
         Type,
       });
-    case 'outline':
+    case "outline":
       return getOutlineInputStyles({
         mode,
         hasError,
@@ -218,9 +230,11 @@ const getInputStyles = ({
         focusColor,
         outLineBorderColor,
         disabled,
+        onHoverBg,
+        backgroundColor,
         Type,
       });
-    case 'ghost':
+    case "ghost":
       return getGhostInputStyles({
         mode,
         hasError,
@@ -229,6 +243,8 @@ const getInputStyles = ({
         focusColor,
         outLineBorderColor,
         disabled,
+        onHoverBg,
+        backgroundColor,
         Type,
       });
     default:
@@ -240,6 +256,8 @@ const getInputStyles = ({
         focusBorderColor,
         focusColor,
         outLineBorderColor,
+        onHoverBg,
+        backgroundColor,
         Type,
       });
   }
@@ -248,18 +266,18 @@ const getInputStyles = ({
 // This function returns the appropriate input radius based on the radius type
 const getInputRadius = (radius: string) => {
   switch (radius) {
-    case 'sm':
+    case "sm":
       return `6px`;
-    case 'md':
+    case "md":
       return `8px`;
-    case 'lg':
+    case "lg":
       return `10px`;
-    case 'xl':
+    case "xl":
       return `12px`;
-    case 'full':
+    case "full":
       return `9999px`;
     default:
-      return '6px';
+      return "6px";
   }
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { colors } from "../../styles/colors";
-import { css, styled } from "styled-chroma";
+import { css, styled } from "../../styled";
 
 const notificationBadgeSize = {
   sm: 16,

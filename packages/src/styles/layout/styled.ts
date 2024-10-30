@@ -1,4 +1,4 @@
-import { css, styled } from "styled-chroma";
+import { styled, css } from "../../styled";
 import { IStyleBox, IStyleStack, IStyleTabHandle } from "../../types/istyle";
 import { spacingValues } from "../../utils/spacing";
 import { CardProps } from "../../types/sui";
@@ -134,7 +134,12 @@ export const CardSui = styled<CardProps>(BoxSui)`
   box-shadow: ${({ boxShadow, mode }) =>
     boxShadow || cardStyles(mode).boxShadow};
   border: ${({ mode }) => cardStyles(mode).border};
-  width: ${({ fullWidth, width }) => (fullWidth ? "100%" : width || "auto")};
+  ${(props) =>
+    props.fullWidth || props.width
+      ? css`
+          width: ${props.fullWidth ? "100%" : props.width};
+        `
+      : ""}
 `;
 CardSui.displayName = "CardSui";
 

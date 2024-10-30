@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { css, styled } from "styled-chroma";
+// import { css, styled } from "styled-chroma";
 import { spin, zoom } from "../animations";
 
 import { ButtonProps } from "../../types/sui";
@@ -13,6 +13,7 @@ import { colors } from "../colors";
 import { getFloatPosition } from "../../utils/position";
 import { getFloatSize, getFloatVariantStyle } from "../../utils/actions";
 import { IStyleFab } from "../../types/istyle";
+import { styled, css } from "../../styled";
 
 //************Button Components***************//
 export const ButtonSui = styled<ButtonProps>("button")`
