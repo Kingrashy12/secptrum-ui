@@ -1,6 +1,6 @@
-import { DivProps } from 'styled-chroma';
-import { ModalFooterSui } from '../../styles/feedback/styled';
-import { useModalContext } from '../../context/useModal';
+import { DivProps } from "../../styled";
+import { ModalFooterSui } from "../../styles/feedback/styled";
+import { useModalContext } from "../../context/useModal";
 
 interface ModalFooterProps extends DivProps {
   /**
@@ -14,7 +14,7 @@ interface ModalFooterProps extends DivProps {
    *
    * @default `right`
    */
-  position?: 'right' | 'left';
+  position?: "right" | "left";
   /**
    * Add a border-top to the component.
    * @type {boolean}
@@ -37,4 +37,4 @@ const ModalFooter = ({
 };
 
 export default ModalFooter;
-ModalFooter.displayName = 'ModalFooter';
+ModalFooter.displayName = "ModalFooter";

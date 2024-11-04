@@ -3,7 +3,7 @@ import TabsList, { TabsListType } from "./TabsList";
 import TabsHandle from "./TabsHandle";
 import Box from "../Box/Box";
 import TabPanel from "./TabPanel";
-import { styled } from "styled-chroma";
+import { styled } from "../../styled";
 import { useMode } from "../../hooks/useMode";
 
 /**

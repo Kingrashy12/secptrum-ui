@@ -1,14 +1,14 @@
 {
   "name": "secptrum-ui",
-  "version": "1.1.51",
+  "version": "1.1.53",
   "description": "**SecptrumUI** A comprehensive React component library",
   "homepage": "https://secptrumui.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SecptrumLab/secptrum-ui"
+    "url": "https://github.com/Kingrashy12/secptrum-ui"
   },
   "bugs": {
-    "url": "https://github.com/SecptrumLab/secptrum-ui/issues"
+    "url": "https://github.com/Kingrashy12/secptrum-ui/issues"
   },
   "main": "dist/secptrum-ui.cjs.js",
   "module": "dist/secptrum-ui.es.js",
@@ -31,10 +31,7 @@
     "copy-types": "copyfiles -u 1 src/types/**/* dist/",
     "postbuild": "npm run copy-types && npm run insert-client",
     "prerelease": "npx tsc --noEmit",
-    "release": "npm version patch && git push org-origin master --follow-tags",
-    "release-org": "npm version patch && git push org-origin master --follow-tags",
-    "release-both": "npm run release && npm run release-org",
-    "typecheck": "tsc --noEmit"
+    "release": "npm version patch && git push org-origin master --follow-tags"
   },
   "keywords": [
     "react",
@@ -45,30 +42,33 @@
     "modal",
     "toast",
     "image-picker",
-    "loader"
+    "loader",
+    "drawer",
+    "styled"
   ],
   "author": {
     "name": "Rapheal Chizitere"
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "jwt-decode": "^4.0.0",
-    "react-icons": "^5.3.0",
-    "styled-chroma": "^0.1.71"
+    "jwt-decode": "^4.0.0"
   },
   "peerDependencies": {
     "react": ">= 18.0.0",
-    "react-dom": ">= 18.0.0"
+    "react-dom": ">= 18.0.0",
+    "react-icons": "^5.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^26.0.3",
     "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-swc": "^0.4.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@swc/core": "^1.7.40",
     "@types/react": "^18.3.5",
     "copyfiles": "^2.4.1",
-    "rollup": "^2.79.2",
+    "rollup": "^3.29.5",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-visualizer": "^5.12.0",

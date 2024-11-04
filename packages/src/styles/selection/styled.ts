@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { colors, styled } from "styled-chroma";
+import { styled } from "../../styled";
 import { walkIn } from "../animations";
+import { colors } from "../colors";
 
 type IStyledMenuPanel = {
   open?: boolean;
@@ -53,6 +54,7 @@ export const MenuSui = styled<IStyledMenu>("div")`
   z-index: ${({ zIndex }) => zIndex || 100};
   transition: all 0.3s ease-in-out;
   animation: ${walkIn} 0.3s ease-in-out;
+  flex-shrink: 0;
 `;
 MenuSui.displayName = "MenuSui";
 

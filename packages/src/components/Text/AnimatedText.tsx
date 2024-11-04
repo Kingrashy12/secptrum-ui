@@ -1,5 +1,5 @@
 import React from "react";
-import { ParagraphProps, styled } from "styled-chroma";
+import { ParagraphProps, styled } from "../../styled";
 
 type IStyleText = {
   animation: string;

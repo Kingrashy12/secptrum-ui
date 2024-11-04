@@ -40,24 +40,24 @@ export const inputRef = [
     description: "The size of the icon.",
     default: "19",
   },
-  // {
-  //   prop: "outLineBorderColor",
-  //   type: "string",
-  //   description: "The color of the outline border.",
-  //   default: "Inherit from theme",
-  // },
+  {
+    prop: "outLineBorderColor",
+    type: "string",
+    description: "The color of the outline border.",
+    default: "default",
+  },
   {
     prop: "focusColor",
     type: "string",
     description: "The color of the input when focused.",
-    default: "Inherit from theme",
+    default: "default",
   },
-  // {
-  //   prop: "focusBorderColor",
-  //   type: "string",
-  //   description: "The color of the border when the input is focused.",
-  //   default: "Inherit from theme",
-  // },
+  {
+    prop: "focusBorderColor",
+    type: "string",
+    description: "The color of the border when the input is focused.",
+    default: "default",
+  },
   {
     prop: "hasError",
     type: "boolean",
@@ -109,24 +109,16 @@ export const inputRef = [
     description: "Additional class name to apply to the input element.",
     default: "undefined",
   },
-  // {
-  //   prop: "backgroundColor",
-  //   type: "string",
-  //   description: "The background color for the input field.",
-  //   default: "Inherit from theme",
-  // },
-  // {
-  //   prop: "solidVariantHoverColor",
-  //   type: "string",
-  //   description:
-  //     "Override the default hover background color for the 'solid' variant.",
-  //   default: "Inherit from theme",
-  // },
-  // {
-  //   prop: "ghostVariantHoverColor",
-  //   type: "string",
-  //   description:
-  //     "Override the default hover background color for the 'ghost' variant.",
-  //   default: "Inherit from theme",
-  // },
+  {
+    prop: "backgroundColor",
+    type: "string",
+    description: "The background color for the input field.",
+    default: "transparent",
+  },
+  {
+    prop: "onHoverBg",
+    type: "string",
+    description: "Override the default hover background color for the input.",
+    default: "transparent",
+  },
 ];

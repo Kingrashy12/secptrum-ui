@@ -1,7 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import AuthenticateSession from '../utils/auth/Authenticate';
-import { jwtDecode } from 'jwt-decode';
-import useRouter from './useRouter';
+import { createContext, useContext, useEffect, useState } from "react";
+import AuthenticateSession from "../utils/auth/Authenticate";
+import { jwtDecode } from "jwt-decode";
+import useRouter from "./useRouter";
+
+// TODO: Add generic type to user object
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -42,8 +44,8 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
   const { router } = useRouter();
 
   const token =
-    typeof window !== 'undefined'
-      ? localStorage.getItem('sui-session-token')
+    typeof window !== "undefined"
+      ? localStorage.getItem("sui-session-token")
       : null;
 
   useEffect(() => {
@@ -62,7 +64,7 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/');
+      router.push("/");
     }
   }, [isAuthenticated]);
 
@@ -72,8 +74,8 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
   function logout() {
     setIsAuthenticated(false);
     setUser(null);
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('sui-session-token');
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("sui-session-token");
     }
   }
 
@@ -83,8 +85,8 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
    * @param {string} token - The JWT token for user authentication.
    */
   function loginUser(token: string) {
-    if (token && typeof window !== 'undefined') {
-      localStorage.setItem('sui-session-token', token);
+    if (token && typeof window !== "undefined") {
+      localStorage.setItem("sui-session-token", token);
       setIsAuthenticated(true);
       setUser(user);
     }
@@ -103,7 +105,7 @@ const AuthProvider = ({ children, RedirectUrl }: AuthProviderProps) => {
 };
 
 export default AuthProvider;
-AuthProvider.displayName = 'AuthProvider';
+AuthProvider.displayName = "AuthProvider";
 
 // Custom hook to access the AuthContext
 // This hook can be used to access the authentication state and actions
@@ -118,7 +120,7 @@ AuthProvider.displayName = 'AuthProvider';
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };

@@ -3,10 +3,10 @@ import { BottomNavTabSui } from "../../styles/navigation/styled";
 import { BoxType } from "../../types/sui";
 import Icon from "../Icon/Icon";
 import useRouter from "../../hooks/useRouter";
-import { colors } from "styled-chroma";
 import { GoDotFill } from "react-icons/go";
 import { toast } from "../Toast/Toast";
 import Toaster from "../Toast/Toaster";
+import { colors } from "../../styles/colors";
 
 interface BottomNavTabProps extends BoxType {
   /** The text to display below the icon, name of the tab */
@@ -43,6 +43,7 @@ interface BottomNavTabProps extends BoxType {
    * Indicates if the tab is disabled and cannot be clicked.
    */
   disabled?: boolean;
+  titleClassName?: string;
 }
 
 /**
@@ -110,7 +111,13 @@ const BottomNavTab = ({
       >
         {icon && <Icon icon={icon} color={color} size={iconSize || 25} />}
         {title && (
-          <>{useDotOnActive ? <GoDotFill color={color} /> : <p>{title}</p>}</>
+          <>
+            {useDotOnActive ? (
+              <GoDotFill color={color} />
+            ) : (
+              <p className={props.titleClassName}>{title}</p>
+            )}
+          </>
         )}
       </BottomNavTabSui>
     </>

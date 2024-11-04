@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { forwardRef } from 'react';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import Icon from '../Icon/Icon';
-import { ButtonProps } from '../../types/sui';
-import { ButtonSui } from '../../styles/action/styled';
-import { useMode } from '../../hooks/useMode';
+import { forwardRef } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Icon from "../Icon/Icon";
+import { ButtonProps } from "../../types/sui";
+import { ButtonSui } from "../../styles/action/styled";
+import { useMode } from "../../hooks/useMode";
 
 /**
  * A customizable button component designed to handle various actions and events in your application.
@@ -58,11 +58,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       children,
       mode,
-      size = 'md',
-      radius = 'xl',
-      variant = 'solid',
+      size = "md",
+      radius = "xl",
+      variant = "solid",
       icon,
-      iconPosition = 'left',
+      iconPosition = "left",
       iconSize,
       ...props
     },
@@ -72,14 +72,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const currentMode = mode ?? themeMode;
 
     const getWidth = () => {
-      if (props.fullWidth) return '100%';
+      if (props.fullWidth) return "100%";
       if (props.width) return props.width;
-      return 'fit-content';
+      return "fit-content";
     };
 
     return (
       <ButtonSui
-        mode={currentMode as ButtonProps['mode']}
+        mode={currentMode as ButtonProps["mode"]}
         size={size}
         radius={radius}
         variant={variant}
@@ -96,11 +96,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
           ((
             <>
-              {icon && iconPosition === 'left' && (
+              {icon && iconPosition === "left" && (
                 <Icon size={iconSize} icon={icon} />
               )}
               {children}
-              {icon && iconPosition === 'right' && (
+              {icon && iconPosition === "right" && (
                 <Icon size={iconSize} icon={icon} />
               )}
             </>
@@ -112,4 +112,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 export default Button;
-Button.displayName = 'Button';
+Button.displayName = "Button";

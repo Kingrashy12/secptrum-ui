@@ -1,11 +1,11 @@
-import React from 'react';
-import { DivProps } from 'styled-chroma';
-import { BottomNavSui } from '../../styles/navigation/styled';
+import React from "react";
+import { DivProps } from "../../styled";
+import { BottomNavSui } from "../../styles/navigation/styled";
 
 interface BottomNavProps extends DivProps {
   children: React.ReactNode;
   /** The variant of the bottom navigation. Determines the shape and positioning. */
-  variant?: 'rounded' | 'full' | 'wide';
+  variant?: "rounded" | "full" | "wide";
   /** The background color of the bottom navigation. */
   background?: string;
 }
@@ -21,7 +21,7 @@ interface BottomNavProps extends DivProps {
  */
 const BottomNav = ({
   children,
-  variant = 'full',
+  variant = "full",
   background,
   ...rest
 }: BottomNavProps) => {
@@ -33,4 +33,4 @@ const BottomNav = ({
 };
 
 export default BottomNav;
-BottomNav.displayName = 'BottomNav';
+BottomNav.displayName = "BottomNav";

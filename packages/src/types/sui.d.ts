@@ -1,9 +1,9 @@
-import { ComponentProps } from 'react';
+import { ComponentProps } from "react";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type InputProps = ComponentProps<'input'>;
-type ButtonTypes = ComponentProps<'button'>;
-type BoxProps = ComponentProps<'div'>;
+type InputProps = ComponentProps<"input">;
+type ButtonTypes = ComponentProps<"button">;
+type BoxProps = ComponentProps<"div">;
 
 export interface InputType extends InputProps {
   /**
@@ -14,17 +14,17 @@ export interface InputType extends InputProps {
   /**
    * @param variant Indicates the style which the Input Components will inherits to, default `outline`
    */
-  variant?: 'solid' | 'outline' | 'ghost';
+  variant?: "solid" | "outline" | "ghost";
   /**
    * @param radius Defines the border-radius size of the input, determining how rounded the corners will be.
    * Available options: "sm" (small), "md" (medium), "lg" (large), "xl" (extra large), or "full" (completely rounded).
    */
-  radius?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  radius?: "sm" | "md" | "lg" | "xl" | "full";
   /**
    * @param Type Specifies the type of input to render. Determines the kind of data that the input will handle.
    * Possible values: "password" (for password input), "text" (for generic text), "email" (for email addresses), or "file" (for file uploads).
    */
-  Type: 'password' | 'text' | 'email' | 'number';
+  Type: "password" | "text" | "email" | "number";
   /**
    * The size of the icon.
    *
@@ -96,7 +96,7 @@ export interface InputType extends InputProps {
    * Allows developers to integrate with apps that support light/dark modes or provide a custom design.
    * @type {"light" | "dark"}
    */
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
 
   /**
    * Additional class name to apply to the form container element.
@@ -135,18 +135,12 @@ export interface InputType extends InputProps {
   backgroundColor?: string;
 
   /**
-   * Override the default hover background color for the 'solid' variant.
+   * Override the default hover background color for the input.
    * @type {string}
    * @default inherited from theme
    */
-  solidVariantHoverColor?: string;
+  onHoverBg?: string;
 
-  /**
-   * Override the default hover background color for the 'ghost' variant.
-   * @type {string}
-   * @default inherited from theme
-   */
-  ghostVariantHoverColor?: string;
   /**
    * If true, the button will take up the full width of its container.
    * @default false
@@ -156,7 +150,7 @@ export interface InputType extends InputProps {
 }
 
 export interface ButtonProps extends ButtonTypes {
-  children?: string;
+  children?: React.ReactNode;
   /**
    * Defines the styling variants for the `Button`.
    * @property {string} solid - A solid button style with no additional classes.
@@ -164,7 +158,7 @@ export interface ButtonProps extends ButtonTypes {
    * @property {string} outline - A button style with a border outline.
    * @property {string} ghost - A button style with a transparent background and transition effects.
    */
-  variant?: 'solid' | 'outline' | 'ghost' | 'light' | 'danger';
+  variant?: "solid" | "outline" | "ghost" | "light" | "danger";
   /**
    * Defines the border radius options for the `Button`.
    * @property {string} sm - A small border radius.
@@ -174,14 +168,14 @@ export interface ButtonProps extends ButtonTypes {
    * @property {string} full - A fully rounded border (circular).
    */
 
-  radius?: 'md' | 'lg' | 'xl' | 'full';
+  radius?: "md" | "lg" | "xl" | "full";
   /**
    * Defines the size variants for the `Button`.
    * @property {string} md - A medium button size with standard padding and text.
    * @property {string} lg - A large button size with larger padding and text.
    * @property {string} xl - A extra large button size with larger padding and text.
    */
-  size?: 'md' | 'lg' | 'xl';
+  size?: "md" | "lg" | "xl";
   /**
    * @param icon Accepts a JSX element representing an icon, such as `icon={FaUser}` from react-icons.
    * Avoid wrapping the icon in a fragment (`<>...</>` or `<FaUser/>`) or other component, as this may cause the component to break.
@@ -195,7 +189,7 @@ export interface ButtonProps extends ButtonTypes {
    * Position of the icon inside the button, either on the `left` or `right` side.
    * @default 'left'
    */
-  iconPosition?: 'left' | 'right';
+  iconPosition?: "left" | "right";
 
   /**
    * The color of the button's text or icon.
@@ -210,31 +204,13 @@ export interface ButtonProps extends ButtonTypes {
   backgroundColor?: string;
 
   /**
-   * The background color of the button when hovered in the solid style.
+   * The background color of the button when hovered.
    * @example "#333333" | "green"
    */
-  onHoverBackgroundSolid?: string;
+  onHoverBackground?: string;
 
   /**
-   * The background color of the button when hovered in the outline style.
-   * @example "#444444" | "yellow"
-   */
-  onHoverBackgroundOutline?: string;
-
-  /**
-   * The background color of the button when hovered in the light style.
-   * @example "#555555" | "purple"
-   */
-  onHoverBackgroundLight?: string;
-
-  /**
-   * The background color of the button when hovered in the ghost style.
-   * @example "#666666" | "cyan"
-   */
-  onHoverBackgroundGhost?: string;
-
-  /**
-   * The border style for the button when in outline mode.
+   * The border style for the button when in outline variant.
    * @default "#000000"
    */
   outlineBorderColor?: string;
@@ -243,6 +219,7 @@ export interface ButtonProps extends ButtonTypes {
    * to the specified value. If not provided, the button will use the default width of `auto`
    */
   width?: string;
+  /** Specifies the size of the rendered icon */
   iconSize?: number;
   /**
    * Sets the theme mode for the input component.
@@ -255,7 +232,7 @@ export interface ButtonProps extends ButtonTypes {
    * Allows developers to integrate with apps that support light/dark modes or provide a custom design.
    * @type {"light" | "dark"}
    */
-  mode?: 'dark' | 'light';
+  mode?: "dark" | "light";
   /**
    * If true, the button will take up the full width of its container.
    * @default false
@@ -333,7 +310,7 @@ export interface BoxType extends BoxProps {
   /**
    * Specifies the flex direction of the Box. Can be either "row" or "column".
    */
-  direction?: 'row' | 'column';
+  direction?: "row" | "column";
   /**
    * Enables wrapping for items if they exceed the available space in a row layout.
    */
@@ -353,26 +330,26 @@ export interface BoxType extends BoxProps {
 }
 
 export declare type SizeVariantType =
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | '2xl'
-  | '3xl'
-  | '4xl'
-  | '5xl';
-export declare type ToastVariant = 'info' | 'error' | 'success' | 'warning';
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl";
+export declare type ToastVariant = "info" | "error" | "success" | "warning";
 export declare type ToastTransitionType =
-  | 'dropIn'
-  | 'slideIn'
-  | 'popIn'
-  | 'walkIn';
+  | "dropIn"
+  | "slideIn"
+  | "popIn"
+  | "walkIn";
 export declare type ToastPositionType =
-  | 'top-right'
-  | 'top-left'
-  | 'bottom-right'
-  | 'bottom-left';
+  | "top-right"
+  | "top-left"
+  | "bottom-right"
+  | "bottom-left";
 
 export declare type ToastType = {
   [key in ToastVariant]: (
@@ -399,7 +376,7 @@ export declare type ToastOptionsType = {
   /**
    * The animation transition effect for the toast's appearance.
    */
-  transition?: 'dropIn' | 'slideIn' | 'popIn' | 'walkIn';
+  transition?: "dropIn" | "slideIn" | "popIn" | "walkIn";
 };
 
 export interface StackType extends BoxType {
@@ -421,7 +398,7 @@ export interface StackType extends BoxType {
    * `vertical` for stacking items one above the other (column),
    * `horizontal` for stacking items side by side (row).
    */
-  align?: 'vertical' | 'horizontal';
+  align?: "vertical" | "horizontal";
 
   /**
    * Controls the spacing (gap) between child elements within the Stack component.
@@ -446,11 +423,11 @@ export interface CardProps extends BoxType {
   /**
    * The direction of the card's content layout.
    */
-  direction?: 'row' | 'column';
+  direction?: "row" | "column";
   /**
    * The visual mode of the card.
    */
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
   /**
    * The background color of the card.
    */
@@ -479,7 +456,7 @@ export interface FloatProps extends BoxProps {
    * The position of the float element, which defines where the element
    * should appear on the screen. It can be of type `ToastPositionType`.
    */
-  position?: ToastPositionType | 'bottom-center' | 'top-center';
+  position?: ToastPositionType | "bottom-center" | "top-center";
   /**
    * The background color of the float element.
    */
@@ -487,7 +464,7 @@ export interface FloatProps extends BoxProps {
   /**
    * The size of the float element. Can be "md", "lg", or "xl".
    */
-  size?: 'md' | 'lg' | 'xl';
+  size?: "md" | "lg" | "xl";
   /**
    * Whether the float element is disabled.
    */
@@ -495,11 +472,11 @@ export interface FloatProps extends BoxProps {
   /**
    * The visual variant of the float element. Can be "solid" or "light".
    */
-  variant?: 'solid' | 'light';
+  variant?: "solid" | "light";
   /**
    * The color scheme of the float element. Can be "primary", "secondary", or "danger".
    */
-  colorScheme?: 'primary' | 'secondary' | 'danger';
+  colorScheme?: "primary" | "secondary" | "danger";
   /**
    * Whether the float element should move when the page is scrolled.
    */
@@ -526,11 +503,11 @@ export type DrawerProps = {
   /**
    * The position of the drawer. Can be 'left' or 'right'.
    */
-  position?: 'left' | 'right';
+  position?: "left" | "right";
   /**
    * The variant of the drawer. Can be 'default' or 'modal'.
    */
-  variant?: 'default' | 'modal';
+  variant?: "default" | "modal";
   /**
    * The intensity of the glass effect for the backdrop.
    */
@@ -542,7 +519,7 @@ export type DrawerProps = {
   /**
    * The color mode of the drawer. Can be 'light' or 'dark'.
    */
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
   /**
    * The width of the drawer.
    */
@@ -599,7 +576,7 @@ export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
    * Theme mode, either 'light' or 'dark'.
    * @default 'light'
    */
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
 
   /**
    * Z-index value for positioning the menu.

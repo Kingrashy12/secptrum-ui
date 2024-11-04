@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { DivProps, styled } from "styled-chroma";
+import { DivProps, styled } from "../../styled";
 
 export interface BoxProps extends DivProps {
   direction?: "row" | "column";

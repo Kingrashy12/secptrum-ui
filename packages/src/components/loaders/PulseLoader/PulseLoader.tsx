@@ -1,5 +1,5 @@
 import React from "react";
-import { styled, keyframes } from "styled-chroma";
+import { styled, keyframes } from "../../../styled";
 import { colors } from "../../../styles/colors";
 
 type PulseLoaderProps = {

@@ -1,4 +1,5 @@
-declare type Theme = {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type Theme = {
   colors?: {
     [key: string]: string;
   };
@@ -7,15 +8,14 @@ declare type Theme = {
   };
   [key: string]: any; // To handle custom properties
 };
-/**
- * @deprecated
- */
-declare type ThemeContextType = {
+
+export type ThemeContextType = {
   /**
    * The current theme configuration applied to the application.
    * This includes settings for colors, fonts, and effects based on the current mode.
    *
-   * @type {typeof `defaultLightTheme` | typeof `defaultDarkTheme`}
+   * @type {typeof `light` | typeof `dark`}
+   * @property theme - `colors`, `fonts`, and other custom properties.
    */
   theme: Theme;
   /**
@@ -33,26 +33,14 @@ declare type ThemeContextType = {
    * The current theme mode of the application, either `light` or `dark`.
    *
    * @type {`light` | `dark`}
-   * @deprecated
    */
   mode: "light" | "dark";
 };
 
-declare type SystemTheme = {
+export type SystemTheme = {
   colors?: {
     background?: string;
     text?: string;
-    outline_ButtonBorderColor?: string;
-    active_TabColor?: string;
-    active_TabColor_Solid?: string;
-    inActiveTabColor?: string;
-    tabListBackground?: string;
-    button_OutlineHoverColor?: string;
-    checkBoxBorderColor?: string;
-    card?: string;
-    drop?: string;
-    cardShadow?: string;
-    card_BorderColor?: string;
     [key: string]: string | undefined; // Allows additional custom color properties
   };
   fonts?: {
@@ -60,13 +48,9 @@ declare type SystemTheme = {
     heading?: string;
     [key: string]: string | undefined; // Allows additional custom font properties
   };
-  effects?: {
-    drop_blur?: number;
-    [key: string]: any; // Allows additional custom effect properties
-  };
   [key: string]: any; // General catch-all for any additional custom properties
 };
 
-export declare type ContextProviderType = {
+export type ContextProviderType = {
   children: React.ReactNode;
 };

@@ -1,43 +1,43 @@
-import { css, styled } from 'styled-chroma';
+import { styled, css } from "../../styled";
 import {
   IStyleDrop,
   IStyleModalFooter,
   IStyleModalPanel,
   IStyleToast,
   IStyleToastCloseIcon,
-} from '../../types/istyle';
-import { getModalPanelTransition, getPanelSize } from '../../utils/feedback';
-import { FixedBox } from '../global';
-import { BoxSui } from '../layout/styled';
-import { spacingValues } from '../../utils/spacing';
-import { colors } from '../colors';
-import { getToastPosition } from '../../utils/position';
-import { getToastTransition } from '../../utils/transitions';
-import { getModeStyle } from 'src/utils/mode';
+} from "../../types/istyle";
+import { getModalPanelTransition, getPanelSize } from "../../utils/feedback";
+import { FixedBox } from "../global";
+import { BoxSui } from "../layout/styled";
+import { spacingValues } from "../../utils/spacing";
+import { colors } from "../colors";
+import { getToastPosition } from "../../utils/position";
+import { getToastTransition } from "../../utils/transitions";
+import { getModeStyle } from "../../utils/mode";
 
 //*************Backdrop Components*************//
 export const DropSui = styled<IStyleDrop>(FixedBox)`
   background: ${(props) => props.backgroundColor};
-  display: ${(props) => (props.open ? 'flex' : 'none')};
-  justify-content: ${(props) => (props.centerContent ? 'center' : '')};
-  align-items: ${(props) => (props.centerContent ? 'center' : '')};
+  display: ${(props) => (props.open ? "flex" : "none")};
+  justify-content: ${(props) => (props.centerContent ? "center" : "")};
+  align-items: ${(props) => (props.centerContent ? "center" : "")};
   backdrop-filter: ${(props) => `blur(${props.glassEffect}px)`};
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
   z-index: ${(props) => props.zIndex || 500};
 `;
-DropSui.displayName = 'DropSui';
+DropSui.displayName = "DropSui";
 
 //*************Modal Components*************//
 // Modal Panel
-export const ModalPanelSui = styled<IStyleModalPanel>('div')`
+export const ModalPanelSui = styled<IStyleModalPanel>("div")`
   position: relative;
   background: ${(props) => props.backgroundColor};
   border-radius: 11px;
   box-shadow: 0 4px 6px
     ${(props) =>
-      props.mode === 'dark' ? colors.slate[950] : 'rgba(0, 0, 0, 0.1)'};
+      props.mode === "dark" ? colors.slate[950] : "rgba(0, 0, 0, 0.1)"};
   max-width: 100%;
   height: auto;
   max-height: 93%;
@@ -45,7 +45,7 @@ export const ModalPanelSui = styled<IStyleModalPanel>('div')`
   overflow: hidden;
   border: 1px solid
     ${(props) =>
-      props.mode === 'dark' ? colors.neutral[800] : colors.neutral[200]};
+      props.mode === "dark" ? colors.neutral[800] : colors.neutral[200]};
   ${(props) => {
     const size = getPanelSize(props.size);
     return css`
@@ -64,41 +64,41 @@ export const ModalPanelSui = styled<IStyleModalPanel>('div')`
   animation-fill-mode: forwards;
   animation-delay: 0s;
   display: flex;
-  gap: ${(props) => spacingValues(props.spacing) || '10px'};
-  flex-direction: ${(props) => (props.align === 'vertical' ? 'column' : 'row')};
+  gap: ${(props) => spacingValues(props.spacing) || "10px"};
+  flex-direction: ${(props) => (props.align === "vertical" ? "column" : "row")};
 `;
-ModalPanelSui.displayName = 'ModalPanelSui';
+ModalPanelSui.displayName = "ModalPanelSui";
 
 // Modal Description
 export const ModalContent = styled(BoxSui)`
-  margin: ${({ margin }) => margin || '5px 0'};
+  margin: ${({ margin }) => margin || "5px 0"};
   overflow-y: auto;
   height: 100%;
-  flex-direction: ${(props) => props.direction || 'column'};
+  flex-direction: ${(props) => props.direction || "column"};
   gap: ${(props) => props.spacing || 16}px;
-  justify-content: ${(props) => (props.centered ? 'center' : '')};
-  align-items: ${(props) => (props.centered ? 'center' : '')};
-  padding: ${(props) => props.padding ?? '13px'};
+  justify-content: ${(props) => (props.centered ? "center" : "")};
+  align-items: ${(props) => (props.centered ? "center" : "")};
+  padding: ${(props) => props.padding ?? "13px"};
 `;
-ModalContent.displayName = 'ModalContent';
+ModalContent.displayName = "ModalContent";
 
 // Modal Footer
-export const ModalFooterSui = styled<IStyleModalFooter>('div')`
+export const ModalFooterSui = styled<IStyleModalFooter>("div")`
   display: flex;
   justify-content: ${(props) =>
-    props.position === 'left' ? 'flex-start' : 'flex-end'};
+    props.position === "left" ? "flex-start" : "flex-end"};
   gap: ${(props) => props.space || 10}px;
   padding: 13px;
   ${(props) =>
     props.showBorder
       ? `border-top: 1px solid ${getModeStyle(props.mode).border};`
-      : ''}
+      : ""}
 `;
-ModalFooterSui.displayName = 'ModalFooterSui';
+ModalFooterSui.displayName = "ModalFooterSui";
 
 //*****************Toast Components****************//
 // Toast style
-export const StyledToast = styled<IStyleToast>('div')`
+export const StyledToast = styled<IStyleToast>("div")`
   background: white;
   width: auto;
   height: auto;

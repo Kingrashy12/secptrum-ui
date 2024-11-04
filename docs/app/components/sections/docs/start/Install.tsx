@@ -54,7 +54,7 @@ const Install = () => {
         firstCmd="npm install"
         secondCmd="pnpm add"
         thirdCmd="yarn add"
-        code="secptrum-ui"
+        code="secptrum-ui react-icons"
       />
       <TextContent_Wrap id="usage">
         <HeaderText id="Usage">Usage</HeaderText>

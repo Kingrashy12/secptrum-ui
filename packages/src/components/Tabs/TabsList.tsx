@@ -1,9 +1,10 @@
 import React from "react";
 import TabListProvider from "../../context/useTabList";
 import { IStyleTabList } from "../../types/istyle";
-import { colors, css, styled } from "styled-chroma";
+import { css, styled } from "../../styled";
 import { getModeStyle } from "../../utils/mode";
 import { useMode } from "../../hooks/useMode";
+import { colors } from "../../styles/colors";
 
 export type TabsListType = {
   /**

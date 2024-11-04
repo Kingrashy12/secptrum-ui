@@ -1,6 +1,6 @@
 import React from "react";
 import { colors } from "../../styles/colors";
-import { styled } from "styled-chroma";
+import { styled } from "../../styled";
 
 const statusBadgeColorScheme = {
   online: colors.green[500],

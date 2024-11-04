@@ -5,11 +5,11 @@ const getPanelSize = (size: ModalPanelType["size"]) => {
   switch (size) {
     case "sm":
       return `
-                  width: 300px;
+        width: 300px;
               `;
     case "md":
       return `
-                  width: 400px;
+        width: 400px;
               `;
     case "lg":
       return `

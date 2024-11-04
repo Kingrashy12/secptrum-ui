@@ -1,4 +1,4 @@
-import { getThemeMode } from "../../context/useTheme";
+import { getThemeMode } from "../../styled/hooks/useTheme";
 
 const getModeStyle = (mode: "dark" | "light") => {
   switch (mode) {
