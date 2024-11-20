@@ -1,4 +1,4 @@
-import { StyledPage } from "@/components";
+import { StyledPage } from "../../../../components";
 import React from "react";
 
 export const metadata = {

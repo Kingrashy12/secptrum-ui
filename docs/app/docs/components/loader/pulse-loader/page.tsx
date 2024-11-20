@@ -1,4 +1,4 @@
-import { PulseLoaderPage } from "@/components";
+import { PulseLoaderPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

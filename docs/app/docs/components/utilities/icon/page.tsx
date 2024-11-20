@@ -1,4 +1,4 @@
-import { IconPage } from "@/components";
+import { IconPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

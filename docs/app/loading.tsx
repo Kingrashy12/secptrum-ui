@@ -1,5 +1,5 @@
-import React from 'react';
-import { BackgroundLoader } from './components';
+import React from "react";
+import { BackgroundLoader } from "../components";
 
 const loading = () => {
   return <BackgroundLoader />;

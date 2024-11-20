@@ -1,9 +1,9 @@
-import { ViteDocsPage } from '@/components';
-import { Metadata } from 'next';
+import { ViteDocsPage } from "../../../../../components";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Vite Setup | Secptrum UI',
-  description: 'How to set up Secptrum UI with Vite',
+  title: "Vite Setup | Secptrum UI",
+  description: "How to set up Secptrum UI with Vite",
 };
 
 const Vite = () => {

@@ -1,4 +1,4 @@
-import { NotificationBadgePage } from "@/components";
+import { NotificationBadgePage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

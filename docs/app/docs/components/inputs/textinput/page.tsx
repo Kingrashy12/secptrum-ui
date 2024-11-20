@@ -1,8 +1,8 @@
-import { TextInputPage } from '@/components';
-import React from 'react';
+import { TextInputPage } from "../../../../../components";
+import React from "react";
 
 export const metadata = {
-  title: 'TextInput | Secptrum UI',
+  title: "TextInput | Secptrum UI",
 };
 
 export default function TextInput() {

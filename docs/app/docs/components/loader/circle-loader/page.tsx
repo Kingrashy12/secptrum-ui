@@ -1,4 +1,4 @@
-import { CircleLoaderPage } from "@/components";
+import { CircleLoaderPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

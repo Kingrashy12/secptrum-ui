@@ -1,4 +1,4 @@
-import { DynPage } from "@/components";
+import { DynPage } from "../../../../components";
 import React from "react";
 
 export const metadata = {

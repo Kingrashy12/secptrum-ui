@@ -1,4 +1,4 @@
-import { BarLoaderPage } from "@/components";
+import { BarLoaderPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

@@ -1,4 +1,4 @@
-import { CardPage } from "@/components";
+import { CardPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

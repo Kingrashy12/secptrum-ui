@@ -1,4 +1,4 @@
-import { MenuPage } from "@/components";
+import { MenuPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

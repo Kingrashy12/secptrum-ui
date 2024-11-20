@@ -1,4 +1,4 @@
-import { CircularProgressPage } from "@/components";
+import { CircularProgressPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {
