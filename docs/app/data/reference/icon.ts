@@ -1,4 +1,4 @@
-export const iconRef = [
+const iconRef = [
   {
     prop: "icon*",
     type: "JSX.Element",
@@ -55,3 +55,5 @@ export const iconRef = [
     default: '""',
   },
 ];
+
+export default iconRef;
