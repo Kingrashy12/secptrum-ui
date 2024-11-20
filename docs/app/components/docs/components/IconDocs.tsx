@@ -34,7 +34,7 @@ const IconDocs = () => {
           React Icons
         </HeaderText>
         <DocText>
-          It's recommended to use{" "}
+          It&apos;s recommended to use{" "}
           <Link
             href="https://react-icons.github.io/react-icons"
             target="_blank"
