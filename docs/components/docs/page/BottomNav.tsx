@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import BottomNavDocs from "../components/BottomNavDocs";
 import TableOfContents from "../../layout/TableOfContents";

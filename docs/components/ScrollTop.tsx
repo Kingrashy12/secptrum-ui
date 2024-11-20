@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { Fab } from "secptrum-ui";
