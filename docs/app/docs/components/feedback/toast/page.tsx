@@ -1,9 +1,9 @@
-import { ToastPage } from '@/components';
-import { Metadata } from 'next';
-import React from 'react';
+import { ToastPage } from "../../../../../components";
+import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'Toast | Secptrum UI',
+  title: "Toast | Secptrum UI",
 };
 
 export default function Toast() {

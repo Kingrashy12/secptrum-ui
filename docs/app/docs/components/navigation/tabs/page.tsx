@@ -1,4 +1,4 @@
-import { TabsPage } from "@/components";
+import { TabsPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

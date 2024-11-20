@@ -1,4 +1,4 @@
-import { BoxPage } from "@/components";
+import { BoxPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

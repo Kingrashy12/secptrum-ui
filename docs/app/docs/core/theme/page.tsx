@@ -1,4 +1,4 @@
-import { ThemePage } from "@/components";
+import { ThemePage } from "../../../../components";
 import React from "react";
 
 export const metadata = {

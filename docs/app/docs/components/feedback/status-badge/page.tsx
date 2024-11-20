@@ -1,4 +1,4 @@
-import { StatusBadgePage } from "@/components";
+import { StatusBadgePage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

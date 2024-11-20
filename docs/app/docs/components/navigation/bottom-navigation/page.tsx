@@ -1,4 +1,4 @@
-import { BottomNavPage } from "@/components";
+import { BottomNavPage } from "../../../../../components";
 import { Metadata } from "next";
 import React from "react";
 

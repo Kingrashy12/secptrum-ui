@@ -1,4 +1,4 @@
-import { StackPage } from "@/components";
+import { StackPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

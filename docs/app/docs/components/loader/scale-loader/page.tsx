@@ -1,4 +1,4 @@
-import { ScaleLoaderPage } from "@/components";
+import { ScaleLoaderPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {

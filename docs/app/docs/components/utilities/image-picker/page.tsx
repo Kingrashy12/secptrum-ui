@@ -1,4 +1,4 @@
-import { ImagePickerPage } from "@/components";
+import { ImagePickerPage } from "../../../../../components";
 import React from "react";
 
 export const metadata = {
