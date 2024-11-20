@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { Icon, toast } from 'secptrum-ui';
+import { Icon, styled, toast } from 'secptrum-ui';
 import { TbCopy, TbCopyCheckFilled } from 'react-icons/tb';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { styled } from 'styled-chroma';
 
 interface CodeBlockProps {
   code: string;
@@ -72,10 +71,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 export default CodeBlock;
 
 const CodeContainer = styled('div')`
-  width: 100%;
+  width: 95%;
   position: relative;
   padding: 5px;
-  overflow-x: auto;
+  overflow-x: scroll;
   background: #000;
   display: flex;
   align-items: center;
@@ -89,7 +88,7 @@ const CodeContainer = styled('div')`
 const BlockWrap = styled('div')`
   width: 100%;
   position: relative;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 1rem;
   background: #000;
 `;
@@ -99,7 +98,6 @@ const CopyWrap = styled('div')`
   top: 10px;
   right: 10px;
   background: black;
-  border: 1px solid gray;
   padding: 5px;
   border-radius: 6px;
   z-index: 90;

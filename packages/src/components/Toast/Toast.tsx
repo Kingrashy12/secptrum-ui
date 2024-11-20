@@ -8,6 +8,7 @@ import {
   ContentWrap,
   StyledToast,
   ToastContent,
+  ToastWrap,
 } from "../../styles/feedback/styled";
 import {
   ToastOptionsType,
@@ -30,22 +31,18 @@ type ToastNotification = {
   isVisible: boolean;
 };
 
-/**
- * @typedef {Object} ToastFunctions
- * @property {(message: string, options?: ToastOptions) => void} success - Display a success toast.
- * @property {(message: string, options?: ToastOptions) => void} error - Display an error toast.
- * @property {(message: string, options?: ToastOptions) => void} info - Display an info toast.
- * @property {(message: string, options?: ToastOptions) => void} warning - Display a warning toast.
- */
+/** Toast API for displaying different types of toast notifications (info, error, success, warning). */
 let toast: ToastType;
 
 const Toast = () => {
   const [toasts, setToasts] = useState<ToastNotification[]>([]);
   const toastTimeouts = useRef<{ [key: string]: NodeJS.Timeout }>({});
+  const [position, setPosition] = useState<ToastPositionType>("top-right");
 
   // Show toast
   const show = (newToast: ToastNotification, duration: number = 4000) => {
     setToasts((prevToasts) => [...prevToasts, newToast]);
+    setPosition(newToast?.position || "top-right");
 
     // Set timeout to make toast !visible
     const timeoutId = setTimeout(() => {
@@ -162,7 +159,7 @@ const Toast = () => {
   };
 
   return (
-    <>
+    <ToastWrap position={position}>
       {toasts.map((toast) => (
         <StyledToast
           key={toast.id}
@@ -187,7 +184,7 @@ const Toast = () => {
           </CloseIcon>
         </StyledToast>
       ))}
-    </>
+    </ToastWrap>
   );
 };
 

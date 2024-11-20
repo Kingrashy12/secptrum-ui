@@ -9,6 +9,8 @@ export type Theme = {
   [key: string]: any; // To handle custom properties
 };
 
+export type Mode = 'light' | 'dark';
+
 export type ThemeContextType = {
   /**
    * The current theme configuration applied to the application.
@@ -28,13 +30,12 @@ export type ThemeContextType = {
    * toggleTheme();
    */
   toggleTheme: () => void;
-  setCustomTheme: (theme: { light: any; dark: any }) => void;
   /**
    * The current theme mode of the application, either `light` or `dark`.
    *
    * @type {`light` | `dark`}
    */
-  mode: "light" | "dark";
+  mode: 'light' | 'dark';
 };
 
 export type SystemTheme = {

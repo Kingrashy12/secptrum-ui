@@ -1,7 +1,7 @@
-import React from 'react';
-import { ModalProvider } from '../../context/useModal';
-import Backdrop from '../Backdrop/Backdrop';
-import { useMode } from '../../hooks/useMode';
+import React from "react";
+import { ModalProvider } from "../../context/useModal";
+import Backdrop from "../Backdrop/Backdrop";
+import { useMode } from "../../hooks/useMode";
 
 type ModalType = {
   /**
@@ -47,30 +47,12 @@ type ModalType = {
    * @default Inherit from theme '6'
    */
   glassEffect?: number;
-  mode?: 'light' | 'dark';
+  mode?: "light" | "dark";
 };
 
 /**
  * This component renders a modal dialog that wraps the `ModalPanel` component
  * with customizable content and behaviors.
- *
- * Props:
- * - `open`: Whether the modal is currently open or not.
- * - `onClose`: Callback function to be called when the modal requests to close.
- * - `className`: Optional additional class names to be applied to the modal.
- * - `styles`: Optional custom styles to be applied to the modal.
- *
- * Example:
- *
- * ```
- * <Modal open onClose={()=>setOpenModal(false)}>
- *      <ModalPanel align='vertical'>
- *       <ModalContent>
- *         <h1>A modal</h1>
- *       </ModalContent>
- *    </ModalPanel>
- * </Modal>
- * ```
  */
 
 const Modal = ({
@@ -88,7 +70,7 @@ const Modal = ({
   const currentMode = mode ?? themeMode;
 
   return (
-    <ModalProvider open={open} mode={currentMode as 'light' | 'dark'}>
+    <ModalProvider open={open} mode={currentMode as "light" | "dark"}>
       <Backdrop
         style={style}
         className={className}
@@ -96,7 +78,7 @@ const Modal = ({
         open={open}
         preventClose={preventClose}
         glassEffect={glassEffect}
-        mode={currentMode as 'light' | 'dark'}
+        mode={currentMode as "light" | "dark"}
         zIndex={zIndex}
       >
         {children}
@@ -106,4 +88,4 @@ const Modal = ({
 };
 
 export default Modal;
-Modal.displayName = 'Modal';
+Modal.displayName = "Sui.Modal";

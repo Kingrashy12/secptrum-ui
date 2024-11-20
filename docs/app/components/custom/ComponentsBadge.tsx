@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { colors, ParagraphProps, styled } from 'styled-chroma';
+import { styled } from 'secptrum-ui';
 import { fonts } from '@/styles/global';
 
 type BadgeType = {
@@ -7,20 +7,13 @@ type BadgeType = {
   backgroundColor?: string;
   textColor?: string;
   borderColor?: string;
+  style?: React.CSSProperties;
+  width?: string;
 };
 
-const ComponentsBadge = ({
-  children,
-  backgroundColor,
-  textColor,
-  borderColor,
-}: BadgeType) => {
+const ComponentsBadge = ({ children, style, width }: BadgeType) => {
   return (
-    <Badge
-      backgroundColor={backgroundColor || colors.gray[200]}
-      textColor={textColor || colors.neutral[800]}
-      bordercolor={borderColor || colors.neutral[400]}
-    >
+    <Badge style={style} width={width}>
       {children}
     </Badge>
   );
@@ -28,24 +21,17 @@ const ComponentsBadge = ({
 
 export default ComponentsBadge;
 
-interface BadgeProps extends ParagraphProps {
-  backgroundColor: string;
-  textColor: string;
-  bordercolor: string;
-}
-
-const Badge = styled<BadgeProps>('span')`
+const Badge = styled<{ width?: string }>('span')`
   padding: 2px 4px;
   border-radius: 5px;
   font-family: ${fonts.poppins};
-  border: 1px solid ${({ bordercolor }) => bordercolor};
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ textColor }) => textColor};
-  width: auto;
+  border: 1px solid ${({ theme }) => theme.colors.prop_border};
+  background-color: ${({ theme }) => theme.colors.prop_bg};
+  color: ${({ theme }) => theme.colors.text};
+  width: ${({ width }) => width || 'auto'};
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
   font-weight: 500;
-  white-space: nowrap;
 `;

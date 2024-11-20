@@ -13,3 +13,4 @@ const TabPanel = forwardRef<HTMLDivElement, PanelProps>(
 );
 
 export default TabPanel;
+TabPanel.displayName = "Sui.TabPanel";

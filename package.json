@@ -16,6 +16,6 @@
     "push-main": "git push origin master",
     "push-org": "git push org-origin master",
     "push-all": "npm run push-main && npm run push-org",
-    "release": "git push org-origin master --follow-tags"
+    "release": "git push origin master --follow-tags"
   }
 }

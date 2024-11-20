@@ -22,4 +22,4 @@ const MenuTrigger = React.forwardRef<HTMLDivElement, DivProps>(
 );
 
 export default MenuTrigger;
-MenuTrigger.displayName = "MenuTrigger";
+MenuTrigger.displayName = "Sui.MenuTrigger";

@@ -1,14 +1,14 @@
 export const buttonRef = [
   {
     prop: "variant",
-    type: "string",
+    type: '"solid" | "ghost" | "danger"',
     description: "Defines the button style variant",
     default: "solid",
   },
   {
     prop: "size",
-    type: "string",
-    description: "Defines the button size (medium, large, extra large)",
+    type: '"md" | "lg" | "xl"',
+    description: "Defines the button size",
     default: "md",
   },
   {
@@ -20,10 +20,9 @@ export const buttonRef = [
   },
   {
     prop: "radius",
-    type: "string",
-    description:
-      "Defines the border radius which the button will inherit (medium, large, extra large, full)",
-    default: "xl",
+    type: '"md" | "lg" | "xl" | "full"',
+    description: "Defines the border radius which the button will inherit",
+    default: "lg",
   },
   {
     prop: "disabled",
@@ -38,16 +37,16 @@ export const buttonRef = [
     default: "false",
   },
   {
-    prop: "icon",
-    type: "ReactNode",
-    description: "Adds an icon to the button",
+    prop: "rightIcon",
+    type: "JSX.Element",
+    description: "An icon element displayed on the side side of the Button",
     default: "null",
   },
   {
-    prop: "iconPosition",
-    type: "string",
-    description: "Defines the position of the icon (left, right)",
-    default: "left",
+    prop: "leftIcon",
+    type: "JSX.Element",
+    description: "An icon element displayed on the left side of the Button",
+    default: "null",
   },
   {
     prop: "backgroundColor",
@@ -70,7 +69,7 @@ export const buttonRef = [
   },
   {
     prop: "mode",
-    type: "'light' | 'dark'",
+    type: '"light" | "dark"',
     description: "Sets the theme mode for the button component.",
     default: "light",
   },

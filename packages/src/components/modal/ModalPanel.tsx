@@ -1,7 +1,7 @@
-import { useModalContext } from '../../context/useModal';
-import { ModalPanelSui } from '../../styles/feedback/styled';
-import React from 'react';
-import { StackType } from '../../types/sui';
+import { useModalContext } from "../../context/useModal";
+import { ModalPanelSui } from "../../styles/feedback/styled";
+import React from "react";
+import { StackType } from "../../types/sui";
 
 export type ModalPanelType = {
   /**
@@ -12,7 +12,7 @@ export type ModalPanelType = {
    * - "xl": Extra large panel.
    * - "full": Full-screen panel.
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  size?: "sm" | "md" | "lg" | "xl" | "full";
 
   /**
    * The content displayed within the modal panel.
@@ -26,7 +26,7 @@ export type ModalPanelType = {
    * - "dropIn": Panel drops down from the top.
    * - "slideIn": Panel slides in from the side.
    */
-  transition?: 'walkIn' | 'dropIn' | 'slideIn';
+  transition?: "walkIn" | "dropIn" | "slideIn";
   /**
    * Optional string to add custom CSS classes.
    */
@@ -41,22 +41,22 @@ export type ModalPanelType = {
    * `vertical` for stacking items one above the other (column), `horizontal`
    * for stacking items side by side (row).
    */
-  align?: StackType['align'];
-  spacing?: StackType['spacing'];
+  align?: StackType["align"];
+  spacing?: StackType["spacing"];
 };
 
 const ModalPanel = ({
-  size = 'lg',
+  size = "lg",
   children,
-  transition = 'walkIn',
+  transition = "walkIn",
   className,
   style,
   backgroundColor,
-  align = 'vertical',
+  align = "vertical",
   spacing,
 }: ModalPanelType) => {
   const { isVisible, mode } = useModalContext();
-  const bg = backgroundColor ?? mode === 'dark' ? 'black' : 'white';
+  const bg = backgroundColor ?? mode === "dark" ? "black" : "white";
   return (
     <ModalPanelSui
       className={className}
@@ -75,4 +75,4 @@ const ModalPanel = ({
 };
 
 export default ModalPanel;
-ModalPanel.displayName = 'ModalPanel';
+ModalPanel.displayName = "Sui.ModalPanel";

@@ -1,17 +1,13 @@
-import { BottomNavDocs } from '@/components';
-import { Metadata } from 'next';
-import React from 'react';
+import { BottomNavPage } from "@/components";
+import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'Bottom Navigation - Secptrum UI',
+  title: "Bottom Navigation | Secptrum UI",
 };
 
-const BottomNav = () => {
-  return (
-    <>
-      <BottomNavDocs />
-    </>
-  );
+const Page = () => {
+  return <BottomNavPage />;
 };
 
-export default BottomNav;
+export default Page;

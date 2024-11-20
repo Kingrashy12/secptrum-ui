@@ -37,4 +37,4 @@ const ModalFooter = ({
 };
 
 export default ModalFooter;
-ModalFooter.displayName = "ModalFooter";
+ModalFooter.displayName = "Sui.ModalFooter";

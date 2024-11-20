@@ -1,7 +1,7 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
 type ModeContextType = {
-  mode: 'light' | 'dark' | any;
+  mode: "light" | "dark" | any;
 };
 
 type ModeProviderProps = {
@@ -16,7 +16,7 @@ type ModeProviderProps = {
    *   <App />
    * </ModeProvider>
    */
-  mode: 'light' | 'dark' | any;
+  mode: "light" | "dark" | any;
 };
 
 const ModeContext = createContext<ModeContextType | undefined>(undefined);
@@ -35,14 +35,14 @@ const ModeProvider = ({ children, mode }: ModeProviderProps) => {
 };
 
 export default ModeProvider;
-ModeProvider.displayName = 'ModeProvider';
+ModeProvider.displayName = "Sui.ModeProvider";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useMode = () => {
   const context = useContext(ModeContext);
   if (!context) {
     return {
-      mode: 'light',
+      mode: "light",
     };
   }
   return context;

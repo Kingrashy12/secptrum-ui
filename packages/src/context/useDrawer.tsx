@@ -25,3 +25,4 @@ const DrawerProvider = ({ children, mode }: ProviderType) => {
 };
 
 export default DrawerProvider;
+DrawerProvider.displayName = "Sui.DrawerProvider";

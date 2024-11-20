@@ -180,16 +180,16 @@ export interface ButtonProps extends ButtonTypes {
    * @param icon Accepts a JSX element representing an icon, such as `icon={FaUser}` from react-icons.
    * Avoid wrapping the icon in a fragment (`<>...</>` or `<FaUser/>`) or other component, as this may cause the component to break.
    */
-  icon?: React.ElementType;
+  leftIcon?: React.ElementType;
   /**
    * @param isLoading A loading indicator used to signal a pending state action `e.g` Login
    */
   isLoading?: boolean;
   /**
-   * Position of the icon inside the button, either on the `left` or `right` side.
-   * @default 'left'
+   * @param icon Accepts a JSX element representing an icon, such as `icon={FaUser}` from react-icons.
+   * Avoid wrapping the icon in a fragment (`<>...</>` or `<FaUser/>`) or other component, as this may cause the component to break.
    */
-  iconPosition?: "left" | "right";
+  rightIcon?: React.ElementType;
 
   /**
    * The color of the button's text or icon.
@@ -239,6 +239,11 @@ export interface ButtonProps extends ButtonTypes {
    * @type {boolean}
    */
   fullWidth?: boolean;
+  /**
+   * Controls the spacing (gap) between child elements within the Stack component.
+   * Accepts predefined sizes: "sm" (small), "md" (medium), "lg" (large), "xl" (extra-large), "2xl" (2 times extra-large), "3xl" (3 times extra-large).
+   */
+  spacing?: SizeVariantType;
 }
 
 export interface BoxType extends BoxProps {
@@ -604,3 +609,82 @@ export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   bottom?: number;
 }
+
+export interface DropType {
+  /**
+   * The content to be rendered inside the drop component.
+   */
+  children?: React.ReactNode;
+
+  /**
+   * Additional CSS class names to apply to the drop component.
+   */
+  className?: string;
+
+  /**
+   * Inline styles to apply to the drop component.
+   */
+  style?: React.CSSProperties;
+
+  /**
+   * Indicates whether the drop component is currently open (visible) or not.
+   */
+  open: boolean;
+
+  /**
+   * Callback function triggered to close the drop component.
+   */
+  onClose: () => void;
+
+  /**
+   * Determines whether to center the content within the drop component.
+   * @default true
+   */
+  centerContent?: boolean;
+  /**
+   * Determines the stack order of the backdrop, ensuring it appears above other content but behind interactive elements.
+   */
+  zIndex?: number;
+  /**
+   * Prevents the modal from closing if an action is in progress.
+   * When set to `true`, the modal will remain open and cannot be closed
+   * until the ongoing action completes.
+   * Useful for preventing accidental closure during important tasks or loading states.
+   */
+  preventClose?: boolean;
+  /**
+   * Sets the theme mode for the input component.
+   *
+   * Options:
+   * - `light` (default)
+   * - `dark`
+   * - Custom theme mode (override default styles)
+   *
+   * Allows developers to integrate with apps that support light/dark modes or provide a custom design.
+   * @type {"light" | "dark"}
+   */
+  mode?: "light" | "dark";
+  /**
+   * Controls the intensity of the backdrop glass effect (blur).
+   * A higher value increases the blur, creating a stronger glass effect.
+   *
+   * @type {number} - The intensity of the glass effect (blur).
+   * @default '6'
+   */
+  glassEffect?: number;
+}
+
+export type PageLoaderOption = {
+  /** The color of the loader.*/
+  color?: string;
+  /** If true, the loader will have rounded corners. @default 'true' */
+  rounded?: boolean;
+  /** The color of the container that holds the loader.*/
+  containerColor?: string;
+  className?: string;
+};
+
+export type DynamicImportProps = {
+  importFunc: () => Promise<{ default: React.ComponentType }>;
+  loaderOptions?: PageLoaderOption;
+};

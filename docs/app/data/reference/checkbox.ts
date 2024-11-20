@@ -50,4 +50,10 @@ export const checkboxRef = [
     description: 'Specifies whether the checkbox should have rounded corners.',
     default: 'false',
   },
+  {
+    prop: 'mode',
+    type: '"light" | "dark"',
+    description: 'Sets the theme mode for the checkbox component.',
+    default: 'light',
+  },
 ];

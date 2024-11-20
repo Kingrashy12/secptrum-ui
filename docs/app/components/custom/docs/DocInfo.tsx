@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
-import { FaNoteSticky } from "react-icons/fa6";
-import { RiErrorWarningFill, RiInformationFill } from "react-icons/ri";
-import { Icon } from "secptrum-ui";
-import { styled } from "styled-chroma";
+import React from 'react';
+import { FaNoteSticky } from 'react-icons/fa6';
+import { RiErrorWarningFill, RiInformationFill } from 'react-icons/ri';
+import { Icon, styled } from 'secptrum-ui';
 
-type DocNoteType = "info" | "warning" | "note";
+type DocNoteType = 'info' | 'warning' | 'note';
 
 interface DocNoteProps {
   type?: DocNoteType; // Type of message: info, warning, or note
@@ -20,25 +19,25 @@ const noteStyles: Record<
   { background: string; border: string; icon: any }
 > = {
   info: {
-    background: "#e7f4ff",
-    border: "#007bff",
+    background: '#e7f4ff',
+    border: '#007bff',
     icon: RiInformationFill,
   },
   warning: {
-    background: "#fff3cd",
-    border: "#ffc107",
+    background: '#fff3cd',
+    border: '#ffc107',
     icon: RiErrorWarningFill,
   },
   note: {
-    background: "#f5f5f5",
-    border: "#999",
+    background: '#f5f5f5',
+    border: '#999',
     icon: FaNoteSticky,
   },
 };
 
 // Styled component for the Note container
 const StyledDocNote = styled<{ noteType: DocNoteType; mt: number | any }>(
-  "div"
+  'div'
 )`
   background-color: ${(props) => noteStyles[props.noteType].background};
   border-left: 4px solid ${(props) => noteStyles[props.noteType].border};
@@ -61,7 +60,7 @@ const StyledDocNote = styled<{ noteType: DocNoteType; mt: number | any }>(
 
 // The DocNote component itself
 const DocInfo: React.FC<DocNoteProps> = ({
-  type = "note",
+  type = 'note',
   children,
   mt,
   iconSize,

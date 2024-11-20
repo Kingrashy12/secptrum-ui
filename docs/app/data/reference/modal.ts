@@ -27,7 +27,7 @@ export const modalRef = [
   },
   {
     prop: 'mode',
-    type: "'light' | 'dark'",
+    type: '"light" | "dark"',
     description: 'Sets the theme mode for the backdrop component.',
     default: 'light',
   },

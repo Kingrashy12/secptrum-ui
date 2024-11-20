@@ -5,16 +5,16 @@
  * @param props - The props object containing additional class names.
  * @returns The combined class name.
  */
-export function cls(
+export const cls = (
   tag: keyof JSX.IntrinsicElements | React.ComponentType<any>,
   className: string,
   props: any
-) {
-  const sc = `sc-${
-    typeof tag === 'string' ? tag : tag.displayName || 'Component'
+) => {
+  const sc = `Sui_${
+    typeof tag === "string" ? tag : tag.displayName || "Component"
   }`;
-  if (typeof sc === 'string' && sc !== 'undefined') {
+  if (typeof sc === "string" && sc !== "undefined") {
     return `${className} ${props.className || sc}`;
   }
-  return '';
-}
+  return "";
+};

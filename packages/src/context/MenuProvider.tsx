@@ -18,13 +18,13 @@ const MenuProvider = ({ children, ...props }: MenuProps) => {
 
   const triggerRef = useRef<HTMLDivElement>(null);
 
-  function onOpen() {
+  const onOpen = () => {
     setIsOpen(true);
-  }
+  };
 
-  function onClose() {
+  const onClose = () => {
     setIsOpen(false);
-  }
+  };
 
   const Trigger = React.Children.toArray(children).filter(
     (child) => React.isValidElement(child) && child.type === MenuTrigger
@@ -33,7 +33,7 @@ const MenuProvider = ({ children, ...props }: MenuProps) => {
     (child) => React.isValidElement(child) && child.type !== MenuTrigger
   );
 
-  function renderChildren(elements: React.ReactNode[], isTrigger?: boolean) {
+  const renderChildren = (elements: React.ReactNode[], isTrigger?: boolean) => {
     return elements.map((element, index) => {
       if (!React.isValidElement(element)) {
         // Skip invalid elements
@@ -64,7 +64,7 @@ const MenuProvider = ({ children, ...props }: MenuProps) => {
         </MenuItem>
       );
     });
-  }
+  };
 
   return (
     <MenuContext.Provider value={{ isOpen, onClose, onOpen }}>
@@ -77,4 +77,4 @@ const MenuProvider = ({ children, ...props }: MenuProps) => {
 };
 
 export default MenuProvider;
-MenuProvider.displayName = "MenuProvider";
+MenuProvider.displayName = "Sui.MenuProvider";

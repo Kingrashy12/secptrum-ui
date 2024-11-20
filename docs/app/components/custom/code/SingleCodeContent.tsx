@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box } from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+import { Box, styled } from 'secptrum-ui';
 import CodeBlock from './CodeBlock';
 type CodeContentType = {
   code: string;

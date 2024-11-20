@@ -1,8 +1,5 @@
-'use client';
-
 import React from 'react';
-import { ModeProvider as SpectrumModeProvider } from 'secptrum-ui';
-import { useTheme } from 'styled-chroma';
+import { ModeProvider as SpectrumModeProvider, useTheme } from 'secptrum-ui';
 
 const ModeProvider = ({ children }: { children: React.ReactNode }) => {
   const { mode } = useTheme();

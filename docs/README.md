@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/SecptrumLab/secptrum-ui/blob/main/images/secptrumui-logo.png" alt="SecptrumUI Logo" width="200" height="200" />
+  <img src="https://github.com/Kingrashy12/secptrum-ui/blob/main/images/secptrumui-logo.png" alt="SecptrumUI Logo" width="200" height="200" />
 </div>
 
 #
@@ -12,12 +12,13 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Components](#components)
+- [CLI Tool](#cli)
 - [Customization](#customization)
 - [Contributing](#contributing)
 
 ## Features
 
-- 🎨 **Customizable**: Easily customize components using `styled-chroma` for advanced styling.
+- 🎨 **Customizable**: Easily customize components using `styled` for advanced styling.
 - 🧩 **Modular**: Import only the components you need, reducing bundle size.
 - 💻 **Responsive**: All components are designed to be fully responsive.
 - ⚡ **Fast Development**: Speed up your development process with pre-built, easy-to-integrate components.
@@ -59,7 +60,7 @@ function App() {
       <Box padding="md" border="1px solid #ddd">
         <Input placeholder="Enter your text here" />
       </Box>
-      <Button colorScheme="primary" size="md" variant="solid">
+      <Button size='lg' radius='lg' variant="solid">
         Click Me
       </Button>
     </Stack>
@@ -104,15 +105,83 @@ SecptrumUI includes a variety of components to help you build your application
 
 For a full list of components and their usage, please refer to the [documentation](https://secptrumui.vercel.app//docs/components/action/button).
 
+## CLI Tool
+
+SecptrumUI includes a CLI tool to help set up your Next.js project with SecptrumUI.
+
+> **Note:** This setup is specific to Next.js and provides detailed instructions for configuration.
+
+### Setup
+
+1. **Install SecptrumUI**
+
+First, ensure you have Secptrum UI installed in your project. If not, you can install it using npm or yarn:
+
+```bash
+npm install secptrum-ui
+```
+
+2. **Initialize SecptrumUI**
+
+To initialize SecptrumUI next configuration in your Next.js project, run the following command:
+
+```bash
+npx secptrum-ui init
+```
+
+This will create a `SecptrumUIRegistry` component in your project and add it to your `lib/registry.js` or `lib/registry.tsx` file.
+
+3. **Import SecptrumUIRegistry into your root layout**
+
+Finally, import the `SecptrumUIRegistry` component in your `layout.js` or `layout.tsx` file:
+
+- `app/layout` for App Router
+- `src/layout` for Pages Router
+
+- **TypeScript**
+
+```bash
+import SecptrumUIRegistry from '@/lib/registry';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html>
+      <body>
+        <SecptrumUIRegistry>{children}</SecptrumUIRegistry>
+      </body>
+    </html>
+  );
+}
+```
+
+- **JavaScript**
+
+```bash
+import SecptrumUIRegistry from '@/lib/registry';
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <SecptrumUIRegistry>{children}</SecptrumUIRegistry>
+      </body>
+    </html>
+  );
+}
+```
+
+These steps ensure that SecptrumUI components are properly registered and available throughout your application.
+
+> **Note:** When using `styled` to customize components, you need to add the `'use client'` directive at the top of the file. Don't worry about style glitches; SecptrumUI will handle those for you.
+
 ## Coutomization
 
-SecptrumUI leverages `styled-chroma` for customization. You can adjust the appearance of components by using the `styled-chroma` API to create your own styles.
+SecptrumUI leverages `styled`, a css-in-js method, to provide a flexible way to customize components.
 
 ### Example
 
 ```bash
-import { styled } from "styled-chroma";
-import { Button } from 'secptrum-ui';
+import { Button, styled } from 'secptrum-ui';
 
 // Customizing the Button component
 
@@ -133,6 +202,8 @@ function App() {
 export default App;
 ```
 
+> **Note:** You can use your favorite styling library to customize components, such as `TailwindCSS`, `styled-components`, etc., or even plain CSS.
+
 ## Contributing
 
-We welcome contributions to improve SecptrumUI! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to submit improvements and bug fixes.
+Contributions are welcome to improve SecptrumUI! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to submit improvements and bug fixes.

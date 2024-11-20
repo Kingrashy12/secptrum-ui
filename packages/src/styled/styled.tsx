@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo } from "react";
-import { StandardProperties } from "./types";
 import { useTheme } from "./hooks/useTheme";
 import { generateRandomString } from "./utils/genString";
 import { validElementProps } from "./utils/props";
 import { cls } from "./utils/className";
 import { styleSheetManager } from "./utils/StyleSheetManger";
+import { StandardProperties } from "csstype";
 
 type ExtendedProperties = StandardProperties & {
   [key: string]: ExtendedProperties | string | number | undefined;
@@ -113,6 +113,7 @@ const styled: StyledFunction = <P extends object>(
   tag: keyof JSX.IntrinsicElements | React.ComponentType<any>
 ) => {
   type Props = React.ComponentProps<typeof tag>;
+
   return (
     strings: TemplateStringsArray,
     ...interpolations: Array<Interpolation<P>>

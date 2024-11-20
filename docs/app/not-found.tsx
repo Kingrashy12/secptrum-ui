@@ -9,7 +9,14 @@ export const metadata: Metadata = {
 
 const NotFound = () => {
   return (
-    <main>
+    <main
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+        margin: 'auto',
+      }}
+    >
       <NotFoundPage />
     </main>
   );

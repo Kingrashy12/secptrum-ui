@@ -112,7 +112,6 @@ export const StackSui = styled<IStyleStack>(BoxSui)`
   align-items: center;
   width: 100%;
   position: relative;
-  padding: ${(props) => props.padding || "18px"};
   flex-wrap: ${(props) => (props.wrap ? "wrap" : "nowrap")};
 `;
 StackSui.displayName = "StackSui";
@@ -144,7 +143,7 @@ export const CardSui = styled<CardProps>(BoxSui)`
 CardSui.displayName = "CardSui";
 
 //*************Tabs Components************//
-export const TabHandle = styled<IStyleTabHandle>("button")`
+export const TabHandleSui = styled<IStyleTabHandle>("button")`
   font-family: "Poppins-Medium", sans-serif;
   font-size: 0.87rem;
   line-height: 1.2rem;
@@ -194,4 +193,4 @@ export const TabHandle = styled<IStyleTabHandle>("button")`
         : ""}
   }
 `;
-TabHandle.displayName = "TabHandleSui";
+TabHandleSui.displayName = "TabHandleSui";

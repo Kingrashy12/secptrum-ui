@@ -1,17 +1,12 @@
-import { BoxDocs } from "@/components";
-import { Metadata } from "next";
+import { BoxPage } from "@/components";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Box - Secptrum UI",
+export const metadata = {
+  title: "Box | Secptrum UI",
 };
 
-const Box = () => {
-  return (
-    <>
-      <BoxDocs />
-    </>
-  );
+const Page = () => {
+  return <BoxPage />;
 };
 
-export default Box;
+export default Page;

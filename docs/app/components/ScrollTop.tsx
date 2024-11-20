@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { IoIosArrowUp } from 'react-icons/io';
-import { Fab } from 'secptrum-ui';
+import React, { useState } from "react";
+import { IoIosArrowUp } from "react-icons/io";
+import { Fab } from "secptrum-ui";
 
 const ScrollTop = () => {
   const [visible, setVisible] = useState(false);
@@ -17,16 +17,16 @@ const ScrollTop = () => {
   const scrollToTop = () => {
     global?.window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
-  global?.window?.addEventListener('scroll', toggleVisible);
+  global?.window?.addEventListener("scroll", toggleVisible);
 
   return (
     <>
       {visible && (
-        <Fab size="lg" onClick={scrollToTop}>
+        <Fab size="lg" variant="light" onClick={scrollToTop}>
           <IoIosArrowUp />
         </Fab>
       )}

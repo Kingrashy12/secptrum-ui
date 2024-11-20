@@ -19,13 +19,13 @@ export const drawerRef = [
   },
   {
     prop: 'position',
-    type: 'string',
+    type: '"left" | "right"',
     description: 'The position of the drawer.',
     default: 'right',
   },
   {
     prop: 'variant',
-    type: 'string',
+    type: '"default" | "modal"',
     description: 'The variant of the drawer.',
     default: 'default',
   },
@@ -37,7 +37,7 @@ export const drawerRef = [
   },
   {
     prop: 'mode',
-    type: "'light' | 'dark'",
+    type: '"light" | "dark"',
     description: 'The mode of the drawer.',
     default: 'light',
   },

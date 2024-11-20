@@ -2,8 +2,7 @@
 
 import { fonts } from '@/styles/global';
 import React from 'react';
-import { Box } from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+import { Box, styled } from 'secptrum-ui';
 
 type NastedListType = {
   children: React.ReactNode;

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box } from 'secptrum-ui';
+import { Box, styled } from 'secptrum-ui';
 import Typography from '../Typography';
-import { styled } from 'styled-chroma';
 import { fonts } from '@/styles/global';
 
 type DescBoxType = {

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Card, Icon, Stack } from 'secptrum-ui';
+import { Box, Card, Icon, Stack, styled } from 'secptrum-ui';
 import { cardsDetails } from '@/data/home';
-import { styled } from 'styled-chroma';
 
 const CardsSection = () => {
   return (

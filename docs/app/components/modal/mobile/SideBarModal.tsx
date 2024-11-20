@@ -8,14 +8,11 @@ import {
   ExtraLinks,
 } from '@/components/custom/StickyBar';
 import { useSideBar } from '@/context/useSideBar';
-import { sidebarlinks } from '@/data/sidebar';
-import Link from 'next/link';
+import { sidebarLinks } from '@/data/sidebar';
 import { useRouter } from '@/hooks';
+import Link from 'next/link';
 import React from 'react';
-import { Backdrop, Box, colors } from 'secptrum-ui';
-import { DivProps, styled, useTheme } from 'styled-chroma';
-// import Typography from '@/components/custom/Typography';
-// import { HiMiniArrowUpRight } from 'react-icons/hi2';
+import { Backdrop, Box, colors, styled, useTheme, DivProps } from 'secptrum-ui';
 
 const SideBarModal = () => {
   const { isOpen, onClose } = useSideBar();
@@ -27,7 +24,7 @@ const SideBarModal = () => {
     <Backdrop open={isOpen} onClose={onClose}>
       <SideBarContainer light={light}>
         <BarContent>
-          {sidebarlinks.map((link, index) => (
+          {sidebarLinks.map((link, index) => (
             <Collapsible
               header={link.header}
               key={index}
@@ -61,14 +58,7 @@ const SideBarModal = () => {
               </>
             </Collapsible>
           ))}
-          <ExtraLinks>
-            {/* <Link href="/showcase-lab">
-              <Box spacing="md" centered>
-                <Typography>Showcase Lab</Typography>
-                <HiMiniArrowUpRight size={20} />
-              </Box>
-            </Link> */}
-          </ExtraLinks>
+          <ExtraLinks></ExtraLinks>
         </BarContent>
       </SideBarContainer>
     </Backdrop>
@@ -78,7 +68,9 @@ const SideBarModal = () => {
 export default SideBarModal;
 
 const SideBarContainer = styled<DivProps & { light: boolean }>(Box)`
-  position: fixed;
+  && {
+    position: fixed;
+  }
   height: 100%;
   background: ${(props) => props.theme.colors?.background};
   width: 300px;

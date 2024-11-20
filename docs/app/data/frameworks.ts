@@ -1,4 +1,5 @@
-import { CreateReactApp, NextJs } from "@/assets";
+import { NextJs } from "@/assets";
+import Vite from "@/assets/svgs/vite";
 
 export const frameworks = [
   {
@@ -9,10 +10,9 @@ export const frameworks = [
     uri: "/docs/getting-started/installation/nextjs",
   },
   {
-    name: "Create React App",
-    description:
-      "CLI tool for scaffolding a new single-page React application.",
-    img: CreateReactApp,
-    uri: "/docs/getting-started/installation/create-react-app",
+    name: "Vite",
+    description: "Fast and modern development server and build tool.",
+    img: Vite,
+    uri: "/docs/getting-started/installation/vite",
   },
 ];

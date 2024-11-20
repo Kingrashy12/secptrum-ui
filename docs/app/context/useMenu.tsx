@@ -1,12 +1,19 @@
 'use client';
 
 import MenuModal from '@/components/modal/MenuModal';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const MenuContext = createContext<ModalContextType | undefined>(undefined);
 
 const MenuProvider = ({ children }: ContextProviderType) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const wd = typeof window !== 'undefined';
+    if (wd && window.innerWidth < 550) {
+      setIsOpen(false);
+    }
+  }, []);
 
   function onOpen() {
     setIsOpen(true);

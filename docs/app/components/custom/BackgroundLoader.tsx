@@ -1,26 +1,23 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Backdrop, BarLoader, CircularProgress } from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+import React from "react";
+import { styled } from "secptrum-ui";
+import PageLoader from "./PageLoader";
 
 const BackgroundLoader = () => {
   return (
-    <Backdrop open onClose={() => {}} centerContent>
-      <BarLoad>
-        <BarLoader width={`100%`} />
-      </BarLoad>
-      <CircularProgress />
-    </Backdrop>
+    <BarLoad>
+      <PageLoader width={`100%`} rounded />
+    </BarLoad>
   );
 };
 
 export default BackgroundLoader;
 
-const BarLoad = styled('div')`
+const BarLoad = styled("div")`
   position: fixed;
   width: 100%;
   top: 1px;
-  z-index: 200;
+  z-index: 600;
   top: 0;
 `;

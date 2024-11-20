@@ -80,7 +80,7 @@ export const ModalContent = styled(BoxSui)`
   align-items: ${(props) => (props.centered ? "center" : "")};
   padding: ${(props) => props.padding ?? "13px"};
 `;
-ModalContent.displayName = "ModalContent";
+ModalContent.displayName = "ModalContentSui";
 
 // Modal Footer
 export const ModalFooterSui = styled<IStyleModalFooter>("div")`
@@ -106,26 +106,17 @@ export const StyledToast = styled<IStyleToast>("div")`
   font-family: inherit;
   border: 1px solid ${colors.neutral[200]};
   gap: 5px;
-  position: fixed;
+  position: relative;
   display: flex;
   max-width: 400px;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  ${(props) => {
-    const positions = getToastPosition(props.position);
-    return css`
-      top: ${positions.top};
-      bottom: ${positions.bottom};
-      right: ${positions.right};
-      left: ${positions.left};
-    `;
-  }}
+  margin-bottom: 9px;
   ${(props) => {
     const transition = getToastTransition(props.transition, props.isVisible);
     return css`
       ${transition}
     `;
   }}
-  z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   .header {
@@ -146,6 +137,21 @@ export const StyledToast = styled<IStyleToast>("div")`
   @media screen and (max-width: 550px) {
     max-width: 90%;
   }
+`;
+
+export const ToastWrap = styled<{ position: IStyleToast["position"] }>("div")`
+  position: fixed;
+  z-index: 1000;
+
+  ${(props) => {
+    const positions = getToastPosition(props.position);
+    return css`
+      top: ${positions?.top};
+      bottom: ${positions?.bottom};
+      right: ${positions?.right};
+      left: ${positions?.left};
+    `;
+  }}
 `;
 
 export const ContentWrap = styled(BoxSui)`

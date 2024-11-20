@@ -1,6 +1,5 @@
 import { Typography } from '@/components';
-import { Box } from 'secptrum-ui';
-import { colors, styled } from 'styled-chroma';
+import { Box, colors, styled } from 'secptrum-ui';
 
 export const customTheme = {
   hljs: {

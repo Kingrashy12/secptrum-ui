@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
-import { Box, colors, Icon } from 'secptrum-ui';
-import Typography from './Typography';
-import {
-  MdOutlineKeyboardArrowDown,
-  MdOutlineKeyboardArrowRight,
-} from 'react-icons/md';
-import { DivProps, styled, useTheme } from 'styled-chroma';
+import React, { useState } from "react";
+import { Box, colors, styled, useTheme } from "secptrum-ui";
+import Typography from "./Typography";
 
 type CollapsibleProps = {
   header: string;
@@ -15,8 +10,8 @@ type CollapsibleProps = {
 
 const Collapsible = ({ header, children, isActive }: CollapsibleProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, mode } = useTheme();
-  const light = mode === 'light';
+  const { mode } = useTheme();
+  const light = mode === "light";
   const [canOpen, setCanOpen] = useState(isActive);
 
   function open() {
@@ -28,21 +23,12 @@ const Collapsible = ({ header, children, isActive }: CollapsibleProps) => {
 
   return (
     <StyledCollapsible>
-      <CollapsibleAction onClick={open}>
-        <Icon
-          icon={
-            isOpen || canOpen
-              ? MdOutlineKeyboardArrowDown
-              : MdOutlineKeyboardArrowRight
-          }
-          size={25}
-          color={theme.colors?.icon}
-        />
+      <CollapsibleAction onClick={open} paddingLeft="md">
         <Typography>{header}</Typography>
       </CollapsibleAction>
-      {isOpen || canOpen ? (
-        <ContentWrap light={light}>{children}</ContentWrap>
-      ) : null}
+      <ContentWrap light={light} open={isOpen} canOpen={canOpen}>
+        {children}
+      </ContentWrap>
     </StyledCollapsible>
   );
 };
@@ -60,18 +46,26 @@ export const CollapsibleAction = styled(Box)`
   gap: 6px;
   cursor: pointer;
   color: ${(props) => props.theme?.colors?.text};
+  justify-content: space-between;
 
   p {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.5rem;
-    font-weight: 600;
+    font-weight: 500;
   }
 `;
 
-const ContentWrap = styled<DivProps & { light: boolean }>(Box)`
+const ContentWrap = styled<{
+  light: boolean;
+  open: boolean;
+  canOpen: boolean | unknown;
+}>("div")`
   flex-direction: column;
-  gap: 5px;
-  padding: 6px 26px;
-  border-left: 2px solid
-    ${(props) => (props.light ? colors.neutral[200] : 'rgb(38 38 38)')};
+  border-left: 1.5px solid
+    ${(props) => (props.light ? colors.neutral[200] : "rgb(38 38 38)")};
+  transition: all 0.3s ease-in-out;
+  transition-delay: 500ms;
+  padding: 0;
+  opacity: ${(props) => (props.canOpen || props.open ? 1 : 0)};
+  display: ${(props) => (props.canOpen || props.open ? "flex" : "none")};
 `;

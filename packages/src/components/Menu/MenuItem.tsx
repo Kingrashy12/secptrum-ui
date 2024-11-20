@@ -77,7 +77,7 @@ const MenuItem = ({
   const currentMode = mode ?? themeMode;
   const { onClose: closeMenu } = useMenu();
 
-  function killMenu() {
+  const killMenu = () => {
     try {
       if (onClick) {
         onClick();
@@ -87,7 +87,7 @@ const MenuItem = ({
     } finally {
       closeMenu();
     }
-  }
+  };
 
   return (
     <MenuItemSui
@@ -106,4 +106,4 @@ const MenuItem = ({
 };
 
 export default MenuItem;
-MenuItem.displayName = "MenuItem";
+MenuItem.displayName = "Sui.MenuItem";

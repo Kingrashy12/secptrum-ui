@@ -1,17 +1,12 @@
 import { MenuPage } from "@/components";
-import { Metadata } from "next";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Menu - Secptrum UI",
+export const metadata = {
+  title: "Menu | Secptrum UI",
 };
 
-const Menu = () => {
-  return (
-    <>
-      <MenuPage />
-    </>
-  );
+const Page = () => {
+  return <MenuPage />;
 };
 
-export default Menu;
+export default Page;

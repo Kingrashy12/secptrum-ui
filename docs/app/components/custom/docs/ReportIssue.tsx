@@ -1,10 +1,10 @@
-import { fonts } from "@/styles/global";
-import React from "react";
-import { Button } from "secptrum-ui";
-import { styled } from "styled-chroma";
+'use client';
 
-// Styled container for the ReportIssue
-const Container = styled("div")`
+import { fonts } from '@/styles/global';
+import React from 'react';
+import { Button, styled } from 'secptrum-ui';
+
+const Container = styled('div')`
   text-align: center;
   margin: 20px 0;
   padding: 20px;
@@ -13,24 +13,23 @@ const Container = styled("div")`
   background-color: #f9f9f9;
 `;
 
-// Styled paragraph for the description
-const Description = styled("p")`
+const Description = styled('p')`
   font-size: 16px;
   color: #333;
   margin-bottom: 16px;
-  font-family: ${fonts.nunito};
+  font-family: ${fonts.jakarta};
+  font-weight: 500;
   line-height: 1.5;
 `;
 
 const ReportIssue: React.FC = () => {
   const handleReportClick = () => {
-    // Replace this URL with your actual issue tracker URL
     window.open(
-      "https://github.com/Kingrashy12/secptrum-ui/issues/new",
-      "_blank"
+      'https://github.com/Kingrashy12/secptrum-ui/issues/new',
+      '_blank'
     );
   };
-  //   on our GitHub repository
+
   return (
     <Container>
       <Description>

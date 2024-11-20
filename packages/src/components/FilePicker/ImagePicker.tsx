@@ -7,14 +7,14 @@ import {
   SelectedImage,
   SelectedImageContainer,
   UploadIcon,
-} from "../../styles/utility/styled";
-import React, { useEffect, useRef, useState } from "react";
-import { IoIosCloudUpload } from "react-icons/io";
-import { IoAddSharp, IoClose } from "react-icons/io5";
-import Backdrop from "../Backdrop/Backdrop";
-import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
-import { colors } from "../../styles/colors";
+} from '../../styles/utility/styled';
+import React, { useEffect, useRef, useState } from 'react';
+import { IoIosCloudUpload } from 'react-icons/io';
+import { IoAddSharp, IoClose } from 'react-icons/io5';
+import Backdrop from '../Backdrop/Backdrop';
+import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
+import { colors } from '../../styles/colors';
 
 interface ImagePickerProps {
   /**
@@ -88,7 +88,7 @@ interface ImagePickerProps {
   /**
    *@param mode - Optional. Specifies the theme mode of the app, either `light` or `dark`.
    */
-  mode?: "light" | "dark";
+  mode?: 'light' | 'dark';
 
   /**
    *@param autoSelectImage - Optional. If true, images will be added immediately after selection.
@@ -161,7 +161,7 @@ const ImagePicker = ({
   autoSelectImage,
 }: ImagePickerProps) => {
   const [images, setImages] = useState<string[] | any[]>([]);
-  const [image, setImage] = useState<string | any>("");
+  const [image, setImage] = useState<string | any>('');
 
   useEffect(() => {
     if (autoSelectImage && images.length > 0) {
@@ -169,16 +169,16 @@ const ImagePicker = ({
     }
   }, [images, autoSelectImage]);
 
-  function addImage() {
+  const addImage = () => {
     // If autoSelectImage is enabled or the picker is closed, proceed with adding image
     if (multiple && onMultipleImageSelect) {
       onMultipleImageSelect(images);
     } else if (onImageSelect) {
       onImageSelect(image);
     }
-  }
+  };
 
-  function handlePicker(e: React.ChangeEvent<HTMLInputElement>) {
+  const handlePicker = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files;
     if (file && file[0]) {
       const reader = new FileReader();
@@ -197,30 +197,30 @@ const ImagePicker = ({
 
       reader.readAsDataURL(file[0]);
     }
-  }
+  };
 
-  function onRemove(index: number) {
+  const onRemove = (index: number) => {
     const filteredImages = images.filter((_, i) => i !== index);
     setImages(filteredImages);
-    setImage("");
+    setImage('');
     if (onMultipleImageSelect) {
       onMultipleImageSelect(filteredImages);
     }
-  }
+  };
 
   const pickerRef = useRef<HTMLInputElement>(null);
 
-  function close() {
+  const close = () => {
     if (!autoSelectImage) {
       // Add the images when the modal is closed
       addImage();
     }
 
     // Reset images and close the picker modal
-    setImage("");
+    setImage('');
     setImages([]);
     closePicker();
-  }
+  };
 
   return (
     <Backdrop zIndex={zIndex} open={isPickerOpen} onClose={close} mode={mode}>

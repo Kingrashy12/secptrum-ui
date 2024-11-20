@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { createGlobalStyle, styled } from 'styled-chroma';
-import { Box, colors } from 'secptrum-ui';
+import { Box, colors, styled, createGlobalStyle } from "secptrum-ui";
 
 export const fonts = {
   poppins: '"Poppins", system-ui',
   nunito: '"Nunito Sans", system-ui',
   off: '"Offside", system-ui',
   inter: '"Inter", sans-serif',
+  jakarta: '"Plus Jakarta Sans", sans-serif',
 };
 
 export const Container = styled(Box)`
@@ -30,15 +30,19 @@ export const GlobalStyles = createGlobalStyle`
   body{
     font-family: 'Poppins', sans-serif;
     background-color: ${({ theme }) => theme.colors?.background};
+    scroll-behavior: smooth;
   }
 
   .modal-text{
     color: ${({ theme }) => theme.colors?.text};
   }
+
+
+
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const Divider = styled('div')`
+export const Divider = styled("div")`
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.colors?.divider};
 `;
@@ -49,7 +53,7 @@ export const SpaceTop = styled(Box)`
 
 export const CodeContainer = styled(Box)`
   background: #000;
-  border-radius: 16px;
+  border-radius: 7px;
   width: 100%;
   height: auto;
   display: flex;
@@ -96,8 +100,8 @@ export const CodeOptions = styled(Box)`
   }
 `;
 
-export const OptionSelector = styled<{ isactive: boolean }>('p')`
-  color: ${(props) => (props.isactive ? 'white' : colors.neutral[400])};
+export const OptionSelector = styled<{ isactive: boolean }>("p")`
+  color: ${(props) => (props.isactive ? "white" : colors.neutral[400])};
   font-size: 12px;
   padding: 6px;
   border-radius: 6px;
@@ -112,12 +116,12 @@ export const OptionSelector = styled<{ isactive: boolean }>('p')`
   }
 `;
 
-export const OptionsLine = styled('div')`
+export const OptionsLine = styled("div")`
   border-bottom: 1px solid ${(props) => props.theme.colors?.code_opt_line};
   width: 100%;
 `;
 
-export const AuthMain = styled('main')`
+export const AuthMain = styled("main")`
   /* flex: 1; */
   display: flex;
   width: 100%;
