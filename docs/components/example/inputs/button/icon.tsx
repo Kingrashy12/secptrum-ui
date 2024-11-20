@@ -19,7 +19,7 @@ const ButtonIcon = () => {
   return (
     <Stack wrap align="horizontal" fullWidth spacing="lg">
       <Button
-        icon={HiMiniTrash}
+        leftIcon={HiMiniTrash}
         iconSize={20}
 
         variant="danger"
@@ -27,16 +27,15 @@ const ButtonIcon = () => {
         Delete
       </Button>
       <Button
-        icon={HiChatBubbleOvalLeftEllipsis}
+        leftIcon={HiChatBubbleOvalLeftEllipsis}
         iconSize={20}
         variant="ghost"
       >
         Chat
       </Button>
       <Button
-        icon={HiMiniArrowLongRight}
+        rightIcon={HiMiniArrowLongRight}
         iconSize={20}
-        iconPosition="right"
       >
         Get Started
       </Button>
