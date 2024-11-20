@@ -13,9 +13,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    optimizePackageImports: ["secptrum-ui"],
-  },
+  // experimental: {
+  //   optimizePackageImports: ["secptrum-ui"],
+  // },
 };
 
 export default nextConfig;

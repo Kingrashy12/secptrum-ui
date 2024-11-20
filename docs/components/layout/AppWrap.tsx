@@ -6,11 +6,15 @@ import ScrollTop from "../ScrollTop";
 import { useRouter } from "../../hooks";
 import ModeProvider from "./ModeProvider";
 
-import Nav from "./Nav";
+// import Nav from "./Nav";
 
-import StickyBar from "../custom/StickyBar";
+// import StickyBar from "../custom/StickyBar";
 import MenuProvider from "../../context/useMenu";
 import { SideBarProvider } from "../../context";
+import dynamic from "next/dynamic";
+
+const StickyBar = dynamic(() => import("../custom/StickyBar"));
+const Nav = dynamic(() => import("./Nav"));
 
 const AppWrap = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useRouter();
