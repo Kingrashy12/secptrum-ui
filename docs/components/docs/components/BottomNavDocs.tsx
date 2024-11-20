@@ -1,3 +1,5 @@
+"use client";
+
 import ComponentsBadge from "../../custom/ComponentsBadge";
 import ApiReference from "../../custom/docs/ApiReference";
 import DocsBox from "../../custom/docs/Box";
