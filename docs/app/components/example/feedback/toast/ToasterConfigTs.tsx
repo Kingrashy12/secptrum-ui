@@ -1,18 +1,17 @@
 import CodeBlock from "@/components/custom/code/CodeBlock";
-import { toastCodes } from "@/data/code/toast";
-import { Preview } from "@/styles/docs/start.styled";
+import { toastCodes } from "@/data/codes/toast";
 import React from "react";
-import { TabPanel, Tabs, TabsHandle } from "secptrum-ui";
+import { TabPanel, Tabs, TabHandle, Card } from "secptrum-ui";
 
 const ToasterConfigTs = () => {
   return (
-    <Preview>
+    <Card>
       <Tabs variant="solid">
-        <TabsHandle value="react">React</TabsHandle>
-        <TabsHandle value="nextjs-(page router)">
+        <TabHandle value="vite">Vite</TabHandle>
+        <TabHandle value="nextjs-(page router)">
           Nextjs (page router)
-        </TabsHandle>
-        <TabsHandle value="nextjs-(app router)">Nextjs (app router)</TabsHandle>
+        </TabHandle>
+        <TabHandle value="nextjs-(app router)">Nextjs (app router)</TabHandle>
         <TabPanel>
           <CodeBlock code={toastCodes.cra} />
         </TabPanel>
@@ -23,7 +22,7 @@ const ToasterConfigTs = () => {
           <CodeBlock code={toastCodes.next_app_ts} />
         </TabPanel>
       </Tabs>
-    </Preview>
+    </Card>
   );
 };
 

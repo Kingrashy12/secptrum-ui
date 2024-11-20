@@ -67,7 +67,7 @@ const StatusBadge = ({
 };
 
 export default StatusBadge;
-StatusBadge.displayName = "StatusBadge";
+StatusBadge.displayName = "Sui.StatusBadge";
 
 const StatusBadgeSui = styled("div")`
   display: flex;

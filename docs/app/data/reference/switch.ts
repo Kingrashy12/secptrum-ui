@@ -13,9 +13,8 @@ export const switchRef = [
   },
   {
     prop: "size",
-    type: "string",
-    description:
-      "The size of the switch, determining its width and height. Options: 'md' (medium), 'lg' (large).",
+    type: '"md" | "lg"',
+    description: "The size of the switch, determining its width and height.",
     default: "md",
   },
   {

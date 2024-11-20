@@ -83,7 +83,7 @@ const FlexBox = forwardRef<HTMLDivElement, BoxProps>(
 
 export default FlexBox;
 
-FlexBox.displayName = "FlexBox";
+FlexBox.displayName = "Sui.FlexBox";
 
 const BoxContainer = styled<BoxProps>("div")`
   display: flex;

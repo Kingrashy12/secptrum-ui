@@ -39,4 +39,4 @@ const Box = forwardRef<HTMLDivElement, BoxType>(
 
 export default Box;
 
-Box.displayName = "Box";
+Box.displayName = "Sui.Box";

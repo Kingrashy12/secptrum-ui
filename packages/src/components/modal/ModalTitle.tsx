@@ -94,13 +94,13 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
     },
     ref
   ): JSX.Element => {
-    function close() {
+    const close = () => {
       if (!preventClose) {
         if (onClose) {
           onClose();
         }
       }
-    }
+    };
 
     const { mode } = useModalContext();
 
@@ -133,7 +133,7 @@ const ModalTitle = forwardRef<HTMLDivElement, ModalTitleType>(
 );
 
 export default ModalTitle;
-ModalTitle.displayName = "ModalTitle";
+ModalTitle.displayName = "Sui.ModalTitle";
 
 const titleMode = (mode: "light" | "dark") => {
   return {
@@ -142,9 +142,6 @@ const titleMode = (mode: "light" | "dark") => {
   };
 };
 
-/**
- * TitleWrap is a styled-component that wraps the title and close icon in the modal header.
- */
 const TitleWrap = styled<
   BoxType & { showBorder: boolean; mode: "light" | "dark" }
 >(Box)`
@@ -159,9 +156,6 @@ const TitleWrap = styled<
       : ""}
 `;
 
-/**
- * Title is a styled-component that renders the title (`h2`) element.
- */
 const Title = styled<{ mode: "light" | "dark" }>("h2")`
   margin: 0;
   font-size: 1.5rem;

@@ -1,17 +1,12 @@
-import { StackDocs } from "@/components";
-import { Metadata } from "next";
+import { StackPage } from "@/components";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Stack - Secptrum UI",
+export const metadata = {
+  title: "Stack | Secptrum UI",
 };
 
-const Stack = () => {
-  return (
-    <>
-      <StackDocs />
-    </>
-  );
+const Page = () => {
+  return <StackPage />;
 };
 
-export default Stack;
+export default Page;

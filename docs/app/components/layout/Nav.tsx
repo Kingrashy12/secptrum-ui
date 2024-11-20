@@ -1,17 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import NavHeader from "./NavHeader";
-import dynamic from "next/dynamic";
-
-const Navbar = dynamic(() => import("./Navbar"), { ssr: true });
+import Navbar from "./Navbar";
+import { useRouter } from "@/hooks";
 
 const Nav = () => {
-  const [visible, setVisible] = useState(true);
+  const [visible] = useState(true);
+  const { pathname } = useRouter();
   return (
     <>
-      <NavHeader visible={visible} setVisible={setVisible} />
-      <Navbar visible={visible} />
+      {/* <NavHeader visible={visible} setVisible={setVisible} /> */}
+      {pathname === "/" ? null : <Navbar visible={visible} />}
     </>
   );
 };

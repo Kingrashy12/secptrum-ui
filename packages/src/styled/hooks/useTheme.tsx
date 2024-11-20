@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { SystemTheme, Theme, ThemeContextType } from "../types/local";
+import { Mode, SystemTheme, Theme, ThemeContextType } from "../types/local";
 import { modeColors } from "../utils/colors";
 import deepmerge from "../utils/deepmerge";
+import { storageActions } from "src/hooks/useStorage";
 
 const systemTheme: SystemTheme = {
   defaultLightTheme: {
@@ -87,23 +88,25 @@ const ThemeProvider = ({
   theme: userTheme = { light: {}, dark: {} },
 }: {
   children: React.ReactNode;
-  theme?: { light: Partial<Theme>; dark: Partial<Theme> };
+  theme: { light: Partial<Theme>; dark: Partial<Theme> };
 }) => {
-  const savedMode =
-    typeof window !== "undefined"
-      ? (localStorage?.getItem("sui-theme") as "light" | "dark")
-      : "light";
-  const initialMode = savedMode ? savedMode : "light";
+  // const savedMode = storageActions.get('sui-theme') as Mode;
+  // const savedTheme = savedMode ? JSON.parse(savedMode) : 'light';
+  // const initialMode = savedTheme;
+  const [mode, setMode] = useState(() => {
+    // Lazy initializer function for useState to avoid accessing localStorage on import
+    const savedMode = storageActions.get("sui-theme") as Mode;
+    return savedMode ? (JSON.parse(savedMode) as Mode) : "light";
+  });
   // Set initial theme state
   const [theme, setTheme] = useState(
     deepmerge(
-      initialMode === "light"
+      mode === "light"
         ? systemTheme.defaultLightTheme
         : systemTheme.defaultDarkTheme,
-      initialMode === "light" ? userTheme.light : userTheme.dark
+      mode === "light" ? userTheme.light : userTheme.dark
     )
   );
-  const [mode, setMode] = useState<"light" | "dark">(initialMode);
 
   useEffect(() => {
     setTheme(
@@ -120,25 +123,13 @@ const ThemeProvider = ({
   const toggleTheme = () => {
     setMode((prevMode) => {
       const newMode = prevMode === "light" ? "dark" : "light";
-      if (typeof window !== "undefined") {
-        localStorage.setItem("sui-theme", newMode);
-      }
+      storageActions.set("sui-theme", newMode);
       return newMode;
     });
   };
 
-  // Allow setting both light and dark custom themes dynamically
-  const setCustomTheme = (newTheme: {
-    light: Partial<Theme>;
-    dark: Partial<Theme>;
-  }) => {
-    setTheme((prevTheme: any) =>
-      deepmerge(prevTheme, mode === "light" ? newTheme.light : newTheme.dark)
-    );
-  };
-
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setCustomTheme, mode }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, mode }}>
       {children}
     </ThemeContext.Provider>
   );

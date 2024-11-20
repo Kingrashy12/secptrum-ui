@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Stack } from 'secptrum-ui';
+import { Box, styled } from 'secptrum-ui';
 import Typography from './custom/Typography';
 import Media from './custom/Media';
 import { Page_Not_Found } from '@/assets';
-import { styled } from 'styled-chroma';
+import BackgroundLoader from './custom/BackgroundLoader';
 
 const NotFound_404 = () => {
+  if (typeof window === 'undefined') return <BackgroundLoader />;
   return (
-    <Container>
+    <Container centered direction="column" fullWidth>
       <Icon
         src={Page_Not_Found?.src}
         alt="Page not found"
@@ -25,9 +26,9 @@ const NotFound_404 = () => {
 
 export default NotFound_404;
 
-const Container = styled(Stack)`
+const Container = styled(Box)`
   gap: 1.5rem;
-  height: 100vh;
+  justify-content: center;
 
   p {
     color: ${(props) => props.theme.colors?.body};

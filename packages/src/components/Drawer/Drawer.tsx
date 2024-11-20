@@ -1,9 +1,9 @@
-import React from 'react';
-import Backdrop from '../Backdrop/Backdrop';
-import { DrawerSui } from '../../styles/overlays/styled';
-import { useMode } from '../../hooks/useMode';
-import { DrawerProps } from '../../types/sui';
-import DrawerProvider from '../../context/useDrawer';
+import React from "react";
+import Backdrop from "../Backdrop/Backdrop";
+import { DrawerSui } from "../../styles/overlays/styled";
+import { useMode } from "../../hooks/useMode";
+import { DrawerProps } from "../../types/sui";
+import DrawerProvider from "../../context/useDrawer";
 
 /**
  * A customizable overlay drawer component for displaying content.
@@ -43,22 +43,22 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const { mode: modeContext } = useMode();
     const currentMode = mode ?? modeContext;
     return (
-      <DrawerProvider mode={currentMode as 'light' | 'dark'}>
+      <DrawerProvider mode={currentMode as "light" | "dark"}>
         <Backdrop
           open={open}
           onClose={onClose}
           glassEffect={glassEffect}
-          mode={currentMode as 'light' | 'dark'}
+          mode={currentMode as "light" | "dark"}
           preventClose={preventClose}
           zIndex={zIndex}
         >
           <DrawerSui
             ref={ref}
-            width={width || '500px'}
-            position={position || 'right'}
-            variant={variant || 'default'}
+            width={width || "500px"}
+            position={position || "right"}
+            variant={variant || "default"}
             background={background}
-            mode={currentMode as 'light' | 'dark'}
+            mode={currentMode as "light" | "dark"}
             spacing={spacing || 6}
           >
             {children}
@@ -70,4 +70,4 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
 );
 
 export default Drawer;
-Drawer.displayName = 'Drawer';
+Drawer.displayName = "Sui.Drawer";

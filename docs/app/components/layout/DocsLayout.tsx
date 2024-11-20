@@ -1,10 +1,8 @@
-'use client';
-
-import { InstallPageContainer } from '@/styles/docs/start.styled';
 import React from 'react';
 import PageNavigator from '../PageNavigator';
 import ReportIssue from '../custom/docs/ReportIssue';
 import { Divider } from '@/styles/global';
+import { InstallPageContainer } from '@/styles/docs/docs.styled';
 
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
   return (

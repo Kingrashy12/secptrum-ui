@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { MenuPanel } from '../../styles/selection/styled';
-import { MenuSui } from '../../styles/selection/styled';
-import { useMode } from '../../hooks/useMode';
-import { useMenu } from '../../hooks/useMenu';
-import { MenuProps } from '../../types/sui';
+import { useEffect, useRef } from "react";
+import { MenuPanel } from "../../styles/selection/styled";
+import { MenuSui } from "../../styles/selection/styled";
+import { useMode } from "../../hooks/useMode";
+import { useMenu } from "../../hooks/useMenu";
+import { MenuProps } from "../../types/sui";
 
 const Menu = ({
   children,
@@ -24,18 +24,18 @@ const Menu = ({
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         onClose?.();
       }
-    }
+    };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen, onClose]);
 
@@ -49,7 +49,7 @@ const Menu = ({
       right={right}
     >
       <MenuSui
-        mode={currentMode as 'light' | 'dark'}
+        mode={currentMode as "light" | "dark"}
         zIndex={zIndex as number}
         className={className}
         style={style}
@@ -66,4 +66,4 @@ const Menu = ({
 };
 
 export default Menu;
-Menu.displayName = 'Menu';
+Menu.displayName = "Sui.Menu";

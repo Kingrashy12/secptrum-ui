@@ -1,4 +1,4 @@
-import { styled } from 'styled-chroma';
+import { styled } from 'secptrum-ui';
 import Typography from './Typography';
 
 type IStyleText = {

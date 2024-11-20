@@ -1,8 +1,13 @@
-import { Box } from 'secptrum-ui';
-import { styled } from 'styled-chroma';
+import { Box, styled } from 'secptrum-ui';
 
-const NormalInfo = ({ children }: { children: React.ReactNode }) => {
-  return <StyledNormalInfo>{children}</StyledNormalInfo>;
+const NormalInfo = ({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) => {
+  return <StyledNormalInfo style={style}>{children}</StyledNormalInfo>;
 };
 
 export default NormalInfo;

@@ -1,24 +1,22 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import { useServerInsertedHTML } from "next/navigation";
-import { renderStyles, StyleSheetManager } from "styled-chroma";
+import { useServerInsertedHTML } from 'next/navigation';
+import { renderStyles, StyleSheetManager } from 'secptrum-ui';
 
-interface RegistryProps {
-  children: ReactNode;
-}
-
-const ChromaRegistry = ({ children }: RegistryProps) => {
+const SecptrumUIRegistry = ({ children }: { children: React.ReactNode }) => {
   useServerInsertedHTML(() => {
     const styles = renderStyles();
     StyleSheetManager.clearStyles();
-    return <style dangerouslySetInnerHTML={{ __html: styles }} />;
+    return (
+      <style
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: styles }}
+      />
+    );
   });
-
-  if (typeof window !== "undefined") return <>{children}</>;
 
   return <>{children}</>;
 };
 
-export default ChromaRegistry;
-ChromaRegistry.displayName = "ChromaRegistry";
+export default SecptrumUIRegistry;
+SecptrumUIRegistry.displayName = 'SecptrumUIRegistry';

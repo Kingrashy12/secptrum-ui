@@ -1,17 +1,12 @@
-import { CardDocs } from "@/components";
-import { Metadata } from "next";
+import { CardPage } from "@/components";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Card - Secptrum UI",
+export const metadata = {
+  title: "Card | Secptrum UI",
 };
 
-const Card = () => {
-  return (
-    <>
-      <CardDocs />
-    </>
-  );
+const Page = () => {
+  return <CardPage />;
 };
 
-export default Card;
+export default Page;

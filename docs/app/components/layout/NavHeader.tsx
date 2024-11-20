@@ -1,9 +1,7 @@
-"use client";
-
-import { fonts } from "@/styles/global";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { styled } from "styled-chroma";
+import { fonts } from '@/styles/global';
+import Link from 'next/link';
+import React, { useCallback, useEffect, useState } from 'react';
+import { styled } from 'secptrum-ui';
 
 const NavHeader = ({
   visible,
@@ -14,7 +12,7 @@ const NavHeader = ({
 }) => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     // Get the current scroll position
     const currentScrollY = window.scrollY;
 
@@ -22,40 +20,40 @@ const NavHeader = ({
     if (currentScrollY > lastScrollY && currentScrollY > 100) {
       // Scrolling down
       setVisible(false);
-    } else {
+    } else if (currentScrollY < lastScrollY && currentScrollY < 100) {
       // Scrolling up
       setVisible(true);
     }
 
     // Update last scroll position
     setLastScrollY(currentScrollY);
-  };
+  }, [lastScrollY, setVisible]);
 
   useEffect(() => {
     // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     // Cleanup event listener on unmount
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, handleScroll]);
 
   return (
     <Header
       style={{
-        transform: visible ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.3s ease",
+        transform: visible ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'transform 0.3s ease',
       }}
     >
       <p>
-        If you like Secptrum UI, give it a{" "}
+        If you like Secptrum UI, give it a{' '}
         <Link
           href="https://github.com/Kingrashy12/secptrum-ui"
           target="_blank"
           rel="noopener noreferrer"
         >
-          star on GitHub!{" "}
+          star on GitHub!{' '}
         </Link>
         ⭐
       </p>
@@ -65,7 +63,7 @@ const NavHeader = ({
 
 export default NavHeader;
 
-const Header = styled("header")`
+const Header = styled('header')`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,10 +78,11 @@ const Header = styled("header")`
 
   p {
     color: ${(props) => props.theme?.colors.text};
-    font-family: ${fonts.poppins};
-    font-size: 80%;
-    padding: 5px 0;
+    font-family: ${fonts.nunito};
+    font-size: 85%;
+    padding: 3px 0;
     text-align: center;
+    font-weight: 600;
   }
 
   a {

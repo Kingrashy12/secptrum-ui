@@ -94,3 +94,4 @@ const AnimatedText = React.forwardRef<HTMLParagraphElement, AnimatedTextProps>(
 );
 
 export default AnimatedText;
+AnimatedText.displayName = "Sui.AnimatedText";

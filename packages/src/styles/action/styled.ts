@@ -14,6 +14,7 @@ import { getFloatPosition } from "../../utils/position";
 import { getFloatSize, getFloatVariantStyle } from "../../utils/actions";
 import { IStyleFab } from "../../types/istyle";
 import { styled, css } from "../../styled";
+import { spacingValues } from "src/utils/spacing";
 
 //************Button Components***************//
 export const ButtonSui = styled<ButtonProps>("button")`
@@ -24,7 +25,7 @@ export const ButtonSui = styled<ButtonProps>("button")`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: ${(props) => spacingValues(props.spacing)};
   font-family: inherit;
   font-weight: 500;
   font-size: 14px;
@@ -54,7 +55,7 @@ export const ButtonSui = styled<ButtonProps>("button")`
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
   .loader {
-    animation: ${spin} 1.1s infinite linear;
+    animation: ${spin} 0.7s infinite linear;
   }
 `;
 ButtonSui.displayName = "ButtonSui";

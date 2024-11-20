@@ -33,4 +33,4 @@ const BottomNav = ({
 };
 
 export default BottomNav;
-BottomNav.displayName = "BottomNav";
+BottomNav.displayName = "Sui.BottomNav";

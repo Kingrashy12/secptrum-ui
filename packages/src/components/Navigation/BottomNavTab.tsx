@@ -86,7 +86,7 @@ const BottomNavTab = ({
   };
   const color = isActive || isactive ? tabColor.active : tabColor.inactive;
 
-  function push(e: React.MouseEvent) {
+  const push = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (preventPush) {
       if (!onClick) {
@@ -98,7 +98,7 @@ const BottomNavTab = ({
       }
       onClick();
     } else router.push(href);
-  }
+  };
 
   return (
     <>
@@ -125,4 +125,4 @@ const BottomNavTab = ({
 };
 
 export default BottomNavTab;
-BottomNavTab.displayName = "BottomNavTab";
+BottomNavTab.displayName = "Sui.BottomNavTab";

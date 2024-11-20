@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import useRouter from "../../hooks/useRouter";
+import React, { useEffect } from 'react';
+import useRouter from '../../hooks/useRouter';
 
 type AuthenticateSessionProps = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type AuthenticateSessionProps = {
    * This takes precedence over the `SUI_AUTH_REDIRECT_URL` environment variable.
    * If neither this prop nor the environment variable is set, an error will be thrown.
    */
-  RedirectUrl: string;
+  RedirectUrl?: string;
   isAuthenticated: boolean;
 };
 
@@ -35,7 +35,7 @@ const AuthenticateSession = ({
    * @returns {string} The redirect URL.
    * @throws {Error} If the redirect URL is not set.
    */
-  function getRedirectUrl() {
+  const getRedirectUrl = () => {
     const redirectUrl = process.env.SUI_AUTH_REDIRECT_URL as string;
     if (redirectUrl) {
       return redirectUrl;
@@ -43,10 +43,10 @@ const AuthenticateSession = ({
       return RedirectUrl;
     } else {
       throw new Error(
-        "No redirect URL is set, please set SUI_AUTH_REDIRECT_URL or pass RedirectUrl prop"
+        'No redirect URL is set, please set SUI_AUTH_REDIRECT_URL or pass RedirectUrl prop'
       );
     }
-  }
+  };
 
   const redirectUrl = getRedirectUrl();
 

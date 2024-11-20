@@ -8,30 +8,6 @@ import { useMode } from "../../hooks/useMode";
 
 /**
  * A customizable Input component for text, email, password, and number inputs.
- *
- * @component
- * @param {Object} props - The component props
- * @param {React.ReactNode} props.icon - Optional icon to display inside the input
- * @param {'outline' | 'filled' | 'unstyled'} [props.variant='outline'] - The input variant
- * @param {'sm' | 'md' | 'lg' | 'xl' | 'full'} [props.radius='lg'] - The border radius of the input
- * @param {'text' | 'password' | 'email' | 'number'} props.Type - The type of input
- * @param {number} [props.iconSize=20] - The size of the icon
- * @param {string} props.outLineBorderColor - The color of the outline border
- * @param {string} props.focusBorderColor - The color of the border when focused
- * @param {string} props.focusColor - The color of the input text when focused
- * @param {boolean} props.hasError - Whether the input has an error
- * @param {string} props.errorMessage - The error message to display
- * @param {string} props.width - The width of the input
- * @param {'light' | 'dark'} props.mode - The color mode of the input
- * @param {React.CSSProperties} props.inputStyle - Custom styles for the input element
- * @param {React.CSSProperties} props.formStyle - Custom styles for the form element
- * @param {string} props.color - The color of the input text
- * @param {string} props.formClassName - Additional class name for the form element
- * @param {string} props.backgroundColor - The background color of the input
- * @param {string} props.inputClass - Additional class name for the input element
- * @param {boolean} props.fullWidth - Whether the input should take full width
- * @param {React.Ref<HTMLInputElement>} ref - Ref forwarded to the input element
- * @returns {JSX.Element} The rendered Input component
  */
 
 const TextInput = forwardRef<HTMLInputElement, InputType>(
@@ -159,4 +135,4 @@ const TextInput = forwardRef<HTMLInputElement, InputType>(
 );
 
 export default TextInput;
-TextInput.displayName = "TextInputSui";
+TextInput.displayName = "Sui.TextInputSui";

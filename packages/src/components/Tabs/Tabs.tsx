@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TabsList, { TabsListType } from "./TabsList";
-import TabsHandle from "./TabsHandle";
+import TabHandle from "./TabHandle";
 import Box from "../Box/Box";
 import TabPanel from "./TabPanel";
 import { styled } from "../../styled";
@@ -14,7 +14,7 @@ import { useMode } from "../../hooks/useMode";
  *
  * @component
  * @param {Object} props - The properties that define the Tab component's behavior and appearance.
- * @param {ReactNode} props.children - The child elements, expected to be TabsHandle and TabPanel components.
+ * @param {ReactNode} props.children - The child elements, expected to be TabHandle and TabPanel components.
  * @param {'line' | 'enclosed' | 'enclosed-colored' | 'soft-rounded' | 'solid-rounded' | 'unstyled'} [props.variant='line'] - The visual variant of the tabs.
  * @param {'light' | 'dark'} [props.mode] - The color mode of the tabs.
  * @param {boolean} [props.fullWidth] - Whether the tabs should take up the full width of their container.
@@ -36,7 +36,7 @@ const Tab = ({
 
   // Get the tab labels and content by filtering the children
   const tabs = React.Children.toArray(children).filter(
-    (child) => (child as React.ReactElement).type === TabsHandle
+    (child) => (child as React.ReactElement).type === TabHandle
   );
   const tabPanels = React.Children.toArray(children).filter(
     (child) => (child as React.ReactElement).type === TabPanel
@@ -56,7 +56,7 @@ const Tab = ({
         className={className}
       >
         {tabs.map((tab, index) => (
-          <TabsHandle
+          <TabHandle
             key={index}
             value={(tab as React.ReactElement).props.value}
             isActive={index === activeTabIndex}
@@ -73,7 +73,7 @@ const Tab = ({
             style={(tab as React.ReactElement).props.style}
           >
             {(tab as React.ReactElement).props.children}
-          </TabsHandle>
+          </TabHandle>
         ))}
       </TabsList>
       <ContentWrapper>{tabPanels[activeTabIndex]}</ContentWrapper>
@@ -82,6 +82,7 @@ const Tab = ({
 };
 
 export default Tab;
+Tab.displayName = "Sui.Tab";
 
 const Tabs = styled(Box)`
   flex-direction: column;

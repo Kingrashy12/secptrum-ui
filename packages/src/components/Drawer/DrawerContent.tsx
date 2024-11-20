@@ -1,6 +1,6 @@
-import React from 'react';
-import { BoxType } from '../../types/sui';
-import { ModalContent } from '../../styles/feedback/styled';
+import React from "react";
+import { BoxType } from "../../types/sui";
+import { ModalContent } from "../../styles/feedback/styled";
 
 /**
  * DrawerContent component is used to display the content of the Drawer.
@@ -20,4 +20,4 @@ const DrawerContent = React.forwardRef<HTMLDivElement, BoxType>(
   }
 );
 export default DrawerContent;
-DrawerContent.displayName = 'DrawerContent';
+DrawerContent.displayName = "Sui.DrawerContent";

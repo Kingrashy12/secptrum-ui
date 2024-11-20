@@ -1,20 +1,20 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 type ProviderType = {
   children: React.ReactNode;
   open: boolean;
-  mode: 'light' | 'dark';
+  mode: "light" | "dark";
 };
 
 const ModalContext = createContext<
-  { isVisible: boolean; mode: 'light' | 'dark' } | undefined
+  { isVisible: boolean; mode: "light" | "dark" } | undefined
 >(undefined);
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useModalContext = () => {
   const context = useContext(ModalContext);
   if (context === undefined) {
-    throw new Error('useModalContext must be used within a ModalProvider');
+    throw new Error("useModalContext must be used within a ModalProvider");
   }
   return context;
 };
@@ -32,4 +32,4 @@ const ModalProvider = ({ children, open, mode }: ProviderType) => {
 };
 
 export { ModalProvider };
-ModalProvider.displayName = 'ModalProvider';
+ModalProvider.displayName = "Sui.ModalProvider";

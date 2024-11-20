@@ -38,7 +38,7 @@ const DrawerHeader = React.forwardRef<HTMLDivElement, DrawerHeaderType>(
 );
 
 export default DrawerHeader;
-DrawerHeader.displayName = "DrawerHeader";
+DrawerHeader.displayName = "Sui.DrawerHeader";
 
 const titleMode = (mode: "light" | "dark") => {
   return {

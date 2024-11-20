@@ -16,9 +16,9 @@ import {
   ModalTitle,
   TextInput,
 } from 'secptrum-ui';
-import { colors, styled } from 'styled-chroma';
+import { colors, styled } from 'secptrum-ui';
 import Media from './Media';
-import { addProject } from '@/helper/api';
+// import { addProject } from '@/helper/api';
 
 const ShowCaseProject = () => {
   const { isOpen, onClose } = useShowcaseForm();
@@ -72,7 +72,8 @@ const ShowCaseProject = () => {
     ) {
       setFormErr(true);
     } else {
-      await addProject({ ...project, setIsLoading, close });
+      setIsLoading(true);
+      // await addProject({ ...project, setIsLoading, close });
     }
   }
 

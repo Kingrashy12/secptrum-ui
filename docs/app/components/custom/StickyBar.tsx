@@ -1,30 +1,37 @@
-'use client';
+"use client";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
-import { Box, colors } from 'secptrum-ui';
-import Collapsible from './Collapsible';
-import { sidebarlinks } from '@/data/sidebar';
-import Typography from './Typography';
-import Link from 'next/link';
-import { DivProps, HeadProps, styled, useTheme } from 'styled-chroma';
-import { useRouter } from '@/hooks';
-// import { HiMiniArrowUpRight } from 'react-icons/hi2';
-import { fonts } from '@/styles/global';
+import React from "react";
+import Collapsible from "./Collapsible";
+import { sidebarLinks } from "@/data/sidebar";
+import Typography from "./Typography";
+import Link from "next/link";
+import {
+  DivProps,
+  HeadProps,
+  styled,
+  useTheme,
+  Box,
+  colors,
+  css,
+} from "secptrum-ui";
+import { useRouter } from "@/hooks";
+import { fonts } from "@/styles/global";
 
 const StickyBar = () => {
   const { pathname } = useRouter();
 
   const { mode } = useTheme();
 
-  const light = mode === 'light';
+  const light = mode === "light";
+  if (typeof window === "undefined") return null;
 
   return (
     <StyledBar light={light}>
       <BarContent>
         <BarStack>
           <>
-            {sidebarlinks.map((link, index) => (
+            {sidebarLinks.map((link, index) => (
               <Collapsible
                 header={link.header}
                 key={index}
@@ -37,20 +44,20 @@ const StickyBar = () => {
               >
                 <>
                   {link.links.map((doc, index) => (
-                    <DocsContent key={index} notavailable={doc?.not_available}>
+                    <DocsContent key={index} notavailable={doc.not_available}>
                       <DocsCategory hidden={!doc.category}>
-                        {doc?.category}
+                        {doc.category}
                       </DocsCategory>
                       <Link href={doc.uri}>
                         <DocLinkWrap
                           isactive={pathname === doc.uri.toString()}
-                          notavailable={doc?.not_available}
+                          notavailable={doc.not_available}
                           light={light}
                         >
-                          <DocsLabel notavailable={doc?.not_available}>
+                          <DocsLabel notavailable={doc.not_available}>
                             {doc.label}
                           </DocsLabel>
-                          <DocAlert notavailable={doc?.not_available}>
+                          <DocAlert notavailable={doc.not_available}>
                             Soon
                           </DocAlert>
                         </DocLinkWrap>
@@ -61,20 +68,6 @@ const StickyBar = () => {
               </Collapsible>
             ))}
           </>
-          <ExtraLinks spacing="lg">
-            {/* <Link href="/showcase-lab">
-              <Box spacing="md" centered>
-                <Typography>Showcase Lab</Typography>
-                <HiMiniArrowUpRight size={20} />
-              </Box>
-            </Link> */}
-            {/* <Link href="">
-              <Box spacing="md" centered>
-                <Typography>Templates</Typography>
-                <HiMiniArrowUpRight size={20} />
-              </Box>
-            </Link> */}
-          </ExtraLinks>
         </BarStack>
       </BarContent>
     </StyledBar>
@@ -83,10 +76,10 @@ const StickyBar = () => {
 
 export default StickyBar;
 
-const StyledBar = styled<{ light: boolean }>('div')`
+const StyledBar = styled<{ light: boolean }>("div")`
   height: 100vh;
   background: ${(props) => props.theme?.colors?.background};
-  width: 270px;
+  width: 250px;
   flex-direction: column;
   border-right: 1px solid
     ${(props) => (props.light ? colors.gray[300] : colors.neutral[800])};
@@ -127,7 +120,7 @@ export const DocsContent = styled<DocsContentProps>(Box)`
 
   a {
     text-decoration: none;
-    pointer-events: ${(props) => props.notavailable && 'none'};
+    pointer-events: ${(props) => props.notavailable && "none"};
   }
 `;
 
@@ -137,48 +130,55 @@ export const DocsCategory = styled(Typography)`
   text-transform: uppercase;
   margin-bottom: 5px;
   margin-top: 5px;
+  padding: 6px 26px;
 `;
 
 interface DocsLabelProps extends HeadProps {
   notavailable: boolean | any;
 }
 
-export const DocsLabel = styled<DocsLabelProps>('p')`
-  color: ${(props) => props.theme.colors?.text};
+export const DocsLabel = styled<DocsLabelProps>("p")`
   font-size: 14px;
   opacity: ${(props) => (props.notavailable ? 0.4 : 1)};
   font-family: ${fonts.poppins};
 `;
 
-export const DocAlert = styled<DocsLabelProps>('p')`
+export const DocAlert = styled<DocsLabelProps>("p")`
   color: blue;
   background: rgb(191 219 254);
   padding: 4px;
   font-size: 12px;
   border-radius: 5px;
-  display: ${(props) => (props.notavailable ? 'flex' : 'none')};
+  display: ${(props) => (props.notavailable ? "flex" : "none")};
   opacity: 0.4;
   font-family: ${fonts.poppins};
 `;
 
-export const DocLinkWrap = styled<
-  DivProps & {
-    isactive: boolean;
-    notavailable: boolean | undefined;
-    light: boolean | undefined;
-  }
->(Box)`
+interface IStyleDocWrap extends DivProps {
+  isactive: boolean;
+  notavailable: boolean | undefined;
+  light: boolean | undefined;
+}
+
+export const DocLinkWrap = styled<IStyleDocWrap>(Box)`
   align-items: center;
   gap: 5px;
-  background: ${(props) =>
+  padding: 6px 26px;
+  cursor: ${(props) => (props.notavailable ? "default" : "pointer")};
+  color: ${(props) =>
+    props.isactive ? colors.blue[600] : props.theme.colors?.text};
+  ${(props) =>
     props.isactive
-      ? props.light
-        ? colors.blue[100]
-        : 'rgb(30 41 59)'
-      : 'transparent'};
-  padding: 4px 8px;
-  border-radius: 6px;
-  cursor: ${(props) => (props.notavailable ? 'default' : 'pointer')};
+      ? css`
+          border-left: 1.8px solid ${colors.blue[600]};
+        `
+      : ""};
+  transform: translateX(-1px);
+
+  &:hover {
+    color: ${colors.blue[600]};
+    border-left: 1.8px solid ${colors.blue[600]};
+  }
 `;
 
 export const ExtraLinks = styled(Box)`

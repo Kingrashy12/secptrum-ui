@@ -1,15 +1,11 @@
 import { InstallPage } from '@/components';
 import { Metadata } from 'next';
 
-import React from 'react';
-
 export const metadata: Metadata = {
-  title: 'Installation - Secptrum UI',
-  description: 'Installation - Secptrum UI',
+  title: 'Installation | Secptrum UI',
+  description: 'Installation Guide for Secptrum UI',
 };
 
-const Installation = () => {
+export default function InstallationPage() {
   return <InstallPage />;
-};
-
-export default Installation;
+}

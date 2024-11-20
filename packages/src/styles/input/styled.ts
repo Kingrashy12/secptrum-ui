@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { styled, css, keyframes, DivProps } from "../../styled";
+import { styled, css, keyframes } from "../../styled";
 import { colors } from "../colors";
 import { getInputRadius, getInputStyles } from "../../utils/input";
 
@@ -23,7 +23,7 @@ const pop = keyframes`
 `;
 
 // **** input   s   t   y   l   e   s   **** //
-export const InputForm = styled<DivProps & { width: string | any }>("div")`
+export const InputForm = styled<{ width: string | any }>("div")`
   flex-direction: column;
   gap: 8px;
   min-width: ${(props) => props.width || "auto"};
@@ -45,6 +45,7 @@ export const InputForm = styled<DivProps & { width: string | any }>("div")`
     width: 100%;
   }
 `;
+InputForm.displayName = "Sui.InputForm";
 
 export const Input = styled<IStyleTextInput>("div")`
   display: flex;
@@ -109,8 +110,8 @@ export const Input = styled<IStyleTextInput>("div")`
     cursor: pointer;
     color: ${colors.neutral[400]};
     transition: color 0.3s ease;
-    flex-shrink: 0;
-
+    width: auto;
+    height: 100%;
     &:hover {
       color: ${colors.neutral[600]};
     }

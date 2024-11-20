@@ -47,4 +47,4 @@ const DrawerFooter = ({
 };
 
 export default DrawerFooter;
-DrawerFooter.displayName = "DrawerFooter";
+DrawerFooter.displayName = "Sui.DrawerFooter";

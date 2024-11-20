@@ -22,7 +22,7 @@ export const MenuPanel = styled<IStyledMenuPanel>("div")`
   ${({ left }) => left && `left: ${left}px`};
   ${({ right }) => right && `right: ${right}px`};
 `;
-MenuPanel.displayName = "MenuPanel";
+MenuPanel.displayName = "Sui.MenuPanel";
 
 type IStyledMenu = {
   mode: "light" | "dark";

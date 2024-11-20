@@ -1,12 +1,19 @@
 'use client';
 
 import SideBarModal from '@/components/modal/mobile/SideBarModal';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const SideBarContext = createContext<ModalContextType | undefined>(undefined);
 
 const SideBarProvider = ({ children }: ContextProviderType) => {
   const [isOpen, setIsOpen] = useState(false);
+  const md = globalThis.window?.innerWidth < 550;
+
+  useEffect(() => {
+    if (md) {
+      setIsOpen(false);
+    }
+  }, [md]);
 
   function onOpen() {
     setIsOpen(true);

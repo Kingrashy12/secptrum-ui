@@ -111,7 +111,7 @@ const NotificationBadge = ({
 };
 
 export default NotificationBadge;
-NotificationBadge.displayName = "NotificationBadge";
+NotificationBadge.displayName = "Sui.NotificationBadge";
 
 const NotificationBadgeSui = styled("div")`
   display: flex;

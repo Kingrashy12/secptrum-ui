@@ -1,10 +1,10 @@
-# Contributing to spectrum-ui
+# Contributing to Secptrum UI
 
-We're excited that you're interested in contributing to spectrum-ui! This document outlines the process for contributing to this project.
+I'm excited that you're interested in contributing to Secptrum UI! This document outlines the process for contributing to this project.
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before contributing.
+By participating in this project, you agree to abide by the [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before contributing.
 
 ## Getting Started
 
@@ -50,7 +50,7 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 ## Code Review Process
 
 - All submissions require review by project maintainers.
-- We may suggest changes, improvements, or alternatives.
+- I may suggest changes, improvements, or alternatives.
 - The review process is a collaborative effort to ensure the quality and consistency of the codebase.
 
-Thank you for contributing to spectrum-ui!
+Thank you for contributing to Secptrum UI!

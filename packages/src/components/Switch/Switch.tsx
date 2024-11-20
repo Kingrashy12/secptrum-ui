@@ -94,3 +94,4 @@ const Switch = ({
 };
 
 export default Switch;
+Switch.displayName = "Sui.Switch";

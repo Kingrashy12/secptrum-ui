@@ -4,7 +4,7 @@ class StyleSheetManager {
   private styleSheet: CSSStyleSheet | null = null;
 
   constructor() {
-    this.isServer = typeof window === "undefined";
+    this.isServer = typeof window === 'undefined';
     if (!this.isServer) {
       this.initBrowserStyleSheet();
     }
@@ -51,7 +51,7 @@ class StyleSheetManager {
    * @returns The styles as a string
    */
   getStylesAsString(): string {
-    return Array.from(this.styles).join("\n");
+    return Array.from(this.styles).join('\n');
   }
 
   /**
@@ -70,8 +70,8 @@ class StyleSheetManager {
   }
 
   private initBrowserStyleSheet(): void {
-    if (typeof document !== "undefined") {
-      const style = document.createElement("style");
+    if (typeof document !== 'undefined') {
+      const style = document.createElement('style');
       document.head.appendChild(style);
       this.styleSheet = style.sheet;
     }
@@ -103,16 +103,16 @@ class StyleSheetManager {
 }
 
 /**
- * Styled-Chroma Sheet Manager SSR And CSR
+ * Secptrum UI Styled Sytem Manager
  * @returns The singleton instance of StyleSheetManager
  */
 export const styleSheetManager = new StyleSheetManager();
 
 /**
- * Function to use in the server to get styles as string
+ * Function to use on the server to get styles as a string
  * @returns The styles as a string
  */
-export function renderStyles(): string {
+export const renderStyles = (): string => {
   const styles = styleSheetManager.collectStyles();
   return styles;
-}
+};

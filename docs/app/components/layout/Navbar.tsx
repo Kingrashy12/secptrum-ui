@@ -1,84 +1,75 @@
-"use client";
-
 import React from "react";
-import Media from "../custom/Media";
-import { GithubImg, SecptrumLogo } from "@/assets";
-import { Box, colors, Icon } from "secptrum-ui";
-import Typography from "../custom/Typography";
+import {
+  Box,
+  colors,
+  Icon,
+  useTheme,
+  styled,
+  HoverableIcon,
+  Button,
+} from "secptrum-ui";
 import Link from "next/link";
-import { styled, useTheme } from "styled-chroma";
 import { RiMenuUnfold3Line } from "react-icons/ri";
-// import { GoBell } from 'react-icons/go';
 import { MdSunny } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
-import { sidebarlinks } from "@/data/sidebar";
 import { LuMenu } from "react-icons/lu";
 import { useMenu } from "@/context/useMenu";
 import { useSideBar } from "@/context/useSideBar";
-import { fonts } from "@/styles/global";
-// import { useShowcaseForm } from '@/context/useShowCase';
+import { Divider, Links } from "@/styles/home.styled";
+import { FaGithub } from "react-icons/fa6";
+import NavLink from "./NavLink";
 
 const Navbar = ({ visible }: { visible: boolean }) => {
   const { mode, theme, toggleTheme } = useTheme();
   const { onOpen } = useMenu();
   const { onOpen: openSideBar } = useSideBar();
   const light = mode === "light";
-  // const { onOpen: showCase } = useShowcaseForm();
 
   return (
     <Nav light={light} visible={visible}>
-      <Box className="logo">
+      <Box className="logo" spacing="lg">
         <Icon
           icon={RiMenuUnfold3Line}
           onClick={openSideBar}
           size={25}
           color={theme.colors?.icon}
         />
-        <Link href="/">
-          <Logo src={SecptrumLogo.src} width={50} height={50} />
-          <Secptrum>Secptrum UI</Secptrum>
-        </Link>
+        <NavLink />
       </Box>
-      <LinkWrapper>
-        <Links>
-          <Link href={sidebarlinks[1].links[0].uri}>
-            <Typography>Components</Typography>
-          </Link>
-          <Link href="/docs/getting-started">
-            <Typography>Docs</Typography>
-          </Link>
-        </Links>
-        <Divider />
-        <Links>
-          <Link
-            href="https://github.com/SecptrumLab/secptrum-ui"
-            target="_blank"
+      <Links>
+        <Link
+          href="https://github.com/Kingrashy12/secptrum-ui"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Button
+            radius="full"
+            size="lg"
+            leftIcon={FaGithub}
+            iconSize={20}
+            variant="ghost"
           >
-            <Git src={GithubImg.src} width={28} height={28} />
-          </Link>
-          {/* <GoBell size={20} color={theme.colors?.icon} className="not" /> */}
-          <Icon
-            icon={light ? IoMdMoon : MdSunny}
-            size={22}
-            className="not"
-            color={theme.colors?.icon}
-            onClick={toggleTheme}
-          />
-        </Links>
-        {/* <Divider />
-        <Button radius="md" variant="outline" onClick={showCase}>
-          Showcase Your Website
-        </Button> */}
-      </LinkWrapper>
-      <MenuIcon>
-        <Icon
-          icon={light ? IoMdMoon : MdSunny}
-          size={22}
-          className="not"
+            Star on GithHub
+          </Button>
+        </Link>
+        <Divider type="short" height="20px" />
+        <HoverableIcon
+          icon={mode === "light" ? IoMdMoon : MdSunny}
+          size={20}
+          mode={mode as "light" | "dark"}
           color={theme.colors?.icon}
           onClick={toggleTheme}
         />
-        {/* <GoBell size={20} color={theme.colors?.icon} className="not" /> */}
+      </Links>
+      <MenuIcon>
+        <HoverableIcon
+          icon={light ? IoMdMoon : MdSunny}
+          size={22}
+          mode={mode as "light" | "dark"}
+          color={theme.colors?.icon}
+          onClick={toggleTheme}
+        />
+
         <Icon
           icon={LuMenu}
           onClick={onOpen}
@@ -92,14 +83,6 @@ const Navbar = ({ visible }: { visible: boolean }) => {
 
 export default Navbar;
 
-const Secptrum = styled("p")`
-  color: ${(props) => props.theme.colors?.text};
-  font-family: ${fonts.nunito};
-  font-weight: 600;
-  font-size: 18px;
-  transform: translateY(2px);
-`;
-
 const Nav = styled<{ light: boolean; visible: boolean }>("div")`
   background: ${(props) =>
     props.light ? "rgb(255,255,255,0.5)" : "rgb(0,0,0,0.5)"};
@@ -108,12 +91,12 @@ const Nav = styled<{ light: boolean; visible: boolean }>("div")`
   width: 100%;
   height: 60px;
   padding: 4px 6px;
-  z-index: 100;
+  z-index: 500;
   justify-content: space-around;
   align-items: center;
   backdrop-filter: blur(6px);
   transform: ${(props) =>
-    props.visible ? "translateY(0)" : "translateY(-40px)"};
+    props.visible ? "translateY(0)" : "translateY(-50px)"};
   transition: transform 0.3s ease;
   border-bottom: 1px solid
     ${(props) => (props.light ? colors.gray[300] : "rgb(38 38 38)")};
@@ -140,71 +123,6 @@ const Nav = styled<{ light: boolean; visible: boolean }>("div")`
 
   @media screen and (max-width: 1024px) {
   }
-`;
-
-const Logo = styled(Media)`
-  width: 50px;
-  height: 50px;
-`;
-
-const LinkWrapper = styled("div")`
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  width: auto;
-  gap: 1.5rem;
-
-  @media screen and (max-width: 550px) {
-    display: none !important;
-  }
-`;
-
-const Links = styled("div")`
-  display: flex;
-  position: relative;
-  gap: 3.5rem;
-  align-items: center;
-
-  .not {
-    cursor: pointer;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 500ms;
-
-    &:hover {
-      opacity: 0.75;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors?.text};
-    display: flex;
-    align-items: center;
-
-    &:hover {
-      color: ${colors.blue[500]};
-    }
-  }
-
-  p {
-    font-family: "Poppins-Medium";
-    font-size: 14px;
-  }
-`;
-
-const Git = styled(Media)`
-  width: 28px;
-  height: 28px;
-  &:hover {
-    opacity: 0.85;
-  }
-`;
-
-const Divider = styled("div")`
-  background: ${(props) => props.theme.colors?.divider};
-  width: 1px;
-  height: auto;
 `;
 
 const MenuIcon = styled("div")`
