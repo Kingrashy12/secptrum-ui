@@ -7,7 +7,7 @@ import BasicIcon from "@/components/example/utilities/icon/basic";
 import CustomSvg from "@/components/example/utilities/icon/custom-svg";
 import DynamicIcons from "@/components/example/utilities/icon/dynamic";
 import DocsLayout from "@/components/layout/DocsLayout";
-import iconRef from "@/data/reference/icon";
+import iconRef from "@/data/reference/iconRef";
 import { DocText, LargeTextHeader } from "@/styles/docs/docs.styled";
 import { Divider, SpaceTop } from "@/styles/global";
 import Link from "next/link";
