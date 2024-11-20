@@ -1,3 +1,5 @@
+"use client";
+
 import { DynamicImport } from "../hooks/dyanmicImport";
 
 type ImportFuncType = () => Promise<{ default: React.ComponentType }>;
