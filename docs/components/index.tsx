@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { dyn } from "../utils/dyn";
 
 export { default as AppWrap } from "./layout/AppWrap";
@@ -23,7 +24,9 @@ export const ToastPage = dyn(() => import("./docs/page/ToastPage"));
 export const BackdropPage = dyn(() => import("./docs/page/BackdropPage"));
 export const DrawerPage = dyn(() => import("./docs/page/DrawerPage"));
 export const ModalPage = dyn(() => import("./docs/page/ModalPage"));
-export const BottomNavPage = dyn(() => import("./docs/page/BottomNav"));
+export const BottomNavPage = dynamic(() => import("./docs/page/BottomNav"), {
+  ssr: false,
+});
 export const TabsPage = dyn(() => import("./docs/page/TabsPage"));
 export const CircleLoaderPage = dyn(
   () => import("./docs/page/CircleLoaderPage")
