@@ -20,7 +20,7 @@ const PositionToast = () => {
         <TabHandle value="code">Code</TabHandle>
 
         <TabPanel>
-          <PrevContainer align="horizontal">
+          <PrevContainer align="horizontal" wrap>
             <Button
               variant="outline"
               onClick={() =>
